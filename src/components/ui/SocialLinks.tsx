@@ -70,7 +70,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({ items, variant = 'icon
               href={social.qr}
               target="_blank"
               rel="noreferrer"
-              className="mt-1.5 block text-center text-[11px] font-mono text-sky-700 dark:text-sky-300 hover:underline"
+              className="mt-1.5 block text-center text-[11px] font-mono text-sakura-700 dark:text-sakura-300 hover:underline"
             >
               打开图片
             </a>

@@ -203,10 +203,10 @@ export const PostDetail: React.FC = () => {
                         <>
                           <Link
                             href={`/posts?category=${encodeURIComponent(post.category)}`}
-                            className="group/cat pointer-events-auto inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-950/60 hover:bg-slate-900/85 backdrop-blur-md border border-white/15 hover:border-sky-400/50 text-white/90 hover:text-white transition-all duration-200 shadow-sm"
+                            className="group/cat pointer-events-auto inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-950/60 hover:bg-slate-900/85 backdrop-blur-md border border-white/15 hover:border-sakura-400/50 text-white/90 hover:text-white transition-all duration-200 shadow-sm"
                             title={`查看「${post.category}」分类文章`}
                           >
-                            <span className="w-1.5 h-1.5 rounded-full bg-sky-400 shadow-[0_0_6px_rgba(56,189,248,0.85)] group-hover/cat:bg-sky-300 group-hover/cat:scale-110 transition-all" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-sakura-400 shadow-[0_0_6px_rgba(255,143,166,0.85)] group-hover/cat:bg-sakura-300 group-hover/cat:scale-110 transition-all" />
                             <span className="font-medium text-[11px] sm:text-xs tracking-tight">{post.category}</span>
                           </Link>
                           <span>&bull;</span>
@@ -234,10 +234,10 @@ export const PostDetail: React.FC = () => {
                         <>
                           <Link
                             href={`/posts?category=${encodeURIComponent(post.category)}`}
-                            className="group/cat inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sky-500/10 hover:bg-sky-500/15 dark:bg-sky-400/10 dark:hover:bg-sky-400/15 border border-sky-500/20 hover:border-sky-500/40 dark:border-sky-400/25 dark:hover:border-sky-400/50 text-sky-700 dark:text-sky-300 transition-all duration-200 shadow-2xs"
+                            className="group/cat inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sakura-500/10 hover:bg-sakura-500/15 dark:bg-sakura-400/10 dark:hover:bg-sakura-400/15 border border-sakura-500/20 hover:border-sakura-500/40 dark:border-sakura-400/25 dark:hover:border-sakura-400/50 text-sakura-700 dark:text-sakura-300 transition-all duration-200 shadow-2xs"
                             title={`查看「${post.category}」分类文章`}
                           >
-                            <span className="w-1.5 h-1.5 rounded-full bg-sky-500 dark:bg-sky-400 shadow-[0_0_5px_rgba(14,165,233,0.5)] group-hover/cat:scale-110 transition-transform" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-sakura-500 dark:bg-sakura-400 shadow-[0_0_5px_rgba(244,114,141,0.5)] group-hover/cat:scale-110 transition-transform" />
                             <span className="font-medium text-[11px] sm:text-xs tracking-tight">{post.category}</span>
                           </Link>
                           <span>&bull;</span>
@@ -372,7 +372,7 @@ export const PostDetail: React.FC = () => {
             <button
               type="button"
               onClick={() => setMobileTocOpen(true)}
-              className="fixed right-4 bottom-6 sm:right-5 sm:bottom-8 z-40 p-2.5 rounded-md bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-slate-200/90 dark:border-slate-700/90 shadow-lg text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 active:scale-95 flex items-center justify-center cursor-pointer pointer-events-auto"
+              className="fixed right-4 bottom-6 sm:right-5 sm:bottom-8 z-40 p-2.5 rounded-md bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-slate-200/90 dark:border-slate-700/90 shadow-lg text-slate-700 dark:text-slate-300 hover:text-sakura-600 dark:hover:text-sakura-400 active:scale-95 flex items-center justify-center cursor-pointer pointer-events-auto"
               title="打开文章目录"
               aria-label="打开文章目录"
             >
@@ -407,7 +407,7 @@ export const PostDetail: React.FC = () => {
 
                     <div className="flex items-center justify-between pb-2 border-b border-slate-200/60 dark:border-slate-800/60 mb-2 px-1 shrink-0">
                       <div className="flex items-center space-x-1.5 font-semibold text-xs text-slate-800 dark:text-slate-200">
-                        <AlignLeft className="w-3.5 h-3.5 text-sky-500" />
+                        <AlignLeft className="w-3.5 h-3.5 text-sakura-500" />
                         <span>文章目录</span>
                       </div>
                       <button

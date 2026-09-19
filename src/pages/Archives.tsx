@@ -64,7 +64,7 @@ export const Archives: React.FC = () => {
         {/* 顶部标题区 (手记同款居中规范) */}
         <div className="mb-4 pb-3.5 sm:mb-10 sm:pb-6 border-b border-slate-200/70 dark:border-slate-800/70 font-sans text-center">
           <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-sm bg-slate-100 dark:bg-slate-800 text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-400 mb-2">
-            <History className="w-3 h-3 text-sky-600 dark:text-sky-400" />
+            <History className="w-3 h-3 text-sakura-600 dark:text-sakura-400" />
             <span>ARCHIVES</span>
           </div>
 
@@ -80,10 +80,10 @@ export const Archives: React.FC = () => {
 
           {/* 状态指示胶囊 */}
           <div className="mt-3.5 sm:mt-5 flex items-center justify-center gap-2">
-            <div className="px-3 py-1.5 rounded-sm text-xs font-sans flex items-center space-x-1.5 bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 font-semibold border border-sky-300/80 dark:border-sky-700/80 shadow-2xs">
+            <div className="px-3 py-1.5 rounded-sm text-xs font-sans flex items-center space-x-1.5 bg-sakura-50 dark:bg-sakura-950/60 text-sakura-700 dark:text-sakura-300 font-semibold border border-sakura-300/80 dark:border-sakura-700/80 shadow-2xs">
               <Feather className="w-3 h-3" />
               <span>手记随笔</span>
-              <span className="text-[10.5px] font-mono px-1.5 py-0.5 rounded-sm bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 font-medium">
+              <span className="text-[10.5px] font-mono px-1.5 py-0.5 rounded-sm bg-sakura-100 dark:bg-sakura-900/60 text-sakura-700 dark:text-sakura-300 font-medium">
                 {timelineItems.length} 篇
               </span>
             </div>
@@ -110,7 +110,7 @@ export const Archives: React.FC = () => {
                 {itemsByYear[year].map((item) => (
                   <div key={item.id} className="relative group">
                     {/* 时间轴微节点圆点 (移动端对准首行文字，桌面端居中) */}
-                    <div className="absolute -left-[19px] sm:-left-[21px] top-3 sm:top-1/2 sm:-translate-y-1/2 w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700 group-hover:bg-sky-500 transition-colors" />
+                    <div className="absolute -left-[19px] sm:-left-[21px] top-3 sm:top-1/2 sm:-translate-y-1/2 w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700 group-hover:bg-sakura-500 transition-colors" />
 
                     {/* 归档行卡片 (桌面端优雅单行，移动端自适应展示完整标题) */}
                     <Link
@@ -124,7 +124,7 @@ export const Archives: React.FC = () => {
                         </span>
 
                         {/* 标题 */}
-                        <span className="text-[13px] sm:text-sm text-slate-800 dark:text-slate-200 group-hover:text-sky-600 dark:group-hover:text-sky-400 font-medium transition-colors sm:truncate leading-snug">
+                        <span className="text-[13px] sm:text-sm text-slate-800 dark:text-slate-200 group-hover:text-sakura-600 dark:group-hover:text-sakura-400 font-medium transition-colors sm:truncate leading-snug">
                           {item.title}
                         </span>
 
@@ -139,7 +139,7 @@ export const Archives: React.FC = () => {
                       {/* 类型标 (手记标签) */}
                       {item.type === 'diary' && (
                         <div className="flex items-center pl-10 sm:pl-0 shrink-0">
-                          <span className="px-1.5 py-0.5 rounded-sm bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 text-[10.5px] font-mono leading-none">
+                          <span className="px-1.5 py-0.5 rounded-sm bg-sakura-50 dark:bg-sakura-950/40 text-sakura-600 dark:text-sakura-400 text-[10.5px] font-mono leading-none">
                             手记
                           </span>
                         </div>

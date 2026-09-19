@@ -24,7 +24,7 @@ export const Diaries: React.FC = () => {
         {/* 顶部标题区 */}
         <div className="mb-4 pb-3 sm:mb-10 sm:pb-6 border-b border-slate-200/70 dark:border-slate-800/70 text-center">
           <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-xs bg-slate-100 dark:bg-slate-800 text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-400 mb-2">
-            <Feather className="w-3 h-3 text-sky-600 dark:text-sky-400" />
+            <Feather className="w-3 h-3 text-sakura-600 dark:text-sakura-400" />
             <span>DIARIES</span>
           </div>
           <h1 className="font-sans text-2xl sm:text-4xl font-semibold text-slate-900 dark:text-slate-100 tracking-tight">
@@ -43,13 +43,13 @@ export const Diaries: React.FC = () => {
             <Link
               key={diary.slug}
               href={`/diaries/${diary.slug}`}
-              className="p-3.5 sm:p-4 rounded border border-slate-200/70 dark:border-slate-800/70 bg-white/75 dark:bg-slate-900/60 shadow-[0_1px_3px_rgba(15,23,42,0.03),0_4px_12px_-2px_rgba(15,23,42,0.03)] hover:shadow-[0_8px_22px_-4px_rgba(15,23,42,0.08),0_2px_6px_-1px_rgba(15,23,42,0.04)] hover:-translate-y-1 hover:border-sky-200/90 dark:hover:border-sky-800/80 hover:bg-white/95 dark:hover:bg-slate-900/85 transition-all duration-300 ease-out group flex flex-col justify-between block"
+              className="p-3.5 sm:p-4 rounded border border-slate-200/70 dark:border-slate-800/70 bg-white/75 dark:bg-slate-900/60 shadow-[0_1px_3px_rgba(15,23,42,0.03),0_4px_12px_-2px_rgba(15,23,42,0.03)] hover:shadow-[0_8px_22px_-4px_rgba(15,23,42,0.08),0_2px_6px_-1px_rgba(15,23,42,0.04)] hover:-translate-y-1 hover:border-sakura-200/90 dark:hover:border-sakura-800/80 hover:bg-white/95 dark:hover:bg-slate-900/85 transition-all duration-300 ease-out group flex flex-col justify-between block"
             >
               <div>
                 {/* 顶部元数据头：天气、心情、时间与地点 */}
                 <div className="flex items-center justify-between gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 pb-2.5 border-b border-slate-100/80 dark:border-slate-800/60 mb-2.5">
                   <div className="flex items-center space-x-1.5 font-medium text-slate-800 dark:text-slate-200">
-                    <Calendar className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
+                    <Calendar className="w-3.5 h-3.5 text-sakura-600 dark:text-sakura-400 shrink-0" />
                     <time dateTime={diary.date}>{formatDate(diary.date)}</time>
                     {diary.time && <span className="text-[11px] opacity-75 font-mono">· {diary.time}</span>}
                   </div>
@@ -61,7 +61,7 @@ export const Diaries: React.FC = () => {
                       </span>
                     )}
                     {diary.mood && (
-                      <span className="px-1.5 py-0.5 rounded-xs bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border border-sky-200/50 dark:border-sky-800/40">
+                      <span className="px-1.5 py-0.5 rounded-xs bg-sakura-50 dark:bg-sakura-950/40 text-sakura-700 dark:text-sakura-300 border border-sakura-200/50 dark:border-sakura-800/40">
                         {diary.mood}
                       </span>
                     )}
@@ -105,8 +105,8 @@ export const Diaries: React.FC = () => {
 
           <div className="relative z-10 flex flex-col items-center text-center space-y-3.5 max-w-xl mx-auto">
             {/* 顶栏徽标 */}
-            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-sm bg-sky-50 dark:bg-sky-950/40 text-[11px] font-mono text-sky-700 dark:text-sky-300 border border-sky-200/50 dark:border-sky-800/40">
-              <Sparkles className="w-3 h-3 text-sky-600 dark:text-sky-400" />
+            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-sm bg-sakura-50 dark:bg-sakura-950/40 text-[11px] font-mono text-sakura-700 dark:text-sakura-300 border border-sakura-200/50 dark:border-sakura-800/40">
+              <Sparkles className="w-3 h-3 text-sakura-600 dark:text-sakura-400" />
               <span>落纸为念 &bull; 纸上温度</span>
             </div>
 

@@ -13,10 +13,10 @@
   --admin-text-muted: #64748b;
   --admin-text-faint: #94a3b8;
   
-  --admin-accent: #0284c7;
-  --admin-accent-hover: #0369a1;
-  --admin-accent-soft: rgba(2, 132, 199, 0.08);
-  --admin-accent-ring: rgba(2, 132, 199, 0.25);
+  --admin-accent: #e05676;
+  --admin-accent-hover: #c43d61;
+  --admin-accent-soft: rgba(224, 86, 118, 0.08);
+  --admin-accent-ring: rgba(224, 86, 118, 0.25);
 
   --admin-success: #10b981;
   --admin-success-soft: rgba(16, 185, 129, 0.1);
@@ -47,10 +47,10 @@
   --admin-text-muted: #94a3b8;
   --admin-text-faint: #64748b;
 
-  --admin-accent: #38bdf8;
-  --admin-accent-hover: #7dd3fc;
-  --admin-accent-soft: rgba(56, 189, 248, 0.12);
-  --admin-accent-ring: rgba(56, 189, 248, 0.3);
+  --admin-accent: #ff8fa6;
+  --admin-accent-hover: #ffc0cb;
+  --admin-accent-soft: rgba(255, 143, 166, 0.12);
+  --admin-accent-ring: rgba(255, 143, 166, 0.3);
 
   --admin-success: #34d399;
   --admin-success-soft: rgba(52, 211, 153, 0.15);
@@ -62,7 +62,7 @@
   --admin-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
   --admin-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.45);
   --admin-shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.55);
-  --admin-shadow-glow: 0 0 24px -2px rgba(56, 189, 248, 0.2);
+  --admin-shadow-glow: 0 0 24px -2px rgba(255, 143, 166, 0.2);
 }
 
 /* 主题强调色方案 */
@@ -131,7 +131,7 @@
   position: sticky;
   top: 0;
   z-index: 40;
-  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s ease;
+  transition: transform 0.25s ease;
   user-select: none;
 }
 
@@ -152,7 +152,7 @@
   width: 36px;
   height: 36px;
   border-radius: 9px;
-  background: linear-gradient(135deg, var(--admin-accent), #3b82f6);
+  background: linear-gradient(135deg, var(--admin-accent), #ffc0cb);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -781,7 +781,7 @@
 }
 .admin-dark .admin-floating-bar,
 .dark .admin-app .admin-floating-bar {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.15);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 143, 166, 0.15);
 }
 
 /* Batch Bar */
@@ -858,7 +858,6 @@
 .admin-diff-added {
   background-color: rgba(16, 185, 129, 0.12);
   color: #059669;
-  border-left: 3px solid #10b981;
 }
 .admin-dark .admin-diff-added,
 .dark .admin-app .admin-diff-added {
@@ -867,7 +866,6 @@
 .admin-diff-removed {
   background-color: rgba(239, 68, 68, 0.12);
   color: #dc2626;
-  border-left: 3px solid #ef4444;
   text-decoration: line-through;
   opacity: 0.75;
 }

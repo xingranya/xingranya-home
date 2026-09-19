@@ -32,7 +32,7 @@ export const RecordCard: React.FC<{
           <RecordMedia media={record.media} />
           {record.location && (
             <div className="mt-2.5 flex min-w-0 items-center gap-1.5 text-[11px] text-slate-400 dark:text-slate-500">
-              <MapPin className="h-3.5 w-3.5 shrink-0 text-sky-500" />
+              <MapPin className="h-3.5 w-3.5 shrink-0 text-sakura-500" />
               <span className="truncate">{record.location}</span>
             </div>
           )}

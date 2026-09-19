@@ -87,7 +87,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                     </div>
                     <div className="min-w-0">
                       <div className="flex items-center space-x-2">
-                        <span className="font-serif text-sm font-medium text-slate-900 dark:text-slate-100 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors truncate">
+                        <span className="font-serif text-sm font-medium text-slate-900 dark:text-slate-100 group-hover:text-sakura-600 dark:group-hover:text-sakura-400 transition-colors truncate">
                           {item.title}
                         </span>
                         <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-xs bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400 shrink-0">

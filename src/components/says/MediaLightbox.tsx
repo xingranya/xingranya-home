@@ -201,7 +201,7 @@ export const MediaLightbox: React.FC<MediaLightboxProps> = ({
             {index + 1} / {images.length}
           </span>
           {scale !== 1 && (
-            <span className="text-xs font-mono text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded-full border border-sky-400/20">
+            <span className="text-xs font-mono text-sakura-400 bg-sakura-500/10 px-2 py-0.5 rounded-full border border-sakura-400/20">
               {Math.round(scale * 100)}%
             </span>
           )}
@@ -240,7 +240,7 @@ export const MediaLightbox: React.FC<MediaLightboxProps> = ({
             <button
               type="button"
               onClick={handleReset}
-              className="p-1.5 sm:p-2 rounded-full hover:bg-white/15 hover:text-white transition-colors text-sky-400"
+              className="p-1.5 sm:p-2 rounded-full hover:bg-white/15 hover:text-white transition-colors text-sakura-400"
               title="复位 (0)"
               aria-label="复位"
             >
@@ -298,7 +298,7 @@ export const MediaLightbox: React.FC<MediaLightboxProps> = ({
         {/* 加载状态提示 */}
         {imgLoading && !imgError && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-            <div className="w-8 h-8 rounded-full border-2 border-white/20 border-t-sky-400 animate-spin" />
+            <div className="w-8 h-8 rounded-full border-2 border-white/20 border-t-sakura-400 animate-spin" />
           </div>
         )}
 
@@ -310,7 +310,7 @@ export const MediaLightbox: React.FC<MediaLightboxProps> = ({
               href={currentImage.url}
               target="_blank"
               rel="noreferrer"
-              className="text-xs font-mono text-sky-400 hover:underline inline-flex items-center gap-1"
+              className="text-xs font-mono text-sakura-400 hover:underline inline-flex items-center gap-1"
             >
               <span>{currentImage.url}</span>
               <ExternalLink className="w-3 h-3" />

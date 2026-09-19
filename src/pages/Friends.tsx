@@ -57,7 +57,7 @@ export const Friends: React.FC = () => {
         {/* 顶部标题区 (手记同款居中规范) */}
         <div className="mb-4 pb-3.5 sm:mb-10 sm:pb-6 border-b border-slate-200/70 dark:border-slate-800/70 text-center">
           <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-xs bg-slate-100 dark:bg-slate-800 text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-400 mb-2">
-            <Users className="w-3 h-3 text-sky-600 dark:text-sky-400" />
+            <Users className="w-3 h-3 text-sakura-600 dark:text-sakura-400" />
             <span>FRIENDS</span>
           </div>
 
@@ -79,7 +79,7 @@ export const Friends: React.FC = () => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="搜索友链名称、技术栈或简介..."
-              className="w-full pl-9 pr-8 py-2 rounded-md text-xs bg-slate-100/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:border-sky-400/80 dark:focus:border-sky-400/80 focus:bg-white dark:focus:bg-slate-900 focus:shadow-[0_0_0_1px_rgba(56,189,248,0.3)] transition-all outline-none"
+              className="w-full pl-9 pr-8 py-2 rounded-md text-xs bg-slate-100/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:border-sakura-400/80 dark:focus:border-sakura-400/80 focus:bg-white dark:focus:bg-slate-900 focus:shadow-[0_0_0_1px_rgba(255,143,166,0.3)] transition-all outline-none"
             />
             {query && (
               <button
@@ -110,14 +110,14 @@ export const Friends: React.FC = () => {
         {/* 申请友链指南 */}
         <div className="p-4 sm:p-5 rounded-md border border-slate-200/70 dark:border-slate-800/70 space-y-3 bg-white/60 dark:bg-slate-900/50 shadow-2xs">
           <div className="flex items-center space-x-2 font-sans font-semibold text-slate-900 dark:text-slate-100 text-sm">
-            <Sparkles className="w-4 h-4 text-sky-600 dark:text-sky-400" />
+            <Sparkles className="w-4 h-4 text-sakura-600 dark:text-sakura-400" />
             <h2>{guideTitle}</h2>
           </div>
           
           <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
             如果您也拥有自己的个人独立博客，欢迎在您的站点添加本站后通过邮件{' '}
-            <span className="inline-flex items-center gap-1.5 pl-2 pr-1 py-0.5 rounded bg-sky-50 dark:bg-sky-950/40 border border-sky-200/80 dark:border-sky-800/60 text-sky-700 dark:text-sky-300 font-mono text-[11px] shadow-xs group transition-colors hover:bg-sky-100/70 dark:hover:bg-sky-900/50 align-middle my-0.5">
-              <Mail className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
+            <span className="inline-flex items-center gap-1.5 pl-2 pr-1 py-0.5 rounded bg-sakura-50 dark:bg-sakura-950/40 border border-sakura-200/80 dark:border-sakura-800/60 text-sakura-700 dark:text-sakura-300 font-mono text-[11px] shadow-xs group transition-colors hover:bg-sakura-100/70 dark:hover:bg-sakura-900/50 align-middle my-0.5">
+              <Mail className="w-3.5 h-3.5 text-sakura-600 dark:text-sakura-400 shrink-0" />
               <a
                 href={`mailto:${email}`}
                 className="hover:underline tracking-tight font-medium"
@@ -128,7 +128,7 @@ export const Friends: React.FC = () => {
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                className="p-1 hover:bg-sky-200/60 dark:hover:bg-sky-800/80 rounded transition-colors text-slate-400 hover:text-sky-600 dark:hover:text-sky-300 cursor-pointer"
+                className="p-1 hover:bg-sakura-200/60 dark:hover:bg-sakura-800/80 rounded transition-colors text-slate-400 hover:text-sakura-600 dark:hover:text-sakura-300 cursor-pointer"
                 title={copiedEmail ? '已复制邮箱' : '复制邮箱地址'}
                 aria-label="复制邮箱地址"
               >
@@ -182,7 +182,7 @@ const FriendCard: React.FC<{ friend: FriendItem }> = ({ friend }) => {
       target="_blank"
       rel="noreferrer"
       data-external-bypass="true"
-      className="p-3 sm:p-3.5 rounded-md paper-card flex items-start space-x-3 group transition-all duration-300 hover:!border-sky-300/80 dark:hover:!border-sky-500/50 hover:shadow-[0_4px_16px_-2px_rgba(56,189,248,0.12),0_2px_6px_-1px_rgba(15,23,42,0.04)]"
+      className="p-3 sm:p-3.5 rounded-md paper-card flex items-start space-x-3 group transition-all duration-300 hover:!border-sakura-300/80 dark:hover:!border-sakura-500/50 hover:shadow-[0_4px_16px_-2px_rgba(255,143,166,0.12),0_2px_6px_-1px_rgba(15,23,42,0.04)]"
     >
       {/* 左侧头像 */}
       <div className="w-10 h-10 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 flex items-center justify-center font-sans text-xs font-bold shrink-0 overflow-hidden border border-slate-200/60 dark:border-slate-700/60 mt-0.5">

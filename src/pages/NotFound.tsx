@@ -13,7 +13,7 @@ export const NotFound: React.FC = () => {
       <Container size="narrow">
         <div className="py-12 sm:py-20 text-center max-w-lg mx-auto font-sans">
           <div className="w-12 h-12 rounded-md bg-slate-200/60 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center mx-auto mb-4 border border-slate-300/40 dark:border-slate-700/50 shadow-2xs">
-            <Compass className="w-6 h-6 text-sky-600 dark:text-sky-400" />
+            <Compass className="w-6 h-6 text-sakura-600 dark:text-sakura-400" />
           </div>
 
           <span className="font-mono text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider">
@@ -40,14 +40,14 @@ export const NotFound: React.FC = () => {
               href="/diaries"
               className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-md border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shadow-2xs"
             >
-              <Feather className="w-3.5 h-3.5 text-sky-500" />
+              <Feather className="w-3.5 h-3.5 text-sakura-500" />
               <span>手记随笔</span>
             </Link>
             <Link
               href="/sitemap"
               className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-md border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300 text-xs font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shadow-2xs"
             >
-              <Map className="w-3.5 h-3.5 text-sky-500" />
+              <Map className="w-3.5 h-3.5 text-sakura-500" />
               <span>站点地图</span>
             </Link>
           </div>
@@ -65,7 +65,7 @@ export const NotFound: React.FC = () => {
                     href={`/diaries/${d.slug}`}
                     className="flex items-center justify-between p-2.5 rounded-md border border-slate-200/60 dark:border-slate-800/60 hover:bg-slate-100/60 dark:hover:bg-slate-850/60 transition-colors group"
                   >
-                    <span className="font-serif text-xs text-slate-800 dark:text-slate-200 group-hover:text-sky-600 dark:group-hover:text-sky-400 truncate pr-2">
+                    <span className="font-serif text-xs text-slate-800 dark:text-slate-200 group-hover:text-sakura-600 dark:group-hover:text-sakura-400 truncate pr-2">
                       {d.title}
                     </span>
                     <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:translate-x-0.5 transition-transform shrink-0" />

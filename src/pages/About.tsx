@@ -23,7 +23,7 @@ function ProjectMeta({ project }: { project: AboutProject }) {
       <span
         className={
           project.role === 'author'
-            ? 'text-sky-700 dark:text-sky-300'
+            ? 'text-sakura-700 dark:text-sakura-300'
             : 'text-amber-700 dark:text-amber-300'
         }
       >
@@ -65,7 +65,7 @@ export const About: React.FC = () => {
         <article className="paper-sheet-realistic p-6 sm:p-10 md:p-12 font-sans space-y-12 my-4 sm:my-8 text-slate-800 dark:text-slate-200">
           <header className="pb-8 border-b border-slate-200/70 dark:border-slate-800/70">
             <div className="flex flex-col md:flex-row items-center md:items-start gap-6 sm:gap-8 text-center md:text-left">
-              <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-tr from-sky-200 to-blue-300/40 dark:from-slate-800 dark:to-sky-900/60 shadow-md shrink-0">
+              <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-tr from-sakura-200 to-sakura-300/40 dark:from-slate-800 dark:to-sakura-900/60 shadow-md shrink-0">
                 <img
                   src={author.avatar || '/avatar.jpg'}
                   alt={author.name}
@@ -75,7 +75,7 @@ export const About: React.FC = () => {
 
               <div className="flex-1 space-y-2.5">
                 <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-xs bg-slate-100 dark:bg-slate-800 text-[11px] font-mono tracking-wider text-slate-600 dark:text-slate-400">
-                  <User className="w-3 h-3 text-sky-600 dark:text-sky-400" />
+                  <User className="w-3 h-3 text-sakura-600 dark:text-sakura-400" />
                   <span>{about?.identityTitle || 'ABOUT • 关于作者'}</span>
                 </div>
 
@@ -100,7 +100,7 @@ export const About: React.FC = () => {
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-1 text-xs font-mono text-slate-400 dark:text-slate-500">
                   {author.location && (
                     <span className="flex items-center space-x-1">
-                      <MapPin className="w-3.5 h-3.5 text-sky-500" />
+                      <MapPin className="w-3.5 h-3.5 text-sakura-500" />
                       <span>{author.location}</span>
                     </span>
                   )}
@@ -125,7 +125,7 @@ export const About: React.FC = () => {
             <section className="space-y-6">
               <div className="flex items-baseline justify-between border-b border-slate-200/60 dark:border-slate-800/60 pb-2.5">
                 <div className="space-y-1">
-                  <div className="inline-flex items-center space-x-1.5 text-[11px] font-mono text-sky-600 dark:text-sky-400">
+                  <div className="inline-flex items-center space-x-1.5 text-[11px] font-mono text-sakura-600 dark:text-sakura-400">
                     <Cpu className="w-3 h-3" />
                     <span>TECH STACK</span>
                   </div>
@@ -151,7 +151,7 @@ export const About: React.FC = () => {
                     className="p-4 sm:p-5 rounded-md border border-slate-200/70 dark:border-slate-800/70 bg-white/70 dark:bg-slate-900/50 space-y-3 shadow-2xs"
                   >
                     <div className="flex items-center space-x-2 text-xs font-mono font-semibold text-slate-800 dark:text-slate-200 pb-2 border-b border-slate-100 dark:border-slate-800/60">
-                      <span className="w-2 h-2 rounded-full bg-sky-500 inline-block" />
+                      <span className="w-2 h-2 rounded-full bg-sakura-500 inline-block" />
                       <span>{catGroup.category}</span>
                       <span className="text-slate-400 font-normal">({catGroup.items.length})</span>
                     </div>
@@ -185,7 +185,7 @@ export const About: React.FC = () => {
           {about?.awards && about.awards.length > 0 && (
             <section className="space-y-4">
               <div className="border-b border-slate-200/60 dark:border-slate-800/60 pb-2.5 space-y-1">
-                <div className="inline-flex items-center space-x-1.5 text-[11px] font-mono text-sky-600 dark:text-sky-400">
+                <div className="inline-flex items-center space-x-1.5 text-[11px] font-mono text-sakura-600 dark:text-sakura-400">
                   <Award className="w-3 h-3" />
                   <span>AWARDS</span>
                 </div>
@@ -210,7 +210,7 @@ export const About: React.FC = () => {
             <section className="space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 border-b border-slate-200/60 dark:border-slate-800/60 pb-2.5">
                 <div className="space-y-1">
-                  <div className="inline-flex items-center space-x-1.5 text-[11px] font-mono text-sky-600 dark:text-sky-400">
+                  <div className="inline-flex items-center space-x-1.5 text-[11px] font-mono text-sakura-600 dark:text-sakura-400">
                     <FolderGit2 className="w-3 h-3" />
                     <span>PROJECTS</span>
                   </div>
@@ -225,7 +225,7 @@ export const About: React.FC = () => {
                   href={author.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-xs font-mono text-sky-700 dark:text-sky-300 hover:underline underline-offset-2"
+                  className="text-xs font-mono text-sakura-700 dark:text-sakura-300 hover:underline underline-offset-2"
                 >
                   GitHub 主页
                 </a>
@@ -238,13 +238,13 @@ export const About: React.FC = () => {
                     href={project.homepage || project.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="group p-4 rounded-md border border-slate-200/70 dark:border-slate-800/70 bg-white/70 dark:bg-slate-900/50 hover:border-sky-300/80 dark:hover:border-sky-800 transition-colors space-y-2"
+                    className="group p-4 rounded-md border border-slate-200/70 dark:border-slate-800/70 bg-white/70 dark:bg-slate-900/50 hover:border-sakura-300/80 dark:hover:border-sakura-800 transition-colors space-y-2"
                   >
                     <div className="flex items-start justify-between gap-2">
                       <span className="font-mono text-sm font-semibold text-slate-800 dark:text-slate-200 break-all">
                         {project.name}
                       </span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-sky-600 dark:group-hover:text-sky-400 shrink-0 mt-0.5" />
+                      <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-sakura-600 dark:group-hover:text-sakura-400 shrink-0 mt-0.5" />
                     </div>
                     <p className="text-xs text-slate-500 dark:text-slate-400 font-sans leading-relaxed">
                       {project.desc}
@@ -258,7 +258,7 @@ export const About: React.FC = () => {
 
           <section className="p-5 sm:p-6 rounded-md border border-slate-200/70 dark:border-slate-800/70 bg-gradient-to-b from-white/90 via-slate-50/70 to-slate-100/40 dark:from-[#141E2D]/90 dark:via-[#111926]/85 dark:to-[#0D1420]/80 space-y-3.5 shadow-2xs">
             <div className="flex items-center space-x-2">
-              <Sparkles className="w-4 h-4 text-sky-600 dark:text-sky-400" />
+              <Sparkles className="w-4 h-4 text-sakura-600 dark:text-sakura-400" />
               <h3 className="font-serif text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 tracking-tight">
                 {about?.designTitle || '关于本站'}
               </h3>
@@ -282,7 +282,7 @@ export const About: React.FC = () => {
             </p>
             <a
               href={`mailto:${author.email}`}
-              className="mt-2 inline-flex items-center space-x-1.5 px-4 py-2 rounded-md bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-300/80 dark:border-sky-800 text-xs font-mono font-medium hover:bg-sky-100/70 transition-colors shadow-2xs"
+              className="mt-2 inline-flex items-center space-x-1.5 px-4 py-2 rounded-md bg-sakura-50 dark:bg-sakura-950/60 text-sakura-700 dark:text-sakura-300 border border-sakura-300/80 dark:border-sakura-800 text-xs font-mono font-medium hover:bg-sakura-100/70 transition-colors shadow-2xs"
             >
               <Mail className="w-3.5 h-3.5" />
               <span>{author.email}</span>

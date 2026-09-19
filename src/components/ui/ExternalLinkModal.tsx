@@ -142,7 +142,7 @@ export const ExternalLinkModal: React.FC<ExternalLinkModalProps> = ({
                 <button
                   type="button"
                   onClick={handleConfirm}
-                  className="inline-flex justify-center items-center gap-1.5 rounded-sm px-3.5 py-1.5 text-xs font-medium transition-colors bg-sky-600 hover:bg-sky-500 active:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-400 text-white dark:text-slate-950 shadow-2xs focus:outline-none cursor-pointer"
+                  className="inline-flex justify-center items-center gap-1.5 rounded-sm px-3.5 py-1.5 text-xs font-medium transition-colors bg-sakura-600 hover:bg-sakura-500 active:bg-sakura-700 dark:bg-sakura-500 dark:hover:bg-sakura-400 text-white dark:text-slate-950 shadow-2xs focus:outline-none cursor-pointer"
                 >
                   <span>继续访问 ({countdown}s)</span>
                   <ExternalLink className="w-3 h-3 opacity-85" />

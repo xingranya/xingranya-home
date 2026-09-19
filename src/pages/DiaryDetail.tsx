@@ -90,7 +90,7 @@ export const DiaryDetail: React.FC = () => {
         <div className="w-full max-w-[960px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="py-24 text-center">
             <div className="w-12 h-12 rounded-sm bg-slate-200/60 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center mx-auto mb-4">
-              <Feather className="w-6 h-6 text-sky-600 dark:text-sky-400" />
+              <Feather className="w-6 h-6 text-sakura-600 dark:text-sakura-400" />
             </div>
             <h2 className="font-sans text-2xl font-semibold text-slate-800 dark:text-slate-200">
               手记未找到
@@ -124,7 +124,7 @@ export const DiaryDetail: React.FC = () => {
                 <div className="flex flex-wrap items-center justify-between gap-1.5 text-xs font-mono text-slate-500 dark:text-slate-400">
                   <div className="flex flex-wrap items-center gap-1.5">
                     <span className="flex items-center space-x-1 font-semibold text-slate-800 dark:text-slate-200 font-serif">
-                      <Calendar className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
+                      <Calendar className="w-3.5 h-3.5 text-sakura-600 dark:text-sakura-400" />
                       <time dateTime={diary.date}>{formatDate(diary.date)}</time>
                       {diary.time && <span className="font-mono text-xs opacity-75">{diary.time}</span>}
                     </span>
@@ -136,7 +136,7 @@ export const DiaryDetail: React.FC = () => {
                     )}
 
                     {diary.mood && (
-                      <span className="px-1.5 py-0.5 rounded-xs bg-sky-50 dark:bg-sky-950/30 text-sky-800 dark:text-sky-300 text-[10.5px] font-sans border border-sky-200/40 dark:border-sky-800/30">
+                      <span className="px-1.5 py-0.5 rounded-xs bg-sakura-50 dark:bg-sakura-950/30 text-sakura-800 dark:text-sakura-300 text-[10.5px] font-sans border border-sakura-200/40 dark:border-sakura-800/30">
                         {diary.mood}
                       </span>
                     )}
