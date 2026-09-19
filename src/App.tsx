@@ -194,7 +194,7 @@ export const App: React.FC = () => {
         e.preventDefault();
         setExternalUrl(href);
         setIsExternalModalOpen(true);
-      } catch (err) {
+      } catch {
         // 解析失败则忽略
       }
     }

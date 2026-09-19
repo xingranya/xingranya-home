@@ -207,7 +207,7 @@
       {
         "title": "关于",
         "links": [
-          { "label": "关于此项目", "href": "https://github.com/xingranya/xingranya-home", "isExternal": true },
+          { "label": "关于本站", "href": "https://github.com/xingranya/xingranya-home", "isExternal": true },
           { "label": "博客", "href": "https://blog.xran.uk", "isExternal": true },
           { "label": "关于我", "href": "/about" }
         ]

@@ -3,7 +3,6 @@ import path from 'node:path';
 import matter from 'gray-matter';
 
 const SITE_CONFIG_PATH = path.resolve('src/content/config/site.config.json');
-const POSTS_DIR = path.resolve('src/content/posts');
 const DIARIES_DIR = path.resolve('src/content/diaries');
 const PUBLIC_DIR = path.resolve('public');
 const DIST_DIR = path.resolve('dist');
