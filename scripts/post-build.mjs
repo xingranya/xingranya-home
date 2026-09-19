@@ -23,7 +23,7 @@ function deferClientScripts(html) {
   });
   if (sources.length === 0) return html;
 
-  const loader = `<script>(function(){var sources=${JSON.stringify(sources)};var started=false;function load(){if(started)return;started=true;sources.forEach(function(source){var script=document.createElement('script');script.src=source;script.async=false;document.head.appendChild(script);});}function schedule(){window.setTimeout(load,650);}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',schedule,{once:true});}else{schedule();}window.addEventListener('pointermove',load,{once:true,passive:true});window.addEventListener('pointerdown',load,{once:true,passive:true});window.addEventListener('keydown',load,{once:true});})();</script>`;
+  const loader = `<script>(function(){var sources=${JSON.stringify(sources)};var started=false;function load(){if(started)return;started=true;sources.forEach(function(source){var script=document.createElement('script');script.src=source;script.async=false;document.head.appendChild(script);});}function schedule(){window.setTimeout(load,1500);}if(document.readyState==='complete'){schedule();}else{window.addEventListener('load',schedule,{once:true});}window.addEventListener('pointermove',load,{once:true,passive:true});window.addEventListener('pointerdown',load,{once:true,passive:true});window.addEventListener('keydown',load,{once:true});})();</script>`;
   return documentWithoutScripts.replace('</body>', `${loader}</body>`);
 }
 
