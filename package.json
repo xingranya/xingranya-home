@@ -6,7 +6,7 @@
   "packageManager": "pnpm@10.28.0",
   "scripts": {
     "dev": "node scripts/generate-content-index.mjs && node node_modules/@rsbuild/core/bin/rsbuild.js dev",
-    "build": "node scripts/generate-content-index.mjs && tsc --noEmit && node scripts/generate-sitemap.mjs && node scripts/generate-rss.mjs && rsbuild build && rsbuild build --config rsbuild.ssg.config.ts && node scripts/post-build.mjs",
+    "build": "node scripts/generate-content-index.mjs && tsc --noEmit && node scripts/generate-sitemap.mjs && node scripts/generate-rss.mjs && node scripts/generate-indexnow.mjs && rsbuild build && rsbuild build --config rsbuild.ssg.config.ts && node scripts/post-build.mjs",
     "preview": "node node_modules/@rsbuild/core/bin/rsbuild.js preview",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src scripts --max-warnings 0",
@@ -15,7 +15,9 @@
     "generate:covers": "node scripts/generate-article-covers.mjs",
     "generate:content-index": "node scripts/generate-content-index.mjs",
     "generate:sitemap": "node scripts/generate-sitemap.mjs",
-    "generate:rss": "node scripts/generate-rss.mjs"
+    "generate:rss": "node scripts/generate-rss.mjs",
+    "generate:indexnow": "node scripts/generate-indexnow.mjs",
+    "seo:submit": "node scripts/submit-indexnow.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
