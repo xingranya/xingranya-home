@@ -290,7 +290,7 @@ export const AdminCommandPalette: React.FC<AdminCommandPaletteProps> = ({
                   onMouseEnter={() => setSelectedIndex(index)}
                   className={`flex items-center justify-between p-2.5 rounded-lg cursor-pointer transition-colors ${
                     isSelected
-                      ? 'bg-sky-50 dark:bg-sky-950/70 text-sky-900 dark:text-sky-100'
+                      ? 'bg-sakura-50 dark:bg-sakura-950/70 text-sakura-900 dark:text-sakura-100'
                       : 'hover:bg-slate-100/70 dark:hover:bg-slate-800/70 text-slate-700 dark:text-slate-300'
                   }`}
                 >
@@ -298,7 +298,7 @@ export const AdminCommandPalette: React.FC<AdminCommandPaletteProps> = ({
                     <div
                       className={`p-1.5 rounded-md ${
                         isSelected
-                          ? 'bg-sky-500 text-white'
+                          ? 'bg-sakura-500 text-white'
                           : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'
                       }`}
                     >
@@ -320,7 +320,7 @@ export const AdminCommandPalette: React.FC<AdminCommandPaletteProps> = ({
                     <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500 px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800">
                       {item.group}
                     </span>
-                    {isSelected && <ArrowRight className="w-3.5 h-3.5 text-sky-500" />}
+                    {isSelected && <ArrowRight className="w-3.5 h-3.5 text-sakura-500" />}
                   </div>
                 </div>
               );

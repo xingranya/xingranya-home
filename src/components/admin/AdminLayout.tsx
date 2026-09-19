@@ -232,7 +232,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
             <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 text-[11px] space-y-1.5 font-mono">
               <div className="flex items-center justify-between text-slate-500">
                 <span className="flex items-center gap-1">
-                  <Database className="w-3 h-3 text-sky-500" /> 本地存储
+                  <Database className="w-3 h-3 text-sakura-500" /> 本地存储
                 </span>
                 <span className="font-semibold text-slate-700 dark:text-slate-300">
                   {storageUsage.usedKb} KB
@@ -240,7 +240,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
               </div>
               <div className="w-full bg-slate-200 dark:bg-slate-800 h-1 rounded-full overflow-hidden">
                 <div
-                  className="bg-sky-500 h-full rounded-full transition-all"
+                  className="bg-sakura-500 h-full rounded-full transition-all"
                   style={{ width: `${Math.min(100, Math.max(5, (storageUsage.usedKb / 5120) * 100))}%` }}
                 />
               </div>
@@ -251,7 +251,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
             <button
               onClick={() => window.open('/', '_blank')}
               title="打开前台博客页面"
-              className="flex-1 flex items-center justify-center gap-1.5 p-2 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-sky-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="flex-1 flex items-center justify-center gap-1.5 p-2 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-sakura-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             >
               <ExternalLink className="w-3.5 h-3.5" />
               {!sidebarCollapsed && <span>前台预览</span>}
@@ -336,9 +336,9 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
                         onOpenEditor('post');
                         setQuickCreateOpen(false);
                       }}
-                      className="w-full px-3.5 py-2 text-left text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-sky-50 dark:hover:bg-sky-950/60 hover:text-sky-600 flex items-center gap-2"
+                      className="w-full px-3.5 py-2 text-left text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-sakura-50 dark:hover:bg-sakura-950/60 hover:text-sakura-600 flex items-center gap-2"
                     >
-                      <FileText className="w-3.5 h-3.5 text-sky-500" />
+                      <FileText className="w-3.5 h-3.5 text-sakura-500" />
                       <span>写文章</span>
                     </button>
                     <button
@@ -346,7 +346,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
                         onOpenEditor('diary');
                         setQuickCreateOpen(false);
                       }}
-                      className="w-full px-3.5 py-2 text-left text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-sky-50 dark:hover:bg-sky-950/60 hover:text-sky-600 flex items-center gap-2"
+                      className="w-full px-3.5 py-2 text-left text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-sakura-50 dark:hover:bg-sakura-950/60 hover:text-sakura-600 flex items-center gap-2"
                     >
                       <BookOpen className="w-3.5 h-3.5 text-violet-500" />
                       <span>写手记</span>
@@ -356,7 +356,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
                         onNavigate('records');
                         setQuickCreateOpen(false);
                       }}
-                      className="w-full px-3.5 py-2 text-left text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-sky-50 dark:hover:bg-sky-950/60 hover:text-sky-600 flex items-center gap-2"
+                      className="w-full px-3.5 py-2 text-left text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-sakura-50 dark:hover:bg-sakura-950/60 hover:text-sakura-600 flex items-center gap-2"
                     >
                       <Activity className="w-3.5 h-3.5 text-amber-500" />
                       <span>发说说动态</span>
@@ -366,7 +366,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
                         onNavigate('friends');
                         setQuickCreateOpen(false);
                       }}
-                      className="w-full px-3.5 py-2 text-left text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-sky-50 dark:hover:bg-sky-950/60 hover:text-sky-600 flex items-center gap-2"
+                      className="w-full px-3.5 py-2 text-left text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-sakura-50 dark:hover:bg-sakura-950/60 hover:text-sakura-600 flex items-center gap-2"
                     >
                       <Link2 className="w-3.5 h-3.5 text-emerald-500" />
                       <span>添加友链</span>
@@ -500,7 +500,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
                           onClick={() => {
                             restoreTrash(item.id);
                           }}
-                          className="flex items-center gap-1 px-2 py-1 rounded text-xs text-sky-600 hover:bg-sky-50 dark:hover:bg-sky-950/50 font-medium"
+                          className="flex items-center gap-1 px-2 py-1 rounded text-xs text-sakura-600 hover:bg-sakura-50 dark:hover:bg-sakura-950/50 font-medium"
                           title="一键撤销并恢复"
                         >
                           <RotateCcw className="w-3.5 h-3.5" />

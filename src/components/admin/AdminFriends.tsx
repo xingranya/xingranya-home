@@ -192,7 +192,7 @@ export const AdminFriends: React.FC = () => {
               onClick={() => setViewMode('grid')}
               className={`p-1.5 rounded transition-colors ${
                 viewMode === 'grid'
-                  ? 'bg-white dark:bg-slate-900 text-sky-600 shadow-xs'
+                  ? 'bg-white dark:bg-slate-900 text-sakura-600 shadow-xs'
                   : 'text-slate-400 hover:text-slate-700'
               }`}
               title="卡片网格视图"
@@ -203,7 +203,7 @@ export const AdminFriends: React.FC = () => {
               onClick={() => setViewMode('table')}
               className={`p-1.5 rounded transition-colors ${
                 viewMode === 'table'
-                  ? 'bg-white dark:bg-slate-900 text-sky-600 shadow-xs'
+                  ? 'bg-white dark:bg-slate-900 text-sakura-600 shadow-xs'
                   : 'text-slate-400 hover:text-slate-700'
               }`}
               title="列表表格视图"
@@ -219,7 +219,7 @@ export const AdminFriends: React.FC = () => {
             <div>未找到匹配的友情链接</div>
             <button
               onClick={handleOpenCreate}
-              className="text-sky-600 hover:underline font-sans"
+              className="text-sakura-600 hover:underline font-sans"
             >
               添加新站点
             </button>
@@ -273,7 +273,7 @@ export const AdminFriends: React.FC = () => {
                       href={friend.link}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 font-mono text-[11px] truncate max-w-[160px] flex items-center gap-1"
+                      className="text-slate-400 hover:text-sakura-600 dark:hover:text-sakura-400 font-mono text-[11px] truncate max-w-[160px] flex items-center gap-1"
                     >
                       <Globe2 className="w-3 h-3 shrink-0" />
                       <span>{friend.link.replace(/^https?:\/\//, '')}</span>
@@ -283,7 +283,7 @@ export const AdminFriends: React.FC = () => {
                       <button
                         onClick={() => handleMoveUp(idx)}
                         disabled={idx === 0}
-                        className="admin-icon-btn !w-7 !h-7 text-slate-400 hover:text-sky-600 disabled:opacity-30"
+                        className="admin-icon-btn !w-7 !h-7 text-slate-400 hover:text-sakura-600 disabled:opacity-30"
                         title="前移排序"
                       >
                         <ArrowUp className="w-3 h-3" />
@@ -291,14 +291,14 @@ export const AdminFriends: React.FC = () => {
                       <button
                         onClick={() => handleMoveDown(idx)}
                         disabled={idx === filteredFriends.length - 1}
-                        className="admin-icon-btn !w-7 !h-7 text-slate-400 hover:text-sky-600 disabled:opacity-30"
+                        className="admin-icon-btn !w-7 !h-7 text-slate-400 hover:text-sakura-600 disabled:opacity-30"
                         title="后移排序"
                       >
                         <ArrowDown className="w-3 h-3" />
                       </button>
                       <button
                         onClick={() => handleOpenEdit(friend)}
-                        className="admin-icon-btn !w-7 !h-7 text-sky-600 hover:bg-sky-50"
+                        className="admin-icon-btn !w-7 !h-7 text-sakura-600 hover:bg-sakura-50"
                         title="编辑"
                       >
                         <Edit2 className="w-3.5 h-3.5" />
@@ -352,7 +352,7 @@ export const AdminFriends: React.FC = () => {
                         href={friend.link}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-xs font-mono text-sky-600 hover:underline flex items-center gap-1"
+                        className="text-xs font-mono text-sakura-600 hover:underline flex items-center gap-1"
                       >
                         <span>{friend.link}</span>
                         <ExternalLink className="w-3 h-3" />
@@ -367,7 +367,7 @@ export const AdminFriends: React.FC = () => {
                         <button
                           onClick={() => handleMoveUp(idx)}
                           disabled={idx === 0}
-                          className="admin-icon-btn !w-5 !h-5 text-slate-400 hover:text-sky-600 disabled:opacity-30"
+                          className="admin-icon-btn !w-5 !h-5 text-slate-400 hover:text-sakura-600 disabled:opacity-30"
                           title="上移"
                         >
                           <ArrowUp className="w-2.5 h-2.5" />
@@ -375,7 +375,7 @@ export const AdminFriends: React.FC = () => {
                         <button
                           onClick={() => handleMoveDown(idx)}
                           disabled={idx === filteredFriends.length - 1}
-                          className="admin-icon-btn !w-5 !h-5 text-slate-400 hover:text-sky-600 disabled:opacity-30"
+                          className="admin-icon-btn !w-5 !h-5 text-slate-400 hover:text-sakura-600 disabled:opacity-30"
                           title="下移"
                         >
                           <ArrowDown className="w-2.5 h-2.5" />
@@ -389,7 +389,7 @@ export const AdminFriends: React.FC = () => {
                       <div className="inline-flex items-center gap-1">
                         <button
                           onClick={() => handleOpenEdit(friend)}
-                          className="admin-icon-btn !w-7 !h-7 text-sky-600"
+                          className="admin-icon-btn !w-7 !h-7 text-sakura-600"
                           title="编辑"
                         >
                           <Edit2 className="w-3.5 h-3.5" />

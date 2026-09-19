@@ -286,7 +286,7 @@ export const AdminRecords: React.FC = () => {
 
             {/* 附图 URL */}
             <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-xs">
-              <ImageIcon className="w-4 h-4 text-sky-500 shrink-0" />
+              <ImageIcon className="w-4 h-4 text-sakura-500 shrink-0" />
               <input
                 type="text"
                 value={imageUrl}
@@ -384,7 +384,7 @@ export const AdminRecords: React.FC = () => {
               title="全选当前过滤出的所有说说"
             >
               {selectedIds.length > 0 && selectedIds.length === filteredRecords.length ? (
-                <CheckSquare className="w-3.5 h-3.5 text-sky-500" />
+                <CheckSquare className="w-3.5 h-3.5 text-sakura-500" />
               ) : (
                 <Square className="w-3.5 h-3.5" />
               )}
@@ -474,7 +474,7 @@ export const AdminRecords: React.FC = () => {
                 setSelectedMood('ALL');
                 setFilterPinnedOnly(false);
               }}
-              className="text-sky-600 hover:underline font-sans"
+              className="text-sakura-600 hover:underline font-sans"
             >
               重置所有过滤条件
             </button>
@@ -488,7 +488,7 @@ export const AdminRecords: React.FC = () => {
                 <div
                   key={rec.id}
                   className={`admin-card p-4 flex flex-col justify-between space-y-3 relative transition-all ${
-                    isSelected ? 'ring-2 ring-sky-500/60 bg-sky-50/10' : ''
+                    isSelected ? 'ring-2 ring-sakura-500/60 bg-sakura-50/10' : ''
                   }`}
                 >
                   {/* 顶栏：复选框 + 发布时间 + 心境 + 置顶标识 + 操作按钮 */}
@@ -496,10 +496,10 @@ export const AdminRecords: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleToggleSelect(rec.id)}
-                        className="p-0.5 text-slate-400 hover:text-sky-500 transition-colors"
+                        className="p-0.5 text-slate-400 hover:text-sakura-500 transition-colors"
                       >
                         {isSelected ? (
-                          <CheckSquare className="w-4 h-4 text-sky-500" />
+                          <CheckSquare className="w-4 h-4 text-sakura-500" />
                         ) : (
                           <Square className="w-4 h-4" />
                         )}
@@ -533,7 +533,7 @@ export const AdminRecords: React.FC = () => {
                       </button>
                       <button
                         onClick={() => handleStartEdit(rec)}
-                        className="admin-icon-btn !w-6 !h-6 text-sky-600"
+                        className="admin-icon-btn !w-6 !h-6 text-sakura-600"
                         title="编辑"
                       >
                         <Edit2 className="w-3 h-3" />
@@ -595,7 +595,7 @@ export const AdminRecords: React.FC = () => {
                       {/* 评论管理 */}
                       <button
                         onClick={() => setActiveRecordForComments(rec)}
-                        className="flex items-center gap-1 hover:text-sky-600 transition-colors"
+                        className="flex items-center gap-1 hover:text-sakura-600 transition-colors"
                         title="查看与管理该动态的互动评论"
                       >
                         <MessageCircle className="w-3.5 h-3.5" />
@@ -626,7 +626,7 @@ export const AdminRecords: React.FC = () => {
           >
             <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
               <div className="flex items-center gap-2">
-                <MessageCircle className="w-4 h-4 text-sky-500" />
+                <MessageCircle className="w-4 h-4 text-sakura-500" />
                 <h3 className="font-bold text-sm text-slate-900 dark:text-slate-100">
                   说说互动评论管理 ({activeRecordForComments.comments?.length || 0})
                 </h3>

@@ -199,7 +199,7 @@ export const AdminDiaries: React.FC<AdminDiariesProps> = ({ onOpenEditor }) => {
             <div>暂无匹配的手记随笔</div>
             <button
               onClick={() => onOpenEditor('diary')}
-              className="text-sky-600 hover:underline font-sans"
+              className="text-sakura-600 hover:underline font-sans"
             >
               写一篇新手记
             </button>
@@ -209,7 +209,7 @@ export const AdminDiaries: React.FC<AdminDiariesProps> = ({ onOpenEditor }) => {
             <div className="p-2.5 px-4 bg-slate-50 dark:bg-slate-900/50 flex items-center gap-3 text-xs text-slate-500 font-medium border-b border-slate-200 dark:border-slate-800">
               <button onClick={handleSelectAll} className="p-0.5">
                 {selectedSlugs.length === filteredDiaries.length && filteredDiaries.length > 0 ? (
-                  <CheckSquare className="w-4 h-4 text-sky-600" />
+                  <CheckSquare className="w-4 h-4 text-sakura-600" />
                 ) : (
                   <Square className="w-4 h-4 text-slate-400" />
                 )}
@@ -242,7 +242,7 @@ export const AdminDiaries: React.FC<AdminDiariesProps> = ({ onOpenEditor }) => {
                     <div className="space-y-1.5 min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2">
                         <span
-                          className="font-bold text-sm text-slate-900 dark:text-slate-100 hover:text-sky-600 cursor-pointer"
+                          className="font-bold text-sm text-slate-900 dark:text-slate-100 hover:text-sakura-600 cursor-pointer"
                           onClick={() => onOpenEditor('diary', diary.slug)}
                         >
                           {diary.title}
@@ -250,7 +250,7 @@ export const AdminDiaries: React.FC<AdminDiariesProps> = ({ onOpenEditor }) => {
                         <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-mono bg-violet-50 dark:bg-violet-950/60 text-violet-600 dark:text-violet-400 border border-violet-200 dark:border-violet-800">
                           <CloudSun className="w-3 h-3" /> {diary.weather}
                         </span>
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-mono bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 border border-sky-200 dark:border-sky-800">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-mono bg-sakura-50 dark:bg-sakura-950/60 text-sakura-600 dark:text-sakura-400 border border-sakura-200 dark:border-sakura-800">
                           <Smile className="w-3 h-3" /> {diary.mood}
                         </span>
                       </div>
@@ -276,7 +276,7 @@ export const AdminDiaries: React.FC<AdminDiariesProps> = ({ onOpenEditor }) => {
                   <div className="flex items-center gap-1.5 shrink-0 self-end sm:self-center pl-8 sm:pl-0">
                     <button
                       onClick={() => onOpenEditor('diary', diary.slug)}
-                      className="admin-icon-btn !w-8 !h-8 text-sky-600 hover:bg-sky-50"
+                      className="admin-icon-btn !w-8 !h-8 text-sakura-600 hover:bg-sakura-50"
                       title="编辑手记"
                     >
                       <Edit2 className="w-3.5 h-3.5" />

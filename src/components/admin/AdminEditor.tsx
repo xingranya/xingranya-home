@@ -455,7 +455,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
           <div className="relative">
             <button
               onClick={() => setTocOpen(!tocOpen)}
-              className={`admin-icon-btn !w-8 !h-8 ${tocOpen ? '!bg-sky-50 dark:!bg-sky-950 !text-sky-600 !border-sky-500' : ''}`}
+              className={`admin-icon-btn !w-8 !h-8 ${tocOpen ? '!bg-sakura-50 dark:!bg-sakura-950 !text-sakura-600 !border-sakura-500' : ''}`}
               title="文档大纲结构目录"
             >
               <ListTree className="w-4 h-4" />
@@ -484,7 +484,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                         <div
                           key={i}
                           style={{ paddingLeft: `${(item.level - 1) * 0.75}rem` }}
-                          className="text-xs text-slate-600 dark:text-slate-300 hover:text-sky-600 cursor-pointer truncate py-1 hover:bg-slate-50 dark:hover:bg-slate-800 rounded px-1"
+                          className="text-xs text-slate-600 dark:text-slate-300 hover:text-sakura-600 cursor-pointer truncate py-1 hover:bg-slate-50 dark:hover:bg-slate-800 rounded px-1"
                           onClick={() => {
                             setTocOpen(false);
                             // 滚动定位
@@ -516,7 +516,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
               onClick={() => setMode('edit')}
               className={`px-2.5 py-1 rounded text-xs font-medium transition-colors flex items-center gap-1 ${
                 mode === 'edit'
-                  ? 'bg-white dark:bg-slate-900 text-sky-600 dark:text-sky-400 shadow-xs'
+                  ? 'bg-white dark:bg-slate-900 text-sakura-600 dark:text-sakura-400 shadow-xs'
                   : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-100'
               }`}
               title="纯编辑模式"
@@ -528,7 +528,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
               onClick={() => setMode('split')}
               className={`px-2.5 py-1 rounded text-xs font-medium transition-colors flex items-center gap-1 ${
                 mode === 'split'
-                  ? 'bg-white dark:bg-slate-900 text-sky-600 dark:text-sky-400 shadow-xs'
+                  ? 'bg-white dark:bg-slate-900 text-sakura-600 dark:text-sakura-400 shadow-xs'
                   : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-100'
               }`}
               title="双栏分屏实时预览"
@@ -540,7 +540,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
               onClick={() => setMode('preview')}
               className={`px-2.5 py-1 rounded text-xs font-medium transition-colors flex items-center gap-1 ${
                 mode === 'preview'
-                  ? 'bg-white dark:bg-slate-900 text-sky-600 dark:text-sky-400 shadow-xs'
+                  ? 'bg-white dark:bg-slate-900 text-sakura-600 dark:text-sakura-400 shadow-xs'
                   : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-100'
               }`}
               title="纯预览模式"
@@ -573,7 +573,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
 
           <button
             onClick={() => setSettingsOpen(!settingsOpen)}
-            className={`admin-icon-btn !w-8 !h-8 ${settingsOpen ? '!bg-sky-50 dark:!bg-sky-950 !text-sky-600 !border-sky-500' : ''}`}
+            className={`admin-icon-btn !w-8 !h-8 ${settingsOpen ? '!bg-sakura-50 dark:!bg-sakura-950 !text-sakura-600 !border-sakura-500' : ''}`}
             title="元数据与发布配置"
           >
             <Sliders className="w-4 h-4" />
@@ -720,7 +720,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
               className="p-1.5 rounded hover:bg-slate-200/70 dark:hover:bg-slate-800 transition-colors flex items-center gap-1"
               title="GitHub 风格 Callout 提示块"
             >
-              <Info className="w-3.5 h-3.5 text-sky-500" />
+              <Info className="w-3.5 h-3.5 text-sakura-500" />
               <span className="text-[11px]">Callout</span>
             </button>
 
@@ -733,7 +733,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                       insertText('> [!NOTE]\n> 这里是说明内容。\n');
                       setCalloutMenuOpen(false);
                     }}
-                    className="px-2.5 py-1 text-left text-xs text-sky-600 hover:bg-sky-50 dark:hover:bg-sky-950/60 rounded"
+                    className="px-2.5 py-1 text-left text-xs text-sakura-600 hover:bg-sakura-50 dark:hover:bg-sakura-950/60 rounded"
                   >
                     Note (提示)
                   </button>
@@ -828,7 +828,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
           <div className="absolute right-0 top-0 bottom-0 w-80 sm:w-96 bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl z-30 flex flex-col animate-in slide-in-from-right duration-200">
             <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
               <div className="font-semibold text-sm text-slate-900 dark:text-slate-100 flex items-center gap-2">
-                <Sliders className="w-4 h-4 text-sky-500" />
+                <Sliders className="w-4 h-4 text-sakura-500" />
                 <span>内容属性设置</span>
               </div>
               <button
@@ -858,7 +858,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
               {/* 发布时间 */}
               <div className="admin-input-group">
                 <label className="admin-label flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-sky-500" />
+                  <Calendar className="w-3.5 h-3.5 text-sakura-500" />
                   <span>发布日期</span>
                 </label>
                 <input
@@ -875,7 +875,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                   {/* 分类 */}
                   <div className="admin-input-group">
                     <label className="admin-label flex items-center gap-1.5">
-                      <FolderPlus className="w-3.5 h-3.5 text-sky-500" />
+                      <FolderPlus className="w-3.5 h-3.5 text-sakura-500" />
                       <span>所属分类</span>
                     </label>
                     <select
@@ -902,7 +902,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                         <Sparkles className="w-3.5 h-3.5 text-amber-500" />
                         <span>推荐置顶权重 (0-100)</span>
                       </span>
-                      <span className="font-mono text-sky-600">{recommend}</span>
+                      <span className="font-mono text-sakura-600">{recommend}</span>
                     </label>
                     <input
                       type="range"
@@ -910,14 +910,14 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                       max="100"
                       value={recommend}
                       onChange={(e) => setRecommend(Number(e.target.value))}
-                      className="w-full accent-sky-500"
+                      className="w-full accent-sakura-500"
                     />
                   </div>
 
                   {/* 封面图 */}
                   <div className="admin-input-group">
                     <label className="admin-label flex items-center gap-1.5">
-                      <Image className="w-3.5 h-3.5 text-sky-500" />
+                      <Image className="w-3.5 h-3.5 text-sakura-500" />
                       <span>封面图 URL (可选)</span>
                     </label>
                     <input
@@ -986,7 +986,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                   <div className="grid grid-cols-2 gap-3">
                     <div className="admin-input-group">
                       <label className="admin-label flex items-center gap-1">
-                        <Clock className="w-3.5 h-3.5 text-sky-500" />
+                        <Clock className="w-3.5 h-3.5 text-sakura-500" />
                         <span>时间</span>
                       </label>
                       <input
@@ -1016,7 +1016,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
               {/* 标签 */}
               <div className="admin-input-group">
                 <label className="admin-label flex items-center gap-1.5">
-                  <Tag className="w-3.5 h-3.5 text-sky-500" />
+                  <Tag className="w-3.5 h-3.5 text-sakura-500" />
                   <span>标签 (逗号分隔)</span>
                 </label>
                 <input
@@ -1034,7 +1034,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                   <label className="admin-label">文章摘要 (Summary)</label>
                   <button
                     onClick={handleAutoSummary}
-                    className="text-[11px] text-sky-600 dark:text-sky-400 hover:underline flex items-center gap-0.5"
+                    className="text-[11px] text-sakura-600 dark:text-sakura-400 hover:underline flex items-center gap-0.5"
                   >
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>自动提取</span>
@@ -1064,7 +1064,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                     type="checkbox"
                     checked={draft}
                     onChange={(e) => setDraft(e.target.checked)}
-                    className="w-4 h-4 accent-sky-500 rounded cursor-pointer"
+                    className="w-4 h-4 accent-sakura-500 rounded cursor-pointer"
                   />
                 </div>
               )}

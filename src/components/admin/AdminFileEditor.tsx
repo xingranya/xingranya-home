@@ -162,7 +162,7 @@ export const AdminFileEditor: React.FC = () => {
       <div className="admin-page-header">
         <div className="admin-page-title-group">
           <h1>
-            <FileCode2 className="w-6 h-6 text-sky-500" />
+            <FileCode2 className="w-6 h-6 text-sakura-500" />
             <span>底层数据文件中心 (Data & Source Center)</span>
           </h1>
           <p>
@@ -181,7 +181,7 @@ export const AdminFileEditor: React.FC = () => {
               onClick={() => setActiveFile(file.key)}
               className={`p-4 rounded-xl text-left transition-all border flex flex-col justify-between gap-2 ${
                 isSelected
-                  ? 'bg-sky-50/80 dark:bg-sky-950/30 border-sky-400 dark:border-sky-500 shadow-sm'
+                  ? 'bg-sakura-50/80 dark:bg-sakura-950/30 border-sakura-400 dark:border-sakura-500 shadow-sm'
                   : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
               }`}
             >
@@ -190,7 +190,7 @@ export const AdminFileEditor: React.FC = () => {
                   <div
                     className={`p-2 rounded-lg ${
                       isSelected
-                        ? 'bg-sky-500 text-white shadow-sm'
+                        ? 'bg-sakura-500 text-white shadow-sm'
                         : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
                     }`}
                   >
@@ -206,7 +206,7 @@ export const AdminFileEditor: React.FC = () => {
                   </div>
                 </div>
                 {isSelected && (
-                  <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-sakura-500 animate-pulse" />
                 )}
               </div>
               <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
@@ -289,7 +289,7 @@ export const AdminFileEditor: React.FC = () => {
             <button
               type="button"
               onClick={handleDownload}
-              className="admin-btn admin-btn-secondary admin-btn-sm text-sky-600 dark:text-sky-400 border-sky-300 dark:border-sky-800"
+              className="admin-btn admin-btn-secondary admin-btn-sm text-sakura-600 dark:text-sakura-400 border-sakura-300 dark:border-sakura-800"
               title="下载该文件直接覆盖到项目源码目录"
             >
               <Download className="w-3.5 h-3.5" />
@@ -325,14 +325,14 @@ export const AdminFileEditor: React.FC = () => {
             onChange={(e) => handleContentChange(e.target.value)}
             spellCheck={false}
             rows={24}
-            className="w-full p-4 font-mono text-xs leading-relaxed bg-slate-950 text-slate-100 border-none outline-none resize-y selection:bg-sky-600 selection:text-white"
+            className="w-full p-4 font-mono text-xs leading-relaxed bg-slate-950 text-slate-100 border-none outline-none resize-y selection:bg-sakura-600 selection:text-white"
             placeholder="在此编辑 JSON 源码..."
           />
         </div>
 
         {/* 底部使用指引提示 */}
         <div className="p-3.5 bg-slate-50 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800 flex items-start gap-2.5 text-xs text-slate-500 dark:text-slate-400">
-          <HelpCircle className="w-4 h-4 text-sky-500 shrink-0 mt-0.5" />
+          <HelpCircle className="w-4 h-4 text-sakura-500 shrink-0 mt-0.5" />
           <div className="space-y-1 leading-relaxed">
             <p>
               <strong>使用提示：</strong>在底层数据中心，点击『<strong>保存并实时生效</strong>』后，系统将校验语法并使全局页面热更新；点击『<strong>下载该文件</strong>』可将修改后的配置文件导出覆盖至本地仓库目录（例如 <code className="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-[11px]">{currentDesc.targetPath}</code>），保持代码仓库与本地存储同步。

@@ -60,9 +60,9 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
   return (
     <div className="admin-page-body space-y-6">
       {/* 顶部欢迎卡片 */}
-      <div className="p-6 rounded-2xl bg-gradient-to-br from-sky-500/10 via-sky-500/5 to-transparent border border-sky-200/60 dark:border-sky-800/40 relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-6 rounded-2xl bg-gradient-to-br from-sakura-500/10 via-sakura-500/5 to-transparent border border-sakura-200/60 dark:border-sakura-800/40 relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1.5 z-10">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-500/15 text-sky-700 dark:text-sky-300 font-mono">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sakura-500/15 text-sakura-700 dark:text-sakura-300 font-mono">
             <Sparkles className="w-3 h-3" /> COT CONSOLE &bull; 创作总览
           </div>
           <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
@@ -95,16 +95,16 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div
           onClick={() => onNavigate('settings')}
-          className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-sky-400 dark:hover:border-sky-500 transition-all cursor-pointer flex items-center justify-between group shadow-sm"
+          className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-sakura-400 dark:hover:border-sakura-500 transition-all cursor-pointer flex items-center justify-between group shadow-sm"
         >
           <div className="flex items-center gap-3.5">
-            <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 group-hover:bg-sky-500 group-hover:text-white transition-all">
+            <div className="p-2.5 rounded-xl bg-sakura-500/10 text-sakura-600 dark:text-sakura-400 group-hover:bg-sakura-500 group-hover:text-white transition-all">
               <Layers className="w-5 h-5" />
             </div>
             <div>
               <h3 className="font-semibold text-xs sm:text-sm text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
                 <span>全站与页面配置中心</span>
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300">
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-sakura-100 dark:bg-sakura-950 text-sakura-700 dark:text-sakura-300">
                   8 大模块
                 </span>
               </h3>
@@ -113,7 +113,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
               </p>
             </div>
           </div>
-          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-sky-500 group-hover:translate-x-0.5 transition-all" />
+          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-sakura-500 group-hover:translate-x-0.5 transition-all" />
         </div>
 
         <div
@@ -233,12 +233,12 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
         <div className="lg:col-span-2 admin-card">
           <div className="admin-card-header">
             <h3>
-              <FileText className="w-4 h-4 text-sky-500" />
+              <FileText className="w-4 h-4 text-sakura-500" />
               <span>最近编辑文稿</span>
             </h3>
             <button
               onClick={() => onNavigate('posts')}
-              className="text-xs text-sky-600 dark:text-sky-400 hover:underline flex items-center gap-1 font-medium"
+              className="text-xs text-sakura-600 dark:text-sakura-400 hover:underline flex items-center gap-1 font-medium"
             >
               <span>查看全部文章</span>
               <ChevronRight className="w-3.5 h-3.5" />
@@ -253,7 +253,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
                 className="p-4 hover:bg-slate-50/80 dark:hover:bg-slate-850/60 cursor-pointer flex items-center justify-between gap-4 transition-colors"
               >
                 <div className="flex items-center gap-3.5 min-w-0">
-                  <div className="w-9 h-9 rounded-lg bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800 flex items-center justify-center text-sky-600 dark:text-sky-400 shrink-0">
+                  <div className="w-9 h-9 rounded-lg bg-sakura-50 dark:bg-sakura-950/60 border border-sakura-200 dark:border-sakura-800 flex items-center justify-center text-sakura-600 dark:text-sakura-400 shrink-0">
                     <FileText className="w-4 h-4" />
                   </div>
                   <div className="min-w-0 space-y-0.5">
@@ -261,7 +261,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
                       {post.title}
                     </div>
                     <div className="text-[11px] text-slate-400 dark:text-slate-500 font-mono flex items-center gap-2">
-                      <span className="text-sky-600 dark:text-sky-400 font-sans">
+                      <span className="text-sakura-600 dark:text-sakura-400 font-sans">
                         {post.category}
                       </span>
                       <span>&bull;</span>
@@ -282,7 +282,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
                       window.open(`/posts/${post.slug}`, '_blank');
                     }}
                     title="在前台预览该文稿"
-                    className="admin-icon-btn !w-7 !h-7 text-slate-400 hover:text-sky-600"
+                    className="admin-icon-btn !w-7 !h-7 text-slate-400 hover:text-sakura-600"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
                   </button>
@@ -323,7 +323,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
                     </div>
                     <div className="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
                       <div
-                        className="bg-sky-500 h-full rounded-full transition-all"
+                        className="bg-sakura-500 h-full rounded-full transition-all"
                         style={{ width: `${percentage}%` }}
                       />
                     </div>
@@ -334,7 +334,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
 
             <button
               onClick={() => onNavigate('taxonomy')}
-              className="w-full py-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-400 hover:border-sky-500 hover:text-sky-600 transition-colors flex items-center justify-center gap-1.5"
+              className="w-full py-2 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-400 hover:border-sakura-500 hover:text-sakura-600 transition-colors flex items-center justify-center gap-1.5"
             >
               <Tag className="w-3.5 h-3.5" />
               <span>查看全部 {tags.length} 个标签与分类</span>
@@ -428,7 +428,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
                     key={log.id}
                     className="flex items-start gap-3 text-xs pb-2.5 border-b border-slate-100 dark:border-slate-800/60 last:border-0 last:pb-0"
                   >
-                    <div className="w-2 h-2 rounded-full bg-sky-500 mt-1.5 shrink-0" />
+                    <div className="w-2 h-2 rounded-full bg-sakura-500 mt-1.5 shrink-0" />
                     <div className="flex-1 min-w-0 space-y-0.5">
                       <div className="flex items-center justify-between gap-2">
                         <span className="font-medium text-slate-800 dark:text-slate-200">
@@ -452,7 +452,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
             <div className="p-3 border-t border-slate-100 dark:border-slate-800 text-center">
               <button
                 onClick={() => setShowAllLogs(!showAllLogs)}
-                className="text-xs text-sky-600 hover:underline font-medium"
+                className="text-xs text-sakura-600 hover:underline font-medium"
               >
                 {showAllLogs ? '收起至 6 条' : `查看更多记录 (共 ${logs.length} 条)`}
               </button>
