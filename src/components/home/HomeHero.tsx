@@ -1,28 +1,10 @@
-import React, { useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+import React from 'react';
 import { Link } from 'wouter';
 import { Megaphone, ChevronRight } from 'lucide-react';
 import { SocialLinks } from '../ui/SocialLinks';
-import { getAllDiaries, siteConfig } from '../../content';
+import { getAllDiaries, getSnapshotTime, siteConfig } from '../../content';
 
 export const HomeHero: React.FC = () => {
-  const containerRef = useRef<HTMLElement>(null);
-
-  useGSAP(() => {
-    const reduce =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) return;
-
-    const tl = gsap.timeline({ defaults: { duration: 0.45, ease: 'power3.out' } });
-    tl.from('.gsap-hero-avatar', { opacity: 0, y: 12 })
-      .from('.gsap-hero-title', { opacity: 0, y: 10 }, 0.08)
-      .from('.gsap-hero-metrics', { opacity: 0, y: 10 }, 0.22)
-      .from('.gsap-hero-socials', { opacity: 0, y: 10 }, 0.3)
-      .from('.gsap-hero-announcement', { opacity: 0, y: 8 }, 0.36);
-  }, { scope: containerRef });
-
   const diaries = getAllDiaries();
   const totalDiaries = diaries.length;
 
@@ -32,7 +14,7 @@ export const HomeHero: React.FC = () => {
 
   const runningDays = React.useMemo(() => {
     const start = new Date(sinceDateStr).getTime();
-    const now = Date.now();
+    const now = getSnapshotTime();
     const diff = Math.floor((now - start) / (1000 * 60 * 60 * 24));
     return diff > 0 ? diff : 1;
   }, [sinceDateStr]);
@@ -45,6 +27,8 @@ export const HomeHero: React.FC = () => {
   const showMetrics = hero?.showMetrics ?? true;
   const showSocials = hero?.showSocials ?? true;
   const onlineStatus = hero?.onlineStatus || 'online';
+  const avatar = siteConfig.author.avatar || '/avatar.jpg';
+  const isLocalAvatar = ['/avatar.jpg', '/avatar.png', '/avatar.webp'].includes(avatar);
 
   const statusColorClass =
     onlineStatus === 'online'
@@ -57,13 +41,20 @@ export const HomeHero: React.FC = () => {
 
   return (
     <section
-      ref={containerRef}
       className="relative flex flex-col items-center justify-center py-4 sm:py-6 text-center overflow-visible w-full"
     >
-      <div className="gsap-hero-avatar mb-3 sm:mb-4 relative group">
+      <div className="mb-3 sm:mb-4 relative group">
         <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-[4.85rem] lg:h-[4.85rem] rounded-full p-0.5 sm:p-1 bg-gradient-to-tr from-sakura-200 to-sakura-300/40 dark:from-slate-800 dark:to-sakura-900/60 shadow-md">
+          <svg className="hero-avatar-ring" viewBox="0 0 88 88" aria-hidden="true">
+            <circle cx="44" cy="44" r="42" pathLength="1" />
+          </svg>
           <img
-            src={siteConfig.author.avatar || '/avatar.jpg'}
+            src={isLocalAvatar ? '/avatar-160.webp' : avatar}
+            srcSet={isLocalAvatar ? '/avatar-160.webp 160w, /avatar-256.webp 256w' : undefined}
+            sizes={isLocalAvatar ? '(min-width: 640px) 80px, 64px' : undefined}
+            width={80}
+            height={80}
+            decoding="async"
             alt={siteConfig.author.name}
             className="w-full h-full rounded-full object-cover shadow-[inset_0_0_0_1px_rgba(0,0,0,0.06)] dark:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]"
           />
@@ -78,32 +69,32 @@ export const HomeHero: React.FC = () => {
         </div>
       </div>
 
-      <h1 className="gsap-hero-title font-sans text-xl sm:text-3xl lg:text-[2.2rem] font-normal leading-tight text-slate-900 dark:text-slate-100 tracking-tight">
-        <div className="font-light opacity-85">
+      <h1 className="font-sans text-xl sm:text-3xl lg:text-[2.2rem] font-normal leading-tight text-slate-900 dark:text-slate-100 tracking-tight">
+        <span className="block font-light opacity-85">
           {greeting}{' '}
           <span className="font-bold text-sakura-700 dark:text-sakura-400 tracking-tight">
             {siteConfig.author.name}
           </span>
-        </div>
+        </span>
 
-        <div className="mt-1 font-light opacity-80">
+        <span className="block mt-1 font-light opacity-80">
           <span>I build </span>
           <span className="font-semibold text-sakura-700 dark:text-sakura-400">
             {highlightRole}
           </span>
-        </div>
+        </span>
 
         {skillsPills && (
-          <div className="mt-2 sm:mt-2.5 flex items-center justify-center gap-1.5 flex-wrap">
+          <span className="mt-2 sm:mt-2.5 flex items-center justify-center gap-1.5 flex-wrap">
             <span className="font-light text-slate-600 dark:text-slate-300 text-sm">with</span>
             <code className="inline-flex items-center font-sans text-xs font-medium tracking-normal px-2.5 py-0.5 rounded-md text-sakura-800 dark:text-sakura-200 border border-sakura-200/60 dark:border-sakura-900/40 bg-sakura-50/50 dark:bg-sakura-950/30">
               {skillsPills}
             </code>
-          </div>
+          </span>
         )}
       </h1>
 
-      <div className="gsap-hero-metrics mt-3 sm:mt-4 text-center">
+      <div className="mt-3 sm:mt-4 text-center">
         {quote && (
           <div className="max-w-[65ch] mx-auto font-sans text-sm text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
             「{quote}」
@@ -119,13 +110,13 @@ export const HomeHero: React.FC = () => {
       </div>
 
       {showSocials && siteConfig.author.socials && siteConfig.author.socials.length > 0 && (
-        <div className="gsap-hero-socials mt-3 sm:mt-4 w-full relative z-30">
+        <div className="mt-3 sm:mt-4 w-full relative z-30">
           <SocialLinks items={siteConfig.author.socials} variant="icon" />
         </div>
       )}
 
       {siteConfig.announcement?.enabled && (
-        <div className="gsap-hero-announcement mt-4 sm:mt-5 max-w-lg mx-auto w-full px-1">
+        <div className="mt-4 sm:mt-5 max-w-lg mx-auto w-full px-1">
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 px-3 py-2.5 rounded-md bg-white/75 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800/60 text-sm font-sans text-slate-700 dark:text-slate-200">
             <div className="flex items-start gap-2 min-w-0 text-left">
               <span className="shrink-0 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-xs text-xs font-sans font-medium bg-sakura-50 dark:bg-sakura-950/40 text-sakura-700 dark:text-sakura-300 border border-sakura-200/50 dark:border-sakura-800/40">
