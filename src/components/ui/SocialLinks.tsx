@@ -92,7 +92,7 @@ const Item: React.FC<{
   const isOpen = openQr === key;
   const triggerClass = labeled
     ? `social-trigger inline-flex items-center justify-center gap-1.5 min-h-11 px-3.5 rounded-md border border-slate-200/70 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 hover:bg-slate-100/80 dark:hover:bg-slate-800 text-xs font-sans text-slate-700 dark:text-slate-200 ${FOCUS}`
-    : `social-trigger relative inline-flex items-center justify-center min-h-10 min-w-10 min-[360px]:min-h-11 min-[360px]:min-w-11 rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/60 dark:hover:bg-slate-800 ${FOCUS}`;
+    : `social-trigger relative inline-flex items-center justify-center min-h-[39px] min-w-[39px] min-[360px]:min-h-11 min-[360px]:min-w-11 rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/60 dark:hover:bg-slate-800 ${FOCUS}`;
 
   if (hasQr && social.qr) {
     return (
