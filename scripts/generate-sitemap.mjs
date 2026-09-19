@@ -56,6 +56,7 @@ function generateSitemap() {
       const fileStat = fs.statSync(filePath);
       const fileContent = fs.readFileSync(filePath, 'utf-8');
       const { data } = matter(fileContent);
+      if (data.draft === true || data.indexable === false) continue;
 
       const slug = data.slug || file.replace(/\.md$/, '');
       const lastmod = formatDate(data.date, fileStat.mtime);

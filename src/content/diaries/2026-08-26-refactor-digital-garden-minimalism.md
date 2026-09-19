@@ -1,4 +1,5 @@
 ---
+indexable: false
 title: "重构数字花园：少即是多的美学"
 date: "2026-08-26"
 weather: "晴空万里"

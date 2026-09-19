@@ -89,6 +89,7 @@ export const HomeHero: React.FC = () => {
             <span className="font-light text-slate-600 dark:text-slate-300 text-sm">with</span>
             <code className="inline-flex items-center font-sans text-xs font-medium tracking-normal px-2.5 py-0.5 rounded-md text-sakura-800 dark:text-sakura-200 border border-sakura-200/60 dark:border-sakura-900/40 bg-sakura-50/50 dark:bg-sakura-950/30">
               {skillsPills}
+              <span className="home-skill-caret" aria-hidden="true" />
             </code>
           </span>
         )}
@@ -116,14 +117,14 @@ export const HomeHero: React.FC = () => {
       )}
 
       {siteConfig.announcement?.enabled && (
-        <div className="mt-4 sm:mt-5 max-w-lg mx-auto w-full px-1">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 px-3 py-2.5 rounded-md bg-white/75 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800/60 text-sm font-sans text-slate-700 dark:text-slate-200">
-            <div className="flex items-start gap-2 min-w-0 text-left">
-              <span className="shrink-0 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-xs text-xs font-sans font-medium bg-sakura-50 dark:bg-sakura-950/40 text-sakura-700 dark:text-sakura-300 border border-sakura-200/50 dark:border-sakura-800/40">
-                <Megaphone className="w-3.5 h-3.5 text-sakura-600 dark:text-sakura-400" />
+        <div className="mt-3 sm:mt-4 lg:mt-3 max-w-lg mx-auto w-full px-2">
+          <div className="flex items-center justify-between gap-3 px-3 py-1.5 rounded-lg bg-white/75 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800/60 text-xs font-sans text-slate-700 dark:text-slate-200 shadow-2xs">
+            <div className="flex items-center gap-2 min-w-0 text-left">
+              <span className="shrink-0 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-xs text-[10.5px] font-mono font-medium bg-sakura-50 dark:bg-sakura-950/40 text-sakura-700 dark:text-sakura-300 border border-sakura-200/50 dark:border-sakura-800/40">
+                <Megaphone className="w-3 h-3 text-sakura-600 dark:text-sakura-400" />
                 <span>{siteConfig.announcement.badge || '公告'}</span>
               </span>
-              <span className="text-sm text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
+              <span className="text-xs text-slate-600 dark:text-slate-300 line-clamp-1 sm:line-clamp-none font-normal">
                 {siteConfig.announcement.content}
               </span>
             </div>
@@ -133,18 +134,18 @@ export const HomeHero: React.FC = () => {
                   href={siteConfig.announcement.linkUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="shrink-0 min-h-11 px-2 inline-flex items-center justify-center text-sm font-medium text-sakura-700 dark:text-sakura-300 hover:text-sakura-800 gap-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400"
+                  className="shrink-0 min-h-8 inline-flex items-center gap-0.5 text-xs font-medium text-sakura-700 dark:text-sakura-300 hover:text-sakura-800 dark:hover:text-sakura-200 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400"
                 >
                   <span>{siteConfig.announcement.linkText || '去博客'}</span>
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-3.5 h-3.5" />
                 </a>
               ) : (
                 <Link
                   href={siteConfig.announcement.linkUrl}
-                  className="shrink-0 min-h-11 px-2 inline-flex items-center justify-center text-sm font-medium text-sakura-700 dark:text-sakura-300 hover:text-sakura-800 gap-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400"
+                  className="shrink-0 min-h-8 inline-flex items-center gap-0.5 text-xs font-medium text-sakura-700 dark:text-sakura-300 hover:text-sakura-800 dark:hover:text-sakura-200 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400"
                 >
                   <span>{siteConfig.announcement.linkText || '去博客'}</span>
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-3.5 h-3.5" />
                 </Link>
               )
             )}

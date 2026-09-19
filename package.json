@@ -6,7 +6,7 @@
   "packageManager": "pnpm@10.28.0",
   "scripts": {
     "dev": "node scripts/generate-content-index.mjs && node node_modules/@rsbuild/core/bin/rsbuild.js dev",
-    "build": "tsc --noEmit && node scripts/generate-content-index.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-rss.mjs && node node_modules/@rsbuild/core/bin/rsbuild.js build && node scripts/post-build.mjs",
+    "build": "node scripts/generate-content-index.mjs && tsc --noEmit && node scripts/generate-sitemap.mjs && node scripts/generate-rss.mjs && rsbuild build && rsbuild build --config rsbuild.ssg.config.ts && node scripts/post-build.mjs",
     "preview": "node node_modules/@rsbuild/core/bin/rsbuild.js preview",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src scripts --max-warnings 0",

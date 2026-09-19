@@ -1,0 +1,54 @@
+{
+  "buildCommand": "pnpm build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "outputDirectory": "./dist",
+  "nodeVersion": "22.11.0",
+  "redirects": [
+    { "source": "/timeline", "destination": "/archives", "statusCode": 301 },
+    { "source": "/archive", "destination": "/archives", "statusCode": 301 },
+    { "source": "/journal", "destination": "/diaries", "statusCode": 301 },
+    { "source": "/journal/:slug", "destination": "/diaries/:slug", "statusCode": 301 },
+    { "source": "/shouji", "destination": "/diaries", "statusCode": 301 },
+    { "source": "/shouji/:slug", "destination": "/diaries/:slug", "statusCode": 301 },
+    { "source": "/record", "destination": "/says", "statusCode": 301 },
+    { "source": "/friend", "destination": "/friends", "statusCode": 301 }
+  ],
+  "headers": [
+    {
+      "source": "/*",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/static/*",
+      "headers": [
+        { "key": "Cache-Control", "value": "public,max-age=31536000,immutable" }
+      ]
+    },
+    {
+      "source": "/content/*",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex,follow" },
+        { "key": "Cache-Control", "value": "public,max-age=3600,must-revalidate" }
+      ]
+    },
+    {
+      "source": "/llms.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain;charset=utf-8" },
+        { "key": "Cache-Control", "value": "public,max-age=3600,must-revalidate" }
+      ]
+    },
+    {
+      "source": "/diaries/*.md",
+      "headers": [
+        { "key": "Content-Type", "value": "text/markdown;charset=utf-8" },
+        { "key": "X-Robots-Tag", "value": "noindex,follow" },
+        { "key": "Cache-Control", "value": "public,max-age=3600,must-revalidate" }
+      ]
+    }
+  ]
+}

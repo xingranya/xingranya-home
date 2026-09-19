@@ -3,4 +3,19 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/
 
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 Sitemap: https://xran.uk/sitemap.xml

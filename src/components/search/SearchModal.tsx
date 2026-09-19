@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Search, X, BookOpen, FileCode2, ChevronRight } from 'lucide-react';
 import { useSearch } from '../../hooks/useSearch';
-import { useLocation } from 'wouter';
+import { Link } from 'wouter';
 
 interface SearchModalProps {
   open: boolean;
@@ -14,24 +14,6 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   onOpenChange,
 }) => {
   const { query, setQuery, results } = useSearch();
-  const [, setLocation] = useLocation();
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        onOpenChange(!open);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [open, onOpenChange]);
-
-  const handleSelect = (slug: string) => {
-    setLocation(slug);
-    onOpenChange(false);
-    setQuery('');
-  };
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -50,6 +32,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              aria-label="搜索手记"
               placeholder="搜索文章、安全速记、技术标签 (如 Pwn, ECC, React, CTF)..."
               className="w-full bg-transparent text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none font-sans"
               autoFocus
@@ -57,6 +40,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             {query && (
               <button
                 onClick={() => setQuery('')}
+                aria-label="清空搜索"
                 className="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 rounded-xs"
               >
                 <X className="w-3.5 h-3.5" />
@@ -72,9 +56,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               </div>
             ) : (
               results.map((item) => (
-                <div
+                <Link
                   key={item.id}
-                  onClick={() => handleSelect(item.slug)}
+                  href={item.slug}
+                  onClick={() => { onOpenChange(false); setQuery(''); }}
                   className="group flex items-start justify-between p-3 rounded-md hover:bg-slate-100/70 dark:hover:bg-slate-800/60 cursor-pointer transition-colors"
                 >
                   <div className="flex items-start space-x-3 min-w-0 pr-2">
@@ -110,7 +95,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                     </div>
                   </div>
                   <ChevronRight className="w-4 h-4 text-slate-300 dark:text-slate-600 group-hover:text-slate-600 dark:group-hover:text-slate-300 opacity-0 group-hover:opacity-100 transition-all shrink-0 mt-2" />
-                </div>
+                </Link>
               ))
             )}
           </div>

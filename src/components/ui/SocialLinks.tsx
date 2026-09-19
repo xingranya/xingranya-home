@@ -51,12 +51,12 @@ const QrPopover: React.FC<{
     node.style.transform = `translateX(calc(-50% + ${dx}px))`;
   }, [isOpen]);
 
+  if (!isOpen) return null;
+
   return (
     <div
       ref={ref}
-      className={`absolute left-1/2 bottom-full mb-2 w-44 max-w-[calc(100vw-1.5rem)] rounded-lg border border-slate-200/80 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-lg p-2 z-50 transition-opacity ${
-        isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:visible group-focus-within:pointer-events-auto'
-      }`}
+      className="absolute left-1/2 bottom-full mb-2 w-44 max-w-[calc(100vw-1.5rem)] -translate-x-1/2 rounded-lg border border-slate-200/80 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-lg p-2 z-50"
     >
       <img
         src={src}
@@ -96,14 +96,25 @@ const Item: React.FC<{
 
   if (hasQr && social.qr) {
     return (
-      <span className="relative group inline-flex">
+      <span
+        className="relative group inline-flex"
+        onMouseEnter={() => setOpenQr(key)}
+        onMouseLeave={() => setOpenQr(null)}
+        onFocus={() => setOpenQr(key)}
+        onBlur={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+            setOpenQr(null);
+          }
+        }}
+      >
         <button
           type="button"
           aria-label={`显示${social.name}二维码`}
           aria-expanded={isOpen}
           onClick={(e) => {
             e.stopPropagation();
-            setOpenQr(isOpen ? null : key);
+            // 鼠标悬停会先打开弹层；点击时保持打开，避免触屏合成的 hover 立刻把它关掉。
+            setOpenQr(key);
           }}
           className={triggerClass}
         >
@@ -140,8 +151,15 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({ items, variant = 'icon
   useEffect(() => {
     if (!openQr) return;
     const close = () => setOpenQr(null);
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') close();
+    };
     window.addEventListener('click', close);
-    return () => window.removeEventListener('click', close);
+    window.addEventListener('keydown', closeOnEscape);
+    return () => {
+      window.removeEventListener('click', close);
+      window.removeEventListener('keydown', closeOnEscape);
+    };
   }, [openQr]);
 
   const labeled = variant === 'chip';

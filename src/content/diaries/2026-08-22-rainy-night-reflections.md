@@ -1,4 +1,5 @@
 ---
+indexable: false
 title: "雨夜随笔：在代码与留白之间"
 date: "2026-08-22"
 time: "23:45"

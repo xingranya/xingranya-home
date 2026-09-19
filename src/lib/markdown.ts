@@ -11,7 +11,7 @@ export function generateHeadingId(text: string): string {
 }
 
 export function calculateReadingTime(content: string): { readingTime: string; wordCount: number } {
-  const cleanContent = content.replace(/[#*`_\[\]()]/g, '').trim();
+  const cleanContent = content.replace(/[#*`_()]|\[|\]/g, '').trim();
   const cjkCount = (cleanContent.match(/[\u4e00-\u9fa5]/g) || []).length;
   const nonCjkCount = (cleanContent.replace(/[\u4e00-\u9fa5]/g, ' ').match(/\b\w+\b/g) || []).length;
   const totalWords = cjkCount + nonCjkCount;

@@ -39,6 +39,7 @@ import { MarkdownRenderer } from '../markdown/MarkdownRenderer';
 import { useAdminStore } from '../../hooks/useAdminStore';
 import { useToast } from './AdminToast';
 import { calculateReadingTime } from '../../lib/markdown';
+import { AdminStore, type EditorDraft } from '../../lib/admin-store';
 
 interface AdminEditorProps {
   type: 'post' | 'diary';
@@ -65,8 +66,6 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
     getDiaryBySlug,
     loadPostContent,
     loadDiaryContent,
-    saveAutoDraft,
-    getAutoDraft,
     clearAutoDraft,
   } = useAdminStore();
   const { success, error, warning } = useToast();
@@ -141,7 +140,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
   const [calloutMenuOpen, setCalloutMenuOpen] = useState(false);
   const [dirtyExitConfirm, setDirtyExitConfirm] = useState(false);
   const [hasAutoDraftBanner, setHasAutoDraftBanner] = useState(false);
-  const [pendingDraftData, setPendingDraftData] = useState<any>(null);
+  const [pendingDraftData, setPendingDraftData] = useState<EditorDraft | null>(null);
 
   const initialContentRef = useRef(existingPost?.content || existingDiary?.content || '');
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -153,8 +152,8 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
 
   // 检查是否有未保存的本地自动草稿
   useEffect(() => {
-    const savedDraft = getAutoDraft(type, slug);
-    if (savedDraft && savedDraft.content && savedDraft.content !== content) {
+    const savedDraft = AdminStore.getAutoDraft(type, slug);
+    if (savedDraft?.content && savedDraft.content !== initialContentRef.current) {
       setPendingDraftData(savedDraft);
       setHasAutoDraftBanner(true);
     }
@@ -164,7 +163,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
   useEffect(() => {
     if (!isDirty || !content) return;
     const timer = setTimeout(() => {
-      saveAutoDraft({
+      AdminStore.saveAutoDraft({
         type,
         slug,
         title,
@@ -183,7 +182,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
     }, 1500);
 
     return () => clearTimeout(timer);
-  }, [content, title, category, tagsInput, summary, draft, coverImage, recommend, date, weather, mood, location, time, isDirty]);
+  }, [content, title, category, tagsInput, summary, draft, coverImage, recommend, weather, mood, location, time, isDirty, type, slug]);
 
   // 离开页面防误关
   useEffect(() => {
@@ -257,13 +256,16 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
     if (!pendingDraftData) return;
     setTitle(pendingDraftData.title || title);
     setContent(pendingDraftData.content || content);
-    if (pendingDraftData.data) {
-      if (pendingDraftData.data.category) setCategory(pendingDraftData.data.category);
-      if (pendingDraftData.data.tagsInput) setTagsInput(pendingDraftData.data.tagsInput);
-      if (pendingDraftData.data.summary) setSummary(pendingDraftData.data.summary);
-      if (pendingDraftData.data.weather) setWeather(pendingDraftData.data.weather);
-      if (pendingDraftData.data.mood) setMood(pendingDraftData.data.mood);
-    }
+    if (pendingDraftData.category) setCategory(pendingDraftData.category);
+    if (pendingDraftData.tags) setTagsInput(pendingDraftData.tags.join(', '));
+    if (pendingDraftData.summary) setSummary(pendingDraftData.summary);
+    if (pendingDraftData.coverImage) setCoverImage(pendingDraftData.coverImage);
+    if (typeof pendingDraftData.recommend === 'number') setRecommend(pendingDraftData.recommend);
+    if (typeof pendingDraftData.draft === 'boolean') setDraft(pendingDraftData.draft);
+    if (pendingDraftData.weather) setWeather(pendingDraftData.weather);
+    if (pendingDraftData.mood) setMood(pendingDraftData.mood);
+    if (pendingDraftData.location) setLocation(pendingDraftData.location);
+    if (pendingDraftData.time) setTime(pendingDraftData.time);
     setHasAutoDraftBanner(false);
     success('已成功恢复本地自动暂存草稿！');
   };
@@ -277,7 +279,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
 
   // 快捷提取摘要
   const handleAutoSummary = () => {
-    const clean = content.replace(/[#*`_\[\]()]/g, ' ').replace(/\s+/g, ' ').trim();
+    const clean = content.replace(/[#*`_()]|\[|\]/g, ' ').replace(/\s+/g, ' ').trim();
     if (!clean) {
       warning('正文内容为空，无法提取摘要');
       return;

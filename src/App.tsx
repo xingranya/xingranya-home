@@ -3,19 +3,20 @@ import { Route, Switch, useLocation } from 'wouter';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { AmbientBackground } from './components/layout/AmbientBackground';
-import { getDiaryBySlug, siteConfig } from './content';
+import { siteConfig } from './content';
+import { applyPageMeta } from './lib/seo';
 import { Home } from './pages/Home';
 import { ExternalLinkModal } from './components/ui/ExternalLinkModal';
 
-// 路由级代码分割：非首屏页面与本地后台不进入主包
-const Archives = lazy(() => import('./pages/Archives').then((m) => ({ default: m.Archives })));
-const Diaries = lazy(() => import('./pages/Diaries').then((m) => ({ default: m.Diaries })));
-const DiaryDetail = lazy(() => import('./pages/DiaryDetail').then((m) => ({ default: m.DiaryDetail })));
-const Says = lazy(() => import('./pages/Says').then((m) => ({ default: m.Says })));
-const Friends = lazy(() => import('./pages/Friends').then((m) => ({ default: m.Friends })));
-const Sitemap = lazy(() => import('./pages/Sitemap').then((m) => ({ default: m.Sitemap })));
-const About = lazy(() => import('./pages/About').then((m) => ({ default: m.About })));
-const NotFound = lazy(() => import('./pages/NotFound').then((m) => ({ default: m.NotFound })));
+// 非首页路由和本地后台按需加载；静态构建使用独立的同步入口输出正文。
+const Archives = lazy(() => import('./pages/Archives').then((module) => ({ default: module.Archives })));
+const Diaries = lazy(() => import('./pages/Diaries').then((module) => ({ default: module.Diaries })));
+const DiaryDetail = lazy(() => import('./pages/DiaryDetail').then((module) => ({ default: module.DiaryDetail })));
+const Says = lazy(() => import('./pages/Says').then((module) => ({ default: module.Says })));
+const Friends = lazy(() => import('./pages/Friends').then((module) => ({ default: module.Friends })));
+const Sitemap = lazy(() => import('./pages/Sitemap').then((module) => ({ default: module.Sitemap })));
+const About = lazy(() => import('./pages/About').then((module) => ({ default: module.About })));
+const NotFound = lazy(() => import('./pages/NotFound').then((module) => ({ default: module.NotFound })));
 const Admin = lazy(() => import('./pages/Admin').then((m) => ({ default: m.Admin })));
 
 // 栏目路由定义（含旧路径别名），同时驱动 <Switch> 与浏览器标签标题
@@ -34,12 +35,6 @@ const SECTIONS: Section[] = [
   { label: '站点地图', paths: ['/sitemap'], list: Sitemap },
   { label: '关于', paths: ['/about'], list: About },
 ];
-
-function findSection(pathname: string) {
-  return SECTIONS.find((s) =>
-    s.paths.some((p) => pathname === p || pathname.startsWith(`${p}/`))
-  );
-}
 
 const RouteFallback: React.FC = () => (
   <div className="flex-1 flex items-center justify-center min-h-[40vh]">
@@ -62,69 +57,15 @@ export const App: React.FC = () => {
 
   const isAdminRoute = (location === '/admin' || location.startsWith('/admin/')) && isLocalEnv;
 
-  // 路由跳转时同步页面标题、摘要、规范网址和索引策略
+  // 构建和站内导航使用相同的页面信息。
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    const setMeta = (selector: string, value: string) => {
-      document.querySelector<HTMLMetaElement>(selector)?.setAttribute('content', value);
-    };
-
-    const normalizedLocation = location === '/' ? '/' : location.replace(/\/+$/, '');
-    let title = siteConfig.title;
-    let description = siteConfig.description;
-    let canonicalPath = normalizedLocation;
-    let robots = 'index,follow';
-
     if (isAdminRoute) {
-      title = `管理控制台 · ${siteConfig.title}`;
-      robots = 'noindex,nofollow';
-    } else {
-      const section = findSection(normalizedLocation);
-      const diaryMatch = normalizedLocation.match(/^\/(?:diaries|journal|shouji)\/([^/]+)$/);
-      const diary = diaryMatch ? getDiaryBySlug(diaryMatch[1]) : null;
-
-      if (diaryMatch && diary) {
-        title = `${diary.title} · ${siteConfig.title}`;
-        description = diary.summary || siteConfig.description;
-        canonicalPath = `/diaries/${diary.slug}`;
-      } else if (section && section.paths.includes(normalizedLocation)) {
-        const sectionDescMap: Record<string, string> = {
-          '归档': siteConfig.archivesPage?.subtitle || `${siteConfig.title} 全站随笔与手记的时间脉络与足迹索引。`,
-          '手记': siteConfig.diariesPage?.subtitle || siteConfig.description,
-          '说说': siteConfig.saysPage?.subtitle || '把灵感、日常与正在发生的事情，留在时间线上。',
-          '友链': siteConfig.friendsPage?.subtitle || '山海相逢，灵感共振。',
-          '站点地图': '聚合全站核心频道结构、生活随笔手记与全局标签图谱。',
-          '关于': `关于 ${siteConfig.author?.name || '星苒鸭'}：${siteConfig.author?.description || ''} ${siteConfig.about?.quote || siteConfig.description}`,
-        };
-        title = `${section.label} · ${siteConfig.title}`;
-        description = sectionDescMap[section.label] || siteConfig.description;
-        canonicalPath = section.paths[0];
-      } else if (normalizedLocation !== '/') {
-        title = `页面未找到 · ${siteConfig.title}`;
-        description = '请求的页面不存在或已归档。';
-        robots = 'noindex,follow';
-      }
+      document.title = `COT Console · ${siteConfig.author.name}`;
+      return;
     }
-
-    const canonicalUrl = new URL(canonicalPath || '/', siteConfig.url).toString();
-    let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.rel = 'canonical';
-      document.head.appendChild(canonical);
-    }
-
-    document.title = title;
-    canonical.href = canonicalUrl;
-    setMeta('meta[name="description"]', description);
-    setMeta('meta[name="robots"]', robots);
-    setMeta('meta[property="og:title"]', title);
-    setMeta('meta[property="og:description"]', description);
-    setMeta('meta[property="og:url"]', canonicalUrl);
-    setMeta('meta[name="twitter:title"]', title);
-    setMeta('meta[name="twitter:description"]', description);
-  }, [location, isAdminRoute]);
+    applyPageMeta(location);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [isAdminRoute, location]);
 
   // 后台独立路由体系：完全脱离前台 Header、Footer 与背景特效
   if (isAdminRoute) {

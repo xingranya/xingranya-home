@@ -218,7 +218,7 @@ export const AdminCommandPalette: React.FC<AdminCommandPaletteProps> = ({
           item.group.toLowerCase().includes(q)
       )
       .slice(0, 20);
-  }, [query, posts, diaries, onNavigate, onOpenEditor, onToggleTheme, exportAllData, onClose]);
+  }, [query, posts, diaries, onNavigate, onOpenEditor, onToggleTheme, exportAllData, onClose, onOpenTrash]);
 
   // 键盘快捷键监听
   useEffect(() => {

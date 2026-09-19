@@ -1,4 +1,5 @@
 ---
+indexable: false
 title: "修剪数字花园的一隅"
 date: "2026-08-08"
 time: "16:30"

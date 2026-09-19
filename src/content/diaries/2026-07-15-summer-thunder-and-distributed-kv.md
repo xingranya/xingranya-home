@@ -1,4 +1,5 @@
 ---
+indexable: false
 title: "夏日雷雨与分布式共识的随想"
 date: "2026-07-15"
 time: "15:10"

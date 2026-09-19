@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useMemo, lazy, Suspense } from 'react';
 import { Link, useLocation } from 'wouter';
 import {
   Home as HomeIcon,
@@ -13,7 +13,7 @@ import {
   Globe,
   ArrowUpRight,
 } from 'lucide-react';
-import { SearchModal } from '../search/SearchModal';
+const SearchModal = lazy(() => import('../search/SearchModal').then((module) => ({ default: module.SearchModal })));
 import { NavHoverPopover } from './NavHoverPopover';
 import { siteConfig } from '../../content';
 import type { NavLinkItem } from '../../types';
@@ -90,7 +90,9 @@ export const Header: React.FC = () => {
   const enableSearch = headerConfig?.enableSearch ?? true;
 
   // 过滤出启用的导航项
-  const navLinks = (headerConfig?.navLinks || DEFAULT_NAV_LINKS).filter((l) => l.enabled !== false);
+  const navLinks = (headerConfig?.navLinks || DEFAULT_NAV_LINKS).filter(
+    (link) => link.enabled !== false && link.href !== '/archives',
+  );
 
   // 全局快捷键 ⌘K / Ctrl+K 唤起搜索
   useEffect(() => {
@@ -174,21 +176,21 @@ export const Header: React.FC = () => {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 w-full px-4 sm:px-6 pt-2 pb-1 sm:pt-3 sm:pb-1.5 lg:pt-2.5 lg:pb-1 pointer-events-none font-sans transition-all duration-300 ease-in-out ${
+        className={`sticky top-0 z-40 w-full px-2 pt-1 pb-0.5 sm:px-6 sm:pt-3 sm:pb-1.5 lg:pt-2.5 lg:pb-1 pointer-events-none font-sans transition-all duration-300 ease-in-out ${
           !isNavVisible && isDetailPage
             ? '-translate-y-full opacity-0'
             : 'translate-y-0 opacity-100'
         }`}
       >
         {/* 正中心纯粹居中导航栏 */}
-        <div className="max-w-4xl mx-auto flex items-center justify-center min-h-[2.4rem]">
+        <div className="max-w-4xl mx-auto flex items-center justify-center sm:min-h-[2.4rem]">
           <div
             className="pointer-events-auto flex items-center justify-center relative"
             onMouseLeave={handleNavMouseLeave}
           >
               <nav
                 ref={navRef}
-                className="flex items-center p-1 rounded bg-white/75 dark:bg-slate-900/75 backdrop-blur-md border border-slate-200/75 dark:border-slate-800/75 shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] gap-0.5 text-sm max-w-full overflow-x-auto"
+                className="flex max-w-full items-center gap-0.5 overflow-hidden rounded border border-slate-200/75 bg-white/75 p-1 text-xs shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] backdrop-blur-md dark:border-slate-800/75 dark:bg-slate-900/75 sm:text-sm"
               >
                 {navLinks.map((link) => {
                   const isExt = link.isExternal || link.href.startsWith('http');
@@ -202,7 +204,7 @@ export const Header: React.FC = () => {
                         href={link.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="relative min-h-11 px-3.5 rounded-sm transition-colors duration-150 select-none flex items-center justify-center gap-1.5 shrink-0 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/60 dark:hover:bg-slate-800/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400"
+                        className="relative flex min-h-9 shrink-0 items-center justify-center gap-1.5 rounded-sm px-2 py-1 text-slate-600 transition-colors duration-150 select-none hover:bg-slate-100/60 hover:text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400 dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:text-slate-100 sm:min-h-11 sm:px-3.5"
                       >
                         <span className="leading-none translate-y-[0.5px]">{link.label}</span>
                         <ArrowUpRight className="w-3 h-3 opacity-60 ml-[-2px]" />
@@ -215,8 +217,9 @@ export const Header: React.FC = () => {
                       key={link.id || link.href}
                       href={link.href}
                       onMouseEnter={(e) => handleNavMouseEnter(link.href, e)}
+                      aria-current={active ? 'page' : undefined}
                       onClick={handleItemClick}
-                      className={`relative min-h-11 px-3.5 rounded-sm transition-colors duration-150 select-none flex items-center justify-center gap-1.5 shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400 ${
+                      className={`relative flex min-h-9 shrink-0 items-center justify-center gap-1.5 rounded-sm px-2 py-1 transition-colors duration-150 select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400 sm:min-h-11 sm:px-3.5 ${
                         active
                           ? 'text-slate-950 dark:text-slate-50 font-medium'
                           : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/60 dark:hover:bg-slate-800/50'
@@ -240,21 +243,23 @@ export const Header: React.FC = () => {
 
             {/* 导航悬浮预览卡片 MegaMenu Popover */}
             {enableMegaMenu && (
-              <NavHoverPopover
-                activeKey={hoveredNav}
-                position={navPosition}
-                onMouseEnter={handlePopoverMouseEnter}
-                onMouseLeave={handlePopoverMouseLeave}
-                onItemClick={handleItemClick}
-              />
+              <div className="hidden sm:block">
+                <NavHoverPopover
+                  activeKey={hoveredNav}
+                  position={navPosition}
+                  onMouseEnter={handlePopoverMouseEnter}
+                  onMouseLeave={handlePopoverMouseLeave}
+                  onItemClick={handleItemClick}
+                />
+              </div>
             )}
           </div>
         </div>
       </header>
 
       {/* 搜索弹窗 */}
-      {enableSearch && (
-        <SearchModal open={searchOpen} onOpenChange={setSearchOpen} />
+      {enableSearch && searchOpen && (
+        <Suspense fallback={null}><SearchModal open={searchOpen} onOpenChange={setSearchOpen} /></Suspense>
       )}
     </>
   );

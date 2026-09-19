@@ -22,6 +22,8 @@ interface PostMeta {
 }
 
 interface DiaryMeta {
+  draft?: boolean;
+  indexable?: boolean;
   slug: string;
   title: string;
   date: string;
@@ -53,6 +55,8 @@ const defaultPosts: Post[] = (contentIndex.posts as PostMeta[]).map((meta) => ({
 }));
 
 const defaultDiaries: Diary[] = (contentIndex.diaries as DiaryMeta[]).map((meta) => ({
+  draft: meta.draft,
+  indexable: meta.indexable,
   slug: meta.slug,
   title: meta.title,
   date: meta.date,
@@ -73,7 +77,7 @@ function hasFullContent(content: string | undefined): boolean {
   return typeof content === 'string' && content.trim().length > 0;
 }
 
-const defaultFriends: FriendItem[] = (friendsInitial as unknown[]).map((item: any) => ({
+const defaultFriends: FriendItem[] = (friendsInitial as Partial<FriendItem>[]).map((item) => ({
   id: item.id || Math.random().toString(36).slice(2, 9),
   name: item.name || '',
   desc: item.desc || '',
@@ -101,7 +105,7 @@ export interface TrashItem {
   id: string;
   type: 'post' | 'diary' | 'record' | 'friend';
   title: string;
-  data: any;
+  data: unknown;
   deletedAt: number;
 }
 
@@ -187,20 +191,24 @@ function safeSave<T>(key: string, value: T): void {
   }
 }
 
-function deepMerge<T>(defaultObj: T, loadedObj: any): T {
-  if (!loadedObj || typeof loadedObj !== 'object') return defaultObj;
-  if (!defaultObj || typeof defaultObj !== 'object') return loadedObj;
+function isMergeableRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
 
-  const result: any = Array.isArray(defaultObj) ? [...defaultObj] : { ...defaultObj };
+function deepMerge<T>(defaultObj: T, loadedObj: unknown): T {
+  if (!isMergeableRecord(defaultObj) || !isMergeableRecord(loadedObj)) return defaultObj;
+
+  const defaultRecord = defaultObj as Record<string, unknown>;
+  const result: Record<string, unknown> = { ...defaultRecord };
 
   for (const key of Object.keys(loadedObj)) {
     const srcVal = loadedObj[key];
-    const defVal = (defaultObj as any)[key];
+    const defVal = defaultRecord[key];
 
     if (srcVal !== undefined && srcVal !== null) {
       if (Array.isArray(srcVal)) {
         result[key] = srcVal;
-      } else if (typeof srcVal === 'object' && typeof defVal === 'object' && defVal !== null && !Array.isArray(defVal)) {
+      } else if (isMergeableRecord(srcVal) && isMergeableRecord(defVal)) {
         result[key] = deepMerge(defVal, srcVal);
       } else {
         result[key] = srcVal;
@@ -209,9 +217,9 @@ function deepMerge<T>(defaultObj: T, loadedObj: any): T {
   }
 
   // 保证默认对象中新增的顶层或嵌套字段不会因 loadedObj 缺失而丢失
-  for (const key of Object.keys(defaultObj as any)) {
+  for (const key of Object.keys(defaultRecord)) {
     if (result[key] === undefined) {
-      result[key] = (defaultObj as any)[key];
+      result[key] = defaultRecord[key];
     }
   }
 
@@ -247,7 +255,7 @@ let currentPreferences: AdminPreferences = safeLoad<AdminPreferences>(STORAGE_KE
 let currentTrash: TrashItem[] = safeLoad<TrashItem[]>(STORAGE_KEYS.TRASH, []);
 let currentDrafts: Record<string, EditorDraft> = safeLoad<Record<string, EditorDraft>>(STORAGE_KEYS.DRAFTS, {});
 
-function pushToTrash(type: TrashItem['type'], title: string, data: any) {
+function pushToTrash(type: TrashItem['type'], title: string, data: unknown) {
   const item: TrashItem = {
     id: `trash-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
     type,
@@ -521,6 +529,8 @@ export const AdminStore = {
       content: diaryData.content,
       readingTime,
       wordCount,
+      draft: diaryData.draft ?? currentDiaries[existingIndex]?.draft ?? false,
+      indexable: diaryData.indexable ?? currentDiaries[existingIndex]?.indexable ?? true,
     };
 
     if (existingIndex >= 0) {
@@ -1003,7 +1013,10 @@ export const AdminStore = {
 
   resetConfigSection(sectionKey: keyof SiteConfig): SiteConfig {
     const defaultVal = defaultSiteConfig[sectionKey];
-    (currentSiteConfig as any)[sectionKey] = JSON.parse(JSON.stringify(defaultVal));
+    currentSiteConfig = {
+      ...currentSiteConfig,
+      [sectionKey]: JSON.parse(JSON.stringify(defaultVal)),
+    } as SiteConfig;
     safeSave(STORAGE_KEYS.CONFIG, currentSiteConfig);
     this.addLog('setting', 'restore', '重置板块配置', `将「${String(sectionKey)}」配置恢复为出厂预设值`);
     notify();

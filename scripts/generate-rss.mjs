@@ -54,7 +54,7 @@ function generateRss() {
       const fileContent = fs.readFileSync(filePath, 'utf-8');
       const { data, content } = matter(fileContent);
 
-      if (data.draft === true) continue;
+      if (data.draft === true || data.indexable === false) continue;
 
       const slug = data.slug || file.replace(/\.md$/, '');
       const diaryTitle = data.title || slug;

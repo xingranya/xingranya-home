@@ -28,15 +28,15 @@ function cleanMermaidChart(raw: string): string {
     // 处理 subgraph ID [Title with special characters]
     if (trimmed.startsWith('subgraph')) {
       return l.replace(/subgraph\s+([A-Za-z0-9_-]+)\s*\[(.*?)\]/g, (match, id, text) => {
-        let t = text.trim();
+        const t = text.trim();
         if (t.startsWith('"') && t.endsWith('"')) return match;
         return `subgraph ${id} ["${t.replace(/"/g, "'")}"]`;
       });
     }
 
     // 自动清洗 NodeID[Text]
-    l = l.replace(/(\b[\w\d_\-]+)\[(.*?)\]/g, (match, id, text) => {
-      let t = text.trim();
+    l = l.replace(/(\b[\w\d_-]+)\[(.*?)\]/g, (match, id, text) => {
+      const t = text.trim();
       if (t.startsWith('(') && t.endsWith(')')) return match; // 避免圆柱 [(...)]
       if (t.startsWith('"') && t.endsWith('"')) return match;
       if (
@@ -140,7 +140,7 @@ export const MermaidBlock: React.FC<MermaidBlockProps> = ({ chart }) => {
               'svg.error-icon, body > svg[id*="mermaid"], body > [id^="dmermaid_"], svg[id^="dmermaid_"]'
             );
             errorSvgs.forEach((el) => el.remove());
-          } catch (cleanupErr) {
+          } catch {
             // ignore
           }
 
@@ -155,7 +155,7 @@ export const MermaidBlock: React.FC<MermaidBlockProps> = ({ chart }) => {
       try {
         const tempNodes = document.querySelectorAll('body > svg[id*="mermaid"], body > [id^="dmermaid_"]');
         tempNodes.forEach((node) => node.remove());
-      } catch (e) {
+      } catch {
         // ignore
       }
     };

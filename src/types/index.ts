@@ -203,6 +203,8 @@ export interface SiteConfig {
 }
 
 export interface Diary {
+  draft?: boolean;
+  indexable?: boolean;
   slug: string;
   title: string;
   date: string;

@@ -191,7 +191,7 @@ export const AdminPosts: React.FC<AdminPostsProps> = ({ onOpenEditor }) => {
                 <ArrowUpDown className="w-3.5 h-3.5" />
                 <select
                   value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as any)}
+                  onChange={(e) => setSortBy(e.target.value as 'date-desc' | 'date-asc' | 'words-desc')}
                   className="admin-select !w-auto !py-1 !text-xs"
                 >
                   <option value="date-desc">最新日期优先</option>

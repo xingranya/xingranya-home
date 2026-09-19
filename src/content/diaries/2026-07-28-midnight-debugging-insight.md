@@ -1,4 +1,5 @@
 ---
+indexable: false
 title: "午夜编译通过时的宁静"
 date: "2026-07-28"
 time: "01:20"

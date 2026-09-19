@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 
 export const Sitemap: React.FC = () => {
-  const allDiaries = useMemo(() => getAllDiaries(), []);
+  const allDiaries = useMemo(() => getAllDiaries().filter((diary) => diary.indexable !== false), []);
   const allFriends = useMemo(() => getAllFriends(), []);
   const allRecords = useMemo(() => getAllRecords(), []);
 

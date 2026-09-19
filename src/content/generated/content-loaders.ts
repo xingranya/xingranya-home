@@ -63,4 +63,5 @@ export const diaryLoaders: Record<string, () => Promise<string>> = {
   '2026-08-22-rainy-night-reflections': () => import('../diaries/2026-08-22-rainy-night-reflections.md').then((m) => (m as { default?: string }).default ?? (m as unknown as string)),
   '2026-08-25-cloud-native-and-evening-breeze': () => import('../diaries/2026-08-25-cloud-native-and-evening-breeze.md').then((m) => (m as { default?: string }).default ?? (m as unknown as string)),
   '2026-08-26-refactor-digital-garden-minimalism': () => import('../diaries/2026-08-26-refactor-digital-garden-minimalism.md').then((m) => (m as { default?: string }).default ?? (m as unknown as string)),
+  '2026-09-19-love-and-memory': () => import('../diaries/2026-09-19-love-and-memory.md').then((m) => (m as { default?: string }).default ?? (m as unknown as string)),
 };

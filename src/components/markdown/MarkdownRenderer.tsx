@@ -251,7 +251,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
 
     flushMd();
     return result;
-  }, [content, katexReady]);
+  }, [content]);
 
   // 行内富文本解析器（支持嵌套解析：图片、公式、行内代码、加粗、斜体、删除线、高亮、链接）
   const renderInlineMarkdown = (text: string): React.ReactNode => {
@@ -506,7 +506,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
       }
 
       // 分割线 Horizontal Rule (---, ***, ___)
-      if (/^(\-{3,}|\*{3,}|_{3,})$/.test(trimmed)) {
+      if (/^(-{3,}|\*{3,}|_{3,})$/.test(trimmed)) {
         flushList(`list-${keyPrefix}-${idx}`);
         elements.push(
           <hr

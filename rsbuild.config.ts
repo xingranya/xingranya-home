@@ -20,7 +20,7 @@ export default defineConfig({
       'twitter:description': siteDescription,
       'twitter:image': socialImage,
     },
-    favicon: './public/favicon.svg',
+    favicon: './public/favicon-32x32.png',
     tags: [
       {
         tag: 'meta',
@@ -94,14 +94,6 @@ export default defineConfig({
       {
         tag: 'link',
         attrs: {
-          rel: 'icon',
-          type: 'image/svg+xml',
-          href: '/favicon.svg',
-        },
-      },
-      {
-        tag: 'link',
-        attrs: {
           rel: 'apple-touch-icon',
           href: '/apple-touch-icon.png',
         },
@@ -134,34 +126,11 @@ export default defineConfig({
       {
         tag: 'link',
         attrs: {
-          rel: 'preconnect',
-          href: 'https://cdn.jsdelivr.net',
-          crossorigin: true,
-        },
-      },
-      {
-        tag: 'link',
-        attrs: {
           rel: 'stylesheet',
-          href: 'https://cdn.jsdelivr.net/npm/misans-webfont/misans/misans-regular/result.css',
+          href: '/fonts/misans/misans-optimized.css',
           media: 'print',
           onload: "this.media='all'",
         },
-      },
-      {
-        tag: 'link',
-        attrs: {
-          rel: 'stylesheet',
-          href: 'https://cdn.jsdelivr.net/npm/misans-webfont/misans/misans-bold/result.css',
-          media: 'print',
-          onload: "this.media='all'",
-        },
-      },
-      {
-        tag: 'noscript',
-        children:
-          '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont/misans/misans-regular/result.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont/misans/misans-bold/result.css">',
-        append: true,
       },
       {
         tag: 'link',
@@ -192,6 +161,8 @@ export default defineConfig({
     },
   },
   output: {
+    // 主页只有一份约 18 KiB gzip 的关键样式，直接内联可省去首屏阻塞请求。
+    inlineStyles: true,
     distPath: {
       root: 'dist',
     },

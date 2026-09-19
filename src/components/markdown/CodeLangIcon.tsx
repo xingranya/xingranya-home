@@ -224,7 +224,7 @@ export const CodeLangIcon: React.FC<CodeLangIconProps> = ({
   size = 15,
 }) => {
   const getNormalizedKey = (): string => {
-    let raw = (lang || '').toLowerCase().trim();
+    const raw = (lang || '').toLowerCase().trim();
     
     if (filename && filename.includes('.')) {
       const ext = filename.split('.').pop()?.toLowerCase();

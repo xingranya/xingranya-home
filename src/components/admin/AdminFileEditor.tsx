@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   FileCode2,
   Save,
@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { useAdminStore } from '../../hooks/useAdminStore';
 import { useToast } from './AdminToast';
+import { AdminStore } from '../../lib/admin-store';
 
 type FileKey = 'siteConfig' | 'friends' | 'records';
 
@@ -51,9 +52,6 @@ const FILES: FileDescriptor[] = [
 
 export const AdminFileEditor: React.FC = () => {
   const {
-    getSiteConfigFileContent,
-    getFriendsFileContent,
-    getRecordsFileContent,
     saveSiteConfigFileContent,
     saveFriendsFileContent,
     saveRecordsFileContent,
@@ -68,18 +66,18 @@ export const AdminFileEditor: React.FC = () => {
   const [copied, setCopied] = useState(false);
 
   // 根据当前选中的文件加载内容
-  const loadFileContent = (key: FileKey) => {
+  const loadFileContent = useCallback((key: FileKey) => {
     let raw = '';
-    if (key === 'siteConfig') raw = getSiteConfigFileContent();
-    else if (key === 'friends') raw = getFriendsFileContent();
-    else if (key === 'records') raw = getRecordsFileContent();
+    if (key === 'siteConfig') raw = AdminStore.getSiteConfigFileContent();
+    else if (key === 'friends') raw = AdminStore.getFriendsFileContent();
+    else if (key === 'records') raw = AdminStore.getRecordsFileContent();
     setContent(raw);
     setJsonError(null);
-  };
+  }, []);
 
   useEffect(() => {
     loadFileContent(activeFile);
-  }, [activeFile]);
+  }, [activeFile, loadFileContent]);
 
   // 实时校验 JSON
   const handleContentChange = (val: string) => {

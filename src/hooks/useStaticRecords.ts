@@ -1,24 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
-import { AdminStore } from '../lib/admin-store';
-import type { RecordItem } from '../types';
+import { getAllRecords } from '../content';
 
+// 线上动态来自构建快照，编辑操作留在本地后台。
 export function useStaticRecords() {
-  const [records, setRecords] = useState<RecordItem[]>(() => AdminStore.getRecords());
-
-  useEffect(() => {
-    const unsubscribe = AdminStore.subscribe(() => {
-      setRecords(AdminStore.getRecords());
-    });
-    return unsubscribe;
-  }, []);
-
-  const saveRecord = useCallback((record: RecordItem) => {
-    AdminStore.saveRecord(record);
-  }, []);
-
-  const removeRecord = useCallback((id: string | number) => {
-    AdminStore.deleteRecord(id);
-  }, []);
-
-  return { records, saveRecord, removeRecord };
+  return { records: getAllRecords() };
 }

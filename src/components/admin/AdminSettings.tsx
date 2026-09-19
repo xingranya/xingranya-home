@@ -24,7 +24,7 @@ import {
   AlertTriangle,
   Layers,
 } from 'lucide-react';
-import { useAdminStore } from '../../hooks/useAdminStore';
+import { useAdminStore, type AdminPreferences } from '../../hooks/useAdminStore';
 import { useToast } from './AdminToast';
 import type { SiteConfig, SocialLink, NavLinkItem, FooterNavColumn, TechStackCategory } from '../../types';
 
@@ -38,6 +38,10 @@ type SettingsTab =
   | 'header'
   | 'footer'
   | 'backups';
+
+type OnlineStatus = NonNullable<
+  NonNullable<NonNullable<SiteConfig['home']>['hero']>['onlineStatus']
+>;
 
 export const AdminSettings: React.FC = () => {
   const {
@@ -58,8 +62,8 @@ export const AdminSettings: React.FC = () => {
   const [configForm, setConfigForm] = useState<SiteConfig>(() => JSON.parse(JSON.stringify(siteConfig)));
 
   // 外观偏好
-  const [accentColor, setAccentColor] = useState(preferences.accentColor || 'blue');
-  const [themeMode, setThemeMode] = useState(preferences.theme || 'system');
+  const [accentColor, setAccentColor] = useState<AdminPreferences['accentColor']>(preferences.accentColor || 'blue');
+  const [themeMode, setThemeMode] = useState<AdminPreferences['theme']>(preferences.theme || 'system');
 
   // 备份与重置
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -92,8 +96,8 @@ export const AdminSettings: React.FC = () => {
   // 保存偏好
   const handleSavePreferences = () => {
     savePreferences({
-      accentColor: accentColor as any,
-      theme: themeMode as any,
+      accentColor,
+      theme: themeMode,
     });
     success('后台外观与偏好已保存！');
   };
@@ -537,7 +541,7 @@ export const AdminSettings: React.FC = () => {
                           value={social.icon}
                           onChange={(e) => {
                             const next = [...configForm.author.socials];
-                            next[idx].icon = e.target.value as any;
+                            next[idx].icon = e.target.value;
                             setConfigForm({
                               ...configForm,
                               author: { ...configForm.author, socials: next },
@@ -694,7 +698,7 @@ export const AdminSettings: React.FC = () => {
                           ...configForm,
                           home: {
                             ...configForm.home,
-                            hero: { ...configForm.home?.hero, onlineStatus: e.target.value as any },
+                            hero: { ...configForm.home?.hero, onlineStatus: e.target.value as OnlineStatus },
                           },
                         })
                       }
@@ -2024,7 +2028,7 @@ export const AdminSettings: React.FC = () => {
                       <label className="admin-label">控制台主题模式</label>
                       <select
                         value={themeMode}
-                        onChange={(e) => setThemeMode(e.target.value as any)}
+                        onChange={(e) => setThemeMode(e.target.value as AdminPreferences['theme'])}
                         className="admin-select"
                       >
                         <option value="system">跟随系统 (System)</option>
@@ -2037,7 +2041,7 @@ export const AdminSettings: React.FC = () => {
                       <label className="admin-label">控制台强调主题色</label>
                       <select
                         value={accentColor}
-                        onChange={(e) => setAccentColor(e.target.value as any)}
+                        onChange={(e) => setAccentColor(e.target.value as AdminPreferences['accentColor'])}
                         className="admin-select"
                       >
                         <option value="blue">天空蓝 (Sky Blue)</option>

@@ -81,7 +81,7 @@ function detectDeploy(headers, domain, html) {
   return server ? 'vps' : '';
 }
 
-function detectFramework(html, headers) {
+function detectFramework(html) {
   if (!html) return '';
   const lower = html.toLowerCase();
 
@@ -200,7 +200,7 @@ async function probeSite(friend) {
 
     const text = await response.text();
 
-    const detectedFramework = detectFramework(text, headersObj);
+    const detectedFramework = detectFramework(text);
     const detectedDeploy = detectDeploy(headersObj, domain, text);
 
     if (detectedFramework) result.framework = detectedFramework;

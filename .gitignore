@@ -31,3 +31,6 @@ pnpm-debug.log*
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# 构建用服务端渲染产物
+.ssg/

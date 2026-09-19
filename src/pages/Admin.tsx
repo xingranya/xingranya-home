@@ -1,3 +1,5 @@
+import '../styles/admin.css';
+import '../lib/buffer-polyfill';
 import React, { useState } from 'react';
 import { ToastProvider } from '../components/admin/AdminToast';
 import { AdminLayout, type AdminViewType } from '../components/admin/AdminLayout';
