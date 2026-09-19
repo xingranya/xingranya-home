@@ -1,7 +1,8 @@
 import '../lib/buffer-polyfill';
 import { AdminStore } from '../lib/admin-store';
-import type { Diary, FriendItem, Post, RecordItem, SearchItem, SiteConfig } from '../types';
+import type { AboutProject, Diary, FriendItem, Post, RecordItem, SearchItem, SiteConfig } from '../types';
 import siteConfigJson from './config/site.config.json';
+import projectsJson from './pages/projects.json';
 
 export const siteConfig: SiteConfig = new Proxy(siteConfigJson as SiteConfig, {
   get(target, prop: keyof SiteConfig) {
@@ -48,6 +49,10 @@ export function loadDiaryContent(slug: string): Promise<Diary | null> {
 
 export function getAllFriends(): FriendItem[] {
   return AdminStore.getFriends();
+}
+
+export function getProjects(): AboutProject[] {
+  return projectsJson as AboutProject[];
 }
 
 export function getAllRecords(): RecordItem[] {

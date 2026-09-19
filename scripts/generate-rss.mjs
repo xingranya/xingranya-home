@@ -8,11 +8,11 @@ const PUBLIC_DIR = path.resolve('public');
 const DIST_DIR = path.resolve('dist');
 
 function getSiteInfo() {
-  let title = 'chent';
+  let title = '星苒鸭';
   let description =
-    'Chent 的个人网站，记录随笔、日记、项目与生活，分享个人的思考、经历与正在做的事情，也保存那些值得留下来的时刻。';
-  let baseUrl = 'https://chent.co';
-  let authorName = 'chent';
+    '星苒鸭的个人主页。计算机科学与技术本科生，全栈开发爱好者。技术长文在 blog.xran.uk。';
+  let baseUrl = 'https://xran.uk';
+  let authorName = '星苒鸭';
 
   if (fs.existsSync(SITE_CONFIG_PATH)) {
     try {

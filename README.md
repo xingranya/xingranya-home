@@ -1,14 +1,13 @@
-# chent
+# 星苒鸭
 
-个人网站与数字花园，记录随笔、日记、项目与生活，分享个人的思考、经历与正在做的事情，也保存那些值得留下来的时刻。
+个人主页。留下手记、日常和朋友。
 
-线上地址：[https://chent.co](https://chent.co)
+线上地址：[https://xran.uk](https://xran.uk)
 
-## 关联生态
+## 关联站点
 
-- **主站**：[https://chent.co](https://chent.co)
-- **知识库**：[https://wiki.chent.co](https://wiki.chent.co)
-- **简历**：[https://cv.chent.co](https://cv.chent.co)
+- **主站**：[https://xran.uk](https://xran.uk)
+- **博客**：[https://blog.xran.uk](https://blog.xran.uk)
 
 ## 技术栈
 

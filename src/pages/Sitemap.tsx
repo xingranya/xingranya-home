@@ -17,7 +17,7 @@ export const Sitemap: React.FC = () => {
 
   // 核心主册目次
   const sections = [
-    { name: '首页', nameEn: 'Home', path: '/', desc: 'Chent 个人主页、简介与动态', count: '1 页面' },
+    { name: '首页', nameEn: 'Home', path: '/', desc: '星苒鸭个人主页、简介与动态', count: '1 页面' },
     { name: '时光归档', nameEn: 'Archives', path: '/archives', desc: '按年份逆序沉淀的全站时光时间轴脉络', count: `${allDiaries.length} 条` },
     { name: '动态手记', nameEn: 'Diaries', path: '/diaries', desc: '生活随笔、日暮微风与真实生活切片', count: `${allDiaries.length} 篇` },
     { name: '日常说说', nameEn: 'Says', path: '/says', desc: '碎片化的即时灵感、微型日志与正在发生的事情', count: `${allRecords.length} 则` },
@@ -42,7 +42,7 @@ export const Sitemap: React.FC = () => {
             </h1>
 
             <p className="font-serif italic text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-xl mx-auto leading-relaxed">
-              &ldquo;Chent 的个人网站，记录随笔、日记、项目与生活，分享个人的思考、经历与正在做的事情。&rdquo;
+              &ldquo;星苒鸭的个人主页。留下手记、日常和朋友，技术长文在 blog.xran.uk。&rdquo;
             </p>
 
             {/* 出版元数据摘要条 */}

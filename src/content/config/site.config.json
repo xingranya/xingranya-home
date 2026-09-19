@@ -1,67 +1,93 @@
 {
-  "title": "chent",
-  "subtitle": "",
-  "description": "Chent 的个人网站，记录随笔、日记、项目与生活，分享个人的思考、经历与正在做的事情，也保存那些值得留下来的时刻。",
-  "url": "https://chent.co",
+  "title": "星苒鸭",
+  "subtitle": "热爱代码 · 持续折腾 · 享受创造",
+  "description": "星苒鸭的个人主页。计算机科学与技术本科生，全栈开发爱好者。技术长文在 blog.xran.uk。",
+  "url": "https://xran.uk",
   "favicon": "/favicon.ico",
   "keywords": [
+    "星苒鸭",
+    "xingranya",
+    "个人主页",
     "全栈开发",
-    "云原生",
-    "Go",
-    "Rust",
-    "React 19",
-    "系统架构",
-    "知识库"
+    "Java",
+    "Vue3",
+    "Node.js"
   ],
   "analytics": {
-    "gtmId": "GTM-TL7V3JC5",
-    "gaId": "G-73FXC49GB4",
-    "clarityId": "ybjuygdar5"
+    "gtmId": "",
+    "gaId": "",
+    "clarityId": ""
   },
   "author": {
-    "name": "kerntau",
+    "name": "星苒鸭",
     "avatar": "/avatar.jpg",
-    "description": "全栈工程师与开源爱好者",
-    "email": "hi@chent.co",
-    "github": "https://github.com/kerntau",
-    "location": "浙江 · 宁波",
-    "statusBadge": "专注全栈系统架构中",
+    "description": "计算机科学与技术本科生，全栈开发爱好者。喜欢捣鼓软件和电子产品，同类里性价比最高的永远是好的。",
+    "email": "xingranya@outlook.jp",
+    "github": "https://github.com/xingranya",
+    "statusBadge": "热爱代码 · 持续折腾",
     "socials": [
       {
         "name": "GitHub",
         "icon": "github",
-        "url": "https://github.com/kerntau"
+        "url": "https://github.com/xingranya"
+      },
+      {
+        "name": "博客",
+        "icon": "custom",
+        "url": "https://blog.xran.uk"
       },
       {
         "name": "Bilibili",
         "icon": "bilibili",
-        "url": "https://space.bilibili.com/9655855"
+        "url": "https://space.bilibili.com/357220647"
       },
       {
-        "name": "X (Twitter)",
+        "name": "X",
         "icon": "x",
-        "url": "https://x.com/Kerntao"
+        "url": "https://x.com/xingranya"
+      },
+      {
+        "name": "Telegram",
+        "icon": "telegram",
+        "url": "https://t.me/xingranya"
       },
       {
         "name": "Email",
         "icon": "email",
-        "url": "mailto:hi@chent.co"
+        "url": "mailto:xingranya@outlook.jp"
+      },
+      {
+        "name": "Gmail",
+        "icon": "email",
+        "url": "mailto:xingranya666@gmail.com"
+      },
+      {
+        "name": "微信",
+        "icon": "weixin",
+        "url": "",
+        "qr": "https://img1.tucang.cc/api/image/show/ebac24fbd517f059a86979b42b48a571"
+      },
+      {
+        "name": "QQ",
+        "icon": "qq",
+        "url": "",
+        "qr": "https://img1.tucang.cc/api/image/show/8dc024696507b792af1f0f296f55bed6"
       }
     ]
   },
   "announcement": {
     "enabled": true,
-    "badge": "建站公告",
-    "content": "本站目前处于上线试运行与架构验证阶段，当前展示的部分文稿主要用于排版演示，后续将全部替换为原创深度技术内容。",
-    "linkText": "动态",
-    "linkUrl": "/says"
+    "badge": "站点",
+    "content": "这里是个人主页，技术长文请看 blog.xran.uk。",
+    "linkText": "去博客",
+    "linkUrl": "https://blog.xran.uk"
   },
   "home": {
     "hero": {
       "greeting": "Hi, I'm",
-      "highlightRole": "Cloud Native & Systems",
-      "skillsPills": "Go • Rust • React 19 • K8s",
-      "quote": "心中有景，花香满径",
+      "highlightRole": "full-stack things",
+      "skillsPills": "Java • Vue3 • Node.js • React",
+      "quote": "把复杂问题拆简单，把简单方案做扎实。",
       "showMetrics": true,
       "showSocials": true,
       "onlineStatus": "online"
@@ -77,52 +103,60 @@
   },
   "about": {
     "identityTitle": "IDENTITY • 关于作者",
-    "quote": "",
-    "techStackTitle": "工程与全栈技术栈",
-    "techStackDesc": "在工程实践与系统构建中常用的工具与技术链条：",
+    "quote": "把复杂问题拆简单，把简单方案做扎实。",
+    "bio": "我喜欢捣鼓一些新颖的产品，不管是软件还是电子产品。平时主要围绕 Java / Rust / Vue3 / Node.js / React 做全栈实践，也会持续折腾系统优化、效率工具和自动化流程。喜欢研究有技术挑战、能真实创造价值的项目。",
+    "techStackTitle": "技术栈",
+    "techStackDesc": "平时主要用这些工具做全栈实践：",
     "techCategories": [
       {
-        "category": "后端与系统",
+        "category": "后端",
         "items": [
-          { "name": "Go", "icon": "go", "desc": "高并发微服务与中间件" },
-          { "name": "Rust", "icon": "rust", "desc": "高性能系统与内存安全" },
-          { "name": "Python", "icon": "python", "desc": "脚本自动化与数据流" },
-          { "name": "Node.js", "icon": "nodejs", "desc": "服务端工程化与构建" },
-          { "name": "Spring Boot", "icon": "springboot", "desc": "企业级企业架构" }
+          { "name": "Java", "icon": "java", "desc": "主要后端语言" },
+          { "name": "Spring Boot", "icon": "springboot", "desc": "服务与接口" },
+          { "name": "Node.js", "icon": "nodejs", "desc": "工具链与脚本" },
+          { "name": "Kotlin", "icon": "kotlin", "desc": "JVM 补充" },
+          { "name": "MyBatis", "icon": "mybatis", "desc": "数据访问" }
         ]
       },
       {
-        "category": "前端与渲染",
+        "category": "前端",
         "items": [
-          { "name": "React 19", "icon": "react", "desc": "新一代响应式组件架构" },
-          { "name": "TypeScript", "icon": "typescript", "desc": "类型安全与工程化" },
-          { "name": "Rsbuild", "icon": "rsbuild", "desc": "极速 Rspack 打包体系" },
-          { "name": "Tailwind CSS", "icon": "tailwind", "desc": "原子化现代设计系统" }
+          { "name": "Vue3", "icon": "vue", "desc": "主要前端框架" },
+          { "name": "React", "icon": "react", "desc": "页面与交互实践" },
+          { "name": "JavaScript", "icon": "javascript", "desc": "Web 基础" },
+          { "name": "HTML / CSS", "icon": "html", "desc": "结构与样式" }
         ]
       },
       {
-        "category": "数据与中间件",
+        "category": "数据库",
         "items": [
-          { "name": "PostgreSQL", "icon": "postgres", "desc": "核心关系型事务数据存储" },
-          { "name": "ClickHouse", "icon": "clickhouse", "desc": "海量日志与 OLAP 分析" },
-          { "name": "Redis", "icon": "redis", "desc": "分布式缓存与会话" },
-          { "name": "Kafka", "icon": "kafka", "desc": "高吞吐异步事件消息流" },
-          { "name": "MySQL", "icon": "mysql", "desc": "业务数据库系统" }
+          { "name": "MySQL", "icon": "mysql", "desc": "关系型数据" },
+          { "name": "Redis", "icon": "redis", "desc": "缓存与会话" }
         ]
       },
       {
-        "category": "云原生与运维",
+        "category": "构建与工具",
         "items": [
-          { "name": "Docker", "icon": "docker", "desc": "轻量级容器封装" },
-          { "name": "Kubernetes", "icon": "kubernetes", "desc": "云原生容器编排集群" },
-          { "name": "Linux", "icon": "linux", "desc": "生产系统运行环境" },
-          { "name": "Nginx", "icon": "nginx", "desc": "高性能反向代理网关" },
-          { "name": "CI/CD", "icon": "cicd", "desc": "自动化构建与持续部署流水线" }
+          { "name": "Git", "icon": "git", "desc": "版本与协作" },
+          { "name": "Maven / Gradle", "icon": "maven", "desc": "Java 构建" },
+          { "name": "Docker", "icon": "docker", "desc": "服务封装" },
+          { "name": "Linux", "icon": "linux", "desc": "服务器环境" }
         ]
       }
     ],
-    "designTitle": "关于本站与设计理念",
-    "designPhilosophy": "本博客旨在打造具有纸质温度与现代极速性能的个人数字空间，摒弃过度装饰，让每一行技术文字如同落于宣纸之上自然呼吸。"
+    "awardsTitle": "荣誉与奖项",
+    "awards": [
+      "2025 全国大学生计算机设计大赛（中南赛区）省级二等奖",
+      "2025 第二届 CACC 算法大赛区域赛二等奖",
+      "2026 全国大学生计算机设计大赛（中南赛区）省级一等奖",
+      "2026 全国大学生计算机设计大赛软件与应用开发（济南）赛区全国三等奖",
+      "2026 第十四届“泰迪杯”数据挖掘挑战赛全国三等奖兼湖北赛区二等奖",
+      "2026 第十六届全国大学生电子商务“创新、创意及创业”挑战赛湖北省省级选拔赛二等奖",
+      "2026 湖北省第十四届“挑战杯”大学生创业计划竞赛三等奖"
+    ],
+    "projectsTitle": "项目与贡献",
+    "designTitle": "关于本站",
+    "designPhilosophy": "主站用来放下手记、动态和朋友。技术长文放在 blog.xran.uk，两边分开，互不打扰。"
   },
   "postsPage": {
     "title": "深度文稿",
@@ -145,40 +179,42 @@
     "title": "志同道合的朋友",
     "subtitle": "山海相逢，灵感共振。",
     "guideTitle": "交换友链",
-    "guideText": "如果您也拥有自己的个人独立博客，欢迎在您的站点添加本站后通过邮件（hi@chent.co）联系交换。",
+    "guideText": "如果你也有独立站点，欢迎先加上本站，再通过邮件联系交换。",
     "template": {
-      "name": "chent",
-      "desc": "Chent 的个人网站，记录随笔、日记、项目与生活，分享个人的思考、经历与正在做的事情，也保存那些值得留下来的时刻。",
-      "url": "https://chent.co",
+      "name": "星苒鸭",
+      "desc": "星苒鸭的个人主页。计算机科学与技术本科生，全栈开发爱好者。",
+      "url": "https://xran.uk",
       "avatar": "/avatar.jpg"
     }
   },
   "header": {
     "navLinks": [
       { "id": "nav-home", "label": "首页", "href": "/", "icon": "HomeIcon", "enabled": true },
+      { "id": "nav-blog", "label": "博客", "href": "https://blog.xran.uk", "icon": "FileText", "enabled": true, "isExternal": true },
       { "id": "nav-archives", "label": "归档", "href": "/archives", "icon": "History", "enabled": true },
       { "id": "nav-diaries", "label": "手记", "href": "/diaries", "icon": "Feather", "enabled": true },
       { "id": "nav-says", "label": "动态", "href": "/says", "icon": "MessageSquareQuote", "enabled": true },
-      { "id": "nav-friends", "label": "朋友", "href": "/friends", "icon": "Users", "enabled": true }
+      { "id": "nav-friends", "label": "朋友", "href": "/friends", "icon": "Users", "enabled": true },
+      { "id": "nav-about", "label": "关于", "href": "/about", "icon": "User", "enabled": true }
     ],
     "enableMegaMenu": true,
     "enableSearch": true
   },
   "footer": {
-    "motto": "Stay hungry. Stay foolish.",
-    "copyright": "© 2026 kerntau. All Rights Reserved.",
-    "sinceYear": 2025,
-    "sinceDate": "2025-11-10",
-    "customText": "心中有景，花香满径",
-    "icp": "萌ICP备20268811号",
-    "icpUrl": "https://icp.gov.moe/?keyword=20268811",
+    "motto": "The only way to do great work is to love what you do.",
+    "copyright": "© 2026 星苒鸭. All Rights Reserved.",
+    "sinceYear": 2022,
+    "sinceDate": "2022-12-27",
+    "customText": "热爱代码 · 持续折腾 · 享受创造",
+    "icp": "",
+    "icpUrl": "",
     "navColumns": [
       {
         "title": "关于",
         "links": [
-          { "label": "关于此项目", "href": "https://github.com/kerntau/chent", "isExternal": true },
-          { "label": "知识库", "href": "https://wiki.chent.co", "isExternal": true },
-          { "label": "简历", "href": "https://cv.chent.co", "isExternal": true }
+          { "label": "关于此项目", "href": "https://github.com/xingranya/xingranya-home", "isExternal": true },
+          { "label": "博客", "href": "https://blog.xran.uk", "isExternal": true },
+          { "label": "关于我", "href": "/about" }
         ]
       },
       {
@@ -192,8 +228,8 @@
       {
         "title": "联系",
         "links": [
-          { "label": "发邮件", "href": "mailto:hi@chent.co", "isExternal": true },
-          { "label": "GitHub", "href": "https://github.com/kerntau", "isExternal": true },
+          { "label": "发邮件", "href": "mailto:xingranya@outlook.jp", "isExternal": true },
+          { "label": "GitHub", "href": "https://github.com/xingranya", "isExternal": true },
           { "label": "日常说说", "href": "/says" }
         ]
       }

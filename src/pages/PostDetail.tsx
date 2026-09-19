@@ -81,14 +81,14 @@ export const PostDetail: React.FC = () => {
 
   useEffect(() => {
     if (post?.title) {
-      document.title = `${post.title} · 序栈`;
+      document.title = `${post.title} · ${siteConfig.title}`;
     }
   }, [post?.title]);
 
   // JSON-LD 结构化数据，利于搜索引擎理解文章
   useEffect(() => {
     if (!post?.title || contentLoading) return;
-    const siteUrl = siteConfig.url || 'https://chent.co';
+    const siteUrl = siteConfig.url || 'https://xran.uk';
     const elId = 'post-jsonld';
     document.getElementById(elId)?.remove();
     const script = document.createElement('script');
@@ -102,12 +102,12 @@ export const PostDetail: React.FC = () => {
       datePublished: post.date,
       author: {
         '@type': 'Person',
-        name: siteConfig.author?.name || 'kerntau',
+        name: siteConfig.author?.name || '星苒鸭',
         url: siteConfig.author?.github || siteUrl,
       },
       publisher: {
         '@type': 'Person',
-        name: siteConfig.author?.name || 'kerntau',
+        name: siteConfig.author?.name || '星苒鸭',
       },
       mainEntityOfPage: `${siteUrl}/posts/${post.slug}`,
       keywords: (post.tags || []).join(','),
@@ -263,7 +263,7 @@ export const PostDetail: React.FC = () => {
                 
                 {/* 摘要导言 */}
                 {post.summary && (
-                  <div className="mb-4 sm:mb-5 p-3 sm:p-4 rounded-r-md rounded-l-none bg-slate-100/70 dark:bg-slate-900/50 border-l-2 border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  <div className="mb-4 sm:mb-5 p-3 sm:p-4 rounded-md bg-slate-100/70 dark:bg-slate-900/50 text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-serif italic">
                     {post.summary}
                   </div>
                 )}

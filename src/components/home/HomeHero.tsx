@@ -3,16 +3,8 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Link } from 'wouter';
 import { Megaphone, ChevronRight } from 'lucide-react';
-import type { SocialLink } from '../../types';
-import { GithubIcon, XTwitterIcon, MailIcon, BilibiliIcon } from '../ui/Icons';
+import { SocialLinks } from '../ui/SocialLinks';
 import { siteConfig, getAllDiaries } from '../../content';
-
-const SOCIAL_ICONS: Record<SocialLink['icon'], React.FC<React.SVGProps<SVGSVGElement>>> = {
-  github: GithubIcon,
-  bilibili: BilibiliIcon,
-  x: XTwitterIcon,
-  email: MailIcon,
-};
 
 export const HomeHero: React.FC = () => {
   const containerRef = useRef<HTMLElement>(null);
@@ -43,8 +35,8 @@ export const HomeHero: React.FC = () => {
 
   const hero = siteConfig.home?.hero;
   const greeting = hero?.greeting || "Hi, I'm";
-  const highlightRole = hero?.highlightRole || "Cloud Native & Systems";
-  const skillsPills = hero?.skillsPills || "Go • Rust • React 19 • K8s";
+  const highlightRole = hero?.highlightRole || "knowledge systems";
+  const skillsPills = hero?.skillsPills || "React • TypeScript • PostgreSQL • AI";
   const quote = hero?.quote || siteConfig.subtitle;
   const showMetrics = hero?.showMetrics ?? true;
   const showSocials = hero?.showSocials ?? true;
@@ -60,7 +52,7 @@ export const HomeHero: React.FC = () => {
           : 'bg-slate-400';
 
   return (
-    <section ref={containerRef} className="relative flex flex-col items-center justify-center py-2 sm:py-3 lg:py-0 text-center overflow-hidden w-full">
+    <section ref={containerRef} className="relative flex flex-col items-center justify-center py-2 sm:py-3 lg:py-0 text-center overflow-visible w-full">
       {/* 头像区域 */}
       <div className="gsap-hero-avatar opacity-0 mb-3 sm:mb-4 lg:mb-3 relative group">
         <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-[4.85rem] lg:h-[4.85rem] rounded-full p-0.5 sm:p-1 bg-gradient-to-tr from-sky-200 to-blue-300/40 dark:from-slate-800 dark:to-sky-900/60 shadow-md">
@@ -101,8 +93,8 @@ export const HomeHero: React.FC = () => {
 
         {skillsPills && (
           <div className="mt-2 sm:mt-2.5 flex items-center justify-center gap-1.5 flex-wrap">
-            <span className="font-light opacity-75 text-xs sm:text-sm">with</span>
-            <code className="inline-flex items-center font-sans text-xs sm:text-[12.5px] font-medium px-2.5 py-0.5 rounded-md text-slate-700 dark:text-slate-200 border border-sky-200/60 dark:border-sky-900/40 bg-sky-50/50 dark:bg-sky-950/30">
+            <span className="font-light text-slate-600 dark:text-slate-300 text-xs sm:text-sm">with</span>
+            <code className="inline-flex items-center font-sans text-xs sm:text-[12.5px] font-medium px-2.5 py-0.5 rounded-md text-sky-800 dark:text-sky-200 border border-sky-200/60 dark:border-sky-900/40 bg-sky-50/50 dark:bg-sky-950/30">
               {skillsPills}
             </code>
             <span className="inline-block w-[2px] h-3 bg-sky-500/80 dark:bg-sky-400/80 rounded-full animate-[blink_1.2s_linear_infinite]" />
@@ -128,27 +120,8 @@ export const HomeHero: React.FC = () => {
 
       {/* 社交链接图标胶囊 */}
       {showSocials && siteConfig.author.socials && siteConfig.author.socials.length > 0 && (
-        <div className="gsap-hero-socials opacity-0 mt-3 sm:mt-3.5 lg:mt-3 flex flex-wrap justify-center items-center gap-1.5 sm:gap-2">
-          {siteConfig.author.socials.map((social) => {
-            const Icon = (SOCIAL_ICONS as any)[social.icon] || GithubIcon;
-            return (
-              <a
-                key={social.name}
-                href={social.url}
-                target={social.url.startsWith('http') ? '_blank' : '_self'}
-                rel="noreferrer"
-                aria-label={social.name}
-                className="group/social relative flex items-center justify-center w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/60 dark:hover:bg-slate-800 transition-all duration-200 focus-visible:outline-none"
-              >
-                <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                {/* 悬浮 Tooltip */}
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded text-[10px] font-mono whitespace-nowrap bg-slate-900/90 text-white dark:bg-slate-100/95 dark:text-slate-900 shadow-md backdrop-blur-sm pointer-events-none opacity-0 invisible group-hover/social:opacity-100 group-hover/social:visible transition-all z-20">
-                  {social.name}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 border-4 border-transparent border-t-slate-900/90 dark:border-t-slate-100/95" />
-                </div>
-              </a>
-            );
-          })}
+        <div className="gsap-hero-socials opacity-0 mt-3 sm:mt-3.5 lg:mt-3 flex flex-wrap justify-center items-center gap-1.5 sm:gap-2 relative z-30">
+          <SocialLinks items={siteConfig.author.socials} variant="icon" />
         </div>
       )}
 
@@ -166,13 +139,25 @@ export const HomeHero: React.FC = () => {
               </span>
             </div>
             {siteConfig.announcement.linkUrl && (
-              <Link
-                href={siteConfig.announcement.linkUrl}
-                className="shrink-0 text-xs font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 inline-flex items-center gap-0.5 group transition-colors ml-1"
-              >
-                <span>{siteConfig.announcement.linkText || '动态'}</span>
-                <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
+              siteConfig.announcement.linkUrl.startsWith('http') ? (
+                <a
+                  href={siteConfig.announcement.linkUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="shrink-0 text-xs font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 inline-flex items-center gap-0.5 group transition-colors ml-1"
+                >
+                  <span>{siteConfig.announcement.linkText || '动态'}</span>
+                  <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </a>
+              ) : (
+                <Link
+                  href={siteConfig.announcement.linkUrl}
+                  className="shrink-0 text-xs font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 inline-flex items-center gap-0.5 group transition-colors ml-1"
+                >
+                  <span>{siteConfig.announcement.linkText || '动态'}</span>
+                  <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              )
             )}
           </div>
         </div>

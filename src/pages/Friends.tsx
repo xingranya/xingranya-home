@@ -34,7 +34,7 @@ export const Friends: React.FC = () => {
   const templateUrl = friendsPage?.template?.url || siteConfig.url;
   const templateAvatar = friendsPage?.template?.avatar || `${siteConfig.url}${siteConfig.author.avatar}`;
 
-  const email = siteConfig.author.email || 'hi@chent.co';
+  const email = siteConfig.author.email || 'xingranya@outlook.jp';
 
   const handleCopyEmail = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -100,7 +100,9 @@ export const Friends: React.FC = () => {
           ))}
           {filteredFriends.length === 0 && (
             <div className="col-span-full py-12 text-center text-xs font-mono text-slate-400">
-              未找到匹配 &ldquo;{query}&rdquo; 的友链
+              {query.trim()
+                ? `未找到匹配 “${query}” 的友链`
+                : '还没有友链。欢迎先加上本站，再通过下面的方式联系交换。'}
             </div>
           )}
         </div>

@@ -8,9 +8,9 @@ const DEFAULT_NAV_COLUMNS = [
   {
     title: '关于',
     links: [
-      { label: '关于此项目', href: 'https://github.com/kerntau/chent', isExternal: true },
-      { label: '知识库', href: 'https://wiki.chent.co', isExternal: true },
-      { label: '简历', href: 'https://cv.chent.co', isExternal: true },
+      { label: '关于此项目', href: 'https://github.com/xingranya/xingranya-home', isExternal: true },
+      { label: '博客', href: 'https://blog.xran.uk', isExternal: true },
+      { label: '关于我', href: '/about' },
     ],
   },
   {
@@ -24,8 +24,8 @@ const DEFAULT_NAV_COLUMNS = [
   {
     title: '联系',
     links: [
-      { label: '发邮件', href: 'mailto:hi@chent.co', isExternal: true },
-      { label: 'GitHub', href: 'https://github.com/kerntau', isExternal: true },
+      { label: '发邮件', href: 'mailto:xingranya@outlook.jp', isExternal: true },
+      { label: 'GitHub', href: 'https://github.com/xingranya', isExternal: true },
       { label: '日常说说', href: '/says' },
     ],
   },

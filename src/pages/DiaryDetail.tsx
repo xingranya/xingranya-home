@@ -164,7 +164,7 @@ export const DiaryDetail: React.FC = () => {
 
                 {/* 摘要与心境引言 */}
                 {diary.summary && (
-                  <div className="p-3.5 rounded-r-md rounded-l-none bg-slate-100/60 dark:bg-slate-900/50 border-l-2 border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-sans">
+                  <div className="p-3.5 rounded-md bg-slate-100/60 dark:bg-slate-900/50 text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-serif italic">
                     {diary.summary}
                   </div>
                 )}

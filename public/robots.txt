@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/
 
-Sitemap: https://chent.co/sitemap.xml
+Sitemap: https://xran.uk/sitemap.xml

@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>chent</title>
-    <link>https://chent.co/</link>
-    <description>Chent 的个人网站，记录随笔、日记、项目与生活，分享个人的思考、经历与正在做的事情，也保存那些值得留下来的时刻。</description>
+    <title>星苒鸭</title>
+    <link>https://xran.uk/</link>
+    <description>星苒鸭的个人主页。计算机科学与技术本科生，全栈开发爱好者。技术长文在 blog.xran.uk。</description>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 12 Sep 2026 03:39:30 GMT</lastBuildDate>
-    <atom:link href="https://chent.co/feed.xml" rel="self" type="application/rss+xml" />
-    <managingEditor>kerntau</managingEditor>
-    <webMaster>kerntau</webMaster>
+    <atom:link href="https://xran.uk/feed.xml" rel="self" type="application/rss+xml" />
+    <managingEditor>星苒鸭</managingEditor>
+    <webMaster>星苒鸭</webMaster>
     <item>
       <title><![CDATA[重构数字花园：少即是多的美学]]></title>
-      <link>https://chent.co/diaries/2026-08-26-refactor-digital-garden-minimalism</link>
-      <guid isPermaLink="true">https://chent.co/diaries/2026-08-26-refactor-digital-garden-minimalism</guid>
+      <link>https://xran.uk/diaries/2026-08-26-refactor-digital-garden-minimalism</link>
+      <guid isPermaLink="true">https://xran.uk/diaries/2026-08-26-refactor-digital-garden-minimalism</guid>
       <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
       <description><![CDATA[花了一下午把博客的版式、网格与排版做了彻底的净化。剥离了所有厚重的装饰，让文字、代码与封面像信纸一样纯粹呈现。]]></description>
       <category><![CDATA[手记随笔]]></category>
     </item>
     <item>
       <title><![CDATA[云原生架构与晚风里的留白]]></title>
-      <link>https://chent.co/diaries/2026-08-25-cloud-native-and-evening-breeze</link>
-      <guid isPermaLink="true">https://chent.co/diaries/2026-08-25-cloud-native-and-evening-breeze</guid>
+      <link>https://xran.uk/diaries/2026-08-25-cloud-native-and-evening-breeze</link>
+      <guid isPermaLink="true">https://xran.uk/diaries/2026-08-25-cloud-native-and-evening-breeze</guid>
       <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
       <description><![CDATA[傍晚去楼下散了步，微风吹拂。把白天调试 Distributed KV 时的死锁问题想通了，很多时候放下键盘反而能看清架构的本质。]]></description>
       <category><![CDATA[手记随笔]]></category>
     </item>
     <item>
       <title><![CDATA[雨夜随笔：在代码与留白之间]]></title>
-      <link>https://chent.co/diaries/2026-08-22-rainy-night-reflections</link>
-      <guid isPermaLink="true">https://chent.co/diaries/2026-08-22-rainy-night-reflections</guid>
+      <link>https://xran.uk/diaries/2026-08-22-rainy-night-reflections</link>
+      <guid isPermaLink="true">https://xran.uk/diaries/2026-08-22-rainy-night-reflections</guid>
       <pubDate>Sat, 22 Aug 2026 00:00:00 GMT</pubDate>
       <description><![CDATA[窗外雨声淅沥，写完最后一个异步队列测试，抬头看窗外泛着微光的城市。在字符与字符的间隙里，找到了久违的秩序与平静。]]></description>
       <category><![CDATA[手记随笔]]></category>
     </item>
     <item>
       <title><![CDATA[关于异步运行时与晚风的片刻]]></title>
-      <link>https://chent.co/diaries/2026-08-16-rust-async-and-evening-breeze</link>
-      <guid isPermaLink="true">https://chent.co/diaries/2026-08-16-rust-async-and-evening-breeze</guid>
+      <link>https://xran.uk/diaries/2026-08-16-rust-async-and-evening-breeze</link>
+      <guid isPermaLink="true">https://xran.uk/diaries/2026-08-16-rust-async-and-evening-breeze</guid>
       <pubDate>Sun, 16 Aug 2026 00:00:00 GMT</pubDate>
       <description><![CDATA[傍晚的江风吹散了白天的暑热。调试 Tokio runtime 时的死锁问题，最后发现竟是一个作用域锁守卫没有提前释放。]]></description>
       <category><![CDATA[手记随笔]]></category>
     </item>
     <item>
       <title><![CDATA[修剪数字花园的一隅]]></title>
-      <link>https://chent.co/diaries/2026-08-08-minimalist-digital-garden</link>
-      <guid isPermaLink="true">https://chent.co/diaries/2026-08-08-minimalist-digital-garden</guid>
+      <link>https://xran.uk/diaries/2026-08-08-minimalist-digital-garden</link>
+      <guid isPermaLink="true">https://xran.uk/diaries/2026-08-08-minimalist-digital-garden</guid>
       <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
       <description><![CDATA[花费了一个周末的下午重构了博客的内容管道与视觉基调。剥离了花哨的动画，让技术长文像信纸一样纯粹呈现。]]></description>
       <category><![CDATA[手记随笔]]></category>
     </item>
     <item>
       <title><![CDATA[午夜编译通过时的宁静]]></title>
-      <link>https://chent.co/diaries/2026-07-28-midnight-debugging-insight</link>
-      <guid isPermaLink="true">https://chent.co/diaries/2026-07-28-midnight-debugging-insight</guid>
+      <link>https://xran.uk/diaries/2026-07-28-midnight-debugging-insight</link>
+      <guid isPermaLink="true">https://xran.uk/diaries/2026-07-28-midnight-debugging-insight</guid>
       <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
       <description><![CDATA[凌晨一点二十分，困扰了整整三天的内存分配 bug 终于被一条断点命中。那一瞬间的静谧感，无可替代。]]></description>
       <category><![CDATA[手记随笔]]></category>
     </item>
     <item>
       <title><![CDATA[夏日雷雨与分布式共识的随想]]></title>
-      <link>https://chent.co/diaries/2026-07-15-summer-thunder-and-distributed-kv</link>
-      <guid isPermaLink="true">https://chent.co/diaries/2026-07-15-summer-thunder-and-distributed-kv</guid>
+      <link>https://xran.uk/diaries/2026-07-15-summer-thunder-and-distributed-kv</link>
+      <guid isPermaLink="true">https://xran.uk/diaries/2026-07-15-summer-thunder-and-distributed-kv</guid>
       <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
       <description><![CDATA[窗外雷声阵阵，重读 Raft 论文关于选举安全性的形式化证明。现实社会中的共识达成，远比分布式算法要复杂得多。]]></description>
       <category><![CDATA[手记随笔]]></category>

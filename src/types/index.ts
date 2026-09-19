@@ -49,8 +49,9 @@ export interface FriendItem {
 
 export interface SocialLink {
   name: string;
-  icon: 'github' | 'bilibili' | 'x' | 'email' | 'weibo' | 'juejin' | 'zhihu' | 'telegram' | 'discord' | 'custom' | string;
+  icon: 'github' | 'bilibili' | 'x' | 'email' | 'weibo' | 'juejin' | 'zhihu' | 'telegram' | 'discord' | 'weixin' | 'qq' | 'custom' | string;
   url: string;
+  qr?: string;
 }
 
 export interface NavLinkItem {
@@ -76,6 +77,18 @@ export interface TechStackItem {
 export interface TechStackCategory {
   category: string;
   items: TechStackItem[];
+}
+
+export interface AboutProject {
+  name: string;
+  desc: string;
+  url: string;
+  homepage?: string;
+  language?: string;
+  stars?: number;
+  role: 'author' | 'contributor';
+  featured?: boolean;
+  pushedAt?: string;
 }
 
 export interface SiteConfig {
@@ -122,9 +135,14 @@ export interface SiteConfig {
   about?: {
     identityTitle?: string;
     quote?: string;
+    bio?: string;
     techStackTitle?: string;
     techStackDesc?: string;
     techCategories?: TechStackCategory[];
+    awardsTitle?: string;
+    awards?: string[];
+    projectsTitle?: string;
+    projects?: AboutProject[];
     designTitle?: string;
     designPhilosophy?: string;
   };

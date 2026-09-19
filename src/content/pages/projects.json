@@ -1,0 +1,112 @@
+[
+  {
+    "name": "GitHub-Stars-AI-Tools",
+    "desc": "本地优先的 GitHub Stars AI 桌面应用，把收藏同步到本地并用 AI 检索、摘要。",
+    "url": "https://github.com/xingranya/GitHub-Stars-AI-Tools",
+    "homepage": "https://gsat.xran.uk",
+    "language": "TypeScript",
+    "stars": 109,
+    "role": "author",
+    "featured": true,
+    "pushedAt": "2026-07-15"
+  },
+  {
+    "name": "xingranya-blog",
+    "desc": "个人博客。技术长文在 blog.xran.uk。",
+    "url": "https://github.com/xingranya/xingranya-blog",
+    "homepage": "https://blog.xran.uk",
+    "language": "JavaScript",
+    "stars": 1,
+    "role": "author",
+    "featured": true,
+    "pushedAt": "2026-09-19"
+  },
+  {
+    "name": "xingranya-home",
+    "desc": "个人主站源码，当前站点。",
+    "url": "https://github.com/xingranya/xingranya-home",
+    "homepage": "https://xran.uk",
+    "language": "TypeScript",
+    "stars": 0,
+    "role": "author",
+    "featured": true,
+    "pushedAt": "2026-09-19"
+  },
+  {
+    "name": "physics-ai-teaching-system",
+    "desc": "长江大学文理学院大学物理 AI 智慧教学系统。",
+    "url": "https://github.com/xingranya/physics-ai-teaching-system",
+    "homepage": "",
+    "language": "TypeScript",
+    "stars": 0,
+    "role": "author",
+    "featured": true,
+    "pushedAt": "2026-09-16"
+  },
+  {
+    "name": "CervixDetectAI",
+    "desc": "宫颈细胞检测相关 Web 项目。",
+    "url": "https://github.com/xingranya/CervixDetectAI",
+    "homepage": "",
+    "language": "Vue",
+    "stars": 3,
+    "role": "author",
+    "featured": true,
+    "pushedAt": "2026-05-28"
+  },
+  {
+    "name": "OQQWall_rust",
+    "desc": "QQ 校园墙 Rust 版。参与审核后台、发布流程、多架构构建，改动已合入上游。",
+    "url": "https://github.com/xingranya/OQQWall_rust",
+    "homepage": "",
+    "language": "Rust",
+    "stars": 0,
+    "role": "contributor",
+    "featured": true,
+    "pushedAt": "2026-07-09"
+  },
+  {
+    "name": "SPlayer-Next",
+    "desc": "跨平台桌面播放器。修复 macOS 灵动岛刘海对齐，已合入上游。",
+    "url": "https://github.com/xingranya/SPlayer-Next",
+    "homepage": "http://splayer-next.imsyy.top/",
+    "language": "TypeScript",
+    "stars": 1,
+    "role": "contributor",
+    "featured": true,
+    "pushedAt": "2026-06-22"
+  },
+  {
+    "name": "nosleep-mac",
+    "desc": "Mac 合盖后保持运行，自动关屏省电。",
+    "url": "https://github.com/xingranya/nosleep-mac",
+    "homepage": "",
+    "language": "Swift",
+    "stars": 2,
+    "role": "contributor",
+    "featured": true,
+    "pushedAt": "2026-06-06"
+  },
+  {
+    "name": "CC-Statusline-Builder",
+    "desc": "Claude Code 状态栏可视化配置。修复 Windows 路径配置并已合入上游。",
+    "url": "https://github.com/xingranya/CC-Statusline-Builder",
+    "homepage": "https://soole.me/statusline/",
+    "language": "HTML",
+    "stars": 12,
+    "role": "contributor",
+    "featured": true,
+    "pushedAt": "2026-02-24"
+  },
+  {
+    "name": "dbx",
+    "desc": "轻量跨平台数据库客户端。向上游提交受控导入与语义/MCP 相关改动。",
+    "url": "https://github.com/xingranya/dbx",
+    "homepage": "https://dbxio.com",
+    "language": "Rust",
+    "stars": 0,
+    "role": "contributor",
+    "featured": true,
+    "pushedAt": "2026-09-15"
+  }
+]

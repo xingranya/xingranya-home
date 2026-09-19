@@ -328,7 +328,7 @@ function generateCoverSvg(post) {
       <text x="36" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="${theme.accent1}" letter-spacing="1.5">${categoryStr}</text>
     </g>
 
-    <text x="240" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="rgba(255,255,255,0.45)" letter-spacing="2">CHENT.CO ARCHITECTURE SERIES</text>
+    <text x="240" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="rgba(255,255,255,0.45)" letter-spacing="2">XRAN.UK ARCHITECTURE SERIES</text>
 
     <!-- 中文主标题 -->
     <g transform="translate(0, 160)">
@@ -356,8 +356,8 @@ function generateCoverSvg(post) {
     <g transform="translate(0, 540)">
       <circle cx="12" cy="12" r="10" fill="none" stroke="${theme.accent1}" stroke-width="2"/>
       <circle cx="12" cy="12" r="4" fill="${theme.accent1}"/>
-      <text x="32" y="16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="2">CHENT.CO</text>
-      <text x="140" y="16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="400" fill="rgba(255,255,255,0.4)">· 序栈 深度工程技术文稿</text>
+      <text x="32" y="16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="2">XRAN.UK</text>
+      <text x="140" y="16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="400" fill="rgba(255,255,255,0.4)">· 星苒 深度工程技术文稿</text>
     </g>
   </g>
 </svg>`;

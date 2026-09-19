@@ -19,7 +19,7 @@ function getBaseUrl() {
       // ignore
     }
   }
-  return 'https://chent.co';
+  return 'https://xran.uk';
 }
 
 function formatDate(dateStr, fallbackDate) {

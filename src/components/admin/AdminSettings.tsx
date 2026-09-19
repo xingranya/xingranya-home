@@ -224,7 +224,7 @@ export const AdminSettings: React.FC = () => {
                     value={configForm.title}
                     onChange={(e) => setConfigForm({ ...configForm, title: e.target.value })}
                     className="admin-input"
-                    placeholder="序栈"
+                    placeholder="星苒鸭"
                   />
                 </div>
 
@@ -259,7 +259,7 @@ export const AdminSettings: React.FC = () => {
                     value={configForm.url}
                     onChange={(e) => setConfigForm({ ...configForm, url: e.target.value })}
                     className="admin-input font-mono"
-                    placeholder="https://chent.co"
+                    placeholder="https://xran.uk"
                   />
                 </div>
 
@@ -291,7 +291,7 @@ export const AdminSettings: React.FC = () => {
                     })
                   }
                   className="admin-input"
-                  placeholder="全栈开发, 云原生, Go, Rust, React 19"
+                  placeholder="星苒鸭, 全栈开发, Java, Vue3"
                 />
               </div>
 
@@ -315,7 +315,7 @@ export const AdminSettings: React.FC = () => {
                         })
                       }
                       className="admin-input font-mono"
-                      placeholder="GTM-TL7V3JC5"
+                      placeholder="GTM-XXXXXXX"
                     />
                   </div>
 
@@ -331,7 +331,7 @@ export const AdminSettings: React.FC = () => {
                         })
                       }
                       className="admin-input font-mono"
-                      placeholder="G-73FXC49GB4"
+                      placeholder="G-XXXXXXXXXX"
                     />
                   </div>
 
@@ -347,7 +347,7 @@ export const AdminSettings: React.FC = () => {
                         })
                       }
                       className="admin-input font-mono"
-                      placeholder="ybjuygdar5"
+                      placeholder=""
                     />
                   </div>
                 </div>
@@ -444,7 +444,7 @@ export const AdminSettings: React.FC = () => {
                       })
                     }
                     className="admin-input"
-                    placeholder="浙江 · 宁波"
+                    placeholder="城市"
                   />
                 </div>
               </div>
@@ -548,7 +548,11 @@ export const AdminSettings: React.FC = () => {
                           <option value="github">GitHub</option>
                           <option value="bilibili">Bilibili 哔哩哔哩</option>
                           <option value="x">X (Twitter)</option>
+                          <option value="telegram">Telegram</option>
                           <option value="email">Email 邮箱</option>
+                          <option value="weixin">微信</option>
+                          <option value="qq">QQ</option>
+                          <option value="custom">自定义</option>
                         </select>
                       </div>
 
@@ -564,7 +568,23 @@ export const AdminSettings: React.FC = () => {
                               author: { ...configForm.author, socials: next },
                             });
                           }}
-                          placeholder="主页链接"
+                          placeholder="主页链接，二维码项可留空"
+                          className="admin-input font-mono"
+                        />
+                      </div>
+                      <div className="sm:col-span-12">
+                        <input
+                          type="url"
+                          value={social.qr || ''}
+                          onChange={(e) => {
+                            const next = [...configForm.author.socials];
+                            next[idx].qr = e.target.value;
+                            setConfigForm({
+                              ...configForm,
+                              author: { ...configForm.author, socials: next },
+                            });
+                          }}
+                          placeholder="二维码图片地址（微信 / QQ 用）"
                           className="admin-input font-mono"
                         />
                       </div>
@@ -640,7 +660,7 @@ export const AdminSettings: React.FC = () => {
                         })
                       }
                       className="admin-input"
-                      placeholder="Cloud Native & Systems"
+                      placeholder="full-stack things"
                     />
                   </div>
                 </div>
@@ -661,7 +681,7 @@ export const AdminSettings: React.FC = () => {
                         })
                       }
                       className="admin-input"
-                      placeholder="Go • Rust • React 19 • K8s"
+                      placeholder="Java • Vue3 • Node.js • React"
                     />
                   </div>
 
