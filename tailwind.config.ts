@@ -8,12 +8,25 @@ const config: Config = {
     extend: {
       colors: {
         paper: {
-          light: '#F3F7FC',
+          light: '#FDF6F8',
           card: 'rgba(255, 255, 255, 0.88)',
           dark: '#0B111A',
           'dark-card': 'rgba(18, 27, 44, 0.82)',
-          border: 'rgba(203, 219, 235, 0.75)',
-          'dark-border': 'rgba(56, 78, 108, 0.6)',
+          border: 'rgba(255, 192, 203, 0.55)',
+          'dark-border': 'rgba(122, 40, 67, 0.45)',
+        },
+        sakura: {
+          50: '#fff5f7',
+          100: '#ffe4ea',
+          200: '#ffc0cb',
+          300: '#ffa8b8',
+          400: '#ff8fa6',
+          500: '#f4728d',
+          600: '#e05676',
+          700: '#c43d61',
+          800: '#9d3252',
+          900: '#7a2843',
+          950: '#4a1628',
         },
       },
       borderRadius: {

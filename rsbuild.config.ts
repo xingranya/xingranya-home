@@ -13,8 +13,16 @@ export default defineConfig({
       'twitter:image': 'https://xran.uk/avatar.jpg',
       'twitter:card': 'summary_large_image',
     },
-    favicon: './public/favicon.ico',
+    favicon: './public/favicon.svg',
     tags: [
+      {
+        tag: 'link',
+        attrs: {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: '/favicon.svg',
+        },
+      },
       {
         tag: 'link',
         attrs: {

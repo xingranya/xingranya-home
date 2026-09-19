@@ -160,7 +160,7 @@ export const AdminSettings: React.FC = () => {
       <div className="admin-page-header">
         <div className="admin-page-title-group">
           <h1>
-            <Settings2 className="w-6 h-6 text-sky-500" />
+            <Settings2 className="w-6 h-6 text-sakura-500" />
             <span>全站与页面配置中心</span>
           </h1>
           <p>
@@ -191,7 +191,7 @@ export const AdminSettings: React.FC = () => {
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
                 isActive
-                  ? 'bg-sky-500 text-white shadow-sm'
+                  ? 'bg-sakura-500 text-white shadow-sm'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800'
               }`}
             >
@@ -209,7 +209,7 @@ export const AdminSettings: React.FC = () => {
           <div className="admin-card">
             <div className="admin-card-header">
               <h3>
-                <Globe className="w-4 h-4 text-sky-500" />
+                <Globe className="w-4 h-4 text-sakura-500" />
                 <span>站点基础信息与 SEO / 分析配置</span>
               </h3>
             </div>
@@ -741,7 +741,7 @@ export const AdminSettings: React.FC = () => {
                           },
                         })
                       }
-                      className="rounded text-sky-600 focus:ring-sky-500"
+                      className="rounded text-sakura-600 focus:ring-sakura-500"
                     />
                     <span>显示文稿篇数与字数统计胶囊</span>
                   </label>
@@ -759,7 +759,7 @@ export const AdminSettings: React.FC = () => {
                           },
                         })
                       }
-                      className="rounded text-sky-600 focus:ring-sky-500"
+                      className="rounded text-sakura-600 focus:ring-sakura-500"
                     />
                     <span>显示底部社交平台图标矩阵</span>
                   </label>
@@ -771,7 +771,7 @@ export const AdminSettings: React.FC = () => {
             <div className="admin-card">
               <div className="admin-card-header">
                 <h3>
-                  <Layout className="w-4 h-4 text-sky-500" />
+                  <Layout className="w-4 h-4 text-sakura-500" />
                   <span>首页双栏内容流参数</span>
                 </h3>
               </div>
@@ -930,7 +930,7 @@ export const AdminSettings: React.FC = () => {
           <div className="admin-card">
             <div className="admin-card-header">
               <h3>
-                <Compass className="w-4 h-4 text-sky-500" />
+                <Compass className="w-4 h-4 text-sakura-500" />
                 <span>关于页面（About）元素与全栈技术栈矩阵定制</span>
               </h3>
             </div>
@@ -987,7 +987,7 @@ export const AdminSettings: React.FC = () => {
               <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-4">
                 <div className="flex items-center justify-between">
                   <h4 className="font-bold text-xs text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-                    <Layers className="w-4 h-4 text-sky-500" />
+                    <Layers className="w-4 h-4 text-sakura-500" />
                     <span>技术栈分类与标签项矩阵 ({configForm.about?.techCategories?.length || 0} 组)</span>
                   </h4>
 
@@ -1093,7 +1093,7 @@ export const AdminSettings: React.FC = () => {
                                   });
                                 }}
                                 placeholder="技术名"
-                                className="w-full text-xs font-mono font-semibold bg-transparent outline-none border-b border-transparent focus:border-sky-500"
+                                className="w-full text-xs font-mono font-semibold bg-transparent outline-none border-b border-transparent focus:border-sakura-500"
                               />
                               <input
                                 type="text"
@@ -1174,7 +1174,7 @@ export const AdminSettings: React.FC = () => {
           <div className="admin-card">
             <div className="admin-card-header">
               <h3>
-                <Users className="w-4 h-4 text-sky-500" />
+                <Users className="w-4 h-4 text-sakura-500" />
                 <span>友链页面（Friends）文案与申请指南模板定制</span>
               </h3>
             </div>
@@ -1347,7 +1347,7 @@ export const AdminSettings: React.FC = () => {
             <div className="admin-card">
               <div className="admin-card-header">
                 <h3>
-                  <FileText className="w-4 h-4 text-sky-500" />
+                  <FileText className="w-4 h-4 text-sakura-500" />
                   <span>文稿归档页面 (Posts Page) 文案</span>
                 </h3>
               </div>
@@ -1511,7 +1511,7 @@ export const AdminSettings: React.FC = () => {
           <div className="admin-card">
             <div className="admin-card-header">
               <h3>
-                <Layout className="w-4 h-4 text-sky-500" />
+                <Layout className="w-4 h-4 text-sakura-500" />
                 <span>顶部导航栏（Header）项与悬浮交互定制</span>
               </h3>
             </div>
@@ -1528,7 +1528,7 @@ export const AdminSettings: React.FC = () => {
                         header: { ...configForm.header, enableMegaMenu: e.target.checked },
                       })
                     }
-                    className="rounded text-sky-600 focus:ring-sky-500"
+                    className="rounded text-sakura-600 focus:ring-sakura-500"
                   />
                   <span>开启导航项悬浮预览 Popover (MegaMenu)</span>
                 </label>
@@ -1543,7 +1543,7 @@ export const AdminSettings: React.FC = () => {
                         header: { ...configForm.header, enableSearch: e.target.checked },
                       })
                     }
-                    className="rounded text-sky-600 focus:ring-sky-500"
+                    className="rounded text-sakura-600 focus:ring-sakura-500"
                   />
                   <span>开启全局快捷键 ⌘K / Ctrl+K 搜索</span>
                 </label>
@@ -1601,7 +1601,7 @@ export const AdminSettings: React.FC = () => {
                             });
                           }}
                           title="是否启用"
-                          className="rounded text-sky-600"
+                          className="rounded text-sakura-600"
                         />
                       </div>
 
@@ -1731,7 +1731,7 @@ export const AdminSettings: React.FC = () => {
           <div className="admin-card">
             <div className="admin-card-header">
               <h3>
-                <FileText className="w-4 h-4 text-sky-500" />
+                <FileText className="w-4 h-4 text-sakura-500" />
                 <span>页脚（Footer）标语、版权、备案与三列导航定制</span>
               </h3>
             </div>
@@ -1831,7 +1831,7 @@ export const AdminSettings: React.FC = () => {
                         footer: { ...configForm.footer, showThemeToggle: e.target.checked },
                       })
                     }
-                    className="rounded text-sky-600"
+                    className="rounded text-sakura-600"
                   />
                   <span>显示主题切换按钮 (Light / System / Dark)</span>
                 </label>
@@ -1846,7 +1846,7 @@ export const AdminSettings: React.FC = () => {
                         footer: { ...configForm.footer, showRss: e.target.checked },
                       })
                     }
-                    className="rounded text-sky-600"
+                    className="rounded text-sakura-600"
                   />
                   <span>显示 RSS 订阅入口</span>
                 </label>
@@ -1861,7 +1861,7 @@ export const AdminSettings: React.FC = () => {
                         footer: { ...configForm.footer, showSitemap: e.target.checked },
                       })
                     }
-                    className="rounded text-sky-600"
+                    className="rounded text-sakura-600"
                   />
                   <span>显示站点地图入口</span>
                 </label>
@@ -1992,7 +1992,7 @@ export const AdminSettings: React.FC = () => {
                               footer: { ...configForm.footer, navColumns: next },
                             });
                           }}
-                          className="w-full py-1 text-center text-[11px] font-mono text-sky-600 dark:text-sky-400 hover:underline"
+                          className="w-full py-1 text-center text-[11px] font-mono text-sakura-600 dark:text-sakura-400 hover:underline"
                         >
                           + 添加子链接
                         </button>
@@ -2073,7 +2073,7 @@ export const AdminSettings: React.FC = () => {
                 <div className="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                   <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2.5">
                     <div className="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-                      <Download className="w-4 h-4 text-sky-500" />
+                      <Download className="w-4 h-4 text-sakura-500" />
                       <span>全站全量快照导出</span>
                     </div>
                     <p className="text-[11px] text-slate-500 leading-relaxed">
@@ -2118,7 +2118,7 @@ export const AdminSettings: React.FC = () => {
               <div className="admin-card">
                 <div className="admin-card-header">
                   <h3>
-                    <HardDrive className="w-4 h-4 text-sky-500" />
+                    <HardDrive className="w-4 h-4 text-sakura-500" />
                     <span>存储空间与状态分析</span>
                   </h3>
                 </div>
@@ -2229,14 +2229,14 @@ export const AdminSettings: React.FC = () => {
 
       {/* 浮动未保存保存栏 */}
       {isDirty && (
-        <div className="fixed bottom-6 right-6 z-40 bg-sky-600 text-white px-5 py-2.5 rounded-2xl shadow-2xl border border-sky-400 flex items-center gap-4 text-xs animate-in fade-in slide-in-from-bottom-2">
+        <div className="fixed bottom-6 right-6 z-40 bg-sakura-600 text-white px-5 py-2.5 rounded-2xl shadow-2xl border border-sakura-400 flex items-center gap-4 text-xs animate-in fade-in slide-in-from-bottom-2">
           <div className="flex items-center gap-2 font-medium">
             <span className="w-2 h-2 rounded-full bg-amber-300 animate-ping" />
             <span>检测到有尚未保存的配置更改</span>
           </div>
           <button
             onClick={() => handleSaveAllConfig()}
-            className="px-3.5 py-1.5 rounded-lg bg-white text-sky-700 hover:bg-sky-50 font-semibold transition-colors flex items-center gap-1.5 shadow-sm"
+            className="px-3.5 py-1.5 rounded-lg bg-white text-sakura-700 hover:bg-sakura-50 font-semibold transition-colors flex items-center gap-1.5 shadow-sm"
           >
             <Save className="w-3.5 h-3.5" />
             <span>立即保存</span>
