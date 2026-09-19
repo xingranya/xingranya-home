@@ -146,6 +146,14 @@ function toLoaderMap(items, dirLabel) {
   return lines.join('\n');
 }
 
+function getSnapshotTime(items) {
+  const latestContentTime = Math.max(
+    ...items.map((item) => Date.parse(`${item.date}T12:00:00.000Z`)).filter(Number.isFinite),
+    0
+  );
+  return new Date(latestContentTime).toISOString();
+}
+
 function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
 
@@ -161,7 +169,7 @@ function main() {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   const index = {
-    generatedAt: new Date().toISOString(),
+    generatedAt: getSnapshotTime([...posts, ...diaries]),
     posts,
     diaries,
   };

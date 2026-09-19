@@ -6,6 +6,7 @@ const SITE_CONFIG_PATH = path.resolve('src/content/config/site.config.json');
 const DIARIES_DIR = path.resolve('src/content/diaries');
 const PUBLIC_DIR = path.resolve('public');
 const DIST_DIR = path.resolve('dist');
+const PUBLIC_INDEX_PATH = path.resolve('src/content/generated/public-index.json');
 
 function getSiteInfo() {
   let title = '星苒鸭';
@@ -41,7 +42,15 @@ function escapeXml(unsafe) {
 
 function generateRss() {
   const { title, description, baseUrl, authorName } = getSiteInfo();
-  const now = new Date().toUTCString();
+  let buildTime = '';
+  if (fs.existsSync(PUBLIC_INDEX_PATH)) {
+    try {
+      const publicIndex = JSON.parse(fs.readFileSync(PUBLIC_INDEX_PATH, 'utf-8'));
+      buildTime = typeof publicIndex.generatedAt === 'string' ? publicIndex.generatedAt : '';
+    } catch {
+      // 内容索引损坏时使用最新公开内容时间。
+    }
+  }
 
   const items = [];
 
@@ -77,6 +86,7 @@ function generateRss() {
 
   // 逆序排序（最新文章置顶）
   items.sort((a, b) => b.timestamp - a.timestamp);
+  const now = new Date(buildTime || items[0]?.timestamp || 0).toUTCString();
 
   const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
