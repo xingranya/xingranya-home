@@ -163,7 +163,7 @@ export const Footer: React.FC = () => {
                   onClick={() => setTheme('light')}
                   className={`hover:text-slate-900 dark:hover:text-slate-100 transition-colors cursor-pointer ${
                     theme === 'light'
-                      ? 'font-semibold text-slate-800 dark:text-slate-200 underline underline-offset-4 decoration-sky-500'
+                      ? 'font-semibold text-slate-800 dark:text-slate-200 underline underline-offset-4 decoration-sakura-500'
                       : 'text-slate-400 dark:text-slate-500'
                   }`}
                 >
@@ -175,7 +175,7 @@ export const Footer: React.FC = () => {
                   onClick={() => setTheme('system')}
                   className={`hover:text-slate-900 dark:hover:text-slate-100 transition-colors cursor-pointer ${
                     theme === 'system'
-                      ? 'font-semibold text-slate-800 dark:text-slate-200 underline underline-offset-4 decoration-sky-500'
+                      ? 'font-semibold text-slate-800 dark:text-slate-200 underline underline-offset-4 decoration-sakura-500'
                       : 'text-slate-400 dark:text-slate-500'
                   }`}
                 >
@@ -187,7 +187,7 @@ export const Footer: React.FC = () => {
                   onClick={() => setTheme('dark')}
                   className={`hover:text-slate-900 dark:hover:text-slate-100 transition-colors cursor-pointer ${
                     theme === 'dark'
-                      ? 'font-semibold text-slate-800 dark:text-slate-200 underline underline-offset-4 decoration-sky-500'
+                      ? 'font-semibold text-slate-800 dark:text-slate-200 underline underline-offset-4 decoration-sakura-500'
                       : 'text-slate-400 dark:text-slate-500'
                   }`}
                 >

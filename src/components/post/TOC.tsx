@@ -40,13 +40,13 @@ export const TOC: React.FC<TOCProps> = ({ toc, onItemClick, hideHeader = false }
       {!hideHeader && (
         <div className="flex items-center justify-between font-sans font-medium text-slate-700 dark:text-slate-300 mb-2 pb-1.5 border-b border-slate-200/50 dark:border-slate-800/50">
           <div className="flex items-center space-x-1.5 text-[11.5px] font-semibold text-slate-800 dark:text-slate-200">
-            <AlignLeft className="w-3.5 h-3.5 text-sky-500" />
+            <AlignLeft className="w-3.5 h-3.5 text-sakura-500" />
             <span>目录大纲</span>
           </div>
           <button
             type="button"
             onClick={scrollToTop}
-            className="text-[10.5px] font-mono text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 flex items-center space-x-0.5 transition-colors cursor-pointer"
+            className="text-[10.5px] font-mono text-slate-400 hover:text-sakura-600 dark:hover:text-sakura-400 flex items-center space-x-0.5 transition-colors cursor-pointer"
             title="回到文章顶部"
           >
             <ArrowUp className="w-3 h-3" />
@@ -77,7 +77,7 @@ export const TOC: React.FC<TOCProps> = ({ toc, onItemClick, hideHeader = false }
                   onClick={(e) => handleClick(e, item.id)}
                   className={`block py-1 pr-1.5 transition-colors duration-150 leading-snug break-words line-clamp-2 ${indentClass} ${
                     isActive
-                      ? '!text-sky-600 dark:!text-sky-400 !font-semibold -ml-[1px] border-l-[1.5px] border-sky-600 dark:border-sky-400'
+                      ? '!text-sakura-600 dark:!text-sakura-400 !font-semibold -ml-[1px] border-l-[1.5px] border-sakura-600 dark:border-sakura-400'
                       : 'hover:text-slate-900 dark:hover:text-slate-100 hover:border-l hover:border-slate-300 dark:hover:border-slate-600 -ml-[1px]'
                   }`}
                   title={item.text}

@@ -144,12 +144,12 @@ export const AmbientBackground: React.FC = () => {
         // 使用线性渐变模拟真实下落尾迹（头部亮，尾部暗）
         const grad = ctx.createLinearGradient(startX, startY, endX, endY);
         if (isDark) {
-          grad.addColorStop(0, `rgba(186, 230, 253, ${drop.alpha})`);
-          grad.addColorStop(1, `rgba(186, 230, 253, 0)`);
+          grad.addColorStop(0, `rgba(255, 192, 203, ${drop.alpha})`);
+          grad.addColorStop(1, `rgba(255, 192, 203, 0)`);
         } else {
-          // 亮色模式使用更深的天蓝色并加重不透明度以提高可见度
-          grad.addColorStop(0, `rgba(2, 132, 199, ${Math.min(1, drop.alpha * 2.8)})`);
-          grad.addColorStop(1, `rgba(2, 132, 199, 0)`);
+          // 亮色模式使用樱花粉并加重不透明度以提高可见度
+          grad.addColorStop(0, `rgba(224, 86, 118, ${Math.min(1, drop.alpha * 2.8)})`);
+          grad.addColorStop(1, `rgba(224, 86, 118, 0)`);
         }
 
         ctx.beginPath();
@@ -214,7 +214,7 @@ export const AmbientBackground: React.FC = () => {
       const particles = splashParticlesRef.current;
       
       if (particles.length > 0) {
-        ctx.fillStyle = isDark ? 'rgba(186, 230, 253, 0.8)' : 'rgba(2, 132, 199, 0.8)';
+        ctx.fillStyle = isDark ? 'rgba(255, 192, 203, 0.8)' : 'rgba(224, 86, 118, 0.8)';
         ctx.beginPath();
         for (let i = 0; i < particles.length; i++) {
           const p = particles[i];
@@ -253,12 +253,11 @@ export const AmbientBackground: React.FC = () => {
           ctx.ellipse(r.x, r.y, r.radius, r.radius * 0.45, 0, 0, Math.PI * 2);
 
           if (isDark) {
-            ctx.strokeStyle = `rgba(186, 230, 253, ${r.alpha * 0.8})`;
-            ctx.fillStyle = `rgba(56, 189, 248, ${r.alpha * 0.04})`;
+            ctx.strokeStyle = `rgba(255, 192, 203, ${r.alpha * 0.8})`;
+            ctx.fillStyle = `rgba(255, 143, 166, ${r.alpha * 0.04})`;
           } else {
-            // 亮色模式使用深蓝并加重 alpha
-            ctx.strokeStyle = `rgba(2, 132, 199, ${r.alpha * 1.5})`;
-            ctx.fillStyle = `rgba(2, 132, 199, ${r.alpha * 0.08})`;
+            ctx.strokeStyle = `rgba(224, 86, 118, ${r.alpha * 1.5})`;
+            ctx.fillStyle = `rgba(224, 86, 118, ${r.alpha * 0.08})`;
           }
 
           ctx.lineWidth = Math.max(0.4, (r.isClick ? 1.2 : 0.75) * (1 - r.radius / r.maxRadius));
@@ -338,26 +337,26 @@ export const AmbientBackground: React.FC = () => {
       aria-hidden="true"
       className="fixed inset-0 pointer-events-none -z-20 overflow-hidden select-none transition-colors duration-500"
     >
-      {/* 柔和淡天蓝纯净基底渐变 */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#EDF5FD] via-[#F4F8FC] to-[#F7F9FC] dark:from-[#0B121D] dark:via-[#080D15] dark:to-[#070B12]" />
+      {/* 柔和樱花粉纯净基底渐变 */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FFF1F4] via-[#FDF6F8] to-[#FFF8F9] dark:from-[#0B121D] dark:via-[#080D15] dark:to-[#070B12]" />
 
-      {/* 顶部微蓝柔光穹顶：居中大尺寸高斯漫射微光，超舒缓 22s 呼吸阻尼 */}
+      {/* 顶部樱花粉柔光穹顶：居中大尺寸高斯漫射微光，超舒缓 22s 呼吸阻尼 */}
       <div
         className="absolute -top-[10%] left-1/2 w-[420px] sm:w-[780px] lg:w-[980px] h-[360px] sm:h-[520px] lg:h-[620px] rounded-[100%] opacity-70 dark:opacity-30 blur-[100px] sm:blur-[140px] transition-all duration-1000"
         style={{
           background:
-            'radial-gradient(ellipse at center, rgba(160, 215, 255, 0.38) 0%, rgba(186, 230, 253, 0.16) 45%, rgba(224, 242, 254, 0.05) 70%, transparent 80%)',
+            'radial-gradient(ellipse at center, rgba(255, 192, 203, 0.45) 0%, rgba(255, 168, 184, 0.18) 45%, rgba(255, 228, 234, 0.06) 70%, transparent 80%)',
           animation: 'ambientBreathGlow 22s ease-in-out infinite',
           willChange: 'transform, opacity',
         }}
       />
 
-      {/* 暗色模式专属深海柔蓝微光漫射（极低对比度，消除刺眼光感） */}
+      {/* 暗色模式专属 sakura 微光漫射（极低对比度，消除刺眼光感） */}
       <div
         className="hidden dark:block absolute -top-[8%] left-1/2 w-[700px] lg:w-[900px] h-[480px] rounded-[100%] opacity-25 blur-[130px]"
         style={{
           background:
-            'radial-gradient(ellipse at center, rgba(56, 130, 210, 0.28) 0%, rgba(30, 64, 115, 0.14) 50%, transparent 75%)',
+            'radial-gradient(ellipse at center, rgba(224, 86, 118, 0.28) 0%, rgba(74, 22, 40, 0.16) 50%, transparent 75%)',
           animation: 'ambientBreathGlow 24s ease-in-out infinite reverse',
           willChange: 'transform',
         }}

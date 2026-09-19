@@ -110,7 +110,7 @@ export const AdminTaxonomy: React.FC = () => {
       <div className="admin-page-header">
         <div className="admin-page-title-group">
           <h1>
-            <TagIcon className="w-6 h-6 text-sky-500" />
+            <TagIcon className="w-6 h-6 text-sakura-500" />
             <span>分类与标签管理</span>
           </h1>
           <p>
@@ -133,7 +133,7 @@ export const AdminTaxonomy: React.FC = () => {
         <div className="admin-card">
           <div className="admin-card-header">
             <h3>
-              <FolderOpen className="w-4 h-4 text-sky-500" />
+              <FolderOpen className="w-4 h-4 text-sakura-500" />
               <span>文稿分类体系 ({categories.length})</span>
             </h3>
           </div>
@@ -193,7 +193,7 @@ export const AdminTaxonomy: React.FC = () => {
                           const other = categories.find((c) => c.name !== cat.name);
                           setTargetCategory(other ? other.name : '');
                         }}
-                        className="admin-icon-btn !w-7 !h-7 text-slate-400 hover:text-sky-600"
+                        className="admin-icon-btn !w-7 !h-7 text-slate-400 hover:text-sakura-600"
                         title="合并至其他分类"
                       >
                         <Merge className="w-3.5 h-3.5" />
@@ -203,7 +203,7 @@ export const AdminTaxonomy: React.FC = () => {
                           setEditingCategory(cat.name);
                           setNewCategoryName(cat.name);
                         }}
-                        className="admin-icon-btn !w-7 !h-7 text-slate-400 hover:text-sky-600"
+                        className="admin-icon-btn !w-7 !h-7 text-slate-400 hover:text-sakura-600"
                         title="重命名分类"
                       >
                         <Edit2 className="w-3.5 h-3.5" />
@@ -242,7 +242,7 @@ export const AdminTaxonomy: React.FC = () => {
                 const isEditing = editingTag === tag.name;
                 if (isEditing) {
                   return (
-                    <div key={tag.name} className="flex items-center gap-1 bg-white dark:bg-slate-900 border border-sky-500 p-1 rounded-lg">
+                    <div key={tag.name} className="flex items-center gap-1 bg-white dark:bg-slate-900 border border-sakura-500 p-1 rounded-lg">
                       <input
                         autoFocus
                         type="text"
@@ -267,7 +267,7 @@ export const AdminTaxonomy: React.FC = () => {
                 return (
                   <div
                     key={tag.name}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:border-sky-500 hover:text-sky-600 border border-slate-200 dark:border-slate-700 text-xs font-mono transition-colors group"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:border-sakura-500 hover:text-sakura-600 border border-slate-200 dark:border-slate-700 text-xs font-mono transition-colors group"
                   >
                     <span>#{tag.name}</span>
                     <span className="text-[10px] text-slate-400 font-sans">
@@ -278,7 +278,7 @@ export const AdminTaxonomy: React.FC = () => {
                         setEditingTag(tag.name);
                         setNewTagName(tag.name);
                       }}
-                      className="text-slate-400 hover:text-sky-500 ml-0.5"
+                      className="text-slate-400 hover:text-sakura-500 ml-0.5"
                       title="重命名标签"
                     >
                       <Edit2 className="w-2.5 h-2.5" />
@@ -314,7 +314,7 @@ export const AdminTaxonomy: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-2">
-              <Layers className="w-5 h-5 text-sky-500" />
+              <Layers className="w-5 h-5 text-sakura-500" />
               <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100">
                 合并分类「{mergeCategoryModal}」
               </h3>

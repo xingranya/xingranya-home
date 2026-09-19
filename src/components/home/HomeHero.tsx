@@ -55,7 +55,7 @@ export const HomeHero: React.FC = () => {
     <section ref={containerRef} className="relative flex flex-col items-center justify-center py-2 sm:py-3 lg:py-0 text-center overflow-visible w-full">
       {/* 头像区域 */}
       <div className="gsap-hero-avatar opacity-0 mb-3 sm:mb-4 lg:mb-3 relative group">
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-[4.85rem] lg:h-[4.85rem] rounded-full p-0.5 sm:p-1 bg-gradient-to-tr from-sky-200 to-blue-300/40 dark:from-slate-800 dark:to-sky-900/60 shadow-md">
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-[4.85rem] lg:h-[4.85rem] rounded-full p-0.5 sm:p-1 bg-gradient-to-tr from-sakura-200 to-sakura-300/40 dark:from-slate-800 dark:to-sakura-900/60 shadow-md">
           <img
             src={siteConfig.author.avatar || '/avatar.jpg'}
             alt={siteConfig.author.name}
@@ -79,14 +79,14 @@ export const HomeHero: React.FC = () => {
       <h1 className="gsap-hero-title opacity-0 font-sans text-xl sm:text-3xl lg:text-[2.2rem] font-normal leading-tight text-slate-900 dark:text-slate-100 tracking-tight">
         <div className="font-light opacity-85">
           {greeting}{' '}
-          <span className="font-bold text-sky-700 dark:text-sky-400 tracking-tight">
+          <span className="font-bold text-sakura-700 dark:text-sakura-400 tracking-tight">
             {siteConfig.author.name}
           </span>
         </div>
         
         <div className="mt-1 sm:mt-1 font-light opacity-80">
           <span>I build </span>
-          <span className="font-semibold text-sky-700 dark:text-sky-400">
+          <span className="font-semibold text-sakura-700 dark:text-sakura-400">
             {highlightRole}
           </span>
         </div>
@@ -94,10 +94,10 @@ export const HomeHero: React.FC = () => {
         {skillsPills && (
           <div className="mt-2 sm:mt-2.5 flex items-center justify-center gap-1.5 flex-wrap">
             <span className="font-light text-slate-600 dark:text-slate-300 text-xs sm:text-sm">with</span>
-            <code className="inline-flex items-center font-sans text-xs sm:text-[12.5px] font-medium px-2.5 py-0.5 rounded-md text-sky-800 dark:text-sky-200 border border-sky-200/60 dark:border-sky-900/40 bg-sky-50/50 dark:bg-sky-950/30">
+            <code className="inline-flex items-center font-sans text-xs sm:text-[12.5px] font-medium px-2.5 py-0.5 rounded-md text-sakura-800 dark:text-sakura-200 border border-sakura-200/60 dark:border-sakura-900/40 bg-sakura-50/50 dark:bg-sakura-950/30">
               {skillsPills}
             </code>
-            <span className="inline-block w-[2px] h-3 bg-sky-500/80 dark:bg-sky-400/80 rounded-full animate-[blink_1.2s_linear_infinite]" />
+            <span className="inline-block w-[2px] h-3 bg-sakura-500/80 dark:bg-sakura-400/80 rounded-full animate-[blink_1.2s_linear_infinite]" />
           </div>
         )}
       </h1>
@@ -130,8 +130,8 @@ export const HomeHero: React.FC = () => {
         <div className="gsap-hero-announcement opacity-0 mt-3 sm:mt-4 lg:mt-3 max-w-lg mx-auto w-full px-2">
           <div className="flex items-center justify-between gap-3 px-3 py-1.5 rounded-lg bg-white/75 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800/60 text-xs font-sans text-slate-700 dark:text-slate-200 shadow-2xs">
             <div className="flex items-center gap-2 min-w-0 text-left">
-              <span className="shrink-0 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-xs text-[10.5px] font-mono font-medium bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border border-sky-200/50 dark:border-sky-800/40">
-                <Megaphone className="w-3 h-3 text-sky-600 dark:text-sky-400" />
+              <span className="shrink-0 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-xs text-[10.5px] font-mono font-medium bg-sakura-50 dark:bg-sakura-950/40 text-sakura-700 dark:text-sakura-300 border border-sakura-200/50 dark:border-sakura-800/40">
+                <Megaphone className="w-3 h-3 text-sakura-600 dark:text-sakura-400" />
                 <span>{siteConfig.announcement.badge || '公告'}</span>
               </span>
               <span className="text-xs text-slate-600 dark:text-slate-300 line-clamp-1 sm:line-clamp-none font-normal">
@@ -144,7 +144,7 @@ export const HomeHero: React.FC = () => {
                   href={siteConfig.announcement.linkUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="shrink-0 text-xs font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 inline-flex items-center gap-0.5 group transition-colors ml-1"
+                  className="shrink-0 text-xs font-medium text-sakura-600 dark:text-sakura-400 hover:text-sakura-700 dark:hover:text-sakura-300 inline-flex items-center gap-0.5 group transition-colors ml-1"
                 >
                   <span>{siteConfig.announcement.linkText || '动态'}</span>
                   <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -152,7 +152,7 @@ export const HomeHero: React.FC = () => {
               ) : (
                 <Link
                   href={siteConfig.announcement.linkUrl}
-                  className="shrink-0 text-xs font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 inline-flex items-center gap-0.5 group transition-colors ml-1"
+                  className="shrink-0 text-xs font-medium text-sakura-600 dark:text-sakura-400 hover:text-sakura-700 dark:hover:text-sakura-300 inline-flex items-center gap-0.5 group transition-colors ml-1"
                 >
                   <span>{siteConfig.announcement.linkText || '动态'}</span>
                   <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />

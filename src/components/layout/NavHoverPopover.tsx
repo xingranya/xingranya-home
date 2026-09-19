@@ -167,7 +167,7 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
                           <span className="text-[10px] font-mono text-slate-400 shrink-0">
                             {formatDateShort(diary.date)}
                           </span>
-                          <span className="text-xs font-medium text-slate-800 dark:text-slate-200 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors truncate">
+                          <span className="text-xs font-medium text-slate-800 dark:text-slate-200 group-hover:text-sakura-600 dark:group-hover:text-sakura-400 transition-colors truncate">
                             {diary.title}
                           </span>
                         </div>
@@ -214,12 +214,12 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
                         <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 mb-1">
                           <span>{formatDateShort(diary.date)}</span>
                           {diary.weather && (
-                            <span className="px-1.5 py-0.5 rounded-xs bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 text-[9px] border border-sky-200/40 dark:border-sky-800/40">
+                            <span className="px-1.5 py-0.5 rounded-xs bg-sakura-50 dark:bg-sakura-950/40 text-sakura-600 dark:text-sakura-400 text-[9px] border border-sakura-200/40 dark:border-sakura-800/40">
                               {diary.weather}
                             </span>
                           )}
                         </div>
-                        <h4 className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors line-clamp-1">
+                        <h4 className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-sakura-600 dark:group-hover:text-sakura-400 transition-colors line-clamp-1">
                           {diary.title}
                         </h4>
                         {diary.summary && (
@@ -270,7 +270,7 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
                         <div className="mt-1.5 flex items-center justify-between text-[10px] font-mono text-slate-400">
                           <span>{formatRelativeTime(String(record.createTime))}</span>
                           {record.mood && (
-                            <span className="px-1.5 py-0.5 rounded-xs bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 border border-sky-200/40 dark:border-sky-800/40">
+                            <span className="px-1.5 py-0.5 rounded-xs bg-sakura-50 dark:bg-sakura-950/40 text-sakura-600 dark:text-sakura-400 border border-sakura-200/40 dark:border-sakura-800/40">
                               {record.mood}
                             </span>
                           )}
@@ -322,7 +322,7 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors truncate">
+                            <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-sakura-600 dark:group-hover:text-sakura-400 transition-colors truncate">
                               {friend.name}
                             </span>
                             <ArrowUpRight className="w-2.5 h-2.5 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors shrink-0" />

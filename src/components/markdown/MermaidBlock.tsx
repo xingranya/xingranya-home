@@ -204,7 +204,7 @@ export const MermaidBlock: React.FC<MermaidBlockProps> = ({ chart }) => {
       <div className="p-6 flex items-center justify-center overflow-x-auto min-h-[140px]">
         {loading && (
           <div className="flex flex-col items-center justify-center space-y-2 text-slate-400 py-6">
-            <div className="w-5 h-5 border-2 border-slate-300 dark:border-slate-600 border-t-sky-600 rounded-full animate-spin" />
+            <div className="w-5 h-5 border-2 border-slate-300 dark:border-slate-600 border-t-sakura-600 rounded-full animate-spin" />
             <span className="text-xs font-mono">正在渲染拓扑图...</span>
           </div>
         )}

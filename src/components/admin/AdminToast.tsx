@@ -59,7 +59,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         return <XCircle className="w-5 h-5 text-red-500 shrink-0" />;
       case 'info':
       default:
-        return <Info className="w-5 h-5 text-sky-500 shrink-0" />;
+        return <Info className="w-5 h-5 text-sakura-500 shrink-0" />;
     }
   };
 

@@ -15,7 +15,7 @@ export const Callout: React.FC<CalloutProps> = ({
   const getIcon = () => {
     switch (type) {
       case 'tip':
-        return <Lightbulb className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0 mt-0.5" />;
+        return <Lightbulb className="w-4 h-4 text-sakura-600 dark:text-sakura-400 shrink-0 mt-0.5" />;
       case 'warning':
         return <AlertTriangle className="w-4 h-4 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />;
       case 'quote':
@@ -29,7 +29,7 @@ export const Callout: React.FC<CalloutProps> = ({
   const getBorderColor = () => {
     switch (type) {
       case 'tip':
-        return 'border-l-sky-500/70 bg-sky-50/40 dark:bg-sky-950/20';
+        return 'border-l-sakura-500/70 bg-sakura-50/40 dark:bg-sakura-950/20';
       case 'warning':
         return 'border-l-rose-500/80 bg-rose-50/50 dark:bg-rose-950/20';
       case 'quote':
