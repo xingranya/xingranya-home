@@ -26,6 +26,9 @@ export const HomeHero: React.FC = () => {
   const quote = hero?.quote || siteConfig.subtitle;
   const showMetrics = hero?.showMetrics ?? true;
   const showSocials = hero?.showSocials ?? true;
+  const homeSocials = (siteConfig.author.socials || []).filter(
+    (social) => !/^https:\/\/blog\.xran\.uk\/?$/i.test(social.url),
+  );
   const onlineStatus = hero?.onlineStatus || 'online';
   const avatar = siteConfig.author.avatar || '/avatar.jpg';
   const isLocalAvatar = ['/avatar.jpg', '/avatar.png', '/avatar.webp'].includes(avatar);
@@ -110,9 +113,9 @@ export const HomeHero: React.FC = () => {
         )}
       </div>
 
-      {showSocials && siteConfig.author.socials && siteConfig.author.socials.length > 0 && (
+      {showSocials && homeSocials.length > 0 && (
         <div className="mt-3 sm:mt-4 w-full relative z-30">
-          <SocialLinks items={siteConfig.author.socials} variant="icon" />
+          <SocialLinks items={homeSocials} variant="icon" />
         </div>
       )}
 
