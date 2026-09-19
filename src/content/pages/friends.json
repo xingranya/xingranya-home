@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "id": "fr-xuzhan",
+    "name": "序栈",
+    "desc": "用理性梳理日常，用技术温柔时光",
+    "avatar": "https://chenv.cn/avatar.jpg",
+    "link": "https://chenv.cn",
+    "order": 1,
+    "tags": []
+  }
+]
