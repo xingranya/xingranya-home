@@ -73,5 +73,15 @@ export default tseslint.config(
     rules: {
       'no-empty': ['error', { allowEmptyCatch: true }],
     },
+  },
+  {
+    files: ['middleware.js'],
+    languageOptions: {
+      globals: {
+        fetch: 'readonly',
+        Response: 'readonly',
+        URL: 'readonly',
+      },
+    },
   }
 );

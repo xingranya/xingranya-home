@@ -9,7 +9,7 @@
     "build": "node scripts/generate-content-index.mjs && tsc --noEmit && node scripts/generate-sitemap.mjs && node scripts/generate-rss.mjs && node scripts/generate-indexnow.mjs && rsbuild build && rsbuild build --config rsbuild.ssg.config.ts && node scripts/post-build.mjs",
     "preview": "node node_modules/@rsbuild/core/bin/rsbuild.js preview",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src scripts --max-warnings 0",
+    "lint": "eslint src scripts middleware.js --max-warnings 0",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\" \"scripts/**/*.{mjs,js}\" \"*.{json,ts,mjs}\"",
     "detect:friends": "node scripts/detect-friends.mjs",
     "generate:covers": "node scripts/generate-article-covers.mjs",
