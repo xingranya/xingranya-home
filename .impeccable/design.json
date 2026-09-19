@@ -1,0 +1,689 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-19T18:30:00+08:00",
+  "title": "Design System: 星苒鸭 · xran.uk",
+  "extensions": {
+    "colorMeta": {
+      "sakura": {
+        "role": "primary",
+        "displayName": "樱花粉",
+        "canonical": "#ffc0cb",
+        "tonalRamp": [
+          "#4a1628",
+          "#7a2843",
+          "#9d3252",
+          "#c43d61",
+          "#f4728d",
+          "#ffa8b8",
+          "#ffc0cb",
+          "#fff5f7"
+        ]
+      },
+      "sakura-ink": {
+        "role": "primary",
+        "displayName": "樱花墨",
+        "canonical": "#c43d61",
+        "tonalRamp": [
+          "#4a1628",
+          "#7a2843",
+          "#9d3252",
+          "#c43d61",
+          "#e05676",
+          "#ff8fa6",
+          "#ffc0cb",
+          "#ffe4ea"
+        ]
+      },
+      "sakura-fill": {
+        "role": "primary",
+        "displayName": "樱花填",
+        "canonical": "#e05676",
+        "tonalRamp": [
+          "#4a1628",
+          "#7a2843",
+          "#c43d61",
+          "#e05676",
+          "#f4728d",
+          "#ff8fa6",
+          "#ffc0cb",
+          "#fff5f7"
+        ]
+      },
+      "sakura-petal": {
+        "role": "primary",
+        "displayName": "花瓣粉",
+        "canonical": "#ff8fa6",
+        "tonalRamp": [
+          "#7a2843",
+          "#c43d61",
+          "#e05676",
+          "#f4728d",
+          "#ff8fa6",
+          "#ffa8b8",
+          "#ffc0cb",
+          "#ffe4ea"
+        ]
+      },
+      "sakura-tint": {
+        "role": "primary",
+        "displayName": "樱花选区",
+        "canonical": "#ffe4ea",
+        "tonalRamp": [
+          "#c43d61",
+          "#e05676",
+          "#f4728d",
+          "#ff8fa6",
+          "#ffa8b8",
+          "#ffc0cb",
+          "#ffe4ea",
+          "#fff5f7"
+        ]
+      },
+      "sakura-wash": {
+        "role": "primary",
+        "displayName": "樱花洗",
+        "canonical": "#fff5f7",
+        "tonalRamp": [
+          "#c43d61",
+          "#e05676",
+          "#ff8fa6",
+          "#ffa8b8",
+          "#ffc0cb",
+          "#ffe4ea",
+          "#fff5f7",
+          "#FDF6F8"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "粉笺纸",
+        "canonical": "#FDF6F8",
+        "tonalRamp": [
+          "#0B111A",
+          "#1E293B",
+          "#64748B",
+          "#94A3B8",
+          "#E2E8F0",
+          "#F8FAFC",
+          "#FDF6F8",
+          "#FFFFFF"
+        ]
+      },
+      "paper-sheet": {
+        "role": "neutral",
+        "displayName": "出版纸板",
+        "canonical": "#FDF8F9",
+        "tonalRamp": [
+          "#0E1726",
+          "#1E293B",
+          "#64748B",
+          "#94A3B8",
+          "#E2E8F0",
+          "#F8FAFC",
+          "#FDF8F9",
+          "#FFFFFF"
+        ]
+      },
+      "paper-card": {
+        "role": "neutral",
+        "displayName": "名片卡",
+        "canonical": "rgba(255, 255, 255, 0.88)",
+        "tonalRamp": [
+          "rgba(18, 27, 44, 0.82)",
+          "rgba(24, 36, 58, 0.92)",
+          "#1E293B",
+          "#64748B",
+          "#E2E8F0",
+          "rgba(255,255,255,0.75)",
+          "rgba(255,255,255,0.88)",
+          "rgba(255,255,255,0.98)"
+        ]
+      },
+      "paper-border": {
+        "role": "neutral",
+        "displayName": "粉边",
+        "canonical": "rgba(255, 192, 203, 0.55)",
+        "tonalRamp": [
+          "rgba(122, 40, 67, 0.45)",
+          "rgba(196, 61, 97, 0.4)",
+          "rgba(255, 143, 166, 0.45)",
+          "rgba(255, 192, 203, 0.55)",
+          "rgba(255, 192, 203, 0.7)",
+          "#E2E8F0",
+          "#F1F5F9",
+          "#FFFFFF"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "墨",
+        "canonical": "#1E293B",
+        "tonalRamp": [
+          "#0B111A",
+          "#0F172A",
+          "#1E293B",
+          "#334155",
+          "#64748B",
+          "#94A3B8",
+          "#CBD5E1",
+          "#F1F5F9"
+        ]
+      },
+      "ink-body": {
+        "role": "neutral",
+        "displayName": "正文墨",
+        "canonical": "#334155",
+        "tonalRamp": [
+          "#0F172A",
+          "#1E293B",
+          "#334155",
+          "#475569",
+          "#64748B",
+          "#94A3B8",
+          "#CBD5E1",
+          "#F8FAFC"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "淡墨",
+        "canonical": "#64748B",
+        "tonalRamp": [
+          "#1E293B",
+          "#334155",
+          "#475569",
+          "#64748B",
+          "#94A3B8",
+          "#CBD5E1",
+          "#E2E8F0",
+          "#F8FAFC"
+        ]
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "极淡墨",
+        "canonical": "#94A3B8",
+        "tonalRamp": [
+          "#334155",
+          "#475569",
+          "#64748B",
+          "#94A3B8",
+          "#CBD5E1",
+          "#E2E8F0",
+          "#F1F5F9",
+          "#FFFFFF"
+        ]
+      },
+      "paper-dark": {
+        "role": "neutral",
+        "displayName": "夜笺",
+        "canonical": "#0B111A",
+        "tonalRamp": [
+          "#0B111A",
+          "#0E1726",
+          "#121B2C",
+          "#1E293B",
+          "#334155",
+          "#64748B",
+          "#94A3B8",
+          "#F1F5F9"
+        ]
+      },
+      "paper-dark-card": {
+        "role": "neutral",
+        "displayName": "夜名片",
+        "canonical": "rgba(18, 27, 44, 0.82)",
+        "tonalRamp": [
+          "#0B111A",
+          "rgba(18, 27, 44, 0.82)",
+          "rgba(24, 36, 58, 0.92)",
+          "#1E293B",
+          "#334155",
+          "#64748B",
+          "#94A3B8",
+          "#F1F5F9"
+        ]
+      },
+      "selection-text": {
+        "role": "primary",
+        "displayName": "选区字",
+        "canonical": "#C43D61",
+        "tonalRamp": [
+          "#4A1628",
+          "#7A2843",
+          "#9D3252",
+          "#C43D61",
+          "#E05676",
+          "#FF8FA6",
+          "#FFC0CB",
+          "#FFE4EA"
+        ]
+      },
+      "paper-bright": {
+        "role": "neutral",
+        "displayName": "亮纸",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "#0B111A",
+          "#1E293B",
+          "#64748B",
+          "#94A3B8",
+          "#E2E8F0",
+          "#F8FAFC",
+          "#FDF6F8",
+          "#FFFFFF"
+        ]
+      },
+      "paper-dark-border": {
+        "role": "neutral",
+        "displayName": "夜笺边",
+        "canonical": "#384E6C",
+        "tonalRamp": [
+          "#0B111A",
+          "#0E1726",
+          "#1E293B",
+          "#384E6C",
+          "#64748B",
+          "#94A3B8",
+          "#CBD5E1",
+          "#F1F5F9"
+        ]
+      },
+      "ink-deep": {
+        "role": "neutral",
+        "displayName": "深墨",
+        "canonical": "#0F172A",
+        "tonalRamp": [
+          "#0B111A",
+          "#0F172A",
+          "#1E293B",
+          "#334155",
+          "#64748B",
+          "#94A3B8",
+          "#CBD5E1",
+          "#F1F5F9"
+        ]
+      },
+      "shade": {
+        "role": "neutral",
+        "displayName": "阴影黑",
+        "canonical": "#000000",
+        "tonalRamp": [
+          "#000000",
+          "#0B111A",
+          "#1E293B",
+          "#334155",
+          "#64748B",
+          "#94A3B8",
+          "#E2E8F0",
+          "#FFFFFF"
+        ]
+      },
+      "success": {
+        "role": "neutral",
+        "displayName": "成功",
+        "canonical": "#10B981",
+        "tonalRamp": [
+          "#064E3B",
+          "#047857",
+          "#059669",
+          "#10B981",
+          "#34D399",
+          "#6EE7B7",
+          "#A7F3D0",
+          "#ECFDF5"
+        ]
+      },
+      "success-deep": {
+        "role": "neutral",
+        "displayName": "成功深",
+        "canonical": "#059669",
+        "tonalRamp": [
+          "#064E3B",
+          "#047857",
+          "#059669",
+          "#10B981",
+          "#34D399",
+          "#6EE7B7",
+          "#A7F3D0",
+          "#ECFDF5"
+        ]
+      },
+      "success-bright": {
+        "role": "neutral",
+        "displayName": "成功亮",
+        "canonical": "#34D399",
+        "tonalRamp": [
+          "#064E3B",
+          "#047857",
+          "#059669",
+          "#10B981",
+          "#34D399",
+          "#6EE7B7",
+          "#A7F3D0",
+          "#ECFDF5"
+        ]
+      },
+      "warning": {
+        "role": "neutral",
+        "displayName": "警告",
+        "canonical": "#F59E0B",
+        "tonalRamp": [
+          "#78350F",
+          "#B45309",
+          "#D97706",
+          "#F59E0B",
+          "#FBBF24",
+          "#FCD34D",
+          "#FDE68A",
+          "#FFFBEB"
+        ]
+      },
+      "warning-bright": {
+        "role": "neutral",
+        "displayName": "警告亮",
+        "canonical": "#FBBF24",
+        "tonalRamp": [
+          "#78350F",
+          "#B45309",
+          "#D97706",
+          "#F59E0B",
+          "#FBBF24",
+          "#FCD34D",
+          "#FDE68A",
+          "#FFFBEB"
+        ]
+      },
+      "danger": {
+        "role": "neutral",
+        "displayName": "危险",
+        "canonical": "#EF4444",
+        "tonalRamp": [
+          "#7F1D1D",
+          "#B91C1C",
+          "#DC2626",
+          "#EF4444",
+          "#F87171",
+          "#FCA5A5",
+          "#FECACA",
+          "#FEF2F2"
+        ]
+      },
+      "danger-deep": {
+        "role": "neutral",
+        "displayName": "危险深",
+        "canonical": "#DC2626",
+        "tonalRamp": [
+          "#7F1D1D",
+          "#B91C1C",
+          "#DC2626",
+          "#EF4444",
+          "#F87171",
+          "#FCA5A5",
+          "#FECACA",
+          "#FEF2F2"
+        ]
+      },
+      "danger-bright": {
+        "role": "neutral",
+        "displayName": "危险亮",
+        "canonical": "#F87171",
+        "tonalRamp": [
+          "#7F1D1D",
+          "#B91C1C",
+          "#DC2626",
+          "#EF4444",
+          "#F87171",
+          "#FCA5A5",
+          "#FECACA",
+          "#FEF2F2"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "关于、手记详情、站点地图的页标题。Newsreader Bold。"
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "分节标题与手记列表标题。Newsreader Bold。"
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "首页身份行。MiSans；姓名与角色用樱花墨。"
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "正文与说明。MiSans 1.03rem / 1.85 / 65ch。"
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "日期、计数、筛选、页脚技术行。JetBrains Mono。"
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "工具提示与二维码说明。10px mono。"
+      },
+      "ui": {
+        "displayName": "UI",
+        "purpose": "按钮、导航、芯片。12px / 0.75rem。"
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "次级说明。14px / 0.875rem。"
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "代码块。0.8125rem，桌面可到 0.875rem。"
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-rest",
+        "value": "0 1px 3px rgba(15, 23, 42, 0.03), 0 4px 12px -2px rgba(15, 23, 42, 0.03)",
+        "purpose": "名片卡静止时的环境光，几乎贴纸。"
+      },
+      {
+        "name": "card-hover",
+        "value": "0 4px 18px -4px rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.04)",
+        "purpose": "悬停微浮 1.5px 时略加强的漫射。"
+      },
+      {
+        "name": "sheet",
+        "value": "0 1px 0 0 rgba(255, 255, 255, 0.95) inset, 0 1px 3px rgba(15, 23, 42, 0.03), 0 6px 20px -4px rgba(15, 23, 42, 0.045), 0 14px 32px -8px rgba(15, 23, 42, 0.03)",
+        "purpose": "出版纸板：内高光加两层更散的环境光。"
+      },
+      {
+        "name": "nav",
+        "value": "0 2px 10px -2px rgba(15, 23, 42, 0.06)",
+        "purpose": "顶栏导航胶囊，轻，不压正文。"
+      },
+      {
+        "name": "overlay",
+        "value": "0 20px 50px -10px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.1)",
+        "purpose": "模态、下拉、二维码气泡等离开纸面的浮层。"
+      },
+      {
+        "name": "focus-sakura",
+        "value": "0 0 0 1px rgba(255, 143, 166, 0.3)",
+        "purpose": "输入焦点的花瓣粉光晕。"
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-float",
+        "value": "0.25s cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "名片悬停浮起与阴影。"
+      },
+      {
+        "name": "ease-color",
+        "value": "0.2s ease",
+        "purpose": "按钮与链接的颜色切换。"
+      },
+      {
+        "name": "page-enter",
+        "value": "0.35s power3.out",
+        "purpose": "PageShell 入场：opacity + 6px 上移。"
+      },
+      {
+        "name": "hero-enter",
+        "value": "0.5s power3.out",
+        "purpose": "首页身份区分步淡入，位移 8–12px。"
+      },
+      {
+        "name": "ambient-breath",
+        "value": "22s ease-in-out infinite",
+        "purpose": "顶部樱花粉柔光穹顶呼吸，不是交互反馈。"
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "稀缺的实心动作。樱花填、白字、4px 微倒角。",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">继续访问</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: #e05676; color: #fff; padding: 6px 14px; border: 0; border-radius: 4px; font-family: MiSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; font-weight: 500; line-height: 1.5; box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04); cursor: pointer; transition: background-color 0.2s ease; } .ds-btn-primary:hover { background: #f4728d; } .ds-btn-primary:active { background: #c43d61; } .ds-btn-primary:focus-visible { box-shadow: 0 0 0 3px rgba(224, 86, 118, 0.25); }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "取消与次要动作。透明底，悬停浅石板洗。",
+      "html": "<button class=\"ds-btn-ghost\" type=\"button\">取消</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; background: transparent; color: #64748B; padding: 6px 12px; border: 0; border-radius: 4px; font-family: MiSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; font-weight: 500; cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease; } .ds-btn-ghost:hover { background: #F1F5F9; color: #1E293B; } .ds-btn-ghost:focus-visible { box-shadow: 0 0 0 3px rgba(224, 86, 118, 0.25); }"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "chip-filter-selected",
+      "description": "筛选芯片。默认白卡；选中樱花洗 + 樱花墨。",
+      "html": "<div class=\"ds-chip-row\"><button class=\"ds-chip\" type=\"button\">全部 <span class=\"ds-chip-count\">10</span></button><button class=\"ds-chip ds-chip-selected\" type=\"button\">手记 <span class=\"ds-chip-count\">7</span></button></div>",
+      "css": ".ds-chip-row { display: flex; gap: 8px; align-items: center; } .ds-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 6px; border: 1px solid rgba(226, 232, 240, 0.7); background: rgba(255, 255, 255, 0.8); color: #334155; font-family: MiSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; } .ds-chip:hover { background: rgba(241, 245, 249, 0.7); } .ds-chip-selected { background: #fff5f7; color: #c43d61; border-color: rgba(255, 168, 184, 0.8); font-weight: 600; } .ds-chip-count { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; padding: 2px 6px; border-radius: 3px; background: #F1F5F9; color: #94A3B8; } .ds-chip-selected .ds-chip-count { background: #ffe4ea; color: #c43d61; } .ds-chip:focus-visible { box-shadow: 0 0 0 1px rgba(255, 143, 166, 0.3); }"
+    },
+    {
+      "name": "Paper Card",
+      "kind": "card",
+      "refersTo": "card-paper",
+      "description": "半透明名片卡。静止贴纸，悬停浮 1.5px。",
+      "html": "<article class=\"ds-card\"><h3 class=\"ds-card-title\">GitHub Stars AI Tools</h3><p class=\"ds-card-body\">把复杂问题拆简单，把简单方案做扎实。</p><p class=\"ds-card-meta\">2026-09-18 · 开源</p></article>",
+      "css": ".ds-card { background: rgba(255, 255, 255, 0.88); border: 1px solid rgba(255, 192, 203, 0.55); border-radius: 5px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03), 0 4px 12px -2px rgba(15, 23, 42, 0.03); transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1); max-width: 320px; } .ds-card:hover { background: rgba(255, 255, 255, 0.98); transform: translateY(-1.5px); border-color: rgba(255, 143, 166, 0.45); box-shadow: 0 4px 18px -4px rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.04); } .ds-card-title { margin: 0 0 6px; font-family: Newsreader, Georgia, serif; font-size: 17px; font-weight: 600; color: #0f172a; letter-spacing: -0.015em; } .ds-card-body { margin: 0 0 10px; font-family: MiSans, -apple-system, sans-serif; font-size: 12px; line-height: 1.7; color: #64748B; } .ds-card-meta { margin: 0; padding-top: 10px; border-top: 1px solid rgba(241, 245, 249, 0.8); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #94A3B8; }"
+    },
+    {
+      "name": "Paper Sheet",
+      "kind": "card",
+      "refersTo": "card-paper",
+      "description": "关于/手记用的整张出版纸板。微噪、粉边、内高光。",
+      "html": "<article class=\"ds-sheet\"><h1 class=\"ds-sheet-title\">星苒鸭</h1><p class=\"ds-sheet-lead\">把复杂问题拆简单，把简单方案做扎实。</p></article>",
+      "css": ".ds-sheet { background-color: #FDF8F9; border: 1px solid rgba(255, 192, 203, 0.7); border-radius: 5px; padding: 24px 32px; box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.95) inset, 0 1px 3px rgba(15, 23, 42, 0.03), 0 6px 20px -4px rgba(15, 23, 42, 0.045), 0 14px 32px -8px rgba(15, 23, 42, 0.03); max-width: 420px; } .ds-sheet-title { margin: 0 0 10px; font-family: Newsreader, Georgia, serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; color: #0f172a; } .ds-sheet-lead { margin: 0; font-family: Newsreader, Georgia, serif; font-style: italic; font-size: 14px; line-height: 1.7; color: #64748B; }"
+    },
+    {
+      "name": "Search Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "安静的搜索框。焦点才露花瓣粉边与 1px 光晕。",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-icon\" aria-hidden=\"true\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20L17 17\"/></svg></span><input class=\"ds-input\" type=\"search\" placeholder=\"搜索文稿标题、摘要或标签...\" /></label>",
+      "css": ".ds-field { position: relative; display: block; max-width: 360px; } .ds-field-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #94A3B8; display: flex; } .ds-input { width: 100%; box-sizing: border-box; padding: 8px 32px 8px 36px; border-radius: 6px; border: 1px solid rgba(226, 232, 240, 0.8); background: rgba(241, 245, 249, 0.8); color: #1E293B; font-family: MiSans, -apple-system, sans-serif; font-size: 12px; outline: none; transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease; } .ds-input::placeholder { color: #94A3B8; } .ds-input:hover { background: #fff; } .ds-input:focus, .ds-input:focus-visible { border-color: rgba(255, 143, 166, 0.8); background: #fff; box-shadow: 0 0 0 1px rgba(255, 143, 166, 0.3); }"
+    },
+    {
+      "name": "Center Nav",
+      "kind": "nav",
+      "refersTo": "nav-bar",
+      "description": "居中导航胶囊。选中项是内嵌小白卡，不是粉底。",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-item ds-nav-item-active\" href=\"#\"><svg class=\"ds-nav-icon\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 11l9-8 9 8\"/><path d=\"M5 10v10h14V10\"/></svg>首页</a><a class=\"ds-nav-item\" href=\"#\">手记</a><a class=\"ds-nav-item\" href=\"#\">关于</a></nav>",
+      "css": ".ds-nav { display: inline-flex; align-items: center; gap: 2px; padding: 4px; border-radius: 5px; background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(226, 232, 240, 0.75); box-shadow: 0 2px 10px -2px rgba(15, 23, 42, 0.06); font-family: MiSans, -apple-system, sans-serif; font-size: 12px; } .ds-nav-item { position: relative; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 4px; color: #334155; text-decoration: none; } .ds-nav-item:hover { background: rgba(241, 245, 249, 0.6); color: #0f172a; } .ds-nav-item-active { color: #020617; font-weight: 500; background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(226, 232, 240, 0.9); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 1px rgba(0, 0, 0, 0.03); } .ds-nav-icon { opacity: 0.9; } .ds-nav-item:focus-visible { box-shadow: 0 0 0 1px rgba(255, 143, 166, 0.3); }"
+    },
+    {
+      "name": "Social Icon",
+      "kind": "custom",
+      "refersTo": "button-ghost",
+      "description": "首页联系圆标。石板图标，悬停浅底；可弹出二维码纸片。",
+      "html": "<a class=\"ds-social\" href=\"#\" aria-label=\"GitHub\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.71.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.09 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.32.1-2.75 0 0 .84-.27 2.75 1.05A9.3 9.3 0 0 1 12 6.84c.85.01 1.71.12 2.51.34 1.9-1.32 2.74-1.05 2.74-1.05.56 1.43.21 2.49.1 2.75.64.72 1.03 1.64 1.03 2.76 0 3.96-2.34 4.82-4.57 5.08.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.26C22 6.58 17.52 2 12 2z\"/></svg></a>",
+      "css": ".ds-social { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9999px; color: #64748B; text-decoration: none; transition: background-color 0.2s ease, color 0.2s ease; } .ds-social:hover { background: rgba(226, 232, 240, 0.6); color: #0f172a; } .ds-social:focus-visible { box-shadow: 0 0 0 1px rgba(255, 143, 166, 0.3); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "粉笺名片",
+    "overview": "xran.uk 是一张放在 sakura 色信笺上的名片，不是作品集模板，也不是热闹的落地页。气质是克制出版：纸面安静、字距从容、强调色稀缺。陌生人先看见人，再看见代表作和联系方式。粉是气氛，不是主题公园。\n\n密度偏低。首页身份区居中、留白多；手记和关于页是一整张温润纸板；列表卡片半透明、薄边、几乎贴着纸面。动效只做入场淡入与悬停微浮，背景雨丝和顶部柔光是环境，不是表演。控件小而准：主按钮少见，筛选和社交用细边胶囊或圆图标。\n\n明确拒绝：天蓝/钴蓝强调色、图标里的鸭子、卡片或摘要上的粗一侧强调边、纸面上的装饰网格、硬投影和新拟态、把樱花粉铺成满屏主题色。本地后台 `/admin` 更密、更像工具，但色盘、圆角和深度语言与前台同一套粉笺，不另起蓝色控制台。",
+    "keyCharacteristics": [
+      "粉笺气氛：纸色底 + 半透明白卡 + 淡粉细边",
+      "樱花粉稀缺：气氛用浅粉，声音用深粉，填色按钮极少",
+      "人用黑体、文用衬线：身份与 UI 是 MiSans，篇名与手记是 Newsreader",
+      "环境光不承重：静止几乎无影，悬停才浮 1.5px",
+      "五像素微倒角：默认 5px，不发圆、不尖锐",
+      "后台同纸：更密，但不是另一套世界"
+    ],
+    "rules": [
+      {
+        "name": "The 樱花粉稀缺 Rule",
+        "body": "浅粉负责气氛（边、洗、选区），深粉负责声音（姓名、链接）。实心粉按钮在一屏里应当稀少。禁止把 `sakura` 当背景主题色铺满。",
+        "section": "colors"
+      },
+      {
+        "name": "The 无第二品牌色 Rule",
+        "body": "不引入天蓝、靛蓝或与樱花粉竞争的第二强调。语义色（成功绿、警告琥珀、危险红）只用于状态，不用于导航或身份。",
+        "section": "colors"
+      },
+      {
+        "name": "The 人用黑体、文用衬线 Rule",
+        "body": "身份、导航、按钮、表单走 MiSans。页标题、手记标题、摘要斜体、页脚格言走 Newsreader。不要对调，也不要用系统展示字体顶替 Display。",
+        "section": "typography"
+      },
+      {
+        "name": "The 环境光不承重 Rule",
+        "body": "阴影不是结构。静止贴纸；悬停浮 1.5px。禁止硬偏移阴影、彩色霓虹投影、为了「高级」加厚的 rest-state 阴影。",
+        "section": "elevation"
+      },
+      {
+        "name": "The 五像素微倒角 Rule",
+        "body": "默认 5px。全面圆角或直角块都算跑调。圆形只用于人像与图标按钮。",
+        "section": "shapes"
+      },
+      {
+        "name": "The 禁侧栏描边 Rule",
+        "body": "不要给摘要、奖项、列表卡加 3px 左侧强调条。训诫 Callout 的 2px 左线是唯一例外。",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do 把页面当成粉笺上的名片：先人，再作品与联系方式。",
+      "Do 用浅粉做边和洗，用 `sakura-ink` 做姓名与链接。",
+      "Do 默认 5px 微倒角、1px 细边、半透明白卡。",
+      "Do 悬停只浮 1.5px，阴影保持环境光。",
+      "Do 身份用 MiSans，篇名与手记用 Newsreader，元信息用 JetBrains Mono。",
+      "Do 焦点给出可见的樱花粉光晕。",
+      "Do 让 `/admin` 更密，但沿用同一色盘与圆角。"
+    ],
+    "donts": [
+      "Don't 用天蓝、钴蓝或靛蓝当强调色。",
+      "Don't 在网站图标或品牌图形里画鸭子。",
+      "Don't 给摘要、奖项、项目卡加粗一侧强调边。",
+      "Don't 把 `sakura` 铺成满屏背景或大色块主题。",
+      "Don't 使用硬偏移阴影、新拟态或厚 rest-state 投影。",
+      "Don't 给纸板加装饰性网格线。",
+      "Don't 把按钮和卡片做成全圆胶囊（头像与社交圆标除外）。",
+      "Don't 把后台做成另一套蓝色控制台。",
+      "Don't 用系统展示字体或装饰艺术字替换 Newsreader / MiSans。"
+    ]
+  }
+}
