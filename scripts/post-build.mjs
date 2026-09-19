@@ -7,13 +7,27 @@ const require = createRequire(import.meta.url);
 const { renderPage, getPageMeta } = require('../.ssg/ssg.cjs');
 const site = JSON.parse(fs.readFileSync('src/content/config/site.config.json', 'utf8'));
 const index = JSON.parse(fs.readFileSync('src/content/generated/public-index.json', 'utf8'));
-const template = fs.readFileSync('dist/index.html', 'utf8');
+const rawTemplate = fs.readFileSync('dist/index.html', 'utf8');
 const now = Date.parse(index.generatedAt);
 const routes = ['/', '/about', '/archives', '/diaries', '/says', '/friends', '/sitemap'];
 const escape = (value) => String(value).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const serialize = (value) => JSON.stringify(value).replace(/</g, '\\u003c');
 const write = (file, text) => { fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, text); };
 const diaryBodies = new Map();
+
+function deferClientScripts(html) {
+  const sources = [];
+  const documentWithoutScripts = html.replace(/<script defer src="([^"]+)"><\/script>/g, (_tag, source) => {
+    sources.push(source);
+    return '';
+  });
+  if (sources.length === 0) return html;
+
+  const loader = `<script>(function(){var sources=${JSON.stringify(sources)};var started=false;function load(){if(started)return;started=true;sources.forEach(function(source){var script=document.createElement('script');script.src=source;script.async=false;document.head.appendChild(script);});}function schedule(){window.setTimeout(load,650);}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',schedule,{once:true});}else{schedule();}window.addEventListener('pointermove',load,{once:true,passive:true});window.addEventListener('pointerdown',load,{once:true,passive:true});window.addEventListener('keydown',load,{once:true});})();</script>`;
+  return documentWithoutScripts.replace('</body>', `${loader}</body>`);
+}
+
+const template = deferClientScripts(rawTemplate);
 
 for (const diary of index.diaries) {
   const { content } = matter(fs.readFileSync(`src/content/diaries/${diary.slug}.md`, 'utf8'));
