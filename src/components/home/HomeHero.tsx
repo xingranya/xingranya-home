@@ -1,12 +1,10 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Link } from 'wouter';
-import { ArrowUpRight, Megaphone, ChevronRight } from 'lucide-react';
+import { Megaphone, ChevronRight } from 'lucide-react';
 import { SocialLinks } from '../ui/SocialLinks';
-import { getAllDiaries, getProjects, siteConfig } from '../../content';
-
-const HOME_PROJECTS = ['GitHub-Stars-AI-Tools', 'physics-ai-teaching-system', 'CervixDetectAI'];
+import { getAllDiaries, siteConfig } from '../../content';
 
 export const HomeHero: React.FC = () => {
   const containerRef = useRef<HTMLElement>(null);
@@ -21,9 +19,8 @@ export const HomeHero: React.FC = () => {
     tl.from('.gsap-hero-avatar', { opacity: 0, y: 12 })
       .from('.gsap-hero-title', { opacity: 0, y: 10 }, 0.08)
       .from('.gsap-hero-metrics', { opacity: 0, y: 10 }, 0.22)
-      .from('.gsap-hero-projects', { opacity: 0, y: 10 }, 0.3)
-      .from('.gsap-hero-socials', { opacity: 0, y: 10 }, 0.36)
-      .from('.gsap-hero-announcement', { opacity: 0, y: 8 }, 0.42);
+      .from('.gsap-hero-socials', { opacity: 0, y: 10 }, 0.3)
+      .from('.gsap-hero-announcement', { opacity: 0, y: 8 }, 0.36);
   }, { scope: containerRef });
 
   const diaries = getAllDiaries();
@@ -39,11 +36,6 @@ export const HomeHero: React.FC = () => {
     const diff = Math.floor((now - start) / (1000 * 60 * 60 * 24));
     return diff > 0 ? diff : 1;
   }, [sinceDateStr]);
-
-  const featuredProjects = useMemo(
-    () => getProjects().filter((project) => HOME_PROJECTS.includes(project.name)),
-    [],
-  );
 
   const hero = siteConfig.home?.hero;
   const greeting = hero?.greeting || "Hi, I'm";
@@ -126,46 +118,8 @@ export const HomeHero: React.FC = () => {
         )}
       </div>
 
-      {featuredProjects.length > 0 && (
-        <section className="gsap-hero-projects mt-5 sm:mt-6 w-full max-w-xl mx-auto text-left">
-          <div className="flex items-baseline justify-between gap-3 mb-2 px-0.5">
-            <h2 className="font-sans text-sm font-semibold text-slate-800 dark:text-slate-100">
-              项目
-            </h2>
-            <Link
-              href="/about"
-              className="text-xs font-sans text-sakura-700 dark:text-sakura-300 hover:underline underline-offset-2 min-h-11 inline-flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400"
-            >
-              全部项目
-            </Link>
-          </div>
-          <ul className="space-y-2">
-            {featuredProjects.map((project) => (
-              <li key={project.url}>
-                <a
-                  href={project.homepage || project.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group paper-card paper-card-interactive flex items-start justify-between gap-3 p-3.5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400"
-                >
-                  <span className="min-w-0">
-                    <span className="block font-sans text-sm font-semibold text-slate-900 dark:text-slate-100">
-                      {project.name}
-                    </span>
-                    <span className="mt-0.5 block text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                      {project.desc}
-                    </span>
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 shrink-0 mt-0.5 text-slate-400 group-hover:text-sakura-600 dark:group-hover:text-sakura-400" />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
       {showSocials && siteConfig.author.socials && siteConfig.author.socials.length > 0 && (
-        <div className="gsap-hero-socials mt-5 sm:mt-6 w-full relative z-30">
+        <div className="gsap-hero-socials mt-3 sm:mt-4 w-full relative z-30">
           <SocialLinks items={siteConfig.author.socials} variant="icon" />
         </div>
       )}

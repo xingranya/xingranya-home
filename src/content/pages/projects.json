@@ -33,17 +33,6 @@
     "pushedAt": "2026-09-19"
   },
   {
-    "name": "physics-ai-teaching-system",
-    "desc": "长江大学文理学院大学物理 AI 智慧教学系统。",
-    "url": "https://github.com/xingranya/physics-ai-teaching-system",
-    "homepage": "",
-    "language": "TypeScript",
-    "stars": 0,
-    "role": "author",
-    "featured": true,
-    "pushedAt": "2026-09-16"
-  },
-  {
     "name": "CervixDetectAI",
     "desc": "宫颈细胞检测相关 Web 项目。",
     "url": "https://github.com/xingranya/CervixDetectAI",

@@ -3,7 +3,7 @@ import { Route, Switch, useLocation } from 'wouter';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { AmbientBackground } from './components/layout/AmbientBackground';
-import { siteConfig } from './content';
+import { getDiaryBySlug, siteConfig } from './content';
 import { Home } from './pages/Home';
 import { ExternalLinkModal } from './components/ui/ExternalLinkModal';
 
@@ -62,36 +62,68 @@ export const App: React.FC = () => {
 
   const isAdminRoute = (location === '/admin' || location.startsWith('/admin/')) && isLocalEnv;
 
-  // 路由跳转时平滑回滚至顶部并动态更新浏览器标签标题
+  // 路由跳转时同步页面标题、摘要、规范网址和索引策略
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
+    const setMeta = (selector: string, value: string) => {
+      document.querySelector<HTMLMetaElement>(selector)?.setAttribute('content', value);
+    };
+
+    const normalizedLocation = location === '/' ? '/' : location.replace(/\/+$/, '');
+    let title = siteConfig.title;
+    let description = siteConfig.description;
+    let canonicalPath = normalizedLocation;
+    let robots = 'index,follow';
+
     if (isAdminRoute) {
-      document.title = `管理控制台 · ${siteConfig.title}`;
+      title = `管理控制台 · ${siteConfig.title}`;
+      robots = 'noindex,nofollow';
     } else {
-      const section = findSection(location);
-      if (section) {
-        document.title = `${section.label} · ${siteConfig.title}`;
-        const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) {
-          const sectionDescMap: Record<string, string> = {
-            '归档': siteConfig.archivesPage?.subtitle || `${siteConfig.title} 全站随笔与手记的时间脉络与足迹索引。`,
-            '手记': siteConfig.diariesPage?.subtitle || siteConfig.description,
-            '说说': siteConfig.saysPage?.subtitle || '把灵感、日常与正在发生的事情，留在时间线上。',
-            '友链': siteConfig.friendsPage?.subtitle || '山海相逢，灵感共振。',
-            '站点地图': '聚合全站核心频道结构、生活随笔手记与全局标签图谱。',
-            '关于': `关于 ${siteConfig.author?.name || '星苒鸭'} - ${siteConfig.author?.description || ''}。${siteConfig.about?.quote || siteConfig.description}`,
-          };
-          metaDesc.setAttribute('content', sectionDescMap[section.label] || siteConfig.description);
-        }
-      } else {
-        document.title = siteConfig.title;
-        const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) {
-          metaDesc.setAttribute('content', siteConfig.description);
-        }
+      const section = findSection(normalizedLocation);
+      const diaryMatch = normalizedLocation.match(/^\/(?:diaries|journal|shouji)\/([^/]+)$/);
+      const diary = diaryMatch ? getDiaryBySlug(diaryMatch[1]) : null;
+
+      if (diaryMatch && diary) {
+        title = `${diary.title} · ${siteConfig.title}`;
+        description = diary.summary || siteConfig.description;
+        canonicalPath = `/diaries/${diary.slug}`;
+      } else if (section && section.paths.includes(normalizedLocation)) {
+        const sectionDescMap: Record<string, string> = {
+          '归档': siteConfig.archivesPage?.subtitle || `${siteConfig.title} 全站随笔与手记的时间脉络与足迹索引。`,
+          '手记': siteConfig.diariesPage?.subtitle || siteConfig.description,
+          '说说': siteConfig.saysPage?.subtitle || '把灵感、日常与正在发生的事情，留在时间线上。',
+          '友链': siteConfig.friendsPage?.subtitle || '山海相逢，灵感共振。',
+          '站点地图': '聚合全站核心频道结构、生活随笔手记与全局标签图谱。',
+          '关于': `关于 ${siteConfig.author?.name || '星苒鸭'}：${siteConfig.author?.description || ''} ${siteConfig.about?.quote || siteConfig.description}`,
+        };
+        title = `${section.label} · ${siteConfig.title}`;
+        description = sectionDescMap[section.label] || siteConfig.description;
+        canonicalPath = section.paths[0];
+      } else if (normalizedLocation !== '/') {
+        title = `页面未找到 · ${siteConfig.title}`;
+        description = '请求的页面不存在或已归档。';
+        robots = 'noindex,follow';
       }
     }
+
+    const canonicalUrl = new URL(canonicalPath || '/', siteConfig.url).toString();
+    let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+
+    document.title = title;
+    canonical.href = canonicalUrl;
+    setMeta('meta[name="description"]', description);
+    setMeta('meta[name="robots"]', robots);
+    setMeta('meta[property="og:title"]', title);
+    setMeta('meta[property="og:description"]', description);
+    setMeta('meta[property="og:url"]', canonicalUrl);
+    setMeta('meta[name="twitter:title"]', title);
+    setMeta('meta[name="twitter:description"]', description);
   }, [location, isAdminRoute]);
 
   // 后台独立路由体系：完全脱离前台 Header、Footer 与背景特效

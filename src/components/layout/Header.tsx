@@ -34,10 +34,10 @@ const ICON_MAP: Record<string, React.FC<{ className?: string }>> = {
 const DEFAULT_NAV_LINKS: NavLinkItem[] = [
   { id: 'nav-home', href: '/', label: '首页', icon: 'HomeIcon', enabled: true },
   { id: 'nav-blog', href: 'https://blog.xran.uk', label: '博客', icon: 'FileText', enabled: true, isExternal: true },
-  { id: 'nav-archives', href: '/archives', label: '归档', icon: 'History', enabled: false },
-  { id: 'nav-diaries', href: '/diaries', label: '手记', icon: 'Feather', enabled: false },
-  { id: 'nav-says', href: '/says', label: '动态', icon: 'MessageSquareQuote', enabled: false },
-  { id: 'nav-friends', href: '/friends', label: '朋友', icon: 'Users', enabled: false },
+  { id: 'nav-archives', href: '/archives', label: '归档', icon: 'History', enabled: true },
+  { id: 'nav-diaries', href: '/diaries', label: '手记', icon: 'Feather', enabled: true },
+  { id: 'nav-says', href: '/says', label: '动态', icon: 'MessageSquareQuote', enabled: true },
+  { id: 'nav-friends', href: '/friends', label: '朋友', icon: 'Users', enabled: true },
   { id: 'nav-about', href: '/about', label: '关于', icon: 'User', enabled: true },
 ];
 

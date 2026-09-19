@@ -38,15 +38,15 @@ function formatDate(dateStr, fallbackDate) {
 
 function generateSitemap() {
   const baseUrl = getBaseUrl();
-  const today = new Date().toISOString().split('T')[0];
 
   const urls = [
-    { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'daily', lastmod: today },
-    { loc: `${baseUrl}/archives`, priority: '0.8', changefreq: 'weekly', lastmod: today },
-    { loc: `${baseUrl}/diaries`, priority: '0.8', changefreq: 'daily', lastmod: today },
-    { loc: `${baseUrl}/says`, priority: '0.7', changefreq: 'daily', lastmod: today },
-    { loc: `${baseUrl}/friends`, priority: '0.7', changefreq: 'weekly', lastmod: today },
-    { loc: `${baseUrl}/sitemap`, priority: '0.8', changefreq: 'weekly', lastmod: today },
+    { loc: `${baseUrl}/` },
+    { loc: `${baseUrl}/about` },
+    { loc: `${baseUrl}/archives` },
+    { loc: `${baseUrl}/diaries` },
+    { loc: `${baseUrl}/says` },
+    { loc: `${baseUrl}/friends` },
+    { loc: `${baseUrl}/sitemap` },
   ];
 
   // 1. 提取所有公开手记
@@ -63,8 +63,6 @@ function generateSitemap() {
 
       urls.push({
         loc: `${baseUrl}/diaries/${slug}`,
-        priority: '0.7',
-        changefreq: 'monthly',
         lastmod,
       });
     }
@@ -77,10 +75,7 @@ ${urls
   .map(
     (u) => `  <url>
     <loc>${u.loc}</loc>
-    <lastmod>${u.lastmod}</lastmod>
-    <changefreq>${u.changefreq}</changefreq>
-    <priority>${u.priority}</priority>
-  </url>`
+${u.lastmod ? `    <lastmod>${u.lastmod}</lastmod>\n` : ''}  </url>`
   )
   .join('\n')}
 </urlset>

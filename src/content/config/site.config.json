@@ -20,7 +20,7 @@
   },
   "author": {
     "name": "星苒鸭",
-    "avatar": "/avatar.jpg",
+    "avatar": "/avatar.webp",
     "description": "计算机科学与技术本科生，全栈开发爱好者。喜欢捣鼓软件和电子产品，同类里性价比最高的永远是好的。",
     "email": "xingranya@outlook.jp",
     "github": "https://github.com/xingranya",
@@ -29,17 +29,15 @@
       {
         "name": "GitHub",
         "icon": "github",
-        "url": "https://github.com/xingranya",
-        "featured": true
+        "url": "https://github.com/xingranya"
       },
       {
         "name": "博客",
         "icon": "custom",
-        "url": "https://blog.xran.uk",
-        "featured": true
+        "url": "https://blog.xran.uk"
       },
       {
-        "name": "Bilibili",
+        "name": "哔哩哔哩",
         "icon": "bilibili",
         "url": "https://space.bilibili.com/357220647"
       },
@@ -56,20 +54,13 @@
       {
         "name": "邮件",
         "icon": "email",
-        "url": "mailto:xingranya@outlook.jp",
-        "featured": true
-      },
-      {
-        "name": "Gmail",
-        "icon": "email",
-        "url": "mailto:xingranya666@gmail.com"
+        "url": "mailto:xingranya@outlook.jp"
       },
       {
         "name": "微信",
         "icon": "weixin",
         "url": "",
-        "qr": "https://img1.tucang.cc/api/image/show/ebac24fbd517f059a86979b42b48a571",
-        "featured": true
+        "qr": "https://img1.tucang.cc/api/image/show/ebac24fbd517f059a86979b42b48a571"
       },
       {
         "name": "QQ",
@@ -195,13 +186,13 @@
     "navLinks": [
       { "id": "nav-home", "label": "首页", "href": "/", "icon": "HomeIcon", "enabled": true },
       { "id": "nav-blog", "label": "博客", "href": "https://blog.xran.uk", "icon": "FileText", "enabled": true, "isExternal": true },
-      { "id": "nav-archives", "label": "归档", "href": "/archives", "icon": "History", "enabled": false },
-      { "id": "nav-diaries", "label": "手记", "href": "/diaries", "icon": "Feather", "enabled": false },
-      { "id": "nav-says", "label": "动态", "href": "/says", "icon": "MessageSquareQuote", "enabled": false },
-      { "id": "nav-friends", "label": "朋友", "href": "/friends", "icon": "Users", "enabled": false },
+      { "id": "nav-archives", "label": "归档", "href": "/archives", "icon": "History", "enabled": true },
+      { "id": "nav-diaries", "label": "手记", "href": "/diaries", "icon": "Feather", "enabled": true },
+      { "id": "nav-says", "label": "动态", "href": "/says", "icon": "MessageSquareQuote", "enabled": true },
+      { "id": "nav-friends", "label": "朋友", "href": "/friends", "icon": "Users", "enabled": true },
       { "id": "nav-about", "label": "关于", "href": "/about", "icon": "User", "enabled": true }
     ],
-    "enableMegaMenu": false,
+    "enableMegaMenu": true,
     "enableSearch": true
   },
   "footer": {
