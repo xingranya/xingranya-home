@@ -94,7 +94,7 @@ export const HomeHero: React.FC = () => {
         {skillsPills && (
           <div className="mt-2 sm:mt-2.5 flex items-center justify-center gap-1.5 flex-wrap">
             <span className="font-light text-slate-600 dark:text-slate-300 text-xs sm:text-sm">with</span>
-            <code className="inline-flex items-center font-sans text-xs sm:text-[12.5px] font-medium px-2.5 py-0.5 rounded-md text-sakura-800 dark:text-sakura-200 border border-sakura-200/60 dark:border-sakura-900/40 bg-sakura-50/50 dark:bg-sakura-950/30">
+            <code className="inline-flex items-center font-sans text-xs font-medium px-2.5 py-0.5 rounded-md text-sakura-800 dark:text-sakura-200 border border-sakura-200/60 dark:border-sakura-900/40 bg-sakura-50/50 dark:bg-sakura-950/30">
               {skillsPills}
             </code>
             <span className="inline-block w-[2px] h-3 bg-sakura-500/80 dark:bg-sakura-400/80 rounded-full animate-[blink_1.2s_linear_infinite]" />

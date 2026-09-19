@@ -202,7 +202,7 @@ const FriendCard: React.FC<{ friend: FriendItem }> = ({ friend }) => {
       {/* 右侧主体 */}
       <div className="flex-1 min-w-0 flex flex-col justify-between space-y-1">
         <div className="flex items-center justify-between gap-2">
-          <h3 className="font-sans text-xs sm:text-[13px] font-semibold text-slate-900 dark:text-slate-100 group-hover:text-slate-950 dark:group-hover:text-white transition-colors truncate">
+          <h3 className="font-sans text-xs sm:text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-slate-950 dark:group-hover:text-white transition-colors truncate">
             {friend.name}
           </h3>
 

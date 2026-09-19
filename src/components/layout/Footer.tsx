@@ -169,7 +169,7 @@ export const Footer: React.FC = () => {
                 >
                   Light
                 </button>
-                <span className="text-slate-300 dark:text-slate-700 text-[9px]">&bull;</span>
+                <span className="text-slate-300 dark:text-slate-700 text-[10px]">&bull;</span>
                 <button
                   type="button"
                   onClick={() => setTheme('system')}
@@ -181,7 +181,7 @@ export const Footer: React.FC = () => {
                 >
                   System
                 </button>
-                <span className="text-slate-300 dark:text-slate-700 text-[9px]">&bull;</span>
+                <span className="text-slate-300 dark:text-slate-700 text-[10px]">&bull;</span>
                 <button
                   type="button"
                   onClick={() => setTheme('dark')}

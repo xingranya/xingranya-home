@@ -32,7 +32,7 @@
   --admin-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
   --admin-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
   --admin-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
-  --admin-shadow-glow: 0 0 20px -3px rgba(2, 132, 199, 0.15);
+  --admin-shadow-glow: 0 0 20px -3px rgba(224, 86, 118, 0.15);
 }
 
 .admin-dark,
@@ -151,7 +151,7 @@
 .admin-brand-icon {
   width: 36px;
   height: 36px;
-  border-radius: 9px;
+  border-radius: 8px;
   background: linear-gradient(135deg, var(--admin-accent), #ffc0cb);
   color: #ffffff;
   display: flex;
@@ -171,7 +171,7 @@
 }
 
 .admin-brand-text strong {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--admin-text-main);
   letter-spacing: -0.01em;
@@ -240,7 +240,7 @@
 .admin-nav-item.active {
   color: var(--admin-accent);
   background-color: var(--admin-accent-soft);
-  border-color: rgba(2, 132, 199, 0.15);
+  border-color: rgba(224, 86, 118, 0.15);
   font-weight: 600;
 }
 
@@ -303,7 +303,7 @@
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  font-size: 0.84rem;
+  font-size: 0.875rem;
   color: var(--admin-text-muted);
 }
 
@@ -327,7 +327,7 @@
   background-color: var(--admin-surface-subtle);
   border: 1px solid var(--admin-border);
   color: var(--admin-text-muted);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   cursor: pointer;
   transition: all 0.15s ease;
 }
@@ -423,7 +423,7 @@
 
 .admin-card-header h2,
 .admin-card-header h3 {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--admin-text-main);
   margin: 0;
@@ -470,7 +470,7 @@
 .admin-stat-icon-wrap {
   width: 40px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -487,12 +487,12 @@
   color: var(--admin-warning);
 }
 .admin-stat-icon-wrap.violet {
-  background-color: rgba(124, 58, 237, 0.1);
-  color: #8b5cf6;
+  background-color: var(--admin-accent-soft);
+  color: var(--admin-accent);
 }
 
 .admin-stat-val {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--admin-text-main);
   line-height: 1.1;
@@ -500,7 +500,7 @@
 }
 
 .admin-stat-label {
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   color: var(--admin-text-muted);
   margin-top: 0.3rem;
 }
@@ -513,7 +513,7 @@
   gap: 0.45rem;
   padding: 0.5rem 0.95rem;
   border-radius: 8px;
-  font-size: 0.84rem;
+  font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -570,7 +570,7 @@
 }
 
 .admin-label {
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--admin-text-main);
 }
@@ -606,7 +606,7 @@
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: 0.84rem;
+  font-size: 0.875rem;
 }
 
 .admin-table th {
@@ -680,7 +680,7 @@
   max-width: 580px;
   background-color: var(--admin-surface);
   border: 1px solid var(--admin-border);
-  border-radius: 14px;
+  border-radius: 12px;
   box-shadow: var(--admin-shadow-lg);
   overflow: hidden;
   animation: adminZoomIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -717,7 +717,7 @@
   background-color: var(--admin-surface);
   color: var(--admin-text-main);
   border: 1px solid var(--admin-border);
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: var(--admin-shadow-lg);
   font-size: 0.85rem;
   animation: adminSlideUp 0.2s ease;
@@ -791,7 +791,7 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 0.75rem 1.25rem;
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--admin-surface-subtle);
   border: 1px solid var(--admin-border);
   margin-bottom: 1rem;
@@ -822,7 +822,7 @@
   overflow-y: auto;
   background: var(--admin-surface);
   border: 1px solid var(--admin-border);
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: var(--admin-shadow-lg);
   padding: 0.75rem;
   z-index: 30;

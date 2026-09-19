@@ -117,7 +117,7 @@ export const Sitemap: React.FC = () => {
                     href={`/diaries/${diary.slug}`}
                     className="group flex items-baseline justify-between py-1.5 px-2 -mx-2 rounded-xs hover:bg-slate-100/60 dark:hover:bg-slate-800/40 transition-colors"
                   >
-                    <span className="font-serif text-xs sm:text-[13px] text-slate-800 dark:text-slate-200 group-hover:text-sakura-600 dark:group-hover:text-sakura-400 transition-colors truncate pr-3 group-hover:underline underline-offset-2">
+                    <span className="font-serif text-xs sm:text-sm text-slate-800 dark:text-slate-200 group-hover:text-sakura-600 dark:group-hover:text-sakura-400 transition-colors truncate pr-3 group-hover:underline underline-offset-2">
                       {diary.title}
                     </span>
                     <span className="font-mono text-[10.5px] text-slate-400 dark:text-slate-500 shrink-0">
