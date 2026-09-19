@@ -1,20 +1,96 @@
 import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
 
+const siteUrl = 'https://xran.uk';
+const siteTitle = '星苒鸭';
+const siteDescription = '星苒鸭的个人主页。计算机科学与技术本科生，全栈开发爱好者。技术长文在 blog.xran.uk。';
+const socialImage = `${siteUrl}/avatar.jpg`;
+
 export default defineConfig({
   plugins: [pluginReact()],
   html: {
-    title: '星苒鸭',
+    template: './index.html',
+    title: siteTitle,
     meta: {
-      description: '星苒鸭的个人主页。计算机科学与技术本科生，全栈开发爱好者。技术长文在 blog.xran.uk。',
+      description: siteDescription,
       viewport: 'width=device-width, initial-scale=1.0',
-      'og:image': 'https://xran.uk/avatar.jpg',
-      'og:type': 'website',
-      'twitter:image': 'https://xran.uk/avatar.jpg',
+      robots: 'index,follow',
       'twitter:card': 'summary_large_image',
+      'twitter:title': siteTitle,
+      'twitter:description': siteDescription,
+      'twitter:image': socialImage,
     },
     favicon: './public/favicon.svg',
     tags: [
+      {
+        tag: 'meta',
+        attrs: {
+          property: 'og:title',
+          content: siteTitle,
+        },
+      },
+      {
+        tag: 'meta',
+        attrs: {
+          property: 'og:description',
+          content: siteDescription,
+        },
+      },
+      {
+        tag: 'meta',
+        attrs: {
+          property: 'og:type',
+          content: 'website',
+        },
+      },
+      {
+        tag: 'meta',
+        attrs: {
+          property: 'og:url',
+          content: `${siteUrl}/`,
+        },
+      },
+      {
+        tag: 'meta',
+        attrs: {
+          property: 'og:image',
+          content: socialImage,
+        },
+      },
+      {
+        tag: 'script',
+        attrs: {
+          type: 'application/ld+json',
+        },
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'WebSite',
+              '@id': `${siteUrl}/#website`,
+              url: `${siteUrl}/`,
+              name: siteTitle,
+              description: siteDescription,
+              inLanguage: 'zh-CN',
+              publisher: { '@id': `${siteUrl}/#person` },
+            },
+            {
+              '@type': 'Person',
+              '@id': `${siteUrl}/#person`,
+              name: siteTitle,
+              url: `${siteUrl}/`,
+              image: socialImage,
+              sameAs: [
+                'https://blog.xran.uk/',
+                'https://github.com/xingranya',
+                'https://x.com/xingranya',
+                'https://t.me/xingranya',
+                'https://space.bilibili.com/357220647',
+              ],
+            },
+          ],
+        }),
+      },
       {
         tag: 'link',
         attrs: {
@@ -67,8 +143,16 @@ export default defineConfig({
         tag: 'link',
         attrs: {
           rel: 'stylesheet',
-          href: 'https://cdn.jsdelivr.net/npm/misans-webfont/misans-style.css',
-          // 非阻塞加载，避免字体 CSS 卡住首屏
+          href: 'https://cdn.jsdelivr.net/npm/misans-webfont/misans/misans-regular/result.css',
+          media: 'print',
+          onload: "this.media='all'",
+        },
+      },
+      {
+        tag: 'link',
+        attrs: {
+          rel: 'stylesheet',
+          href: 'https://cdn.jsdelivr.net/npm/misans-webfont/misans/misans-bold/result.css',
           media: 'print',
           onload: "this.media='all'",
         },
@@ -76,7 +160,7 @@ export default defineConfig({
       {
         tag: 'noscript',
         children:
-          '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont/misans-style.css">',
+          '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont/misans/misans-regular/result.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont/misans/misans-bold/result.css">',
         append: true,
       },
       {
