@@ -171,14 +171,12 @@ export const App: React.FC = () => {
   // 前台博客浏览体系
   return (
     <div
-      className={`min-h-screen flex flex-col relative selection:bg-sakura-200 selection:text-sakura-900 dark:selection:bg-sakura-900/60 dark:selection:text-sakura-100 transition-colors duration-300 ${
-        location === '/' ? 'lg:h-screen lg:overflow-hidden' : ''
-      }`}
+      className="min-h-screen flex flex-col relative selection:bg-sakura-200 selection:text-sakura-900 dark:selection:bg-sakura-900/60 dark:selection:text-sakura-100 transition-colors duration-300"
       onClick={handleGlobalClick}
     >
       <AmbientBackground />
       <Header />
-      <div className={`flex-1 flex flex-col min-h-0 ${location === '/' ? 'justify-center overflow-hidden' : ''}`}>
+      <div className="flex-1 flex flex-col min-h-0">
         <Suspense fallback={<RouteFallback />}>
           <Switch>
             <Route path="/" component={Home} />

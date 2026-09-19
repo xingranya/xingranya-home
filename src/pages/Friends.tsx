@@ -99,10 +99,10 @@ export const Friends: React.FC = () => {
             <FriendCard key={friend.id} friend={friend} />
           ))}
           {filteredFriends.length === 0 && (
-            <div className="col-span-full py-12 text-center text-xs font-mono text-slate-400">
+            <div className="col-span-full py-12 text-center text-sm font-sans text-slate-600 dark:text-slate-300">
               {query.trim()
                 ? `未找到匹配 “${query}” 的友链`
-                : '还没有友链。欢迎先加上本站，再通过下面的方式联系交换。'}
+                : '还没有友链。功能还在，名单空着。欢迎先加上本站，再通过下面的方式联系交换。'}
             </div>
           )}
         </div>

@@ -52,6 +52,8 @@ export interface SocialLink {
   icon: 'github' | 'bilibili' | 'x' | 'email' | 'weibo' | 'juejin' | 'zhihu' | 'telegram' | 'discord' | 'weixin' | 'qq' | 'custom' | string;
   url: string;
   qr?: string;
+  /** 首页主路径展示；未标的收入「更多」 */
+  featured?: boolean;
 }
 
 export interface NavLinkItem {

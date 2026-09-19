@@ -29,12 +29,14 @@
       {
         "name": "GitHub",
         "icon": "github",
-        "url": "https://github.com/xingranya"
+        "url": "https://github.com/xingranya",
+        "featured": true
       },
       {
         "name": "博客",
         "icon": "custom",
-        "url": "https://blog.xran.uk"
+        "url": "https://blog.xran.uk",
+        "featured": true
       },
       {
         "name": "Bilibili",
@@ -52,9 +54,10 @@
         "url": "https://t.me/xingranya"
       },
       {
-        "name": "Email",
+        "name": "邮件",
         "icon": "email",
-        "url": "mailto:xingranya@outlook.jp"
+        "url": "mailto:xingranya@outlook.jp",
+        "featured": true
       },
       {
         "name": "Gmail",
@@ -65,7 +68,8 @@
         "name": "微信",
         "icon": "weixin",
         "url": "",
-        "qr": "https://img1.tucang.cc/api/image/show/ebac24fbd517f059a86979b42b48a571"
+        "qr": "https://img1.tucang.cc/api/image/show/ebac24fbd517f059a86979b42b48a571",
+        "featured": true
       },
       {
         "name": "QQ",
@@ -191,17 +195,17 @@
     "navLinks": [
       { "id": "nav-home", "label": "首页", "href": "/", "icon": "HomeIcon", "enabled": true },
       { "id": "nav-blog", "label": "博客", "href": "https://blog.xran.uk", "icon": "FileText", "enabled": true, "isExternal": true },
-      { "id": "nav-archives", "label": "归档", "href": "/archives", "icon": "History", "enabled": true },
-      { "id": "nav-diaries", "label": "手记", "href": "/diaries", "icon": "Feather", "enabled": true },
-      { "id": "nav-says", "label": "动态", "href": "/says", "icon": "MessageSquareQuote", "enabled": true },
-      { "id": "nav-friends", "label": "朋友", "href": "/friends", "icon": "Users", "enabled": true },
+      { "id": "nav-archives", "label": "归档", "href": "/archives", "icon": "History", "enabled": false },
+      { "id": "nav-diaries", "label": "手记", "href": "/diaries", "icon": "Feather", "enabled": false },
+      { "id": "nav-says", "label": "动态", "href": "/says", "icon": "MessageSquareQuote", "enabled": false },
+      { "id": "nav-friends", "label": "朋友", "href": "/friends", "icon": "Users", "enabled": false },
       { "id": "nav-about", "label": "关于", "href": "/about", "icon": "User", "enabled": true }
     ],
-    "enableMegaMenu": true,
+    "enableMegaMenu": false,
     "enableSearch": true
   },
   "footer": {
-    "motto": "The only way to do great work is to love what you do.",
+    "motto": "把复杂问题拆简单，把简单方案做扎实。",
     "copyright": "© 2026 星苒鸭. All Rights Reserved.",
     "sinceYear": 2022,
     "sinceDate": "2022-12-27",
@@ -220,7 +224,7 @@
       {
         "title": "更多",
         "links": [
-          { "label": "动态手记", "href": "/diaries" },
+          { "label": "手记", "href": "/diaries" },
           { "label": "全站归档", "href": "/archives" },
           { "label": "志同道合", "href": "/friends" }
         ]

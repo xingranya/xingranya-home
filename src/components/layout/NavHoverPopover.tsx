@@ -203,6 +203,11 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
                     <span>手记随笔 &bull; 最新灵感</span>
                     <span>{allDiaries.length} 则</span>
                   </div>
+                  {allDiaries.length === 0 ? (
+                    <p className="px-1 py-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      还没有手记。入口仍在页脚。
+                    </p>
+                  ) : (
                   <div className="grid grid-cols-2 gap-2.5">
                     {allDiaries.slice(0, 4).map((diary) => (
                       <Link
@@ -230,13 +235,14 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
                       </Link>
                     ))}
                   </div>
+                  )}
                 </div>
 
                 <div className="px-4 py-2.5 bg-slate-50/80 dark:bg-slate-900/80 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between text-xs">
                   <Link
                     href="/diaries"
                     onClick={onItemClick}
-                    className="group hover:text-slate-900 dark:hover:text-slate-100 transition-colors inline-flex items-center space-x-1 font-medium"
+                    className="group hover:text-slate-900 dark:hover:text-slate-100 transition-colors inline-flex items-center space-x-1 font-medium min-h-11"
                   >
                     <span>查看全部手记</span>
                     <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -304,6 +310,11 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
                     <span>志同道合 &bull; 朋友们</span>
                     <span>{allFriends.length} 位好友</span>
                   </div>
+                  {allFriends.length === 0 ? (
+                    <p className="px-1 py-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      还没有友链。功能还在，名单空着。想交换可以从友链页联系。
+                    </p>
+                  ) : (
                   <div className="grid grid-cols-2 gap-2.5">
                     {allFriends.slice(0, 4).map((friend) => (
                       <a
@@ -336,15 +347,16 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
                       </a>
                     ))}
                   </div>
+                  )}
                 </div>
 
                 <div className="px-4 py-2.5 bg-slate-50/80 dark:bg-slate-900/80 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between text-xs">
                   <Link
                     href="/friends"
                     onClick={onItemClick}
-                    className="group hover:text-slate-900 dark:hover:text-slate-100 transition-colors inline-flex items-center space-x-1 font-medium"
+                    className="group hover:text-slate-900 dark:hover:text-slate-100 transition-colors inline-flex items-center space-x-1 font-medium min-h-11"
                   >
-                    <span>前往友链大厅</span>
+                    <span>打开友链页</span>
                     <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </Link>
                   <span className="text-slate-400 dark:text-slate-500 text-[11px] font-mono">

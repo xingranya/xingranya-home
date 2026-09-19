@@ -16,7 +16,7 @@ const DEFAULT_NAV_COLUMNS = [
   {
     title: '更多',
     links: [
-      { label: '动态手记', href: '/diaries' },
+      { label: '手记', href: '/diaries' },
       { label: '全站归档', href: '/archives' },
       { label: '志同道合', href: '/friends' },
     ],
@@ -35,7 +35,7 @@ export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   const footer = siteConfig.footer;
   const sinceYear = footer?.sinceYear || 2024;
-  const motto = footer?.motto || 'Stay hungry. Stay foolish.';
+  const motto = footer?.motto || '把复杂问题拆简单，把简单方案做扎实。';
   const navColumns = footer?.navColumns && footer.navColumns.length > 0 ? footer.navColumns : DEFAULT_NAV_COLUMNS;
   const showThemeToggle = footer?.showThemeToggle ?? true;
   const showRss = footer?.showRss ?? true;

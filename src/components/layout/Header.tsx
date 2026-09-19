@@ -34,10 +34,10 @@ const ICON_MAP: Record<string, React.FC<{ className?: string }>> = {
 const DEFAULT_NAV_LINKS: NavLinkItem[] = [
   { id: 'nav-home', href: '/', label: '首页', icon: 'HomeIcon', enabled: true },
   { id: 'nav-blog', href: 'https://blog.xran.uk', label: '博客', icon: 'FileText', enabled: true, isExternal: true },
-  { id: 'nav-archives', href: '/archives', label: '归档', icon: 'History', enabled: true },
-  { id: 'nav-diaries', href: '/diaries', label: '手记', icon: 'Feather', enabled: true },
-  { id: 'nav-says', href: '/says', label: '动态', icon: 'MessageSquareQuote', enabled: true },
-  { id: 'nav-friends', href: '/friends', label: '朋友', icon: 'Users', enabled: true },
+  { id: 'nav-archives', href: '/archives', label: '归档', icon: 'History', enabled: false },
+  { id: 'nav-diaries', href: '/diaries', label: '手记', icon: 'Feather', enabled: false },
+  { id: 'nav-says', href: '/says', label: '动态', icon: 'MessageSquareQuote', enabled: false },
+  { id: 'nav-friends', href: '/friends', label: '朋友', icon: 'Users', enabled: false },
   { id: 'nav-about', href: '/about', label: '关于', icon: 'User', enabled: true },
 ];
 
@@ -188,7 +188,7 @@ export const Header: React.FC = () => {
           >
               <nav
                 ref={navRef}
-                className="flex items-center p-1 rounded bg-white/75 dark:bg-slate-900/75 backdrop-blur-md border border-slate-200/75 dark:border-slate-800/75 shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] gap-0.5 text-xs max-w-full overflow-x-auto"
+                className="flex items-center p-1 rounded bg-white/75 dark:bg-slate-900/75 backdrop-blur-md border border-slate-200/75 dark:border-slate-800/75 shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] gap-0.5 text-sm max-w-full overflow-x-auto"
               >
                 {navLinks.map((link) => {
                   const isExt = link.isExternal || link.href.startsWith('http');
@@ -202,7 +202,7 @@ export const Header: React.FC = () => {
                         href={link.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="relative px-2.5 py-1 rounded-sm transition-colors duration-150 select-none flex items-center justify-center gap-1.5 shrink-0 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/60 dark:hover:bg-slate-800/50"
+                        className="relative min-h-11 px-3.5 rounded-sm transition-colors duration-150 select-none flex items-center justify-center gap-1.5 shrink-0 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/60 dark:hover:bg-slate-800/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400"
                       >
                         <span className="leading-none translate-y-[0.5px]">{link.label}</span>
                         <ArrowUpRight className="w-3 h-3 opacity-60 ml-[-2px]" />
@@ -216,10 +216,10 @@ export const Header: React.FC = () => {
                       href={link.href}
                       onMouseEnter={(e) => handleNavMouseEnter(link.href, e)}
                       onClick={handleItemClick}
-                      className={`relative px-2.5 py-1 rounded-sm transition-colors duration-150 select-none flex items-center justify-center gap-1.5 shrink-0 ${
+                      className={`relative min-h-11 px-3.5 rounded-sm transition-colors duration-150 select-none flex items-center justify-center gap-1.5 shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400 ${
                         active
                           ? 'text-slate-950 dark:text-slate-50 font-medium'
-                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/60 dark:hover:bg-slate-800/50'
+                          : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/60 dark:hover:bg-slate-800/50'
                       }`}
                     >
                       {/* 静态的选中项小矩形卡片 */}
