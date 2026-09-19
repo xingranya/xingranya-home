@@ -1,0 +1,205 @@
+{
+  "title": "chent",
+  "subtitle": "",
+  "description": "Chent 的个人网站，记录随笔、日记、项目与生活，分享个人的思考、经历与正在做的事情，也保存那些值得留下来的时刻。",
+  "url": "https://chent.co",
+  "favicon": "/favicon.ico",
+  "keywords": [
+    "全栈开发",
+    "云原生",
+    "Go",
+    "Rust",
+    "React 19",
+    "系统架构",
+    "知识库"
+  ],
+  "analytics": {
+    "gtmId": "GTM-TL7V3JC5",
+    "gaId": "G-73FXC49GB4",
+    "clarityId": "ybjuygdar5"
+  },
+  "author": {
+    "name": "kerntau",
+    "avatar": "/avatar.jpg",
+    "description": "全栈工程师与开源爱好者",
+    "email": "hi@chent.co",
+    "github": "https://github.com/kerntau",
+    "location": "浙江 · 宁波",
+    "statusBadge": "专注全栈系统架构中",
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "github",
+        "url": "https://github.com/kerntau"
+      },
+      {
+        "name": "Bilibili",
+        "icon": "bilibili",
+        "url": "https://space.bilibili.com/9655855"
+      },
+      {
+        "name": "X (Twitter)",
+        "icon": "x",
+        "url": "https://x.com/Kerntao"
+      },
+      {
+        "name": "Email",
+        "icon": "email",
+        "url": "mailto:hi@chent.co"
+      }
+    ]
+  },
+  "announcement": {
+    "enabled": true,
+    "badge": "建站公告",
+    "content": "本站目前处于上线试运行与架构验证阶段，当前展示的部分文稿主要用于排版演示，后续将全部替换为原创深度技术内容。",
+    "linkText": "动态",
+    "linkUrl": "/says"
+  },
+  "home": {
+    "hero": {
+      "greeting": "Hi, I'm",
+      "highlightRole": "Cloud Native & Systems",
+      "skillsPills": "Go • Rust • React 19 • K8s",
+      "quote": "心中有景，花香满径",
+      "showMetrics": true,
+      "showSocials": true,
+      "onlineStatus": "online"
+    },
+    "sections": {
+      "postsLimit": 6,
+      "postsTitle": "最新文章",
+      "diariesLimit": 4,
+      "diariesTitle": "近期手记",
+      "saysLimit": 3,
+      "saysTitle": "即时动态"
+    }
+  },
+  "about": {
+    "identityTitle": "IDENTITY • 关于作者",
+    "quote": "",
+    "techStackTitle": "工程与全栈技术栈",
+    "techStackDesc": "在工程实践与系统构建中常用的工具与技术链条：",
+    "techCategories": [
+      {
+        "category": "后端与系统",
+        "items": [
+          { "name": "Go", "icon": "go", "desc": "高并发微服务与中间件" },
+          { "name": "Rust", "icon": "rust", "desc": "高性能系统与内存安全" },
+          { "name": "Python", "icon": "python", "desc": "脚本自动化与数据流" },
+          { "name": "Node.js", "icon": "nodejs", "desc": "服务端工程化与构建" },
+          { "name": "Spring Boot", "icon": "springboot", "desc": "企业级企业架构" }
+        ]
+      },
+      {
+        "category": "前端与渲染",
+        "items": [
+          { "name": "React 19", "icon": "react", "desc": "新一代响应式组件架构" },
+          { "name": "TypeScript", "icon": "typescript", "desc": "类型安全与工程化" },
+          { "name": "Rsbuild", "icon": "rsbuild", "desc": "极速 Rspack 打包体系" },
+          { "name": "Tailwind CSS", "icon": "tailwind", "desc": "原子化现代设计系统" }
+        ]
+      },
+      {
+        "category": "数据与中间件",
+        "items": [
+          { "name": "PostgreSQL", "icon": "postgres", "desc": "核心关系型事务数据存储" },
+          { "name": "ClickHouse", "icon": "clickhouse", "desc": "海量日志与 OLAP 分析" },
+          { "name": "Redis", "icon": "redis", "desc": "分布式缓存与会话" },
+          { "name": "Kafka", "icon": "kafka", "desc": "高吞吐异步事件消息流" },
+          { "name": "MySQL", "icon": "mysql", "desc": "业务数据库系统" }
+        ]
+      },
+      {
+        "category": "云原生与运维",
+        "items": [
+          { "name": "Docker", "icon": "docker", "desc": "轻量级容器封装" },
+          { "name": "Kubernetes", "icon": "kubernetes", "desc": "云原生容器编排集群" },
+          { "name": "Linux", "icon": "linux", "desc": "生产系统运行环境" },
+          { "name": "Nginx", "icon": "nginx", "desc": "高性能反向代理网关" },
+          { "name": "CI/CD", "icon": "cicd", "desc": "自动化构建与持续部署流水线" }
+        ]
+      }
+    ],
+    "designTitle": "关于本站与设计理念",
+    "designPhilosophy": "本博客旨在打造具有纸质温度与现代极速性能的个人数字空间，摒弃过度装饰，让每一行技术文字如同落于宣纸之上自然呼吸。"
+  },
+  "postsPage": {
+    "title": "深度文稿",
+    "subtitle": "探索技术本质，记录思考与实践的轨迹。"
+  },
+  "diariesPage": {
+    "title": "散落的日常与手记",
+    "subtitle": "捕捉那些代码之外的日暮微风、深夜随笔与生活切片。"
+  },
+  "saysPage": {
+    "title": "我的动态",
+    "subtitle": "把灵感、日常与正在发生的事情，留在时间线上。",
+    "pageSize": 6
+  },
+  "archivesPage": {
+    "title": "时光归档",
+    "subtitle": "全站随笔与手记的时间脉络与足迹索引。"
+  },
+  "friendsPage": {
+    "title": "志同道合的朋友",
+    "subtitle": "山海相逢，灵感共振。",
+    "guideTitle": "交换友链",
+    "guideText": "如果您也拥有自己的个人独立博客，欢迎在您的站点添加本站后通过邮件（hi@chent.co）联系交换。",
+    "template": {
+      "name": "chent",
+      "desc": "Chent 的个人网站，记录随笔、日记、项目与生活，分享个人的思考、经历与正在做的事情，也保存那些值得留下来的时刻。",
+      "url": "https://chent.co",
+      "avatar": "/avatar.jpg"
+    }
+  },
+  "header": {
+    "navLinks": [
+      { "id": "nav-home", "label": "首页", "href": "/", "icon": "HomeIcon", "enabled": true },
+      { "id": "nav-archives", "label": "归档", "href": "/archives", "icon": "History", "enabled": true },
+      { "id": "nav-diaries", "label": "手记", "href": "/diaries", "icon": "Feather", "enabled": true },
+      { "id": "nav-says", "label": "动态", "href": "/says", "icon": "MessageSquareQuote", "enabled": true },
+      { "id": "nav-friends", "label": "朋友", "href": "/friends", "icon": "Users", "enabled": true }
+    ],
+    "enableMegaMenu": true,
+    "enableSearch": true
+  },
+  "footer": {
+    "motto": "Stay hungry. Stay foolish.",
+    "copyright": "© 2026 kerntau. All Rights Reserved.",
+    "sinceYear": 2025,
+    "sinceDate": "2025-11-10",
+    "customText": "心中有景，花香满径",
+    "icp": "萌ICP备20268811号",
+    "icpUrl": "https://icp.gov.moe/?keyword=20268811",
+    "navColumns": [
+      {
+        "title": "关于",
+        "links": [
+          { "label": "关于此项目", "href": "https://github.com/kerntau/chent", "isExternal": true },
+          { "label": "知识库", "href": "https://wiki.chent.co", "isExternal": true },
+          { "label": "简历", "href": "https://cv.chent.co", "isExternal": true }
+        ]
+      },
+      {
+        "title": "更多",
+        "links": [
+          { "label": "动态手记", "href": "/diaries" },
+          { "label": "全站归档", "href": "/archives" },
+          { "label": "志同道合", "href": "/friends" }
+        ]
+      },
+      {
+        "title": "联系",
+        "links": [
+          { "label": "发邮件", "href": "mailto:hi@chent.co", "isExternal": true },
+          { "label": "GitHub", "href": "https://github.com/kerntau", "isExternal": true },
+          { "label": "日常说说", "href": "/says" }
+        ]
+      }
+    ],
+    "showThemeToggle": true,
+    "showRss": true,
+    "showSitemap": true
+  }
+}

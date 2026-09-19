@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" style="background:#1A0B05;">
+  <defs>
+    <!-- 背景流光与径向渐变 -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A0B05" />
+      <stop offset="60%" stop-color="#2D1409" />
+      <stop offset="100%" stop-color="#1A0B05" />
+    </linearGradient>
+
+    <radialGradient id="glowRadial" cx="75%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F97316" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#FBBF24" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#F97316" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="cornerGlow" cx="15%" cy="20%" r="40%">
+      <stop offset="0%" stop-color="#FBBF24" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#FBBF24" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- 粒子光晕滤镜 -->
+    <filter id="glowFilter" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- 32px 科技网格纹理图案 -->
+    <pattern id="techGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.035)" stroke-width="1"/>
+      <circle cx="40" cy="0" r="1.5" fill="rgba(255, 255, 255, 0.08)"/>
+    </pattern>
+  </defs>
+
+  <!-- 1. 背景层 -->
+  <rect width="1600" height="900" fill="url(#bgGrad)"/>
+  <rect width="1600" height="900" fill="url(#techGrid)"/>
+  <rect width="1600" height="900" fill="url(#glowRadial)"/>
+  <rect width="1600" height="900" fill="url(#cornerGlow)"/>
+
+  <!-- 2. 精致极简边框与刻度装饰 -->
+  <rect x="50" y="50" width="1500" height="800" rx="16" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5"/>
+  <rect x="65" y="65" width="1470" height="770" rx="10" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1" stroke-dasharray="8 8"/>
+
+  <!-- 四角标尺十字线 -->
+  <g stroke="#F97316" stroke-width="2" opacity="0.65">
+    <path d="M 40 60 L 60 60 M 60 40 L 60 60" />
+    <path d="M 1560 60 L 1540 60 M 1540 40 L 1540 60" />
+    <path d="M 40 840 L 60 840 M 60 860 L 60 840" />
+    <path d="M 1560 840 L 1540 840 M 1540 860 L 1540 840" />
+  </g>
+
+  <!-- 3. 右侧核心科技矢量艺术插画 -->
+  
+        <g transform="translate(1180, 450)">
+          <!-- Rust 科技齿轮与晶格 -->
+          <circle r="180" fill="none" stroke="#F97316" stroke-width="3" opacity="0.75"/>
+          <circle r="130" fill="none" stroke="#FBBF24" stroke-width="1.5" stroke-dasharray="6 6" opacity="0.6"/>
+          
+            <rect x="-18" y="-210" width="36" height="40" rx="6" fill="#F97316" opacity="0.85" transform="rotate(0)" />
+          
+            <rect x="-18" y="-210" width="36" height="40" rx="6" fill="#F97316" opacity="0.85" transform="rotate(45)" />
+          
+            <rect x="-18" y="-210" width="36" height="40" rx="6" fill="#F97316" opacity="0.85" transform="rotate(90)" />
+          
+            <rect x="-18" y="-210" width="36" height="40" rx="6" fill="#F97316" opacity="0.85" transform="rotate(135)" />
+          
+            <rect x="-18" y="-210" width="36" height="40" rx="6" fill="#F97316" opacity="0.85" transform="rotate(180)" />
+          
+            <rect x="-18" y="-210" width="36" height="40" rx="6" fill="#F97316" opacity="0.85" transform="rotate(225)" />
+          
+            <rect x="-18" y="-210" width="36" height="40" rx="6" fill="#F97316" opacity="0.85" transform="rotate(270)" />
+          
+            <rect x="-18" y="-210" width="36" height="40" rx="6" fill="#F97316" opacity="0.85" transform="rotate(315)" />
+          
+          <polygon points="0,-90 78,-45 78,45 0,90 -78,45 -78,-45" fill="none" stroke="#FBBF24" stroke-width="3"/>
+          <circle r="28" fill="#F97316" opacity="0.9" filter="url(#glowFilter)"/>
+        </g>
+      
+
+  <!-- 4. 左侧文章出版级信息与标题排版 -->
+  <g transform="translate(120, 150)">
+    <!-- 顶部徽章胶囊与分类 -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="220" height="38" rx="6" fill="#F97316" fill-opacity="0.15" stroke="#F97316" stroke-width="1.5" stroke-opacity="0.7"/>
+      <circle cx="20" cy="19" r="4.5" fill="#F97316"/>
+      <text x="36" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#F97316" letter-spacing="1.5">SYSTEM PROGRAMMING</text>
+    </g>
+
+    <text x="240" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="rgba(255,255,255,0.45)" letter-spacing="2">CHENT.CO ARCHITECTURE SERIES</text>
+
+    <!-- 中文主标题 -->
+    <g transform="translate(0, 160)">
+      
+        <text x="0" y="0" font-family="'MiSans', 'PingFang SC', -apple-system, sans-serif" font-size="54" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">WebAssembly</text>
+        <text x="0" y="76" font-family="'MiSans', 'PingFang SC', -apple-system, sans-serif" font-size="54" font-weight="800" fill="#F1F5F9" letter-spacing="-0.5">+ Rust 高性能图形渲染</text>
+      
+    </g>
+
+    <!-- 装饰分隔标尺 -->
+    <g transform="translate(0, 360)">
+      <line x1="0" y1="0" x2="160" y2="0" stroke="#F97316" stroke-width="3" opacity="0.9"/>
+      <line x1="170" y1="0" x2="680" y2="0" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+    </g>
+
+    <!-- 标签与技术栈标记 -->
+    <g transform="translate(0, 420)">
+      <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="600" fill="#FBBF24" opacity="0.95" letter-spacing="1">TAGS: WebAssembly  ·  Rust  ·  图形学</text>
+      <text x="0" y="36" font-family="monospace" font-size="14" fill="rgba(255,255,255,0.4)" letter-spacing="1.2">SYSTEM / ARCHITECTURE / CLOUD-NATIVE / ENGINEERING</text>
+    </g>
+
+    <!-- 底部品牌与作者水印 -->
+    <g transform="translate(0, 540)">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#F97316" stroke-width="2"/>
+      <circle cx="12" cy="12" r="4" fill="#F97316"/>
+      <text x="32" y="16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="2">CHENT.CO</text>
+      <text x="140" y="16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="400" fill="rgba(255,255,255,0.4)">· 序栈 深度工程技术文稿</text>
+    </g>
+  </g>
+</svg>
