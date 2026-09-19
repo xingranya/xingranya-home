@@ -29,15 +29,17 @@
     font-family: 'MiSans', 'MiSans Normal', 'MiSans-Normal', 'MiSans VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
-  /* 彻底消除任何元素在激活或聚焦时的浏览器原生黑边/黑框 */
-  *, *:focus, *:focus-visible, *:active {
-    outline: none !important;
-    -webkit-tap-highlight-color: transparent !important;
+  :focus {
+    outline: none;
   }
 
-  input, textarea, select, button, a {
-    outline: none !important;
-    -webkit-tap-highlight-color: transparent;
+  :focus-visible {
+    outline: 2px solid #ff8fa6;
+    outline-offset: 2px;
+  }
+
+  .dark :focus-visible {
+    outline-color: #ffc0cb;
   }
 
   /* 彻底屏蔽 Mermaid 任何全局错误炸弹 SVG 节点泄露 */
