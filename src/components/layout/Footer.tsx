@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'wouter';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Network } from 'lucide-react';
 import { useTheme } from '../../hooks/useTheme';
 import { siteConfig } from '../../content';
 
@@ -207,7 +207,25 @@ export const Footer: React.FC = () => {
             {footer?.customText && (
               <span>{footer.customText}</span>
             )}
-            {footer?.customText && footer?.icp && (
+            {footer?.customText && (
+              <span className="text-slate-300 dark:text-slate-700">&bull;</span>
+            )}
+            <a
+              href="https://ipv6test.wcode.net/?q=xran.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              referrerPolicy="no-referrer"
+              aria-label="查看 xran.uk 的 IPv6 支持状态"
+              title="IPv6 已启用"
+              className="group inline-flex min-h-11 items-center"
+            >
+              <span className="inline-flex h-6 items-center gap-1.5 rounded-md border border-slate-200/80 bg-white/55 px-2 text-[10.5px] font-medium text-slate-600 transition-colors group-hover:border-sakura-300 group-hover:text-sakura-700 dark:border-slate-700/80 dark:bg-slate-900/55 dark:text-slate-300 dark:group-hover:border-sakura-800 dark:group-hover:text-sakura-300">
+                <Network className="h-3.5 w-3.5" aria-hidden="true" />
+                <span>IPv6</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_0_2px_rgba(16,185,129,0.12)]" aria-hidden="true" />
+              </span>
+            </a>
+            {footer?.icp && (
               <span className="text-slate-300 dark:text-slate-700">&bull;</span>
             )}
             {footer?.icp && (
