@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'wouter';
 import { Megaphone, ChevronRight } from 'lucide-react';
 import { SocialLinks } from '../ui/SocialLinks';
+import { TechIcon } from '../ui/TechIcon';
 import { getAllDiaries, getSnapshotTime, siteConfig } from '../../content';
 
 const HeroText: React.FC<{
@@ -42,6 +43,7 @@ export const HomeHero: React.FC = () => {
   const greeting = hero?.greeting || "Hi, I'm";
   const highlightRole = hero?.highlightRole || 'full-stack things';
   const skillsPills = hero?.skillsPills || 'Java • Vue3 • Node.js • React';
+  const skills = skillsPills.split('•').map((skill) => skill.trim()).filter(Boolean);
   const quote = hero?.quote || siteConfig.subtitle;
   const showMetrics = hero?.showMetrics ?? true;
   const showSocials = hero?.showSocials ?? true;
@@ -114,8 +116,16 @@ export const HomeHero: React.FC = () => {
         {skillsPills && (
           <span className="home-hero-soft-reveal home-hero-skills mt-2 sm:mt-2.5 flex items-center justify-center gap-1.5 flex-wrap">
             <span className="font-light text-slate-600 dark:text-slate-300 text-sm">with</span>
-            <code className="inline-flex items-center font-sans text-xs font-medium tracking-normal px-2.5 py-0.5 rounded-md text-sakura-800 dark:text-sakura-200 border border-sakura-200/60 dark:border-sakura-900/40 bg-sakura-50/50 dark:bg-sakura-950/30">
-              {skillsPills}
+            <code className="inline-flex items-center gap-1 font-sans text-xs font-medium tracking-normal px-2.5 py-0.5 rounded-md text-sakura-800 dark:text-sakura-200 border border-sakura-200/60 dark:border-sakura-900/40 bg-sakura-50/50 dark:bg-sakura-950/30">
+              {skills.map((skill, index) => (
+                <React.Fragment key={skill}>
+                  {index > 0 && <span aria-hidden="true">&bull;</span>}
+                  <span className="inline-flex items-center gap-1">
+                    <TechIcon name={skill} className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                    <span>{skill}</span>
+                  </span>
+                </React.Fragment>
+              ))}
               <span className="home-skill-caret" aria-hidden="true" />
             </code>
           </span>

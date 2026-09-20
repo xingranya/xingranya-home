@@ -7,7 +7,6 @@ import {
   User,
   Sparkles,
   Cpu,
-  Terminal,
   MapPin,
   Mail,
   Award,
@@ -16,6 +15,7 @@ import {
   Star,
 } from 'lucide-react';
 import { SocialLinks } from '../components/ui/SocialLinks';
+import { TechIcon } from '../components/ui/TechIcon';
 
 function ProjectMeta({ project }: { project: AboutProject }) {
   return (
@@ -162,11 +162,15 @@ export const About: React.FC = () => {
                           key={item.name}
                           className="p-2.5 rounded-sm border border-slate-200/50 dark:border-slate-800/60 bg-slate-50/60 dark:bg-slate-850/50 space-y-1"
                         >
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <TechIcon
+                              name={item.icon || item.name}
+                              className="h-4 w-4 shrink-0"
+                              aria-hidden="true"
+                            />
                             <span className="font-mono text-xs font-semibold text-slate-800 dark:text-slate-200">
                               {item.name}
                             </span>
-                            <Terminal className="w-3 h-3 text-slate-400" />
                           </div>
                           {item.desc && (
                             <p className="text-[11px] text-slate-500 dark:text-slate-400 font-sans line-clamp-1 leading-normal">
