@@ -75,6 +75,15 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = 'h-4 w-4',
     );
   }
 
+  if (tech.includes('rsbuild') || tech.includes('rspack')) {
+    return (
+      <svg viewBox="0 0 24 24" className={className} fill="none" {...props}>
+        <path d="M12 2 22 20H2L12 2Z" fill="#F97316" fillOpacity=".18" stroke="#F97316" strokeWidth="1.7" strokeLinejoin="round" />
+        <path d="m12 7 4.2 9H7.8L12 7Z" fill="#F97316" />
+      </svg>
+    );
+  }
+
   if (tech.includes('javascript') || tech === 'js') {
     return (
       <svg viewBox="0 0 24 24" className={className} {...props}>

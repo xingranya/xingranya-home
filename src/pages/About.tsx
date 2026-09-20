@@ -156,19 +156,21 @@ export const About: React.FC = () => {
                       <span className="text-slate-400 font-normal">({catGroup.items.length})</span>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div className="grid grid-cols-1 items-stretch gap-2.5 sm:grid-cols-2">
                       {catGroup.items.map((item) => (
                         <div
                           key={item.name}
-                          className="p-2.5 rounded-sm border border-slate-200/50 dark:border-slate-800/60 bg-slate-50/60 dark:bg-slate-850/50 space-y-1"
+                          className="flex min-h-[4.25rem] flex-col justify-center gap-1 rounded-sm border border-slate-200/50 bg-slate-50/60 p-2.5 dark:border-slate-800/60 dark:bg-slate-850/50"
                         >
                           <div className="flex items-center gap-2">
-                            <TechIcon
-                              name={item.icon || item.name}
-                              className="h-4 w-4 shrink-0"
-                              aria-hidden="true"
-                            />
-                            <span className="font-mono text-xs font-semibold text-slate-800 dark:text-slate-200">
+                            <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center">
+                              <TechIcon
+                                name={item.icon || item.name}
+                                className="h-4 w-4"
+                                aria-hidden="true"
+                              />
+                            </span>
+                            <span className="min-w-0 truncate font-mono text-xs font-semibold text-slate-800 dark:text-slate-200">
                               {item.name}
                             </span>
                           </div>
