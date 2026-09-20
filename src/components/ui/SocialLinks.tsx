@@ -139,6 +139,7 @@ const Item: React.FC<{
       {!labeled && (
         <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded text-xs font-sans whitespace-nowrap bg-slate-900/90 text-white dark:bg-slate-100/95 dark:text-slate-900 shadow-md pointer-events-none opacity-0 invisible group-hover/social:opacity-100 group-hover/social:visible group-focus-visible/social:opacity-100 group-focus-visible/social:visible transition-all z-20">
           {social.name}
+          <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-900/90 dark:border-t-slate-100/95" />
         </span>
       )}
     </a>
