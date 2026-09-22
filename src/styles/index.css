@@ -2,6 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+.site-nav {
+  position: relative;
+  isolation: isolate;
+}
+
+.site-nav-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  border: 1px solid rgb(226 232 240 / 90%);
+  border-radius: 4px;
+  background: rgb(255 255 255 / 95%);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 6%);
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), width 280ms ease, height 280ms ease;
+}
+
+.dark .site-nav-active {
+  background: #1e293b;
+  border-color: rgb(51 65 85 / 80%);
+}
+
+.site-nav[data-slider-ready='false'] > a[aria-current='page'] {
+  background: var(--card-paper-hover);
+}
+
+.site-nav > a {
+  z-index: 1;
+  transition: color 160ms, background-color 160ms, transform 140ms ease-out;
+}
+
+.site-nav > a:active {
+  transform: translateY(1px) scale(0.96);
+  background-color: var(--selection-bg);
+}
+
 /* 内容就绪后再入场；导航与页脚不参与页面动画。 */
 .page-transition {
   animation: page-enter 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -14,6 +51,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .page-transition { animation: none; }
+  .site-nav-active, .site-nav > a { transition: none; }
+  .site-nav > a:active { transform: none; }
 }
 
 /* 手机导航按内容居中，保留轻量的选中态和足够的点击高度。 */

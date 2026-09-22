@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useEffect, useRef, lazy, Suspense } from 'react';
 import { Link } from 'wouter';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -12,6 +12,8 @@ import {
   getAllFriends,
 } from '../../content';
 import { formatRelativeTime, formatDateShort } from '../../lib/date';
+
+const AnimeNavPreview = lazy(() => import('./AnimeNavPreview').then((module) => ({ default: module.AnimeNavPreview })));
 
 export interface NavPositionData {
   centerX: number;
@@ -34,6 +36,7 @@ const PANEL_WIDTHS: Record<string, number> = {
   '/diaries': 490,
   '/says': 390,
   '/friends': 450,
+  '/wallpapers': 430,
 };
 
 export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
@@ -49,7 +52,7 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
 
   const isValidTab = Boolean(
     activeKey &&
-      ['/archives', '/diaries', '/says', '/friends'].includes(
+      ['/archives', '/diaries', '/says', '/friends', '/wallpapers'].includes(
         activeKey
       )
   );
@@ -97,6 +100,7 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
   }, [isValidTab]);
 
   useGSAP(() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (isValidTab && isRendered) {
       // 首次出现或切换
       gsap.to(containerRef.current, {
@@ -105,12 +109,12 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
         scale: 1,
         x: targetLeft,
         width: panelWidth,
-        duration: 0.2,
+        duration: reduced ? 0 : 0.2,
         ease: 'power3.out'
       });
       gsap.to(arrowRef.current, {
         left: arrowOffset,
-        duration: 0.2,
+        duration: reduced ? 0 : 0.2,
         ease: 'power3.out'
       });
     } else if (!isValidTab && isRendered) {
@@ -119,7 +123,7 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
         opacity: 0,
         y: 6,
         scale: 0.96,
-        duration: 0.15,
+        duration: reduced ? 0 : 0.15,
         ease: 'power3.in',
         onComplete: () => setIsRendered(false)
       });
@@ -144,6 +148,11 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
 
           {/* 弹窗核心卡片容器 */}
           <div className="w-full rounded bg-white/95 dark:bg-[#0E1624]/95 backdrop-blur-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-[0_20px_50px_-8px_rgba(0,0,0,0.12),0_6px_20px_-3px_rgba(0,0,0,0.06)] overflow-hidden text-slate-800 dark:text-slate-200">
+            {activeKey === '/wallpapers' && (
+              <Suspense fallback={<div className="grid grid-cols-3 gap-3 p-4" aria-label="加载番剧预览">{[0, 1, 2].map((item) => <div key={item} className="aspect-[2/3] rounded-lg bg-slate-100 dark:bg-slate-800 motion-safe:animate-pulse" />)}</div>}>
+                <AnimeNavPreview onItemClick={onItemClick} />
+              </Suspense>
+            )}
             
             {/* 1. 归档 (Archives) 悬浮面板 */}
             {activeKey === '/archives' && (

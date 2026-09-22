@@ -120,6 +120,24 @@ export const Header: React.FC = () => {
   } | null>(null);
   const navRef = useRef<HTMLElement | null>(null);
   const leaveTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const [indicator, setIndicator] = useState<{ x: number; y: number; width: number; height: number } | null>(null);
+  const navItemsKey = navLinks.map((link) => `${link.href}:${link.label}:${link.icon}`).join('|');
+
+  // 同一个选中块随路由移动，字体加载和响应式布局变化后重新对齐。
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+    const measure = () => {
+      const active = nav.querySelector<HTMLAnchorElement>('a[aria-current="page"]');
+      if (!active) { setIndicator(null); return; }
+      const next = { x: active.offsetLeft, y: active.offsetTop, width: active.offsetWidth, height: active.offsetHeight };
+      setIndicator((current) => current && Object.keys(next).every((key) => current[key as keyof typeof next] === next[key as keyof typeof next]) ? current : next);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(nav);
+    return () => observer.disconnect();
+  }, [location, navItemsKey]);
 
   const isActive = (href: string) => {
     if (href === '/') return location === '/';
@@ -193,8 +211,10 @@ export const Header: React.FC = () => {
               <nav
                 ref={navRef}
                 aria-label="主导航"
+                data-slider-ready={Boolean(indicator)}
                 className="site-nav flex max-w-full items-center gap-0.5 overflow-x-auto rounded border border-slate-200/75 bg-white/75 p-1 text-xs shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] backdrop-blur-md dark:border-slate-800/75 dark:bg-slate-900/75 sm:text-sm"
               >
+                {indicator && <span aria-hidden="true" className="site-nav-active" style={{ transform: `translate3d(${indicator.x}px, ${indicator.y}px, 0)`, width: indicator.width, height: indicator.height }} />}
                 {navLinks.map((link) => {
                   const isExt = link.isExternal || link.href.startsWith('http');
                   const active = !isExt && isActive(link.href);
@@ -228,12 +248,6 @@ export const Header: React.FC = () => {
                           : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/60 dark:hover:bg-slate-800/50'
                       }`}
                     >
-                      {/* 静态的选中项小矩形卡片 */}
-                      {active && (
-                        <span
-                          className="absolute inset-0 rounded-sm bg-white/95 dark:bg-slate-800 border border-slate-200/90 dark:border-slate-700/80 shadow-[0_1px_3px_rgba(0,0,0,0.06),0_1px_1px_rgba(0,0,0,0.03)] dark:shadow-[0_1px_3px_rgba(0,0,0,0.4)] pointer-events-none -z-10 transition-all duration-300"
-                        />
-                      )}
                       {/* 选中项专属图标 */}
                       {active && (
                         <IconComponent className="w-3.5 h-3.5 opacity-90 text-slate-800 dark:text-slate-200 flex-shrink-0" />
