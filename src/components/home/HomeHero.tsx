@@ -102,7 +102,7 @@ export const HomeHero: React.FC = () => {
           />
         </span>
 
-        <span className="mt-1 flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap italic">
+        <span className="home-hero-role mt-1 flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap italic">
           <HeroText text="I build" delay={100} className="font-light opacity-80" />
           <HeroText
             text={highlightRole}

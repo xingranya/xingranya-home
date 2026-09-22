@@ -338,6 +338,12 @@
   vertical-align: bottom;
 }
 
+/* 留出斜体的侧向伸出和下伸笔画，负外边距保持原有行距与间距。 */
+.home-hero-role .home-hero-split {
+  padding: 0.15em 0.2em;
+  margin: -0.15em -0.2em;
+}
+
 .home-hero-char {
   display: inline-block;
   animation: homeHeroCharReveal 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
