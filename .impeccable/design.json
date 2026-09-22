@@ -441,13 +441,17 @@
       }
     },
     "typographyMeta": {
+      "quote": {
+        "displayName": "Quote",
+        "purpose": "首页与关于页短引用，使用 Ma Shan Zheng 楷书；不用于长正文或操作控件。"
+      },
       "display": {
         "displayName": "Display",
-        "purpose": "关于、手记详情、站点地图的页标题。Newsreader Bold。"
+        "purpose": "关于、手记详情、站点地图的页标题。Noto Serif SC Bold。"
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "分节标题与手记列表标题。Newsreader Bold。"
+        "purpose": "分节标题与手记列表标题。Noto Serif SC Bold。"
       },
       "title": {
         "displayName": "Title",
@@ -587,7 +591,7 @@
       "refersTo": "card-paper",
       "description": "半透明名片卡。静止贴纸，悬停浮 1.5px。",
       "html": "<article class=\"ds-card\"><h3 class=\"ds-card-title\">GitHub Stars AI Tools</h3><p class=\"ds-card-body\">把复杂问题拆简单，把简单方案做扎实。</p><p class=\"ds-card-meta\">2026-09-18 · 开源</p></article>",
-      "css": ".ds-card { background: rgba(255, 255, 255, 0.88); border: 1px solid rgba(255, 192, 203, 0.55); border-radius: 5px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03), 0 4px 12px -2px rgba(15, 23, 42, 0.03); transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1); max-width: 320px; } .ds-card:hover { background: rgba(255, 255, 255, 0.98); transform: translateY(-1.5px); border-color: rgba(255, 143, 166, 0.45); box-shadow: 0 4px 18px -4px rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.04); } .ds-card-title { margin: 0 0 6px; font-family: Newsreader, Georgia, serif; font-size: 17px; font-weight: 600; color: #0f172a; letter-spacing: -0.015em; } .ds-card-body { margin: 0 0 10px; font-family: MiSans, -apple-system, sans-serif; font-size: 12px; line-height: 1.7; color: #64748B; } .ds-card-meta { margin: 0; padding-top: 10px; border-top: 1px solid rgba(241, 245, 249, 0.8); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #94A3B8; }"
+      "css": ".ds-card { background: rgba(255, 255, 255, 0.88); border: 1px solid rgba(255, 192, 203, 0.55); border-radius: 5px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03), 0 4px 12px -2px rgba(15, 23, 42, 0.03); transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1); max-width: 320px; } .ds-card:hover { background: rgba(255, 255, 255, 0.98); transform: translateY(-1.5px); border-color: rgba(255, 143, 166, 0.45); box-shadow: 0 4px 18px -4px rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.04); } .ds-card-title { margin: 0 0 6px; font-family: Noto Serif SC, Georgia, serif; font-size: 17px; font-weight: 600; color: #0f172a; letter-spacing: -0.015em; } .ds-card-body { margin: 0 0 10px; font-family: MiSans, -apple-system, sans-serif; font-size: 12px; line-height: 1.7; color: #64748B; } .ds-card-meta { margin: 0; padding-top: 10px; border-top: 1px solid rgba(241, 245, 249, 0.8); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #94A3B8; }"
     },
     {
       "name": "Paper Sheet",
@@ -595,7 +599,7 @@
       "refersTo": "card-paper",
       "description": "关于/手记用的整张出版纸板。微噪、粉边、内高光。",
       "html": "<article class=\"ds-sheet\"><h1 class=\"ds-sheet-title\">星苒鸭</h1><p class=\"ds-sheet-lead\">把复杂问题拆简单，把简单方案做扎实。</p></article>",
-      "css": ".ds-sheet { background-color: #FDF8F9; border: 1px solid rgba(255, 192, 203, 0.7); border-radius: 5px; padding: 24px 32px; box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.95) inset, 0 1px 3px rgba(15, 23, 42, 0.03), 0 6px 20px -4px rgba(15, 23, 42, 0.045), 0 14px 32px -8px rgba(15, 23, 42, 0.03); max-width: 420px; } .ds-sheet-title { margin: 0 0 10px; font-family: Newsreader, Georgia, serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; color: #0f172a; } .ds-sheet-lead { margin: 0; font-family: Newsreader, Georgia, serif; font-style: italic; font-size: 14px; line-height: 1.7; color: #64748B; }"
+      "css": ".ds-sheet { background-color: #FDF8F9; border: 1px solid rgba(255, 192, 203, 0.7); border-radius: 5px; padding: 24px 32px; box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.95) inset, 0 1px 3px rgba(15, 23, 42, 0.03), 0 6px 20px -4px rgba(15, 23, 42, 0.045), 0 14px 32px -8px rgba(15, 23, 42, 0.03); max-width: 420px; } .ds-sheet-title { margin: 0 0 10px; font-family: Noto Serif SC, Georgia, serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; color: #0f172a; } .ds-sheet-lead { margin: 0; font-family: Noto Serif SC, Georgia, serif; font-style: italic; font-size: 14px; line-height: 1.7; color: #64748B; }"
     },
     {
       "name": "Search Input",
@@ -628,7 +632,7 @@
     "keyCharacteristics": [
       "粉笺气氛：纸色底 + 半透明白卡 + 淡粉细边",
       "樱花粉稀缺：气氛用浅粉，声音用深粉，填色按钮极少",
-      "人用黑体、文用衬线：身份与 UI 是 MiSans，篇名与手记是 Newsreader",
+      "人用黑体、文用衬线：身份与 UI 是 MiSans，篇名与手记是 Noto Serif SC",
       "环境光不承重：静止几乎无影，悬停才浮 1.5px",
       "五像素微倒角：默认 5px，不发圆、不尖锐",
       "后台同纸：更密，但不是另一套世界"
@@ -646,7 +650,7 @@
       },
       {
         "name": "The 人用黑体、文用衬线 Rule",
-        "body": "身份、导航、按钮、表单走 MiSans。页标题、手记标题、摘要斜体、页脚格言走 Newsreader。不要对调，也不要用系统展示字体顶替 Display。",
+        "body": "身份、导航、按钮、表单走 MiSans。页标题、手记标题、摘要斜体、页脚格言走 Noto Serif SC。不要对调，也不要用系统展示字体顶替 Display。",
         "section": "typography"
       },
       {
@@ -670,7 +674,7 @@
       "Do 用浅粉做边和洗，用 `sakura-ink` 做姓名与链接。",
       "Do 默认 5px 微倒角、1px 细边、半透明白卡。",
       "Do 悬停只浮 1.5px，阴影保持环境光。",
-      "Do 身份用 MiSans，篇名与手记用 Newsreader，元信息用 JetBrains Mono。",
+      "Do 身份用 MiSans，篇名与手记用 Noto Serif SC，元信息用 JetBrains Mono。",
       "Do 焦点给出可见的樱花粉光晕。",
       "Do 让 `/admin` 更密，但沿用同一色盘与圆角。"
     ],
@@ -683,7 +687,7 @@
       "Don't 给纸板加装饰性网格线。",
       "Don't 把按钮和卡片做成全圆胶囊（头像与社交圆标除外）。",
       "Don't 把后台做成另一套蓝色控制台。",
-      "Don't 用系统展示字体或装饰艺术字替换 Newsreader / MiSans。"
+      "Don't 用系统展示字体或装饰艺术字替换 Noto Serif SC / MiSans。"
     ]
   }
 }

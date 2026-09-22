@@ -305,7 +305,6 @@ export const Wallpapers: React.FC = () => {
           <Dialog.Overlay className="wall-dialog-overlay" />
           {active && (
             <Dialog.Content
-              ref={dialogRef}
               className="wall-dialog"
               onCloseAutoFocus={(event) => {
                 event.preventDefault();
@@ -325,78 +324,80 @@ export const Wallpapers: React.FC = () => {
               <Dialog.Close className="wall-dialog-close" aria-label="关闭详情">
                 <X size={20} />
               </Dialog.Close>
-              <div
-                className="wall-dialog-art"
-                style={{ '--wall-cover': `url("${active.image}")` } as React.CSSProperties}
-              >
-                <Poster key={active.id} item={active} preview />
-              </div>
-              <div className="wall-dialog-copy" key={active.id}>
-                <div className="wall-detail-meta">
-                  <span>
-                    {active.year} · {active.version} · {active.area}
-                  </span>
-                  <span>BGM {active.score.toFixed(1)}</span>
+              <div className="wall-dialog-scroll" ref={dialogRef}>
+                <div
+                  className="wall-dialog-art"
+                  style={{ '--wall-cover': `url("${active.image}")` } as React.CSSProperties}
+                >
+                  <Poster key={active.id} item={active} preview />
                 </div>
-                <Dialog.Title>{active.title}</Dialog.Title>
-                <p className="wall-alias">
-                  {[active.subtitle, active.englishTitle].filter(Boolean).join(' / ')}
-                </p>
-                <Dialog.Description className="wall-description">
-                  {active.description}
-                </Dialog.Description>
-                <dl className="wall-facts">
-                  <div>
-                    <dt>追番</dt>
-                    <dd>{statusLabels[active.status]}</dd>
+                <div className="wall-dialog-copy" key={active.id}>
+                  <div className="wall-detail-meta">
+                    <span>
+                      {active.year} · {active.version} · {active.area}
+                    </span>
+                    <span>BGM {active.score.toFixed(1)}</span>
                   </div>
-                  <div>
-                    <dt>首播</dt>
-                    <dd>{active.publishDate || '暂无资料'}</dd>
+                  <Dialog.Title>{active.title}</Dialog.Title>
+                  <p className="wall-alias">
+                    {[active.subtitle, active.englishTitle].filter(Boolean).join(' / ')}
+                  </p>
+                  <Dialog.Description className="wall-description">
+                    {active.description || '暂无简介。'}
+                  </Dialog.Description>
+                  <dl className="wall-facts">
+                    <div>
+                      <dt>追番</dt>
+                      <dd>{statusLabels[active.status]}</dd>
+                    </div>
+                    <div>
+                      <dt>首播</dt>
+                      <dd>{active.publishDate || '暂无资料'}</dd>
+                    </div>
+                    <div>
+                      <dt>集数</dt>
+                      <dd>
+                        {active.total > 0 ? `全 ${active.total} 话` : '尚未公布'} ·{' '}
+                        {active.completed ? '已完结' : active.remarks || '连载中'}
+                      </dd>
+                    </div>
+                    {active.directors.length > 0 && (
+                      <div>
+                        <dt>监督</dt>
+                        <dd>{active.directors.join(' / ')}</dd>
+                      </div>
+                    )}
+                    {active.writer && (
+                      <div>
+                        <dt>编剧</dt>
+                        <dd>{active.writer}</dd>
+                      </div>
+                    )}
+                    {active.actors.length > 0 && (
+                      <div>
+                        <dt>出演</dt>
+                        <dd>{active.actors.join(' / ')}</dd>
+                      </div>
+                    )}
+                  </dl>
+                  <div className="wall-tags">
+                    {active.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
                   </div>
-                  <div>
-                    <dt>集数</dt>
-                    <dd>
-                      {active.total > 0 ? `全 ${active.total} 话` : '尚未公布'} ·{' '}
-                      {active.completed ? '已完结' : active.remarks || '连载中'}
-                    </dd>
+                  <div className="wall-detail-links">
+                    <a
+                      href={active.image}
+                      target="_blank"
+                      rel="noreferrer"
+                      data-external-bypass="true"
+                    >
+                      查看原图 <ArrowUpRight size={14} />
+                    </a>
+                    <a href={active.sourceUrl} target="_blank" rel="noreferrer">
+                      番剧来源 <ArrowUpRight size={14} />
+                    </a>
                   </div>
-                  {active.directors.length > 0 && (
-                    <div>
-                      <dt>监督</dt>
-                      <dd>{active.directors.join(' / ')}</dd>
-                    </div>
-                  )}
-                  {active.writer && (
-                    <div>
-                      <dt>编剧</dt>
-                      <dd>{active.writer}</dd>
-                    </div>
-                  )}
-                  {active.actors.length > 0 && (
-                    <div>
-                      <dt>出演</dt>
-                      <dd>{active.actors.join(' / ')}</dd>
-                    </div>
-                  )}
-                </dl>
-                <div className="wall-tags">
-                  {active.tags.map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
-                </div>
-                <div className="wall-detail-links">
-                  <a
-                    href={active.image}
-                    target="_blank"
-                    rel="noreferrer"
-                    data-external-bypass="true"
-                  >
-                    查看原图 <ArrowUpRight size={14} />
-                  </a>
-                  <a href={active.sourceUrl} target="_blank" rel="noreferrer">
-                    番剧来源 <ArrowUpRight size={14} />
-                  </a>
                 </div>
               </div>
               <div className="wall-dialog-paging">

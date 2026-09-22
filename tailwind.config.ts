@@ -41,25 +41,9 @@ const config: Config = {
         full: '9999px',
       },
       fontFamily: {
-        serif: [
-          'Newsreader',
-          '"Source Han Serif SC"',
-          '"Noto Serif SC"',
-          'Georgia',
-          '"Songti SC"',
-          'serif',
-        ],
-        sans: [
-          'MiSans',
-          'MiSans Normal',
-          'MiSans-Normal',
-          'MiSans VF',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          '"Segoe UI"',
-          'Roboto',
-          'sans-serif',
-        ],
+        serif: ['var(--font-serif)'],
+        sans: ['var(--font-sans)'],
+        quote: ['var(--font-quote)'],
         mono: [
           '"JetBrains Mono"',
           '"Fira Code"',
@@ -132,7 +116,8 @@ const config: Config = {
               fontWeight: '600',
             },
             code: {
-              fontFamily: '"JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+              fontFamily:
+                '"JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
               fontWeight: '500',
               fontSize: '0.875em',
               padding: '0.2em 0.4em',

@@ -33,13 +33,13 @@ colors:
   danger-bright: "#F87171"
 typography:
   display:
-    fontFamily: "Newsreader, Source Han Serif SC, Noto Serif SC, Georgia, serif"
+    fontFamily: "Noto Serif SC, Source Han Serif SC, Songti SC, Georgia, serif"
     fontSize: "clamp(1.5rem, 4vw, 2.25rem)"
     fontWeight: 700
     lineHeight: 1.25
     letterSpacing: "-0.02em"
   headline:
-    fontFamily: "Newsreader, Source Han Serif SC, Noto Serif SC, Georgia, serif"
+    fontFamily: "Noto Serif SC, Source Han Serif SC, Songti SC, Georgia, serif"
     fontSize: "clamp(1.25rem, 2.5vw, 1.5rem)"
     fontWeight: 700
     lineHeight: 1.3
@@ -56,6 +56,11 @@ typography:
     fontWeight: 400
     lineHeight: 1.85
     letterSpacing: "0.015em"
+  quote:
+    fontFamily: "Ma Shan Zheng, KaiTi, STKaiti, serif"
+    fontSize: "1rem"
+    fontWeight: 400
+    lineHeight: 1.625
   label:
     fontFamily: "JetBrains Mono, Fira Code, ui-monospace, SFMono-Regular, Menlo, monospace"
     fontSize: "0.6875rem"
@@ -166,7 +171,7 @@ xran.uk 是一张放在 sakura 色信笺上的名片，不是作品集模板，�
 
 - 粉笺气氛：纸色底 + 半透明白卡 + 淡粉细边
 - 樱花粉稀缺：气氛用浅粉，声音用深粉，填色按钮极少
-- 人用黑体、文用衬线：身份与 UI 是 MiSans，篇名与手记是 Newsreader
+- 人用黑体、文用衬线：身份与 UI 是 MiSans，篇名与手记是 Noto Serif SC
 - 环境光不承重：静止几乎无影，悬停才浮 1.5px
 - 五像素微倒角：默认 5px，不发圆、不尖锐
 - 后台同纸：更密，但不是另一套世界
@@ -203,18 +208,19 @@ xran.uk 是一张放在 sakura 色信笺上的名片，不是作品集模板，�
 
 ## Typography
 
-**Display Font:** Newsreader（回退 Source Han Serif SC / Noto Serif SC / Georgia）
+**Display Font:** Noto Serif SC（本地 WOFF2 分片，回退 Source Han Serif SC / Songti SC / Georgia）
 **Body Font:** MiSans（回退系统黑体）
+**Quote Font:** Ma Shan Zheng（本地 WOFF2 分片，仅用于首页和关于页的短引用；回退楷体）
 **Label/Mono Font:** JetBrains Mono（回退 Fira Code / ui-monospace）
 
 **Character:** 黑体把人说清楚，衬线把文放在纸上。不是装饰性的「艺术字配对」，是出版分工：名片用无衬线，篇名和手记用衬线斜体点缀。
 
 ### Hierarchy
 
-- **Display** (Newsreader Bold, 约 24–36px, 紧字距): 关于页、手记详情、站点地图的页标题。
-- **Headline** (Newsreader Bold, 约 20–24px): 关于页分节、手记列表标题。
+- **Display** (Noto Serif SC, 约 24–36px, 紧字距): 关于页、手记详情、站点地图的页标题。
+- **Headline** (Noto Serif SC, 约 20–24px): 关于页分节、手记列表标题。
 - **Title** (MiSans，首页身份行约 20–35px，姓名 Bold，问候 Light): 只用于「这是谁」。姓名与角色高亮用 `sakura-ink`，其余保持浅墨。
-- **Body** (MiSans, 1.03rem, 行高 1.85, 字距 0.015em, 最大约 65ch): 正文与说明。摘要导言改 Newsreader italic，放在浅灰纸块里，不加侧栏描边。
+- **Body** (MiSans, 1.03rem, 行高 1.85, 字距 0.015em, 最大约 65ch): 正文与说明。摘要导言改 Noto Serif SC，放在浅灰纸块里，不加侧栏描边。
 - **Label** (JetBrains Mono, 11px / `0.6875rem`): 日期、计数、筛选、页脚技术行。10.5px 视为这一档。
 - **Caption** (JetBrains Mono, 10px): 工具提示、二维码说明、键盘提示。不要再小到 9px。
 - **UI** (MiSans, 12px / `0.75rem`): 按钮、导航、芯片、技能胶囊。这是控件默认字号。
@@ -223,7 +229,7 @@ xran.uk 是一张放在 sakura 色信笺上的名片，不是作品集模板，�
 
 ### Named Rules
 
-**The 人用黑体、文用衬线 Rule.** 身份、导航、按钮、表单走 MiSans。页标题、手记标题、摘要斜体、页脚格言走 Newsreader。不要对调，也不要用系统展示字体顶替 Display。
+**The 人用黑体、文用衬线 Rule.** 身份、导航、按钮、表单走 MiSans。页标题、手记标题、摘要斜体、页脚格言走 Noto Serif SC。不要对调，也不要用系统展示字体顶替 Display。
 
 ## Layout
 
@@ -333,7 +339,7 @@ Markdown 提示块（Callout）允许 **2px 左侧规则线**，因为那是训�
 - **Do** 用浅粉做边和洗，用 `sakura-ink` 做姓名与链接。
 - **Do** 默认 5px 微倒角、1px 细边、半透明白卡。
 - **Do** 悬停只浮 1.5px，阴影保持环境光。
-- **Do** 身份用 MiSans，篇名与手记用 Newsreader，元信息用 JetBrains Mono。
+- **Do** 身份用 MiSans，篇名与手记用 Noto Serif SC，元信息用 JetBrains Mono。
 - **Do** 焦点给出可见的樱花粉光晕。
 - **Do** 让 `/admin` 更密，但沿用同一色盘与圆角。
 
@@ -347,4 +353,4 @@ Markdown 提示块（Callout）允许 **2px 左侧规则线**，因为那是训�
 - **Don't** 给纸板加装饰性网格线。
 - **Don't** 把按钮和卡片做成全圆胶囊（头像与社交圆标除外）。
 - **Don't** 把后台做成另一套蓝色控制台。
-- **Don't** 用系统展示字体或装饰艺术字替换 Newsreader / MiSans。
+- **Don't** 用系统展示字体或装饰艺术字替换 Noto Serif SC / MiSans。

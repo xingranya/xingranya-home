@@ -17,7 +17,7 @@
   margin-bottom: 32px;
 }
 .wall-heading h1 {
-  font-family: Newsreader, 'Source Han Serif SC', 'Noto Serif SC', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: clamp(24px, 4vw, 36px);
   font-weight: 600;
   line-height: 1.2;
@@ -281,6 +281,7 @@
   white-space: nowrap;
 }
 .wall-card h2 {
+  font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 500;
   line-height: 1.65;
@@ -334,14 +335,14 @@
   inset: 50% auto auto 50%;
   transform: translate(-50%, -50%);
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: minmax(0, 1fr) auto;
   width: min(940px, calc(100vw - 48px));
   max-height: min(840px, calc(100dvh - 64px));
   overflow: hidden;
   background: var(--bg-paper);
   color: var(--text-main);
-  border-radius: 5px;
+  border-radius: 8px;
   box-shadow: 0 24px 70px -16px rgb(0 0 0 / 35%);
   animation: wall-dialog-in 300ms cubic-bezier(0.16, 1, 0.3, 1);
   --wall-muted: #64748b;
@@ -350,6 +351,12 @@
 .dark .wall-dialog {
   --wall-muted: #a5b4c8;
   --wall-accent: #ff8fa6;
+}
+.wall-dialog-scroll {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  min-height: 0;
+  overflow: hidden;
 }
 .wall-dialog-close {
   position: absolute;
@@ -372,7 +379,7 @@
   background: var(--bg-paper);
   display: flex;
   align-items: center;
-  padding: 18px;
+  padding: 0;
 }
 .wall-dialog-art::before {
   content: '';
@@ -400,9 +407,10 @@
   background: transparent;
 }
 .wall-poster-preview img {
-  height: auto;
-  max-height: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
   border-radius: 8px;
   mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
 }
@@ -424,7 +432,7 @@
 }
 .wall-dialog h2 {
   margin-top: 14px;
-  font-family: Newsreader, 'Source Han Serif SC', 'Noto Serif SC', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 24px;
   font-weight: 600;
   line-height: 1.4;
@@ -568,21 +576,26 @@
     width: calc(100vw - 24px);
     max-height: calc(100dvh - 28px);
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto auto;
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+  .wall-dialog-scroll {
+    display: block;
     overflow-y: auto;
     overscroll-behavior: contain;
   }
   .wall-dialog-art {
-    padding: 22px 22px 0;
-    height: 42dvh;
+    height: auto;
   }
   .wall-dialog-art::before {
     mask-image: linear-gradient(to bottom, #000 30%, transparent 100%);
   }
+  .wall-poster-preview {
+    height: auto;
+  }
   .wall-poster-preview img {
-    width: auto;
-    max-width: 100%;
-    height: 100%;
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
   }
   .wall-dialog-copy {
     overflow: visible;
@@ -590,10 +603,6 @@
   }
   .wall-dialog h2 {
     font-size: 24px;
-  }
-  .wall-dialog-paging {
-    position: sticky;
-    bottom: 0;
   }
 }
 @media (max-width: 540px) {

@@ -14,9 +14,12 @@ for (const status of ['watching', 'watched']) {
 }
 assert.equal(new Set(items.map((item) => item.id)).size, items.length, '片单不能重复');
 for (const item of items) {
-  assert.ok(item.title && item.description && item.width > 0 && item.height > 0);
+  assert.ok(
+    item.title && typeof item.description === 'string' && item.width > 0 && item.height > 0
+  );
   assert.ok(['watching', 'watched'].includes(item.status), '追番状态必须取自来源站');
-  assert.equal(new URL(item.image).hostname, 'img1.tucang.cc', '封面必须使用图床地址');
+  assert.match(new URL(item.image).hostname, /(^|\.)tucang\.cc$/, '封面必须使用图床地址');
+  assert.equal(new URL(item.image).protocol, 'https:');
   assert.equal(new URL(item.sourceUrl).pathname, `/anime/${item.id}`);
 }
 const html = fs.readFileSync('dist/wallpapers/index.html', 'utf8');

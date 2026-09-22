@@ -3,7 +3,8 @@ import { pluginReact } from '@rsbuild/plugin-react';
 
 const siteUrl = 'https://xran.uk';
 const siteTitle = '星苒鸭';
-const siteDescription = '星苒鸭的个人主页。计算机科学与技术本科生，全栈开发爱好者。技术长文在 blog.xran.uk。';
+const siteDescription =
+  '星苒鸭的个人主页。计算机科学与技术本科生，全栈开发爱好者。技术长文在 blog.xran.uk。';
 const socialImage = `${siteUrl}/avatar.jpg`;
 
 export default defineConfig({
@@ -131,6 +132,10 @@ export default defineConfig({
           media: 'print',
           onload: "this.media='all'",
         },
+      },
+      {
+        tag: 'link',
+        attrs: { rel: 'stylesheet', href: '/fonts/chinese/fonts.css' },
       },
       {
         tag: 'link',

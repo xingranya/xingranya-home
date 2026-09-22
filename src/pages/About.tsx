@@ -96,7 +96,7 @@ export const About: React.FC = () => {
                   </p>
                 )}
                 {about?.quote && (
-                  <p className="text-sm text-slate-500 dark:text-slate-400 font-serif italic">
+                  <p className="text-base text-slate-500 dark:text-slate-400 font-quote">
                     「{about.quote}」
                   </p>
                 )}

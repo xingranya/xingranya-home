@@ -124,7 +124,7 @@ export const HomeHero: React.FC = () => {
 
       <div className="mt-3 sm:mt-4 text-center">
         {quote && (
-          <div className="home-hero-soft-reveal home-hero-quote max-w-[65ch] mx-auto font-sans text-sm text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
+          <div className="home-hero-soft-reveal home-hero-quote max-w-[65ch] mx-auto font-quote text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
             「{quote}」
           </div>
         )}

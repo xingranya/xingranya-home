@@ -34,3 +34,6 @@ Thumbs.db
 
 # 构建用服务端渲染产物
 .ssg/
+
+# 同步番剧的本地备份与上传回执，不含账号凭据
+.cache/anime-sync/
