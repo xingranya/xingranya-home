@@ -1,13 +1,11 @@
 .wall-page {
   --wall-muted: #64748b;
-  --wall-accent: #c43d61;
-  --wall-wash: #fff5f7;
+  --wall-accent: var(--sakura-accent);
+  --wall-wash: var(--sakura-wash);
   padding-top: clamp(28px, 5vw, 68px);
 }
 .dark .wall-page {
   --wall-muted: #a5b4c8;
-  --wall-accent: #ff8fa6;
-  --wall-wash: #301c2c;
 }
 .wall-heading {
   display: flex;
@@ -346,11 +344,10 @@
   box-shadow: 0 24px 70px -16px rgb(0 0 0 / 35%);
   animation: wall-dialog-in 300ms cubic-bezier(0.16, 1, 0.3, 1);
   --wall-muted: #64748b;
-  --wall-accent: #c43d61;
+  --wall-accent: var(--sakura-accent);
 }
 .dark .wall-dialog {
   --wall-muted: #a5b4c8;
-  --wall-accent: #ff8fa6;
 }
 .wall-dialog-scroll {
   display: grid;

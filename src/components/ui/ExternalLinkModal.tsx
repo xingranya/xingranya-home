@@ -23,24 +23,17 @@ export const ExternalLinkModal: React.FC<ExternalLinkModalProps> = ({
   }, [onConfirm]);
 
   useEffect(() => {
-    let timer: number;
-    if (isOpen) {
-      setCountdown(5);
-      timer = window.setInterval(() => {
-        setCountdown((prev) => {
-          if (prev <= 1) {
-            clearInterval(timer);
-            onConfirmRef.current();
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
+    if (!isOpen) return;
+    setCountdown(5);
+    const timer = window.setInterval(() => {
+      setCountdown((prev) => Math.max(0, prev - 1));
+    }, 1000);
+    const redirect = window.setTimeout(() => onConfirmRef.current(), 5000);
     return () => {
-      if (timer) clearInterval(timer);
+      window.clearInterval(timer);
+      window.clearTimeout(redirect);
     };
-  }, [isOpen]);
+  }, [isOpen, url]);
 
   const parsedUrl = useMemo(() => {
     if (!url) return null;

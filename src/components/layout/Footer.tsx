@@ -53,7 +53,7 @@ export const Footer: React.FC = () => {
   return (
     <footer
       data-external-bypass="true"
-      className="relative z-10 mt-auto border-t border-slate-200/60 dark:border-slate-800/60 pt-3 pb-3 sm:pt-4 sm:pb-4 lg:pt-3.5 lg:pb-3.5 text-xs font-sans text-slate-600 dark:text-slate-400 select-none shrink-0"
+      className="relative z-10 mt-auto border-t border-slate-200/60 dark:border-[var(--border-paper)] pt-3 pb-3 sm:pt-4 sm:pb-4 lg:pt-3.5 lg:pb-3.5 text-xs font-sans text-slate-600 dark:text-slate-400 select-none shrink-0"
     >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-2.5">
         
@@ -135,7 +135,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* 下层: 底部信息与操作栏 */}
-        <div className="grid grid-cols-1 items-center gap-1.5 border-t border-slate-200/50 pt-2 text-center text-[11px] font-mono text-slate-600 dark:border-slate-800/50 dark:text-slate-400 md:grid-cols-[minmax(0,1fr)_auto] md:text-left">
+        <div className="grid grid-cols-1 items-center gap-1.5 border-t border-slate-200/50 pt-2 text-center text-[11px] font-mono text-slate-600 dark:border-[var(--border-paper)] dark:text-slate-400 md:grid-cols-[minmax(0,1fr)_auto] md:text-left">
           {/* 左侧: RSS 订阅 · 站点地图 · 主题切换器 */}
           <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 md:justify-start">
             {showRss && (
@@ -166,7 +166,7 @@ export const Footer: React.FC = () => {
 
             {/* 主题切换器 */}
             {showThemeToggle && (
-              <div className="inline-flex h-8 items-center gap-0.5 rounded-md border border-slate-200/70 bg-white/55 p-0.5 shadow-2xs dark:border-slate-700/70 dark:bg-slate-900/55">
+              <div className="inline-flex h-8 items-center gap-0.5 rounded-md border border-slate-200/70 bg-white/55 p-0.5 shadow-2xs dark:border-[var(--border-paper)] dark:bg-[var(--card-paper)]">
                 {THEME_OPTIONS.map((option) => (
                   <button
                     key={option.value}
@@ -176,7 +176,7 @@ export const Footer: React.FC = () => {
                     onClick={() => setTheme(option.value)}
                     className={`h-7 rounded-sm px-2 transition-colors ${
                       theme === option.value
-                        ? 'bg-white font-semibold text-slate-900 shadow-2xs dark:bg-slate-800 dark:text-slate-100'
+                        ? 'bg-white font-semibold text-slate-900 shadow-2xs dark:bg-[var(--sakura-wash)] dark:text-sakura-200'
                         : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100'
                     }`}
                   >

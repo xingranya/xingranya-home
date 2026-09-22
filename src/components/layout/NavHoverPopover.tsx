@@ -143,11 +143,11 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
           {/* 顶部指示微型三角箭头 (跟随激活项平滑滑动) */}
           <div
             ref={arrowRef}
-            className="absolute -top-1.5 w-3 h-3 rotate-45 bg-white/95 dark:bg-[#0E1624]/95 border-t border-l border-slate-200/80 dark:border-slate-800/80 -translate-x-1/2 z-10 pointer-events-none shadow-[-2px_-2px_4px_rgba(0,0,0,0.02)]"
+            className="absolute -top-1.5 w-3 h-3 rotate-45 bg-white/95 dark:bg-[#241b2a]/95 border-t border-l border-slate-200/80 dark:border-[var(--border-paper)] -translate-x-1/2 z-10 pointer-events-none shadow-[-2px_-2px_4px_rgba(0,0,0,0.02)]"
           />
 
           {/* 弹窗核心卡片容器 */}
-          <div className="w-full rounded bg-white/95 dark:bg-[#0E1624]/95 backdrop-blur-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-[0_20px_50px_-8px_rgba(0,0,0,0.12),0_6px_20px_-3px_rgba(0,0,0,0.06)] overflow-hidden text-slate-800 dark:text-slate-200">
+          <div className="w-full rounded bg-white/95 dark:bg-[#241b2a]/95 backdrop-blur-2xl border border-slate-200/80 dark:border-[var(--border-paper)] shadow-[0_20px_50px_-8px_rgba(0,0,0,0.12),0_6px_20px_-3px_rgba(0,0,0,0.06)] overflow-hidden text-slate-800 dark:text-slate-200">
             {activeKey === '/wallpapers' && (
               <Suspense fallback={<div className="grid grid-cols-3 gap-3 p-4" aria-label="加载番剧预览">{[0, 1, 2].map((item) => <div key={item} className="aspect-[2/3] rounded-lg bg-slate-100 dark:bg-slate-800 motion-safe:animate-pulse" />)}</div>}>
                 <AnimeNavPreview onItemClick={onItemClick} />

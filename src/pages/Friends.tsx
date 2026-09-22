@@ -181,7 +181,6 @@ const FriendCard: React.FC<{ friend: FriendItem }> = ({ friend }) => {
       href={friend.link}
       target="_blank"
       rel="noreferrer"
-      data-external-bypass="true"
       className="p-3 sm:p-3.5 rounded-md paper-card flex items-start space-x-3 group transition-all duration-300 hover:!border-sakura-300/80 dark:hover:!border-sakura-500/50 hover:shadow-[0_4px_16px_-2px_rgba(255,143,166,0.12),0_2px_6px_-1px_rgba(15,23,42,0.04)]"
     >
       {/* 左侧头像 */}

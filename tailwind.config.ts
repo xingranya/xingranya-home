@@ -10,10 +10,10 @@ const config: Config = {
         paper: {
           light: '#FDF6F8',
           card: 'rgba(255, 255, 255, 0.88)',
-          dark: '#0B111A',
-          'dark-card': 'rgba(18, 27, 44, 0.82)',
+          dark: '#17131e',
+          'dark-card': 'rgba(36, 27, 42, 0.9)',
           border: 'rgba(255, 192, 203, 0.55)',
-          'dark-border': 'rgba(122, 40, 67, 0.45)',
+          'dark-border': 'rgba(255, 143, 180, 0.23)',
         },
         sakura: {
           50: '#fff5f7',

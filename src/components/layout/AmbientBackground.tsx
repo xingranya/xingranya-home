@@ -290,14 +290,14 @@ export const AmbientBackground: React.FC = () => {
       data-running="false"
       className="ambient-background fixed inset-0 pointer-events-none -z-20 overflow-hidden select-none transition-colors duration-500"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-[#FFF1F4] via-[#FDF6F8] to-[#FFF8F9] dark:from-[#0B121D] dark:via-[#080D15] dark:to-[#070B12]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FFF1F4] via-[#FDF6F8] to-[#FFF8F9] dark:from-[#2B1B2C] dark:via-[#1B1522] dark:to-[#15121C]" />
       <div
         className="ambient-glow absolute -top-[10%] left-1/2 w-[420px] sm:w-[780px] lg:w-[980px] h-[360px] sm:h-[520px] lg:h-[620px] rounded-[100%] opacity-70 dark:opacity-30 blur-[100px] sm:blur-[140px]"
         style={{ background: 'radial-gradient(ellipse at center, rgba(255, 192, 203, 0.45) 0%, rgba(255, 168, 184, 0.18) 45%, rgba(255, 228, 234, 0.06) 70%, transparent 80%)' }}
       />
       <div
         className="ambient-glow ambient-glow-dark hidden dark:block absolute -top-[8%] left-1/2 w-[700px] lg:w-[900px] h-[480px] rounded-[100%] opacity-25 blur-[130px]"
-        style={{ background: 'radial-gradient(ellipse at center, rgba(224, 86, 118, 0.28) 0%, rgba(74, 22, 40, 0.16) 50%, transparent 75%)' }}
+        style={{ background: 'radial-gradient(ellipse at center, rgba(244, 114, 156, 0.4) 0%, rgba(157, 50, 82, 0.24) 50%, transparent 75%)' }}
       />
       <div className="absolute inset-0 bg-paper-texture opacity-40 dark:opacity-20" />
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-10" />

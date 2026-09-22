@@ -212,7 +212,7 @@ export const Header: React.FC = () => {
                 ref={navRef}
                 aria-label="主导航"
                 data-slider-ready={Boolean(indicator)}
-                className="site-nav flex max-w-full items-center gap-0.5 overflow-x-auto rounded border border-slate-200/75 bg-white/75 p-1 text-xs shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] backdrop-blur-md dark:border-slate-800/75 dark:bg-slate-900/75 sm:text-sm"
+                className="site-nav flex max-w-full items-center gap-0.5 overflow-x-auto rounded border border-slate-200/75 bg-white/75 p-1 text-xs shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] backdrop-blur-md dark:border-[var(--border-paper)] dark:bg-[var(--card-paper)] sm:text-sm"
               >
                 {indicator && <span aria-hidden="true" className="site-nav-active" style={{ transform: `translate3d(${indicator.x}px, ${indicator.y}px, 0)`, width: indicator.width, height: indicator.height }} />}
                 {navLinks.map((link) => {
@@ -227,7 +227,7 @@ export const Header: React.FC = () => {
                         href={link.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="relative flex min-h-9 shrink-0 items-center justify-center gap-1.5 rounded-sm px-2 py-1 text-slate-600 transition-colors duration-150 select-none hover:bg-slate-100/60 hover:text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400 dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:text-slate-100 sm:min-h-11 sm:px-3.5"
+                        className="relative flex min-h-9 shrink-0 items-center justify-center gap-1.5 rounded-sm px-2 py-1 text-slate-600 transition-colors duration-150 select-none hover:bg-slate-100/60 hover:text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400 dark:text-slate-300 dark:hover:bg-sakura-400/10 dark:hover:text-sakura-200 sm:min-h-11 sm:px-3.5"
                       >
                         <span className="leading-none translate-y-[0.5px]">{link.label}</span>
                         <ArrowUpRight className="w-3 h-3 opacity-60 ml-[-2px]" />
@@ -244,13 +244,13 @@ export const Header: React.FC = () => {
                       onClick={handleItemClick}
                       className={`relative flex min-h-9 shrink-0 items-center justify-center gap-1.5 rounded-sm px-2 py-1 transition-colors duration-150 select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400 sm:min-h-11 sm:px-3.5 ${
                         active
-                          ? 'text-slate-950 dark:text-slate-50 font-medium'
-                          : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/60 dark:hover:bg-slate-800/50'
+                          ? 'text-slate-950 dark:text-sakura-200 font-medium'
+                          : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-sakura-200 hover:bg-slate-100/60 dark:hover:bg-sakura-400/10'
                       }`}
                     >
                       {/* 选中项专属图标 */}
                       {active && (
-                        <IconComponent className="w-3.5 h-3.5 opacity-90 text-slate-800 dark:text-slate-200 flex-shrink-0" />
+                        <IconComponent className="w-3.5 h-3.5 opacity-90 text-slate-800 dark:text-sakura-300 flex-shrink-0" />
                       )}
                       <span className="leading-none translate-y-[0.5px]">{link.label}</span>
                     </Link>

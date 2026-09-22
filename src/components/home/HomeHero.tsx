@@ -66,7 +66,7 @@ export const HomeHero: React.FC = () => {
       className="relative flex flex-col items-center justify-center py-2 sm:py-3 text-center overflow-visible w-full"
     >
       <div className="home-hero-avatar-enter mb-3 sm:mb-4 relative group">
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-[4.85rem] lg:h-[4.85rem] rounded-full p-0.5 sm:p-1 bg-gradient-to-tr from-sakura-200 to-sakura-300/40 dark:from-slate-800 dark:to-sakura-900/60 shadow-md">
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-[4.85rem] lg:h-[4.85rem] rounded-full p-0.5 sm:p-1 bg-gradient-to-tr from-sakura-200 to-sakura-300/40 dark:from-sakura-400 dark:to-sakura-700/60 shadow-md">
           <svg className="hero-avatar-ring" viewBox="0 0 88 88" aria-hidden="true">
             <circle cx="44" cy="44" r="42" pathLength="1" />
           </svg>
@@ -98,23 +98,23 @@ export const HomeHero: React.FC = () => {
           <HeroText
             text={siteConfig.author.name}
             delay={160}
-            className="font-bold text-sakura-700 dark:text-sakura-400 tracking-tight"
+            className="font-bold text-sakura-700 dark:text-[var(--sakura-accent)] tracking-tight"
           />
         </span>
 
-        <span className="mt-1 flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
+        <span className="mt-1 flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap italic">
           <HeroText text="I build" delay={100} className="font-light opacity-80" />
           <HeroText
             text={highlightRole}
             delay={180}
-            className="font-semibold text-sakura-700 dark:text-sakura-400"
+            className="font-semibold text-sakura-700 dark:text-[var(--sakura-accent)]"
           />
         </span>
 
         {skillsPills && (
           <span className="home-hero-soft-reveal home-hero-skills mt-2 sm:mt-2.5 flex items-center justify-center gap-1.5 flex-wrap">
             <span className="font-light text-slate-600 dark:text-slate-300 text-sm">with</span>
-            <code className="inline-flex items-center font-sans text-xs font-medium tracking-normal px-2.5 py-0.5 rounded-md text-sakura-800 dark:text-sakura-200 border border-sakura-200/60 dark:border-sakura-900/40 bg-sakura-50/50 dark:bg-sakura-950/30">
+            <code className="inline-flex items-center font-sans text-xs font-medium tracking-normal px-2.5 py-0.5 rounded-md text-sakura-800 dark:text-sakura-200 border border-sakura-200/60 dark:border-sakura-400/35 bg-sakura-50/50 dark:bg-[var(--sakura-wash)]">
               {skillsPills}
               <span className="home-skill-caret" aria-hidden="true" />
             </code>
@@ -124,7 +124,7 @@ export const HomeHero: React.FC = () => {
 
       <div className="mt-3 sm:mt-4 text-center">
         {quote && (
-          <div className="home-hero-soft-reveal home-hero-quote max-w-[65ch] mx-auto font-quote text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
+          <div className="home-hero-soft-reveal home-hero-quote max-w-[65ch] mx-auto font-serif text-sm sm:text-base text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
             「{quote}」
           </div>
         )}
@@ -145,9 +145,9 @@ export const HomeHero: React.FC = () => {
 
       {siteConfig.announcement?.enabled && (
         <div className="home-hero-soft-reveal home-hero-announcement mt-3 sm:mt-4 lg:mt-3 max-w-lg mx-auto w-full px-2">
-          <div className="flex items-center justify-between gap-3 px-3 py-1.5 rounded-lg bg-white/75 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800/60 text-xs font-sans text-slate-700 dark:text-slate-200 shadow-2xs">
+          <div className="flex items-center justify-between gap-3 px-3 py-1.5 rounded-lg bg-white/75 dark:bg-[var(--card-paper)] border border-slate-200/70 dark:border-[var(--border-paper)] text-xs font-sans text-slate-700 dark:text-slate-200 shadow-2xs">
             <div className="flex items-center gap-2 min-w-0 text-left">
-              <span className="shrink-0 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-xs text-[10.5px] font-mono font-medium bg-sakura-50 dark:bg-sakura-950/40 text-sakura-700 dark:text-sakura-300 border border-sakura-200/50 dark:border-sakura-800/40">
+              <span className="shrink-0 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-xs text-[10.5px] font-mono font-medium bg-sakura-50 dark:bg-[var(--sakura-wash)] text-sakura-700 dark:text-sakura-300 border border-sakura-200/50 dark:border-sakura-400/35">
                 <Megaphone className="w-3 h-3 text-sakura-600 dark:text-sakura-400" />
                 <span>{siteConfig.announcement.badge || '公告'}</span>
               </span>

@@ -90,7 +90,7 @@ export const App: React.FC = () => {
     const target = (e.target as Element).closest('a');
     if (!target) return;
 
-    // 检查是否有直接放行标记 (如志同道合友链、受信生态链接)
+    // 检查是否有直接放行标记（如页脚和番剧来源链接）。
     if (target.closest('[data-external-bypass="true"]')) {
       return;
     }
@@ -180,7 +180,7 @@ export const App: React.FC = () => {
         onClose={() => setIsExternalModalOpen(false)}
         onConfirm={() => {
           if (externalUrl) {
-            window.open(externalUrl, '_blank', 'noopener,noreferrer');
+            window.location.assign(externalUrl);
           }
           setIsExternalModalOpen(false);
         }}
