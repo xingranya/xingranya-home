@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 内容就绪后再入场；导航与页脚不参与页面动画。 */
+.page-transition {
+  animation: page-enter 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes page-enter {
+  from { opacity: 0.35; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition { animation: none; }
+}
+
 /* 手机导航按内容居中，保留轻量的选中态和足够的点击高度。 */
 @media (max-width: 639px) {
   .site-nav {
