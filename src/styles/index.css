@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 手机导航按内容居中，保留轻量的选中态和足够的点击高度。 */
+@media (max-width: 639px) {
+  .site-nav {
+    padding: 3px;
+    font-size: 11px;
+    scrollbar-width: none;
+  }
+
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-nav > a {
+    min-height: 32px;
+    padding: 4px 6px;
+    gap: 4px;
+  }
+
+  .site-nav > a svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .site-nav > a[href^='http'] svg {
+    width: 10px;
+    height: 10px;
+  }
+}
+
 @layer base {
   :root {
     --bg-paper: #FDF6F8;

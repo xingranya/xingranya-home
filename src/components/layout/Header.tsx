@@ -38,7 +38,6 @@ const DEFAULT_NAV_LINKS: NavLinkItem[] = [
   { id: 'nav-blog', href: 'https://blog.xran.uk', label: '博客', icon: 'FileText', enabled: true, isExternal: true },
   { id: 'nav-archives', href: '/archives', label: '归档', icon: 'History', enabled: true },
   { id: 'nav-diaries', href: '/diaries', label: '手记', icon: 'Feather', enabled: true },
-  { id: 'nav-says', href: '/says', label: '动态', icon: 'MessageSquareQuote', enabled: true },
   { id: 'nav-wallpapers', href: '/wallpapers', label: '番剧墙', icon: 'Images', enabled: true },
   { id: 'nav-friends', href: '/friends', label: '朋友', icon: 'Users', enabled: true },
   { id: 'nav-about', href: '/about', label: '关于', icon: 'User', enabled: true },
@@ -194,7 +193,7 @@ export const Header: React.FC = () => {
               <nav
                 ref={navRef}
                 aria-label="主导航"
-                className="flex max-w-full items-center gap-0.5 overflow-x-auto rounded border border-slate-200/75 bg-white/75 p-1 text-xs shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] backdrop-blur-md dark:border-slate-800/75 dark:bg-slate-900/75 sm:text-sm"
+                className="site-nav flex max-w-full items-center gap-0.5 overflow-x-auto rounded border border-slate-200/75 bg-white/75 p-1 text-xs shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] backdrop-blur-md dark:border-slate-800/75 dark:bg-slate-900/75 sm:text-sm"
               >
                 {navLinks.map((link) => {
                   const isExt = link.isExternal || link.href.startsWith('http');

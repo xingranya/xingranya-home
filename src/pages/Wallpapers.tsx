@@ -176,7 +176,7 @@ export const Wallpapers: React.FC = () => {
             <h1>
               番剧墙<span className="wall-heading-dot">.</span>
             </h1>
-            <p>把喜欢的故事，留在这一面墙上。</p>
+            <p>记录正在追和已经看完的番剧。</p>
           </div>
           <div className="wall-collection-note">
             <span>
@@ -229,7 +229,7 @@ export const Wallpapers: React.FC = () => {
               : '按播出年份从新到旧'}
           </p>
           <span>
-            点开封面，走近故事 <ArrowDown size={12} aria-hidden="true" />
+            点击封面查看详情 <ArrowDown size={12} aria-hidden="true" />
           </span>
         </div>
 

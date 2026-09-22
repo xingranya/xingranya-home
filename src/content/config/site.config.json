@@ -188,7 +188,6 @@
       { "id": "nav-blog", "label": "博客", "href": "https://blog.xran.uk", "icon": "FileText", "enabled": true, "isExternal": true },
       { "id": "nav-archives", "label": "归档", "href": "/archives", "icon": "History", "enabled": true },
       { "id": "nav-diaries", "label": "手记", "href": "/diaries", "icon": "Feather", "enabled": true },
-      { "id": "nav-says", "label": "动态", "href": "/says", "icon": "MessageSquareQuote", "enabled": true },
       { "id": "nav-wallpapers", "label": "番剧墙", "href": "/wallpapers", "icon": "Images", "enabled": true },
       { "id": "nav-friends", "label": "朋友", "href": "/friends", "icon": "Users", "enabled": true },
       { "id": "nav-about", "label": "关于", "href": "/about", "icon": "User", "enabled": true }
