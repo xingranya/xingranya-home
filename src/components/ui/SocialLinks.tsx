@@ -56,7 +56,7 @@ const QrPopover: React.FC<{
       ref={ref}
       role="region"
       aria-label={`${name}二维码`}
-      className="absolute left-1/2 bottom-full mb-2 w-44 max-w-[calc(100vw-1.5rem)] -translate-x-1/2 rounded-lg border border-slate-200/80 dark:border-[var(--border-paper)] bg-white dark:bg-[var(--card-paper)] shadow-lg p-2 z-50 before:absolute before:inset-x-0 before:top-full before:h-2 before:content-['']"
+      className="qr-popover absolute left-1/2 bottom-full mb-2 w-44 max-w-[calc(100vw-1.5rem)] -translate-x-1/2 rounded-lg border border-slate-200/80 dark:border-[var(--border-paper)] bg-white dark:bg-[var(--card-paper)] shadow-lg p-2 z-50 before:absolute before:inset-x-0 before:top-full before:h-2 before:content-['']"
     >
       <div className="relative grid aspect-square place-items-center overflow-hidden rounded-md bg-slate-50 dark:bg-[var(--bg-paper)]">
         {imageStatus !== 'error' && (

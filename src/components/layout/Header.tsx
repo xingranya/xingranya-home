@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo, lazy, Suspense } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect, useMemo, lazy, Suspense } from 'react';
 import { Link, useLocation } from 'wouter';
 import {
   Home as HomeIcon,
@@ -119,6 +119,8 @@ export const Header: React.FC = () => {
     navLeft: number;
   } | null>(null);
   const navRef = useRef<HTMLElement | null>(null);
+  const indicatorRef = useRef<HTMLSpanElement | null>(null);
+  const indicatorFromRef = useRef<DOMRect | null>(null);
   const leaveTimerRef = useRef<NodeJS.Timeout | null>(null);
   const [indicator, setIndicator] = useState<{ x: number; y: number; width: number; height: number } | null>(null);
   const navItemsKey = navLinks.map((link) => `${link.href}:${link.label}:${link.icon}`).join('|');
@@ -131,6 +133,7 @@ export const Header: React.FC = () => {
       const active = nav.querySelector<HTMLAnchorElement>('a[aria-current="page"]');
       if (!active) { setIndicator(null); return; }
       const next = { x: active.offsetLeft, y: active.offsetTop, width: active.offsetWidth, height: active.offsetHeight };
+      indicatorFromRef.current = indicatorRef.current?.getBoundingClientRect() ?? null;
       setIndicator((current) => current && Object.keys(next).every((key) => current[key as keyof typeof next] === next[key as keyof typeof next]) ? current : next);
     };
     measure();
@@ -138,6 +141,19 @@ export const Header: React.FC = () => {
     observer.observe(nav);
     return () => observer.disconnect();
   }, [location, navItemsKey]);
+
+  // 从当前画面接续滑动，用变换补偿尺寸差，避免逐帧改变布局。
+  useLayoutEffect(() => {
+    const node = indicatorRef.current;
+    const from = indicatorFromRef.current;
+    if (!node || !indicator || !from || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const to = node.getBoundingClientRect();
+    const animation = node.animate([
+      { transform: `translate3d(${indicator.x + from.left - to.left}px, ${indicator.y + from.top - to.top}px, 0) scale(${from.width / to.width}, ${from.height / to.height})` },
+      { transform: `translate3d(${indicator.x}px, ${indicator.y}px, 0) scale(1, 1)` },
+    ], { duration: 560, easing: 'cubic-bezier(0.22, 0.68, 0.3, 1)' });
+    return () => animation.cancel();
+  }, [indicator]);
 
   const isActive = (href: string) => {
     if (href === '/') return location === '/';
@@ -224,7 +240,7 @@ export const Header: React.FC = () => {
                 data-slider-ready={Boolean(indicator)}
                 className="site-nav flex max-w-full items-center gap-0.5 overflow-x-auto rounded border border-slate-200/75 bg-white/75 p-1 text-xs shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] backdrop-blur-md dark:border-[var(--border-paper)] dark:bg-[var(--card-paper)] sm:text-sm"
               >
-                {indicator && <span aria-hidden="true" className="site-nav-active" style={{ transform: `translate3d(${indicator.x}px, ${indicator.y}px, 0)`, width: indicator.width, height: indicator.height }} />}
+                {indicator && <span ref={indicatorRef} aria-hidden="true" className="site-nav-active" style={{ transform: `translate3d(${indicator.x}px, ${indicator.y}px, 0)`, width: indicator.width, height: indicator.height }} />}
                 {navLinks.map((link) => {
                   const isExt = link.isExternal || link.href.startsWith('http');
                   const active = !isExt && isActive(link.href);

@@ -17,7 +17,7 @@
   border-radius: 4px;
   background: rgb(255 255 255 / 95%);
   box-shadow: 0 1px 3px rgb(0 0 0 / 6%);
-  transition: transform 560ms cubic-bezier(0.22, 0.68, 0.3, 1), width 500ms ease, height 500ms ease;
+  transform-origin: top left;
 }
 
 .dark .site-nav-active {
@@ -41,16 +41,16 @@
 
 /* 内容就绪后再入场；导航与页脚不参与页面动画。 */
 .page-transition {
-  animation: page-enter 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: page-enter 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes page-enter {
-  from { opacity: 0.35; transform: translateY(8px); }
+  from { opacity: 0.65; transform: translateY(6px); }
   to { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-transition { animation: none; }
+  .page-transition { animation: homeHeroReducedReveal 140ms ease-out both; }
   .site-nav-active, .site-nav > a { transition: none; }
   .site-nav > a:active { transform: none; }
 }
@@ -380,7 +380,7 @@
   margin-left: 0.35rem;
   border-radius: 999px;
   background: currentColor;
-  animation: homeSkillCaretBlink 1.05s steps(1, end) infinite;
+  animation: homeSkillCaretBlink 1.05s steps(1, end) 3 forwards;
 }
 
 @keyframes avatarRingDraw {
@@ -434,6 +434,68 @@
 .social-trigger:focus-visible {
   transform: translateY(-1px);
   box-shadow: 0 0 0 3px rgba(255, 143, 166, 0.18);
+}
+
+.social-trigger[aria-expanded='true'] {
+  color: var(--sakura-accent);
+  background-color: var(--sakura-wash);
+}
+
+.social-trigger:active {
+  transform: translateY(1px) scale(0.97);
+  transition-duration: 120ms;
+}
+
+/* 二维码从触发按钮上方展开；平移独立于弹层的水平防溢出定位。 */
+.qr-popover {
+  animation: qr-popover-enter 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes qr-popover-enter {
+  from { opacity: 0; translate: 0 7px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes surface-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes surface-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.external-link-overlay[data-state='open'] {
+  animation: surface-fade-in 220ms ease-out both;
+}
+
+.external-link-dialog[data-state='open'] {
+  animation: external-dialog-in 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.external-link-overlay[data-state='closed'],
+.external-link-dialog[data-state='closed'] {
+  pointer-events: none;
+  animation: surface-fade-out 150ms ease-out both;
+}
+
+@keyframes external-dialog-in {
+  from { opacity: 0; transform: translate(-50%, calc(-50% + 8px)) scale(0.98); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.external-link-progress {
+  transform-origin: left;
+}
+
+.external-link-dialog[data-state='open'] .external-link-progress {
+  animation: external-countdown 5s linear both;
+}
+
+@keyframes external-countdown {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
 }
 
 .ambient-glow {
@@ -524,8 +586,24 @@
   }
 
   .social-trigger:hover,
-  .social-trigger:focus-visible {
+  .social-trigger:focus-visible,
+  .social-trigger:active {
     transform: none;
+  }
+
+  .qr-popover,
+  .external-link-dialog[data-state='open'] {
+    animation: homeHeroReducedReveal 140ms ease-out both;
+  }
+
+  .external-link-overlay[data-state='open'],
+  .external-link-overlay[data-state='closed'],
+  .external-link-dialog[data-state='closed'] {
+    animation-duration: 100ms;
+  }
+
+  .external-link-dialog[data-state='open'] .external-link-progress {
+    animation: none;
   }
 }
 
