@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Globe } from 'lucide-react';
+import { Globe, LoaderCircle } from 'lucide-react';
 import type { SocialLink } from '../../types';
 import {
   GithubIcon,
@@ -33,13 +33,13 @@ interface SocialLinksProps {
 const QrPopover: React.FC<{
   name: string;
   src: string;
-  isOpen: boolean;
-}> = ({ name, src, isOpen }) => {
+}> = ({ name, src }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [imageStatus, setImageStatus] = useState<'loading' | 'loaded' | 'error'>('loading');
 
   useLayoutEffect(() => {
     const node = ref.current;
-    if (!isOpen || !node) return;
+    if (!node) return;
     node.style.transform = 'translateX(-50%)';
     const box = node.getBoundingClientRect();
     const margin = 12;
@@ -49,22 +49,39 @@ const QrPopover: React.FC<{
       dx = window.innerWidth - margin - box.right;
     }
     node.style.transform = `translateX(calc(-50% + ${dx}px))`;
-  }, [isOpen]);
-
-  if (!isOpen) return null;
+  }, []);
 
   return (
     <div
       ref={ref}
-      className="absolute left-1/2 bottom-full mb-2 w-44 max-w-[calc(100vw-1.5rem)] -translate-x-1/2 rounded-lg border border-slate-200/80 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-lg p-2 z-50"
+      role="region"
+      aria-label={`${name}二维码`}
+      className="absolute left-1/2 bottom-full mb-2 w-44 max-w-[calc(100vw-1.5rem)] -translate-x-1/2 rounded-lg border border-slate-200/80 dark:border-[var(--border-paper)] bg-white dark:bg-[var(--card-paper)] shadow-lg p-2 z-50 before:absolute before:inset-x-0 before:top-full before:h-2 before:content-['']"
     >
-      <img
-        src={src}
-        alt={`${name} 二维码`}
-        width={160}
-        height={160}
-        className="w-full aspect-square object-cover object-center rounded-md bg-white"
-      />
+      <div className="relative grid aspect-square place-items-center overflow-hidden rounded-md bg-slate-50 dark:bg-[var(--bg-paper)]">
+        {imageStatus !== 'error' && (
+          <img
+            src={src}
+            alt={`${name} 二维码`}
+            width={160}
+            height={160}
+            onLoad={() => setImageStatus('loaded')}
+            onError={() => setImageStatus('error')}
+            className={`absolute inset-0 h-full w-full object-cover object-center bg-white transition-opacity motion-reduce:transition-none ${imageStatus === 'loaded' ? 'opacity-100' : 'opacity-0'}`}
+          />
+        )}
+        {imageStatus === 'loading' && (
+          <span role="status" className="flex flex-col items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
+            <LoaderCircle aria-hidden="true" className="h-5 w-5 text-sakura-600 dark:text-sakura-300 motion-safe:animate-spin" />
+            正在加载二维码…
+          </span>
+        )}
+        {imageStatus === 'error' && (
+          <p role="status" className="px-3 text-center text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+            二维码暂时无法加载<br />请尝试打开原图
+          </p>
+        )}
+      </div>
       <p className="mt-1.5 text-xs font-sans text-center text-slate-600 dark:text-slate-300">
         扫码加{name}
       </p>
@@ -74,7 +91,7 @@ const QrPopover: React.FC<{
         rel="noreferrer"
         className={`mt-1.5 flex items-center justify-center min-h-11 text-xs font-sans text-sakura-700 dark:text-sakura-300 hover:underline ${FOCUS}`}
       >
-        打开图片
+        打开原图
       </a>
     </div>
   );
@@ -121,7 +138,7 @@ const Item: React.FC<{
           <Icon className="w-4 h-4 shrink-0" />
           {labeled && <span>{social.name}</span>}
         </button>
-        <QrPopover name={social.name} src={social.qr} isOpen={isOpen} />
+        {isOpen && <QrPopover name={social.name} src={social.qr} />}
       </span>
     );
   }

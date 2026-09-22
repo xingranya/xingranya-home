@@ -151,7 +151,7 @@ export const HomeHero: React.FC = () => {
                 <Megaphone className="w-3 h-3 text-sakura-600 dark:text-sakura-400" />
                 <span>{siteConfig.announcement.badge || '公告'}</span>
               </span>
-              <span className="text-xs text-slate-600 dark:text-slate-300 line-clamp-1 sm:line-clamp-none font-normal">
+              <span className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed break-words font-normal">
                 {siteConfig.announcement.content}
               </span>
             </div>

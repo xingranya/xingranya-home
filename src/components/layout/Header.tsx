@@ -144,8 +144,8 @@ export const Header: React.FC = () => {
     return location.startsWith(href);
   };
 
-  const handleNavMouseEnter = (href: string, e: React.MouseEvent<HTMLElement>) => {
-    if (!enableMegaMenu || href === '/' || href.startsWith('http')) {
+  const handleNavPreview = (href: string, e: React.MouseEvent<HTMLElement> | React.FocusEvent<HTMLElement>) => {
+    if (!enableMegaMenu || !window.matchMedia('(min-width: 640px)').matches || href === '/' || href.startsWith('http')) {
       setHoveredNav(null);
       return;
     }
@@ -207,6 +207,16 @@ export const Header: React.FC = () => {
           <div
             className="pointer-events-auto flex min-w-0 max-w-full items-center justify-center relative"
             onMouseLeave={handleNavMouseLeave}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setHoveredNav(null);
+            }}
+            onKeyDown={(event) => {
+              if (event.key === 'Escape' && hoveredNav) {
+                event.preventDefault();
+                navRef.current?.querySelector<HTMLAnchorElement>(`a[href="${hoveredNav}"]`)?.focus();
+                setHoveredNav(null);
+              }
+            }}
           >
               <nav
                 ref={navRef}
@@ -218,6 +228,7 @@ export const Header: React.FC = () => {
                 {navLinks.map((link) => {
                   const isExt = link.isExternal || link.href.startsWith('http');
                   const active = !isExt && isActive(link.href);
+                  const hasPreview = enableMegaMenu && ['/archives', '/diaries', '/says', '/friends', '/wallpapers'].includes(link.href);
                   const IconComponent = ICON_MAP[link.icon] || FileText;
 
                   if (isExt) {
@@ -227,6 +238,7 @@ export const Header: React.FC = () => {
                         href={link.href}
                         target="_blank"
                         rel="noreferrer"
+                        onFocus={() => setHoveredNav(null)}
                         className="relative flex min-h-9 shrink-0 items-center justify-center gap-1.5 rounded-sm px-2 py-1 text-slate-600 transition-colors duration-150 select-none hover:bg-slate-100/60 hover:text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400 dark:text-slate-300 dark:hover:bg-sakura-400/10 dark:hover:text-sakura-200 sm:min-h-11 sm:px-3.5"
                       >
                         <span className="leading-none translate-y-[0.5px]">{link.label}</span>
@@ -239,7 +251,18 @@ export const Header: React.FC = () => {
                     <Link
                       key={link.id || link.href}
                       href={link.href}
-                      onMouseEnter={(e) => handleNavMouseEnter(link.href, e)}
+                      onMouseEnter={(e) => handleNavPreview(link.href, e)}
+                      onFocus={(e) => handleNavPreview(link.href, e)}
+                      onKeyDown={(event) => {
+                        if (event.key !== 'ArrowDown' || hoveredNav !== link.href) return;
+                        const firstLink = document.querySelector<HTMLAnchorElement>('#site-nav-preview a');
+                        if (firstLink) {
+                          event.preventDefault();
+                          firstLink.focus();
+                        }
+                      }}
+                      aria-expanded={hasPreview ? hoveredNav === link.href : undefined}
+                      aria-controls={hasPreview && hoveredNav === link.href ? 'site-nav-preview' : undefined}
                       aria-current={active ? 'page' : undefined}
                       onClick={handleItemClick}
                       className={`relative flex min-h-9 shrink-0 items-center justify-center gap-1.5 rounded-sm px-2 py-1 transition-colors duration-150 select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400 sm:min-h-11 sm:px-3.5 ${

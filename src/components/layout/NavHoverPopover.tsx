@@ -134,6 +134,7 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
     <>
       {isRendered && (
         <div
+          id="site-nav-preview"
           ref={containerRef}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
@@ -228,7 +229,7 @@ export const NavHoverPopover: React.FC<NavHoverPopoverProps> = ({
                         <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 mb-1">
                           <span>{formatDateShort(diary.date)}</span>
                           {diary.weather && (
-                            <span className="px-1.5 py-0.5 rounded-xs bg-sakura-50 dark:bg-sakura-950/40 text-sakura-600 dark:text-sakura-400 text-[9px] border border-sakura-200/40 dark:border-sakura-800/40">
+                            <span className="px-1.5 py-0.5 rounded-xs bg-sakura-50 dark:bg-sakura-950/40 text-sakura-600 dark:text-sakura-400 text-[10px] border border-sakura-200/40 dark:border-sakura-800/40">
                               {diary.weather}
                             </span>
                           )}

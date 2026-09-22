@@ -69,7 +69,7 @@ export const Footer: React.FC = () => {
                 {motto}
               </p>
             )}
-            <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 pt-0.5 text-[11px] font-mono leading-relaxed text-slate-400 dark:text-slate-500">
+            <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 pt-0.5 text-[11px] font-mono leading-relaxed text-slate-500 dark:text-slate-400">
               <span>&copy; {sinceYear}-{currentYear}</span>
               <span className="text-slate-300 dark:text-slate-700">&bull;</span>
               <span>Powered by</span>
@@ -99,7 +99,7 @@ export const Footer: React.FC = () => {
           <div className="grid w-full grid-cols-3 gap-x-4 pt-0.5 sm:gap-x-8 md:w-auto md:min-w-[22rem] md:gap-x-12">
             {navColumns.map((col, idx) => (
               <div key={col.title || idx} className="min-w-0 space-y-1">
-                <div className="font-mono text-[11px] font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+                <div className="font-mono text-[11px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                   {col.title}
                 </div>
                 <ul className="text-xs">
