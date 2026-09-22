@@ -55,10 +55,10 @@ export const Footer: React.FC = () => {
       data-external-bypass="true"
       className="relative z-10 mt-auto border-t border-slate-200/60 dark:border-slate-800/60 pt-3 pb-3 sm:pt-4 sm:pb-4 lg:pt-3.5 lg:pb-3.5 text-xs font-sans text-slate-600 dark:text-slate-400 select-none shrink-0"
     >
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-3.5">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-2.5">
         
         {/* 上层: 左侧站名标语与版权，右侧多列导航 */}
-        <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-[minmax(0,1fr)_auto] md:gap-12">
+        <div className="grid grid-cols-1 items-start gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:gap-10">
           {/* 左侧区域 */}
           <div className="max-w-md space-y-1.5">
             <h2 className="font-sans font-bold text-base sm:text-lg text-slate-900 dark:text-slate-100 tracking-tight">
@@ -102,7 +102,7 @@ export const Footer: React.FC = () => {
                 <div className="font-mono text-[11px] font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wider">
                   {col.title}
                 </div>
-                <ul className="space-y-0.5 text-xs">
+                <ul className="text-xs">
                   {col.links.map((link, lIdx) => {
                     const isExt = link.isExternal || link.href.startsWith('http') || link.href.startsWith('mailto:');
                     return (
@@ -112,7 +112,7 @@ export const Footer: React.FC = () => {
                             href={link.href}
                             target="_blank"
                             rel="noreferrer"
-                            className="group inline-flex min-h-9 max-w-full items-center hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+                            className="group inline-flex min-h-7 max-w-full items-center hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
                           >
                             <span className="truncate">{link.label}</span>
                             <ArrowUpRight className="w-3 h-3 ml-0.5 text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors" />
@@ -120,7 +120,7 @@ export const Footer: React.FC = () => {
                         ) : (
                           <Link
                             href={link.href}
-                            className="inline-flex min-h-9 max-w-full items-center hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+                            className="inline-flex min-h-7 max-w-full items-center hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
                           >
                             <span className="truncate">{link.label}</span>
                           </Link>
@@ -135,7 +135,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* 下层: 底部信息与操作栏 */}
-        <div className="grid grid-cols-1 items-center gap-2.5 border-t border-slate-200/50 pt-2.5 text-center text-[11px] font-mono text-slate-600 dark:border-slate-800/50 dark:text-slate-400 md:grid-cols-[minmax(0,1fr)_auto] md:text-left">
+        <div className="grid grid-cols-1 items-center gap-1.5 border-t border-slate-200/50 pt-2 text-center text-[11px] font-mono text-slate-600 dark:border-slate-800/50 dark:text-slate-400 md:grid-cols-[minmax(0,1fr)_auto] md:text-left">
           {/* 左侧: RSS 订阅 · 站点地图 · 主题切换器 */}
           <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 md:justify-start">
             {showRss && (

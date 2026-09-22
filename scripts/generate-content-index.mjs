@@ -193,6 +193,7 @@ function main() {
     '/diaries',
     '/says',
     '/friends',
+    '/wallpapers',
     '/sitemap',
     ...diaries.map((diary) => `/diaries/${diary.slug}`),
   ];

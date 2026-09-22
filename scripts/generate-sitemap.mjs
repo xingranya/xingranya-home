@@ -45,6 +45,7 @@ function generateSitemap() {
     { loc: `${baseUrl}/diaries` },
     { loc: `${baseUrl}/says` },
     { loc: `${baseUrl}/friends` },
+    { loc: `${baseUrl}/wallpapers` },
     { loc: `${baseUrl}/sitemap` },
   ];
 

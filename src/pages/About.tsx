@@ -83,12 +83,16 @@ export const About: React.FC = () => {
                   {author.name}
                 </h1>
 
-                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans max-w-2xl">
+                <p className="text-base sm:text-lg text-slate-700 dark:text-slate-200 leading-relaxed font-serif max-w-2xl text-pretty">
                   {author.description}
                 </p>
                 {about?.bio && (
-                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans max-w-2xl">
-                    {about.bio}
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-loose font-sans max-w-2xl text-pretty">
+                    {about.bio.split(/(Java|Rust|Vue3|Node\.js|React)/g).map((part, index) =>
+                      /^(Java|Rust|Vue3|Node\.js|React)$/.test(part)
+                        ? <span key={index} className="font-mono text-[0.92em] font-medium text-sakura-700 dark:text-sakura-300">{part}</span>
+                        : part
+                    )}
                   </p>
                 )}
                 {about?.quote && (

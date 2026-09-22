@@ -9,6 +9,7 @@ import { Archives } from './pages/Archives';
 import { Diaries } from './pages/Diaries';
 import { DiaryDetail } from './pages/DiaryDetail';
 import { Friends } from './pages/Friends';
+import { Wallpapers } from './pages/Wallpapers';
 import { Home } from './pages/Home';
 import { NotFound } from './pages/NotFound';
 import { Says } from './pages/Says';
@@ -21,6 +22,7 @@ const STATIC_SECTIONS = [
   { paths: ['/diaries', '/journal', '/shouji'], list: Diaries, detail: DiaryDetail },
   { paths: ['/says', '/record'], list: Says },
   { paths: ['/friends', '/friend'], list: Friends },
+  { paths: ['/wallpapers'], list: Wallpapers },
   { paths: ['/sitemap'], list: Sitemap },
   { paths: ['/about'], list: About },
 ];

@@ -9,7 +9,7 @@ const site = JSON.parse(fs.readFileSync('src/content/config/site.config.json', '
 const index = JSON.parse(fs.readFileSync('src/content/generated/public-index.json', 'utf8'));
 const rawTemplate = fs.readFileSync('dist/index.html', 'utf8');
 const now = Date.parse(index.generatedAt);
-const routes = ['/', '/about', '/archives', '/diaries', '/says', '/friends', '/sitemap'];
+const routes = ['/', '/about', '/archives', '/diaries', '/says', '/friends', '/wallpapers', '/sitemap'];
 const escape = (value) => String(value).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const serialize = (value) => JSON.stringify(value).replace(/</g, '\\u003c');
 const write = (file, text) => { fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, text); };
@@ -46,7 +46,8 @@ for (const route of [...routes, '/404.html']) {
   const snapshot = { now, ...(diaryBodies.has(route) ? { diary: diaryBodies.get(route) } : {}) };
   const body = await renderPage(route, snapshot);
   const meta = getPageMeta(route);
-  let html = template
+  // 番剧墙首屏就有筛选与图片懒加载，需要立即启用交互。
+  let html = (route === '/wallpapers' ? rawTemplate : template)
     .replace(/<title>[^<]*<\/title>/, `<title>${escape(meta.title)}</title>`)
     .replace(/<script[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/g, '')
     .replace(/<link[^>]*rel="canonical"[^>]*>/g, '')

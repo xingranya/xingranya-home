@@ -4,6 +4,7 @@ import { PageShell } from '../components/layout/PageShell';
 import { Container } from '../components/layout/Container';
 import { getAllDiaries, getAllFriends, getAllRecords } from '../content';
 import { formatDateShort } from '../lib/date';
+import wallpapers from '../content/pages/wallpapers.json';
 import {
   ExternalLink,
   BookOpen,
@@ -22,6 +23,7 @@ export const Sitemap: React.FC = () => {
     { name: '动态手记', nameEn: 'Diaries', path: '/diaries', desc: '生活随笔、日暮微风与真实生活切片', count: `${allDiaries.length} 篇` },
     { name: '日常说说', nameEn: 'Says', path: '/says', desc: '碎片化的即时灵感、微型日志与正在发生的事情', count: `${allRecords.length} 则` },
     { name: '志同道合', nameEn: 'Friends', path: '/friends', desc: '优秀独立博客友人链接、技术专栏与灵感共振', count: `${allFriends.length} 位` },
+    { name: '番剧墙', nameEn: 'Anime', path: '/wallpapers', desc: '正在追与已追完的番剧封面、简介与故事', count: `${wallpapers.items.length} 部` },
   ];
 
   return (

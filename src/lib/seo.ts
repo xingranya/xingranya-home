@@ -5,6 +5,7 @@ export const sections = [
   { label: '手记', paths: ['/diaries', '/journal', '/shouji'] },
   { label: '动态', paths: ['/says', '/record'] },
   { label: '友链', paths: ['/friends', '/friend'] },
+  { label: '番剧墙', paths: ['/wallpapers'] },
   { label: '站点地图', paths: ['/sitemap'] },
   { label: '关于', paths: ['/about'] },
 ];
@@ -33,6 +34,7 @@ export function getPageMeta(pathname: string) {
       '/diaries': siteConfig.diariesPage?.subtitle || '星苒鸭的手记与随笔。',
       '/says': siteConfig.saysPage?.subtitle || '星苒鸭的日常动态与近况。',
       '/friends': siteConfig.friendsPage?.subtitle || '星苒鸭的朋友与友链。',
+      '/wallpapers': '星苒鸭的番剧墙。收藏喜欢的番剧封面、简介和故事，按片名、年份或类型慢慢浏览。',
       '/sitemap': '星苒鸭个人主页的栏目与公开手记索引。',
       '/about': `关于${siteConfig.author.name}：${siteConfig.author.description}`,
     };

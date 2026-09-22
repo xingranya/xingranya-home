@@ -6,6 +6,7 @@ export const validPageRoutes = [
   "/diaries",
   "/says",
   "/friends",
+  "/wallpapers",
   "/sitemap",
   "/diaries/2026-09-19-love-and-memory",
   "/diaries/2026-08-26-refactor-digital-garden-minimalism",

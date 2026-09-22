@@ -12,6 +12,7 @@ import {
   Link2,
   Globe,
   ArrowUpRight,
+  Images,
 } from 'lucide-react';
 const SearchModal = lazy(() => import('../search/SearchModal').then((module) => ({ default: module.SearchModal })));
 import { NavHoverPopover } from './NavHoverPopover';
@@ -29,6 +30,7 @@ const ICON_MAP: Record<string, React.FC<{ className?: string }>> = {
   Sparkles,
   Link2,
   Globe,
+  Images,
 };
 
 const DEFAULT_NAV_LINKS: NavLinkItem[] = [
@@ -37,6 +39,7 @@ const DEFAULT_NAV_LINKS: NavLinkItem[] = [
   { id: 'nav-archives', href: '/archives', label: '归档', icon: 'History', enabled: true },
   { id: 'nav-diaries', href: '/diaries', label: '手记', icon: 'Feather', enabled: true },
   { id: 'nav-says', href: '/says', label: '动态', icon: 'MessageSquareQuote', enabled: true },
+  { id: 'nav-wallpapers', href: '/wallpapers', label: '番剧墙', icon: 'Images', enabled: true },
   { id: 'nav-friends', href: '/friends', label: '朋友', icon: 'Users', enabled: true },
   { id: 'nav-about', href: '/about', label: '关于', icon: 'User', enabled: true },
 ];
@@ -185,12 +188,13 @@ export const Header: React.FC = () => {
         {/* 正中心纯粹居中导航栏 */}
         <div className="max-w-4xl mx-auto flex items-center justify-center sm:min-h-[2.4rem]">
           <div
-            className="pointer-events-auto flex items-center justify-center relative"
+            className="pointer-events-auto flex min-w-0 max-w-full items-center justify-center relative"
             onMouseLeave={handleNavMouseLeave}
           >
               <nav
                 ref={navRef}
-                className="flex max-w-full items-center gap-0.5 overflow-hidden rounded border border-slate-200/75 bg-white/75 p-1 text-xs shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] backdrop-blur-md dark:border-slate-800/75 dark:bg-slate-900/75 sm:text-sm"
+                aria-label="主导航"
+                className="flex max-w-full items-center gap-0.5 overflow-x-auto rounded border border-slate-200/75 bg-white/75 p-1 text-xs shadow-[0_2px_10px_-2px_rgba(15,23,42,0.06)] backdrop-blur-md dark:border-slate-800/75 dark:bg-slate-900/75 sm:text-sm"
               >
                 {navLinks.map((link) => {
                   const isExt = link.isExternal || link.href.startsWith('http');

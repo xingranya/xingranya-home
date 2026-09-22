@@ -3,6 +3,7 @@ import { Router } from 'wouter';
 import { App } from './App';
 import { setContentSnapshot, setLocalContentStore, type ContentSnapshot } from './content';
 import './styles/index.css';
+import './styles/wallpapers.css';
 
 async function start() {
   const root = document.getElementById('root');

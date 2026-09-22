@@ -14,6 +14,7 @@ const Diaries = lazy(() => import('./pages/Diaries').then((module) => ({ default
 const DiaryDetail = lazy(() => import('./pages/DiaryDetail').then((module) => ({ default: module.DiaryDetail })));
 const Says = lazy(() => import('./pages/Says').then((module) => ({ default: module.Says })));
 const Friends = lazy(() => import('./pages/Friends').then((module) => ({ default: module.Friends })));
+const Wallpapers = lazy(() => import('./pages/Wallpapers').then((module) => ({ default: module.Wallpapers })));
 const Sitemap = lazy(() => import('./pages/Sitemap').then((module) => ({ default: module.Sitemap })));
 const About = lazy(() => import('./pages/About').then((module) => ({ default: module.About })));
 const NotFound = lazy(() => import('./pages/NotFound').then((module) => ({ default: module.NotFound })));
@@ -32,6 +33,7 @@ const SECTIONS: Section[] = [
   { label: '手记', paths: ['/diaries', '/journal', '/shouji'], list: Diaries, detail: DiaryDetail },
   { label: '说说', paths: ['/says', '/record'], list: Says },
   { label: '友链', paths: ['/friends', '/friend'], list: Friends },
+  { label: '番剧墙', paths: ['/wallpapers'], list: Wallpapers },
   { label: '站点地图', paths: ['/sitemap'], list: Sitemap },
   { label: '关于', paths: ['/about'], list: About },
 ];
