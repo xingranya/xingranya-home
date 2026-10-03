@@ -6,6 +6,8 @@ import contentIndex from '../content/generated/content-index.json';
 import { postLoaders, diaryLoaders } from '../content/generated/content-loaders';
 import { calculateReadingTime, extractTOC, parseDiaryFile, parseMarkdownFile } from './markdown';
 
+type AnyRecord = Record<string, unknown>;
+
 interface PostMeta {
   slug: string;
   title: string;
@@ -140,9 +142,17 @@ const STORAGE_KEYS = {
   DRAFTS: 'cot_editor_drafts_v2',
 };
 
+const SERVER_STORE_KEYS: Record<string, string> = {
+  [STORAGE_KEYS.POSTS]: 'posts',
+  [STORAGE_KEYS.DIARIES]: 'diaries',
+  [STORAGE_KEYS.RECORDS]: 'records',
+  [STORAGE_KEYS.FRIENDS]: 'friends',
+  [STORAGE_KEYS.CONFIG]: 'siteConfig',
+};
+
 export interface AdminPreferences {
   theme: 'light' | 'dark' | 'system';
-  accentColor: 'blue' | 'emerald' | 'violet' | 'amber';
+  accentColor: 'sakura';
   editorFontSize: number;
   sidebarCollapsed: boolean;
   autoSaveDraft: boolean;
@@ -150,7 +160,7 @@ export interface AdminPreferences {
 
 const defaultPreferences: AdminPreferences = {
   theme: 'system',
-  accentColor: 'blue',
+  accentColor: 'sakura',
   editorFontSize: 14,
   sidebarCollapsed: false,
   autoSaveDraft: true,
@@ -189,6 +199,122 @@ function safeSave<T>(key: string, value: T): void {
   } catch (e) {
     console.error(`[AdminStore] Failed to save key: ${key}`, e);
   }
+  void queueServerSave(key, value);
+}
+
+function saveLocalOnly<T>(key: string, value: T): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    console.warn(`[AdminStore] Local cache save failed for ${key}:`, error);
+  }
+}
+
+const serverSaveQueues = new Map<string, Promise<void>>();
+const serverSnapshots: Record<string, string | null> = {};
+const pendingSavesKey = 'cot_pending_source_saves_v1';
+const pendingSourceDrafts = safeLoad<Record<string, { value: string; snapshot: string | null }>>(pendingSavesKey, {});
+const failedSaves = new Map(Object.entries(pendingSourceDrafts).map(([key, draft]) => [key, draft.value]));
+let serverSync = { ready: false, pending: 0, error: '', savedAt: 0 };
+let hydrationPromise: Promise<boolean> | null = null;
+
+function isAdminClient() {
+  return (
+    typeof window !== 'undefined' &&
+    (window.location.pathname === '/admin' || window.location.pathname.startsWith('/admin/'))
+  );
+}
+
+async function queueServerSave<T>(key: string, value: T) {
+  const serverKey = SERVER_STORE_KEYS[key];
+  if (!serverKey || !isAdminClient()) return;
+  const serialized = JSON.stringify(value);
+  pendingSourceDrafts[key] = { value: serialized, snapshot: pendingSourceDrafts[key]?.snapshot ?? serverSnapshots[serverKey] };
+  saveLocalOnly(pendingSavesKey, pendingSourceDrafts);
+  serverSync = { ...serverSync, pending: serverSync.pending + 1 };
+  notify();
+
+  const previous = serverSaveQueues.get(serverKey) || Promise.resolve();
+  const next = previous
+    .catch(() => undefined)
+    .then(async () => {
+      if (!serverSync.ready) throw new Error('尚未读取源文件，请重新打开后台后保存。');
+      const response = await fetch('/admin/api/store', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ key: serverKey, value: JSON.parse(serialized), snapshot: serverSnapshots[serverKey] }),
+      });
+      const payload = await response.json() as { success?: boolean; error?: string; data?: { snapshot: string | null } };
+      if (!response.ok || !payload.success) throw new Error(payload.error || `源文件保存失败（${response.status}）`);
+      serverSnapshots[serverKey] = payload.data?.snapshot ?? null;
+      if (pendingSourceDrafts[key]?.value === serialized) {
+        delete pendingSourceDrafts[key];
+        failedSaves.delete(key);
+      } else if (pendingSourceDrafts[key]) pendingSourceDrafts[key].snapshot = serverSnapshots[serverKey];
+      saveLocalOnly(pendingSavesKey, pendingSourceDrafts);
+      serverSync = { ...serverSync, error: failedSaves.size ? serverSync.error : '', savedAt: Date.now() };
+    })
+    .catch((error) => {
+      failedSaves.set(key, serialized);
+      serverSync = { ...serverSync, error: error instanceof Error ? error.message : String(error) };
+      console.warn('[AdminStore] Source file sync failed:', error);
+    })
+    .finally(() => {
+      serverSync = { ...serverSync, pending: serverSync.pending - 1 };
+      notify();
+    });
+  serverSaveQueues.set(serverKey, next);
+  await next;
+}
+
+function mergeServerPosts(items: AnyRecord[]): Post[] {
+  return items.map((item) => {
+    const fallback = defaultPosts.find((post) => post.slug === item.slug);
+    const content = String(item.content || fallback?.content || '');
+    const metrics = calculateReadingTime(content);
+    return {
+      ...fallback,
+      ...item,
+      slug: String(item.slug || fallback?.slug || ''),
+      title: String(item.title || fallback?.title || item.slug || ''),
+      date: String(item.date || fallback?.date || new Date().toISOString().slice(0, 10)),
+      summary: String(item.summary || fallback?.summary || ''),
+      tags: Array.isArray(item.tags) ? item.tags.map(String) : fallback?.tags || [],
+      category: String(item.category || fallback?.category || '技术文章'),
+      content,
+      readingTime: metrics.readingTime,
+      wordCount: metrics.wordCount,
+      toc: extractTOC(content),
+      draft: Boolean(item.draft),
+    } as Post;
+  });
+}
+
+function mergeServerDiaries(items: AnyRecord[]): Diary[] {
+  return items.map((item) => {
+    const fallback = defaultDiaries.find((diary) => diary.slug === item.slug);
+    const content = String(item.content || fallback?.content || '');
+    const metrics = calculateReadingTime(content);
+    return {
+      ...fallback,
+      ...item,
+      slug: String(item.slug || fallback?.slug || ''),
+      title: String(item.title || fallback?.title || item.slug || ''),
+      date: String(item.date || fallback?.date || new Date().toISOString().slice(0, 10)),
+      time: String(item.time ?? fallback?.time ?? ''),
+      weather: String(item.weather ?? fallback?.weather ?? ''),
+      mood: String(item.mood ?? fallback?.mood ?? ''),
+      location: String(item.location ?? fallback?.location ?? ''),
+      tags: Array.isArray(item.tags) ? item.tags.map(String) : fallback?.tags || ['手记'],
+      summary: String(item.summary || fallback?.summary || ''),
+      content,
+      readingTime: metrics.readingTime,
+      wordCount: metrics.wordCount,
+      draft: Boolean(item.draft),
+      indexable: item.indexable !== false,
+    } as Diary;
+  });
 }
 
 function isMergeableRecord(value: unknown): value is Record<string, unknown> {
@@ -253,7 +379,7 @@ let currentLogs: ActivityLog[] = safeLoad<ActivityLog[]>(STORAGE_KEYS.LOGS, [
 ]);
 let currentPreferences: AdminPreferences = safeLoad<AdminPreferences>(STORAGE_KEYS.PREFERENCES, defaultPreferences);
 let currentTrash: TrashItem[] = safeLoad<TrashItem[]>(STORAGE_KEYS.TRASH, []);
-let currentDrafts: Record<string, EditorDraft> = safeLoad<Record<string, EditorDraft>>(STORAGE_KEYS.DRAFTS, {});
+const currentDrafts: Record<string, EditorDraft> = safeLoad<Record<string, EditorDraft>>(STORAGE_KEYS.DRAFTS, {});
 
 function pushToTrash(type: TrashItem['type'], title: string, data: unknown) {
   const item: TrashItem = {
@@ -273,6 +399,81 @@ export const AdminStore = {
     return () => {
       listeners.delete(listener);
     };
+  },
+
+  async hydrateFromServer(): Promise<boolean> {
+    if (!isAdminClient() && process.env.NODE_ENV !== 'development') return false;
+    if (serverSync.ready) return true;
+    if (hydrationPromise) return hydrationPromise;
+
+    hydrationPromise = (async () => {
+      try {
+        const response = await fetch('/admin/api/bootstrap', { headers: { Accept: 'application/json' } });
+        if (!response.ok) throw new Error(`后台数据读取失败（${response.status}）`);
+        const payload = (await response.json()) as {
+          success?: boolean;
+          data?: { home?: AnyRecord; storeSnapshots?: Record<string, string | null> };
+        };
+        const home = payload.data?.home;
+        if (!payload.success || !home) throw new Error('后台数据结构无效。');
+        Object.assign(serverSnapshots, payload.data?.storeSnapshots);
+        if (isAdminClient()) {
+          for (const [key, draft] of Object.entries(pendingSourceDrafts)) {
+            const serverKey = SERVER_STORE_KEYS[key];
+            if (!serverKey) continue;
+            home[serverKey] = JSON.parse(draft.value);
+            serverSnapshots[serverKey] = draft.snapshot;
+          }
+        }
+
+        if (Array.isArray(home.posts)) currentPosts = mergeServerPosts(home.posts);
+        if (Array.isArray(home.diaries)) currentDiaries = mergeServerDiaries(home.diaries);
+        if (Array.isArray(home.records)) currentRecords = home.records as RecordItem[];
+        if (Array.isArray(home.friends)) currentFriends = home.friends as FriendItem[];
+        if (home.siteConfig && typeof home.siteConfig === 'object') {
+          currentSiteConfig = deepMerge<SiteConfig>(defaultSiteConfig, home.siteConfig);
+        }
+
+        saveLocalOnly(STORAGE_KEYS.POSTS, currentPosts);
+        saveLocalOnly(STORAGE_KEYS.DIARIES, currentDiaries);
+        saveLocalOnly(STORAGE_KEYS.RECORDS, currentRecords);
+        saveLocalOnly(STORAGE_KEYS.FRIENDS, currentFriends);
+        saveLocalOnly(STORAGE_KEYS.CONFIG, currentSiteConfig);
+        serverSync = { ...serverSync, ready: true, error: isAdminClient() && failedSaves.size ? '检测到尚未保存到源文件的浏览器草稿，可重试保存或重新读取源文件。' : '' };
+        notify();
+        return true;
+      } catch (error) {
+        serverSync = { ...serverSync, error: error instanceof Error ? error.message : String(error) };
+        notify();
+        console.warn('[AdminStore] Server hydration skipped:', error);
+        return false;
+      } finally {
+        hydrationPromise = null;
+      }
+    })();
+
+    return hydrationPromise;
+  },
+
+  getServerSync() { return serverSync; },
+
+  async flushServerSaves() {
+    while (serverSync.pending) await Promise.all([...serverSaveQueues.values()]);
+    if (!serverSync.ready || failedSaves.size) throw new Error(serverSync.error || '源文件尚未保存。');
+  },
+
+  async retryServerSaves() {
+    await Promise.all([...failedSaves].map(([key, value]) => queueServerSave(key, JSON.parse(value))));
+  },
+
+  discardPendingSourceChanges() {
+    if (serverSync.pending) return false;
+    failedSaves.clear();
+    Object.keys(pendingSourceDrafts).forEach((key) => delete pendingSourceDrafts[key]);
+    saveLocalOnly(pendingSavesKey, pendingSourceDrafts);
+    serverSync = { ...serverSync, error: '', savedAt: 0 };
+    notify();
+    return true;
   },
 
   addLog(type: ActivityLog['type'], action: ActivityLog['action'], title: string, description: string) {
@@ -520,10 +721,10 @@ export const AdminStore = {
       slug: diaryData.slug.trim(),
       title: diaryData.title.trim(),
       date: diaryData.date || new Date().toISOString().split('T')[0],
-      time: diaryData.time || new Date().toTimeString().slice(0, 5),
-      weather: diaryData.weather || '晴',
-      mood: diaryData.mood || '平静',
-      location: diaryData.location || '书房',
+      time: diaryData.time ?? currentDiaries[existingIndex]?.time ?? '',
+      weather: diaryData.weather ?? currentDiaries[existingIndex]?.weather ?? '',
+      mood: diaryData.mood ?? currentDiaries[existingIndex]?.mood ?? '',
+      location: diaryData.location ?? currentDiaries[existingIndex]?.location ?? '',
       tags: Array.isArray(diaryData.tags) && diaryData.tags.length > 0 ? diaryData.tags : ['手记'],
       summary: diaryData.summary || diaryData.content.slice(0, 120).replace(/[#*`_\n]/g, ' ').trim() + '...',
       content: diaryData.content,
@@ -1285,37 +1486,11 @@ export const AdminStore = {
     }
   },
 
-  resetToDefault() {
-    currentPosts = [...defaultPosts];
-    currentDiaries = [...defaultDiaries];
-    currentRecords = [...defaultRecords];
-    currentFriends = [...defaultFriends];
-    currentSiteConfig = { ...defaultSiteConfig };
-    currentLogs = [
-      {
-        id: `log-reset-${Date.now()}`,
-        type: 'system',
-        action: 'restore',
-        title: '重置出厂数据',
-        description: '全站数据已重置为初始演示状态。',
-        timestamp: Date.now(),
-      },
-    ];
+  resetPreferences(): AdminPreferences {
     currentPreferences = { ...defaultPreferences };
-    currentTrash = [];
-    currentDrafts = {};
-
-    safeSave(STORAGE_KEYS.POSTS, currentPosts);
-    safeSave(STORAGE_KEYS.DIARIES, currentDiaries);
-    safeSave(STORAGE_KEYS.RECORDS, currentRecords);
-    safeSave(STORAGE_KEYS.FRIENDS, currentFriends);
-    safeSave(STORAGE_KEYS.CONFIG, currentSiteConfig);
-    safeSave(STORAGE_KEYS.LOGS, currentLogs);
     safeSave(STORAGE_KEYS.PREFERENCES, currentPreferences);
-    safeSave(STORAGE_KEYS.TRASH, currentTrash);
-    safeSave(STORAGE_KEYS.DRAFTS, currentDrafts);
-
     notify();
+    return currentPreferences;
   },
 
   getStorageUsage(): { usedBytes: number; usedKb: number; itemsCount: Record<string, number> } {

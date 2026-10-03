@@ -23,6 +23,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { useAdminStore } from '../../hooks/useAdminStore';
+import { AdminStore } from '../../lib/admin-store';
 import { AdminCommandPalette } from './AdminCommandPalette';
 
 export type AdminViewType =
@@ -34,6 +35,14 @@ export type AdminViewType =
   | 'taxonomy'
   | 'settings'
   | 'fileEditor'
+  | 'workspace'
+  | 'blogPosts'
+  | 'blogPages'
+  | 'media'
+  | 'homeProjects'
+  | 'homeWallpapers'
+  | 'blogLinks'
+  | 'blogMasonry'
   | 'editor';
 
 interface AdminLayoutProps {
@@ -63,6 +72,9 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
     restoreTrash,
     deletePermanently,
     clearTrash,
+    serverSync,
+    retryServerSaves,
+    discardPendingSourceChanges,
   } = useAdminStore();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(preferences.sidebarCollapsed || false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -72,6 +84,15 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
   const [confirmClearTrashOpen, setConfirmClearTrashOpen] = useState(false);
   const [permanentDeleteTarget, setPermanentDeleteTarget] = useState<{ id: string; title: string } | null>(null);
   const [isDark, setIsDark] = useState(false);
+  useEffect(() => {
+    if (!serverSync.pending && !serverSync.error) return;
+    const beforeUnload = (event: BeforeUnloadEvent) => {
+      const current = AdminStore.getServerSync();
+      if (current.pending || current.error) { event.preventDefault(); event.returnValue = ''; }
+    };
+    window.addEventListener('beforeunload', beforeUnload);
+    return () => window.removeEventListener('beforeunload', beforeUnload);
+  }, [serverSync.pending, serverSync.error]);
 
   // 主题与暗黑模式同步
   useEffect(() => {
@@ -108,12 +129,14 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
       title: '工作台',
       items: [
         { id: 'overview' as const, label: '控制台总览', icon: LayoutDashboard, badge: null },
+        { id: 'workspace' as const, label: '统一工作区', icon: ShieldCheck, badge: null },
       ],
     },
     {
       title: '内容创作',
       items: [
-        { id: 'posts' as const, label: '文章管理', icon: FileText, badge: posts.length },
+        { id: 'blogPosts' as const, label: '博客文章', icon: FileText, badge: null },
+        { id: 'posts' as const, label: '主页文稿', icon: FileText, badge: posts.length },
         { id: 'diaries' as const, label: '手记随笔', icon: BookOpen, badge: diaries.length },
         { id: 'records' as const, label: '说说动态', icon: Activity, badge: records.length },
       ],
@@ -130,19 +153,33 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
       items: [
         { id: 'settings' as const, label: '全站与页面配置', icon: Settings2, badge: null },
         { id: 'fileEditor' as const, label: '底层数据中心', icon: FileCode2, badge: null },
+        { id: 'blogPages' as const, label: '博客页面', icon: FileCode2, badge: null },
+        { id: 'media' as const, label: '媒体中心', icon: Database, badge: null },
+        { id: 'homeProjects' as const, label: '主页项目数据', icon: FileCode2, badge: null },
+        { id: 'homeWallpapers' as const, label: '番剧墙数据', icon: FileCode2, badge: null },
+        { id: 'blogLinks' as const, label: '博客友链数据', icon: Link2, badge: null },
+        { id: 'blogMasonry' as const, label: '博客壁纸数据', icon: FileCode2, badge: null },
       ],
     },
   ];
 
   const viewTitles: Record<AdminViewType, string> = {
     overview: '仪表盘总览',
-    posts: '文章管理',
+    posts: '主页文稿',
     diaries: '手记随笔',
     records: '说说动态',
     friends: '友情链接',
     taxonomy: '分类与标签',
     settings: '全站与页面配置中心',
     fileEditor: '底层数据与源码中心',
+    workspace: '统一工作区',
+    blogPosts: '博客文章',
+    blogPages: '博客页面',
+    media: '媒体中心',
+    homeProjects: '主页项目数据',
+    homeWallpapers: '番剧墙数据',
+    blogLinks: '博客友链数据',
+    blogMasonry: '博客壁纸数据',
     editor: '内容编辑器',
   };
 
@@ -155,7 +192,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
   return (
     <div
       className={`admin-app ${isDark ? 'admin-dark dark' : ''}`}
-      data-accent={preferences.accentColor || 'blue'}
+      data-accent="sakura"
     >
       {/* 移动端侧边栏遮罩 */}
       {mobileMenuOpen && (
@@ -232,7 +269,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
             <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 text-[11px] space-y-1.5 font-mono">
               <div className="flex items-center justify-between text-slate-500">
                 <span className="flex items-center gap-1">
-                  <Database className="w-3 h-3 text-sakura-500" /> 本地存储
+                  <Database className="w-3 h-3 text-sakura-500" /> 草稿缓存
                 </span>
                 <span className="font-semibold text-slate-700 dark:text-slate-300">
                   {storageUsage.usedKb} KB
@@ -297,10 +334,10 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
             {/* 本地状态呼吸胶囊 */}
             <div
               className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60"
-              title="本地数据已安全保存在浏览器 LocalStorage"
+              title="源文件由本机管理桥接层维护，浏览器只保留草稿和界面偏好"
             >
-              <span className="admin-pulse-dot bg-emerald-500" />
-              <span>本地已就绪</span>
+              <span className={serverSync.error ? 'h-1.5 w-1.5 rounded-full bg-red-500' : 'h-1.5 w-1.5 rounded-full bg-emerald-500'} />
+              <span>{serverSync.pending ? '正在保存源文件…' : serverSync.error ? '保存未完成' : serverSync.savedAt ? '源文件已保存' : '源文件已读取'}</span>
             </div>
 
             {/* Ctrl+K 搜索按钮 */}
@@ -415,6 +452,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
 
         {/* 主视口视图 */}
         <main className="flex-1 overflow-y-auto">
+          {(serverSync.pending > 0 || serverSync.error) && <div role="status" className={`admin-workspace-notice m-4 ${serverSync.error ? 'error' : 'info'}`}><span>{serverSync.error ? `${serverSync.error} 浏览器草稿仍保留。` : '正在写入源文件，请稍候再离开后台。'}</span>{serverSync.error && <><button className="admin-btn admin-btn-secondary admin-btn-sm" disabled={serverSync.pending > 0} onClick={() => void retryServerSaves()}>重试保存</button><button className="admin-btn admin-btn-secondary admin-btn-sm" disabled={serverSync.pending > 0} onClick={() => { if (window.confirm('放弃尚未写入源文件的改动，重新读取磁盘内容？') && discardPendingSourceChanges()) window.location.reload(); }}>重新读取源文件</button></>}</div>}
           {children}
         </main>
       </div>

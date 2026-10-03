@@ -37,3 +37,4 @@ Thumbs.db
 
 # 同步番剧的本地备份与上传回执，不含账号凭据
 .cache/anime-sync/
+.cache/admin-snapshots/

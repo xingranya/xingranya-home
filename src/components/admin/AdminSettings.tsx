@@ -17,11 +17,9 @@ import {
   ArrowDown,
   Download,
   Upload,
-  ShieldAlert,
   HardDrive,
   Check,
   Sparkles,
-  AlertTriangle,
   Layers,
 } from 'lucide-react';
 import { useAdminStore, type AdminPreferences } from '../../hooks/useAdminStore';
@@ -51,7 +49,7 @@ export const AdminSettings: React.FC = () => {
     savePreferences,
     exportAllData,
     importData,
-    resetToDefault,
+    resetPreferences,
     storageUsage,
     clearLogs,
   } = useAdminStore();
@@ -62,12 +60,11 @@ export const AdminSettings: React.FC = () => {
   const [configForm, setConfigForm] = useState<SiteConfig>(() => JSON.parse(JSON.stringify(siteConfig)));
 
   // 外观偏好
-  const [accentColor, setAccentColor] = useState<AdminPreferences['accentColor']>(preferences.accentColor || 'blue');
+  const [accentColor, setAccentColor] = useState<AdminPreferences['accentColor']>('sakura');
   const [themeMode, setThemeMode] = useState<AdminPreferences['theme']>(preferences.theme || 'system');
 
-  // 备份与重置
+  // 备份
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const [resetConfirmOpen, setResetConfirmOpen] = useState(false);
 
   // 未保存变更检测
   const isDirty = useMemo(() => {
@@ -82,15 +79,17 @@ export const AdminSettings: React.FC = () => {
         e.returnValue = '';
       }
     };
+    const beforeNavigate = (event: Event) => { if (isDirty && !window.confirm('配置尚未保存，确定离开？')) event.preventDefault(); };
     window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener('admin:before-navigate', beforeNavigate);
+    return () => { window.removeEventListener('beforeunload', handleBeforeUnload); window.removeEventListener('admin:before-navigate', beforeNavigate); };
   }, [isDirty]);
 
   // 保存站点配置
   const handleSaveAllConfig = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     saveSiteConfig(configForm);
-    success('全站与页面配置已保存并立即生效！');
+    success('配置已保存到本地源文件，线上内容需发布后更新。');
   };
 
   // 保存偏好
@@ -138,12 +137,12 @@ export const AdminSettings: React.FC = () => {
     }
   };
 
-  // 确认重置
-  const handleConfirmReset = () => {
-    resetToDefault();
-    setConfigForm(JSON.parse(JSON.stringify(siteConfig)));
-    setResetConfirmOpen(false);
-    success('全站数据已重置为初始演示状态');
+  // 仅恢复当前浏览器中的后台偏好，保留正在编辑的站点配置。
+  const handleResetPreferences = () => {
+    const restored = resetPreferences();
+    setAccentColor(restored.accentColor);
+    setThemeMode(restored.theme);
+    success('后台偏好已恢复为默认值。');
   };
 
   const tabs: { id: SettingsTab; label: string; icon: React.FC<{ className?: string }> }[] = [
@@ -2044,10 +2043,7 @@ export const AdminSettings: React.FC = () => {
                         onChange={(e) => setAccentColor(e.target.value as AdminPreferences['accentColor'])}
                         className="admin-select"
                       >
-                        <option value="blue">天空蓝 (Sky Blue)</option>
-                        <option value="emerald">翡翠绿 (Emerald)</option>
-                        <option value="violet">紫罗兰 (Violet)</option>
-                        <option value="amber">日落橙 (Amber)</option>
+                        <option value="sakura">樱花粉（站点统一强调色）</option>
                       </select>
                     </div>
                   </div>
@@ -2166,24 +2162,24 @@ export const AdminSettings: React.FC = () => {
                 </div>
               </div>
 
-              {/* 危险重置区 */}
-              <div className="admin-card border-red-200 dark:border-red-900/50">
-                <div className="admin-card-header bg-red-50/50 dark:bg-red-950/20">
-                  <h3 className="text-red-600 dark:text-red-400">
-                    <ShieldAlert className="w-4 h-4" />
-                    <span>危险操作区域</span>
+              {/* 后台偏好 */}
+              <div className="admin-card">
+                <div className="admin-card-header">
+                  <h3>
+                    <Palette className="w-4 h-4" />
+                    <span>恢复后台偏好</span>
                   </h3>
                 </div>
 
                 <div className="p-5 space-y-3 text-xs">
                   <p className="text-[11px] text-slate-500 leading-relaxed">
-                    重置将清除浏览器本地中所有新增与修改的数据，恢复初始演示状态。
+                    将主题、强调色、编辑器字号、侧栏和自动暂存恢复为默认值。设置仅保存在当前浏览器。
                   </p>
                   <button
-                    onClick={() => setResetConfirmOpen(true)}
-                    className="admin-btn admin-btn-danger admin-btn-sm w-full"
+                    onClick={handleResetPreferences}
+                    className="admin-btn admin-btn-secondary admin-btn-sm w-full"
                   >
-                    恢复出厂演示数据
+                    恢复后台偏好
                   </button>
                 </div>
               </div>
@@ -2191,45 +2187,6 @@ export const AdminSettings: React.FC = () => {
           </div>
         )}
       </div>
-
-      {/* 出厂重置二次确认模态框 */}
-      {resetConfirmOpen && (
-        <div className="admin-modal-overlay" onClick={() => setResetConfirmOpen(false)}>
-          <div
-            className="admin-modal-dialog p-6 space-y-4 max-w-sm"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-start gap-3">
-              <div className="p-2 rounded-full bg-red-100 dark:bg-red-950 text-red-600 shrink-0">
-                <AlertTriangle className="w-5 h-5" />
-              </div>
-              <div className="space-y-1">
-                <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">
-                  确认重置全站数据？
-                </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                  此操作将丢弃所有在当前浏览器中创建或修改的文章、手记、说说、友链及全页面配置，并重置为初始演示状态。
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-end gap-2.5 pt-2">
-              <button
-                onClick={() => setResetConfirmOpen(false)}
-                className="admin-btn admin-btn-secondary admin-btn-sm"
-              >
-                取消
-              </button>
-              <button
-                onClick={handleConfirmReset}
-                className="admin-btn admin-btn-danger admin-btn-sm"
-              >
-                确认重置
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* 浮动未保存保存栏 */}
       {isDirty && (

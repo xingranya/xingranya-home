@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'wouter';
-import { Megaphone, ChevronRight } from 'lucide-react';
+import { Megaphone, ChevronRight, ArrowUpRight, ArrowRight } from 'lucide-react';
 import { SocialLinks } from '../ui/SocialLinks';
 import { getAllDiaries, getSnapshotTime, siteConfig } from '../../content';
 
@@ -66,7 +66,12 @@ export const HomeHero: React.FC = () => {
       className="relative flex flex-col items-center justify-center py-2 sm:py-3 text-center overflow-visible w-full"
     >
       <div className="home-hero-avatar-enter mb-3 sm:mb-4 relative group">
-        <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-[4.85rem] lg:h-[4.85rem] rounded-full p-0.5 sm:p-1 bg-gradient-to-tr from-sakura-200 to-sakura-300/40 dark:from-sakura-400 dark:to-sakura-700/60 shadow-md">
+        <div className="home-avatar-tilt relative w-16 h-16 sm:w-20 sm:h-20 lg:w-[4.85rem] lg:h-[4.85rem] rounded-full p-0.5 sm:p-1 bg-gradient-to-tr from-sakura-200 to-sakura-300/40 dark:from-sakura-400 dark:to-sakura-700/60 shadow-md" onPointerMove={(event) => {
+          if (!window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) return;
+          const rect = event.currentTarget.getBoundingClientRect();
+          event.currentTarget.style.setProperty('--avatar-x', `${((event.clientY - rect.top) / rect.height - 0.5) * -12}deg`);
+          event.currentTarget.style.setProperty('--avatar-y', `${((event.clientX - rect.left) / rect.width - 0.5) * 12}deg`);
+        }} onPointerLeave={(event) => { event.currentTarget.style.removeProperty('--avatar-x'); event.currentTarget.style.removeProperty('--avatar-y'); }}>
           <svg className="hero-avatar-ring" viewBox="0 0 88 88" aria-hidden="true">
             <circle cx="44" cy="44" r="42" pathLength="1" />
           </svg>
@@ -142,6 +147,11 @@ export const HomeHero: React.FC = () => {
           <SocialLinks items={homeSocials} variant="icon" />
         </div>
       )}
+
+      <div className="home-hero-soft-reveal home-hero-actions mt-3 flex flex-wrap items-center justify-center gap-5 text-sm font-sans">
+        <Link href="/about" className="hero-action-link">了解我<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+        <a href="https://blog.xran.uk" target="_blank" rel="noreferrer" className="hero-action-link">阅读博客<ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a>
+      </div>
 
       {siteConfig.announcement?.enabled && (
         <div className="home-hero-soft-reveal home-hero-announcement mt-3 sm:mt-4 lg:mt-3 max-w-lg mx-auto w-full px-2">

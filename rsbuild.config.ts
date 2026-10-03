@@ -1,5 +1,6 @@
 import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
+import { createAdminApiMiddleware } from './scripts/admin-api';
 
 const siteUrl = 'https://xran.uk';
 const siteTitle = '星苒鸭';
@@ -8,6 +9,7 @@ const siteDescription =
 const socialImage = `${siteUrl}/avatar.jpg`;
 
 export default defineConfig({
+  server: { strictPort: true },
   plugins: [pluginReact()],
   html: {
     template: './index.html',
@@ -170,6 +172,11 @@ export default defineConfig({
     inlineStyles: true,
     distPath: {
       root: 'dist',
+    },
+  },
+  dev: {
+    setupMiddlewares: (middlewares) => {
+      middlewares.unshift(createAdminApiMiddleware());
     },
   },
 });

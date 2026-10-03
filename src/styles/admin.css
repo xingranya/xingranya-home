@@ -65,49 +65,6 @@
   --admin-shadow-glow: 0 0 24px -2px rgba(255, 143, 166, 0.2);
 }
 
-/* 主题强调色方案 */
-[data-accent="emerald"] {
-  --admin-accent: #059669;
-  --admin-accent-hover: #047857;
-  --admin-accent-soft: rgba(5, 150, 105, 0.1);
-  --admin-accent-ring: rgba(5, 150, 105, 0.25);
-}
-.admin-dark[data-accent="emerald"],
-.dark .admin-app[data-accent="emerald"] {
-  --admin-accent: #10b981;
-  --admin-accent-hover: #34d399;
-  --admin-accent-soft: rgba(16, 185, 129, 0.15);
-  --admin-accent-ring: rgba(16, 185, 129, 0.3);
-}
-
-[data-accent="violet"] {
-  --admin-accent: #7c3aed;
-  --admin-accent-hover: #6d28d9;
-  --admin-accent-soft: rgba(124, 58, 237, 0.1);
-  --admin-accent-ring: rgba(124, 58, 237, 0.25);
-}
-.admin-dark[data-accent="violet"],
-.dark .admin-app[data-accent="violet"] {
-  --admin-accent: #a78bfa;
-  --admin-accent-hover: #c4b5fd;
-  --admin-accent-soft: rgba(167, 139, 250, 0.15);
-  --admin-accent-ring: rgba(167, 139, 250, 0.3);
-}
-
-[data-accent="amber"] {
-  --admin-accent: #d97706;
-  --admin-accent-hover: #b45309;
-  --admin-accent-soft: rgba(217, 119, 6, 0.1);
-  --admin-accent-ring: rgba(217, 119, 6, 0.25);
-}
-.admin-dark[data-accent="amber"],
-.dark .admin-app[data-accent="amber"] {
-  --admin-accent: #fbbf24;
-  --admin-accent-hover: #fcd34d;
-  --admin-accent-soft: rgba(251, 191, 36, 0.15);
-  --admin-accent-ring: rgba(251, 191, 36, 0.3);
-}
-
 /* Base Layout Structure */
 .admin-app {
   display: flex;
@@ -932,3 +889,166 @@
   background: var(--admin-surface-subtle);
   transform: scale(1.25);
 }
+
+/* Unified workspace */
+.admin-workspace-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.admin-workspace-card .admin-card-body {
+  min-height: 8rem;
+}
+
+.admin-workspace-status {
+  max-height: 7rem;
+  overflow: auto;
+  padding: 0.65rem;
+  border-radius: 6px;
+  background: var(--admin-surface-subtle);
+  color: var(--admin-text-muted);
+  white-space: pre-wrap;
+  font: 0.72rem/1.55 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.admin-workspace-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+.admin-workspace-notice button {
+  margin-left: auto;
+  color: var(--admin-text-faint);
+}
+
+.admin-workspace-notice.success {
+  color: var(--admin-success);
+  background: var(--admin-success-soft);
+}
+
+.admin-workspace-notice.error {
+  color: var(--admin-danger);
+  background: var(--admin-danger-soft);
+}
+
+.admin-workspace-notice.info {
+  color: var(--admin-text-muted);
+  background: var(--admin-surface-subtle);
+}
+
+.admin-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: min(100%, 18rem);
+  color: var(--admin-text-faint);
+}
+
+.admin-search-wrap .admin-input {
+  min-width: 14rem;
+}
+
+.admin-file-modal {
+  max-width: 980px;
+}
+
+.admin-file-textarea {
+  display: block;
+  min-height: min(65vh, 680px);
+  border: 0;
+  border-radius: 0;
+  resize: vertical;
+  font: 0.82rem/1.65 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.admin-media-result {
+  padding: 0.75rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 6px;
+  background: var(--admin-surface-subtle);
+}
+
+@media (max-width: 900px) {
+  .admin-page-body {
+    padding: 1.25rem;
+  }
+
+  .admin-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-page-body {
+    padding: 0.9rem;
+  }
+
+  .admin-page-header {
+    align-items: stretch;
+  }
+
+  .admin-page-header > * {
+    max-width: 100%;
+  }
+
+  .admin-search-wrap,
+  .admin-search-wrap .admin-input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .admin-table-container {
+    margin-inline: -0.2rem;
+  }
+
+  .admin-table {
+    min-width: 720px;
+  }
+
+  .admin-file-modal {
+    max-height: calc(100vh - 1rem);
+  }
+
+  .admin-file-textarea {
+    min-height: 55vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-app *,
+  .admin-app *::before,
+  .admin-app *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 工作区弹窗使用同一纸面材质，窄屏仍可完成编辑与确认。 */
+.admin-workspace-dialog {
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 620px);
+  max-height: 88svh;
+  overflow: auto;
+  border: 1px solid var(--border-paper);
+  border-radius: 12px;
+  background: var(--bg-paper);
+  box-shadow: 0 20px 60px rgb(0 0 0 / 18%);
+  animation: admin-workspace-enter 200ms ease-out;
+}
+.admin-workspace-dialog.admin-file-modal { width: min(94vw, 980px); }
+.admin-workspace-dialog .admin-file-textarea { max-height: 60svh; }
+.admin-workspace-notice { overflow-wrap: anywhere; }
+@keyframes admin-workspace-enter { from { opacity: 0.4; margin-top: 8px; } to { opacity: 1; margin-top: 0; } }
+@media (prefers-reduced-motion: reduce) { .admin-workspace-dialog { animation: none; } }

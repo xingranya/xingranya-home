@@ -13,6 +13,7 @@ import {
   Globe,
   ArrowUpRight,
   Images,
+  Search,
 } from 'lucide-react';
 const SearchModal = lazy(() => import('../search/SearchModal').then((module) => ({ default: module.SearchModal })));
 import { NavHoverPopover } from './NavHoverPopover';
@@ -296,6 +297,7 @@ export const Header: React.FC = () => {
                   );
                 })}
               </nav>
+            {enableSearch && <button type="button" className="site-search-trigger ml-1.5 inline-flex h-9 w-9 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded border border-slate-200/75 bg-white/75 text-slate-600 backdrop-blur-md dark:border-[var(--border-paper)] dark:bg-[var(--card-paper)] dark:text-slate-300" aria-label="搜索手记" title="搜索手记（Ctrl / ⌘ K）" onClick={() => { setHoveredNav(null); setSearchOpen(true); }}><Search className="h-4 w-4" aria-hidden="true" /></button>}
 
             {/* 导航悬浮预览卡片 MegaMenu Popover */}
             {enableMegaMenu && (

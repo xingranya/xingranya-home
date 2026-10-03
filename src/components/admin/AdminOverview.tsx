@@ -69,7 +69,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
             你好，{siteConfig.author.name}
           </h1>
           <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed">
-            本地数据就绪，全站共收录了 {posts.length} 篇文稿与 {diaries.length} 篇手记。保持专注与创造力。
+            本地文稿库有 {posts.length} 篇主页文稿与 {diaries.length} 篇手记。技术长文请在“博客文章”中管理。
           </p>
         </div>
 
@@ -158,7 +158,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
             )}
           </div>
           <div className="admin-stat-val">{publishedCount}</div>
-          <div className="admin-stat-label">公开文稿篇数</div>
+          <div className="admin-stat-label">本地文稿篇数</div>
         </div>
 
         {/* 手记随笔 */}
@@ -223,7 +223,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
             </span>
           </div>
           <div className="admin-stat-val">{(totalWords / 1000).toFixed(1)}k</div>
-          <div className="admin-stat-label">全站累计字数</div>
+          <div className="admin-stat-label">本地内容字数</div>
         </div>
       </div>
 
@@ -274,7 +274,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
 
                 <div className="flex items-center gap-2 shrink-0">
                   <span className={`admin-badge ${post.draft ? 'draft' : 'published'}`}>
-                    {post.draft ? '草稿' : '已发布'}
+                    {post.draft ? '草稿' : '非草稿'}
                   </span>
                   <button
                     onClick={(e) => {

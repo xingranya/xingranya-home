@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
 import { CheckCircle2, AlertTriangle, XCircle, Info, X } from 'lucide-react';
+import { AdminStore } from '../../lib/admin-store';
 
 export type ToastType = 'success' | 'warning' | 'error' | 'info';
 
@@ -44,7 +45,10 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     [removeToast]
   );
 
-  const success = useCallback((msg: string, desc?: string) => showToast(msg, 'success', desc), [showToast]);
+  const success = useCallback((msg: string, desc?: string) => {
+    if (!AdminStore.getServerSync().pending) { showToast(msg, 'success', desc); return; }
+    void AdminStore.flushServerSaves().then(() => showToast(msg, 'success', desc)).catch((error) => showToast('源文件保存未完成', 'error', error instanceof Error ? error.message : String(error), 6000));
+  }, [showToast]);
   const error = useCallback((msg: string, desc?: string) => showToast(msg, 'error', desc, 4500), [showToast]);
   const warning = useCallback((msg: string, desc?: string) => showToast(msg, 'warning', desc, 4000), [showToast]);
   const info = useCallback((msg: string, desc?: string) => showToast(msg, 'info', desc), [showToast]);
@@ -66,7 +70,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   return (
     <ToastContext.Provider value={{ showToast, success, error, warning, info }}>
       {children}
-      <div className="admin-toast-container">
+      <div className="admin-toast-container" role="status" aria-live="polite">
         {toasts.map((toast) => (
           <div key={toast.id} className="admin-toast-item flex items-start space-x-3">
             {renderIcon(toast.type)}

@@ -67,6 +67,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
     loadPostContent,
     loadDiaryContent,
     clearAutoDraft,
+    flushServerSaves,
   } = useAdminStore();
   const { success, error, warning } = useToast();
 
@@ -87,10 +88,10 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
   const [date, setDate] = useState(existingPost?.date || existingDiary?.date || new Date().toISOString().split('T')[0]);
 
   // 手记专属字段
-  const [weather, setWeather] = useState(existingDiary?.weather || '晴');
-  const [mood, setMood] = useState(existingDiary?.mood || '平静');
-  const [location, setLocation] = useState(existingDiary?.location || '书房');
-  const [time, setTime] = useState(existingDiary?.time || new Date().toTimeString().slice(0, 5));
+  const [weather, setWeather] = useState(existingDiary?.weather ?? '');
+  const [mood, setMood] = useState(existingDiary?.mood ?? '');
+  const [location, setLocation] = useState(existingDiary?.location ?? '');
+  const [time, setTime] = useState(existingDiary?.time ?? '');
 
   // 编辑器打开时按需拉取正文（构建产物默认只有元数据）
   const [editorReady, setEditorReady] = useState(
@@ -144,11 +145,11 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
 
   const initialContentRef = useRef(existingPost?.content || existingDiary?.content || '');
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const formSnapshot = JSON.stringify({ title, content, postSlug, date, summary, tagsInput, category, draft, coverImage, recommend, weather, mood, location, time });
+  const initialFormRef = useRef(formSnapshot);
 
   // 检查脏数据状态
-  const isDirty = useMemo(() => {
-    return content !== initialContentRef.current || title !== (existingPost?.title || existingDiary?.title || '');
-  }, [content, title, existingPost, existingDiary]);
+  const isDirty = formSnapshot !== initialFormRef.current;
 
   // 检查是否有未保存的本地自动草稿
   useEffect(() => {
@@ -192,8 +193,10 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
         e.returnValue = '';
       }
     };
+    const beforeNavigate = (event: Event) => { if (isDirty && !window.confirm('文稿尚未保存，确定离开编辑器？')) event.preventDefault(); };
     window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener('admin:before-navigate', beforeNavigate);
+    return () => { window.removeEventListener('beforeunload', handleBeforeUnload); window.removeEventListener('admin:before-navigate', beforeNavigate); };
   }, [isDirty]);
 
   // 自动从标题生成 slug（仅在新建时）
@@ -290,13 +293,14 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
   };
 
   // 保存操作
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!title.trim()) {
       error('保存失败：请填写标题');
       return;
     }
 
     const finalSlug = postSlug.trim() || `post-${Date.now()}`;
+    setPostSlug(finalSlug);
     const parsedTags = tagsInput
       .split(/[,，]/)
       .map((t) => t.trim())
@@ -315,7 +319,6 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
         coverImage: coverImage.trim() || undefined,
         recommend: Number(recommend) || 0,
       });
-      success(`文章《${title}》已成功保存！`);
     } else {
       saveDiary({
         slug: finalSlug,
@@ -329,12 +332,15 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
         summary: summary.trim() || content.slice(0, 100).replace(/[#*`_\n]/g, ' ') + '...',
         content,
       });
-      success(`手记《${title}》已成功保存！`);
     }
 
-    // 更新基准并清除暂存
-    initialContentRef.current = content;
-    clearAutoDraft(type, slug);
+    try {
+      await flushServerSaves();
+      success(`《${title}》已保存到本地源文件。`);
+      initialContentRef.current = content;
+      initialFormRef.current = JSON.stringify({ title, content, postSlug: finalSlug, date, summary, tagsInput, category, draft, coverImage, recommend, weather, mood, location, time });
+      clearAutoDraft(type, slug);
+    } catch (cause) { error('源文件保存未完成', cause instanceof Error ? cause.message : String(cause)); }
   };
 
   // 拦截返回按钮
@@ -956,6 +962,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                         onChange={(e) => setWeather(e.target.value)}
                         className="admin-select"
                       >
+                        <option value="">未填写</option>
                         <option value="晴">晴</option>
                         <option value="多云">多云</option>
                         <option value="阴">阴</option>
@@ -975,6 +982,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                         onChange={(e) => setMood(e.target.value)}
                         className="admin-select"
                       >
+                        <option value="">未填写</option>
                         <option value="平静">平静</option>
                         <option value="喜悦">喜悦</option>
                         <option value="思考">思考</option>

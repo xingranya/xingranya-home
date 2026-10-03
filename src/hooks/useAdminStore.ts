@@ -8,6 +8,7 @@ export function useAdminStore() {
   const [, setTick] = useState(0);
 
   useEffect(() => {
+    void AdminStore.hydrateFromServer();
     const unsubscribe = AdminStore.subscribe(() => {
       setTick((prev) => prev + 1);
     });
@@ -15,6 +16,10 @@ export function useAdminStore() {
   }, []);
 
   return {
+    serverSync: AdminStore.getServerSync(),
+    flushServerSaves: () => AdminStore.flushServerSaves(),
+    retryServerSaves: () => AdminStore.retryServerSaves(),
+    discardPendingSourceChanges: () => AdminStore.discardPendingSourceChanges(),
     // 列表与实体
     posts: AdminStore.getPosts(true),
     publishedPosts: AdminStore.getPosts(false),
@@ -103,7 +108,7 @@ export function useAdminStore() {
 
     exportAllData: () => AdminStore.exportAllData(),
     importData: (json: string) => AdminStore.importData(json),
-    resetToDefault: () => AdminStore.resetToDefault(),
+    resetPreferences: () => AdminStore.resetPreferences(),
     clearLogs: () => AdminStore.clearLogs(),
   };
 }

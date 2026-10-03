@@ -16,6 +16,7 @@ async function start() {
   if (local && (process.env.NODE_ENV === 'development' || localAdmin)) {
     await import('./lib/buffer-polyfill');
     const { AdminStore } = await import('./lib/admin-store');
+    await AdminStore.hydrateFromServer();
     setLocalContentStore(AdminStore);
   }
 

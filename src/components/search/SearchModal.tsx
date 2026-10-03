@@ -19,10 +19,16 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-slate-900/40 dark:bg-black/60 backdrop-blur-sm z-50 transition-opacity animate-in fade-in duration-150" />
-        <Dialog.Content className="fixed top-[18%] left-1/2 -translate-x-1/2 w-full max-w-xl bg-white/95 dark:bg-[#121B2A]/95 backdrop-blur-xl rounded border border-slate-200/90 dark:border-slate-800 shadow-2xl z-50 p-0 overflow-hidden outline-none animate-in fade-in zoom-in-95 duration-150">
-          <Dialog.Title className="sr-only">搜索博客文稿与笔记</Dialog.Title>
+        <Dialog.Content className="home-search-dialog fixed top-[min(18%,100px)] left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-xl bg-[var(--card-paper)] backdrop-blur-xl rounded border border-[var(--border-paper)] shadow-2xl z-50 p-0 overflow-hidden outline-none" onCloseAutoFocus={(event) => { event.preventDefault(); document.querySelector<HTMLButtonElement>('.site-search-trigger')?.focus(); }} onKeyDown={(event) => {
+          if (event.nativeEvent.isComposing || event.nativeEvent.keyCode === 229 || !['ArrowDown', 'ArrowUp', 'Enter'].includes(event.key)) return;
+          const links = [...event.currentTarget.querySelectorAll<HTMLAnchorElement>('.home-search-result')];
+          const current = links.indexOf(document.activeElement as HTMLAnchorElement);
+          if (event.key === 'Enter' && document.activeElement?.tagName === 'INPUT' && links[0]) { event.preventDefault(); links[0].click(); }
+          if (event.key !== 'Enter' && links.length) { event.preventDefault(); links[event.key === 'ArrowDown' ? (current + 1) % links.length : (current <= 0 ? links.length - 1 : current - 1)].focus(); }
+        }}>
+          <Dialog.Title className="sr-only">搜索手记</Dialog.Title>
           <Dialog.Description className="sr-only">
-            通过标题、标签或摘要快速检索全站文章与安全笔记
+            通过标题、标签或摘要查找本站手记，技术长文请前往博客。
           </Dialog.Description>
 
           {/* 搜索输入框 */}
@@ -33,7 +39,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               aria-label="搜索手记"
-              placeholder="搜索文章、安全速记、技术标签 (如 Pwn, ECC, React, CTF)..."
+              placeholder="搜索手记标题、标签或摘要…"
               className="w-full bg-transparent text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none font-sans"
               autoFocus
             />
@@ -46,13 +52,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 <X className="w-3.5 h-3.5" />
               </button>
             )}
+            <Dialog.Close className="ml-2 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded text-slate-500 dark:text-slate-300" aria-label="关闭搜索"><X className="h-4 w-4" /></Dialog.Close>
           </div>
 
           {/* 搜索结果列表 */}
-          <div className="max-h-80 overflow-y-auto p-2 divide-y divide-slate-100 dark:divide-slate-800/40">
+          <div className="max-h-[min(55svh,360px)] overflow-y-auto p-2 divide-y divide-slate-100 dark:divide-slate-800/40" aria-live="polite">
             {results.length === 0 ? (
               <div className="py-12 text-center text-slate-400 dark:text-slate-500 text-xs font-mono">
-                未检索到与 &quot;{query}&quot; 相关的文稿内容
+                没有找到相关手记，请试试其他关键词。
               </div>
             ) : (
               results.map((item) => (
@@ -60,7 +67,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   key={item.id}
                   href={item.slug}
                   onClick={() => { onOpenChange(false); setQuery(''); }}
-                  className="group flex items-start justify-between p-3 rounded-md hover:bg-slate-100/70 dark:hover:bg-slate-800/60 cursor-pointer transition-colors"
+                  className="home-search-result group flex items-start justify-between p-3 rounded-md hover:bg-[var(--sakura-wash)] focus-visible:bg-[var(--sakura-wash)] cursor-pointer transition-colors"
                 >
                   <div className="flex items-start space-x-3 min-w-0 pr-2">
                     <div className="mt-0.5 p-1.5 rounded-xs bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors shrink-0">
@@ -83,7 +90,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                         {item.summary}
                       </p>
                       <div className="flex items-center space-x-1.5 mt-1.5">
-                        {item.tags.map((tag) => (
+                        {item.tags.slice(0, 3).map((tag) => (
                           <span
                             key={tag}
                             className="text-[10px] text-slate-400 dark:text-slate-500 font-mono"
@@ -116,7 +123,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 跳转
               </span>
             </div>
-            <span>全站静态索引</span>
+            <span>手记 · 标题 / 标签 / 摘要</span>
           </div>
         </Dialog.Content>
       </Dialog.Portal>

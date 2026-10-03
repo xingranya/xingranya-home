@@ -37,7 +37,7 @@ export const AdminPosts: React.FC<AdminPostsProps> = ({ onOpenEditor }) => {
     batchTogglePostsDraft,
     setPostRecommend,
   } = useAdminStore();
-  const { success } = useToast();
+  const { success, error } = useToast();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -102,17 +102,16 @@ export const AdminPosts: React.FC<AdminPostsProps> = ({ onOpenEditor }) => {
     }
   };
 
-  // 复制前台链接
+  // 文稿库没有公开路由，复制源文件路径便于在本机定位。
   const handleCopyLink = (slug: string) => {
-    const url = `${window.location.origin}/posts/${slug}`;
-    navigator.clipboard.writeText(url);
-    success('文章前台访问链接已复制到剪贴板！');
+    const filePath = `src/content/posts/${slug}.md`;
+    void navigator.clipboard.writeText(filePath).then(() => success('文稿源文件路径已复制。')).catch(() => error('复制失败，请手动复制源文件路径。'));
   };
 
   // 批量发布/设为草稿
   const handleBatchPublish = (targetDraft: boolean) => {
     const count = batchTogglePostsDraft(selectedSlugs, targetDraft);
-    success(`已批量将 ${count} 篇文章设为${targetDraft ? '草稿' : '已发布'}`);
+    success(`已批量将 ${count} 篇文章设为${targetDraft ? '草稿' : '非草稿'}`);
     setSelectedSlugs([]);
   };
 
@@ -153,10 +152,10 @@ export const AdminPosts: React.FC<AdminPostsProps> = ({ onOpenEditor }) => {
         <div className="admin-page-title-group">
           <h1>
             <FileText className="w-6 h-6 text-sakura-500" />
-            <span>文章管理</span>
+            <span>主页文稿</span>
           </h1>
           <p>
-            共收录 {posts.length} 篇文稿，已发布 {posts.filter((p) => !p.draft).length} 篇，草稿 {posts.filter((p) => p.draft).length} 篇。支持批量治理、推荐标记与回收站保护。
+            共收录 {posts.length} 篇文稿，非草稿 {posts.filter((p) => !p.draft).length} 篇，草稿 {posts.filter((p) => p.draft).length} 篇。支持批量治理、推荐标记与回收站保护。
           </p>
         </div>
 
@@ -264,7 +263,7 @@ export const AdminPosts: React.FC<AdminPostsProps> = ({ onOpenEditor }) => {
                     : 'text-slate-500'
                 }`}
               >
-                已发布 ({posts.filter((p) => !p.draft).length})
+                非草稿 ({posts.filter((p) => !p.draft).length})
               </button>
               <button
                 onClick={() => setSelectedStatus('draft')}
@@ -472,7 +471,7 @@ export const AdminPosts: React.FC<AdminPostsProps> = ({ onOpenEditor }) => {
                           className={`admin-badge ${post.draft ? 'draft' : 'published'} cursor-pointer hover:opacity-80`}
                           title="点击切换草稿/发布状态"
                         >
-                          {post.draft ? '草稿' : '已发布'}
+                          {post.draft ? '草稿' : '非草稿'}
                         </button>
                       </td>
                       <td className="text-right pr-4">
@@ -487,14 +486,14 @@ export const AdminPosts: React.FC<AdminPostsProps> = ({ onOpenEditor }) => {
                           <button
                             onClick={() => handleCopyLink(post.slug)}
                             className="admin-icon-btn !w-7 !h-7 text-slate-500"
-                            title="复制访问链接"
+                            title="复制源文件路径"
                           >
                             <Copy className="w-3.5 h-3.5" />
                           </button>
                           <button
-                            onClick={() => window.open(`/posts/${post.slug}`, '_blank')}
+                            onClick={() => onOpenEditor('post', post.slug)}
                             className="admin-icon-btn !w-7 !h-7 text-slate-500"
-                            title="前台预览"
+                            title="在编辑器中预览"
                           >
                             <ExternalLink className="w-3.5 h-3.5" />
                           </button>
@@ -537,7 +536,7 @@ export const AdminPosts: React.FC<AdminPostsProps> = ({ onOpenEditor }) => {
                           onClick={() => togglePostDraft(post.slug)}
                           className={`admin-badge ${post.draft ? 'draft' : 'published'}`}
                         >
-                          {post.draft ? '草稿' : '已发布'}
+                          {post.draft ? '草稿' : '非草稿'}
                         </button>
                       </div>
                     </div>
