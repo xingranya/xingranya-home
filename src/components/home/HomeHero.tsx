@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'wouter';
-import { Megaphone, ChevronRight, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { Megaphone, ChevronRight } from 'lucide-react';
 import { SocialLinks } from '../ui/SocialLinks';
 import { getAllDiaries, getSnapshotTime, siteConfig } from '../../content';
 
@@ -148,11 +148,6 @@ export const HomeHero: React.FC = () => {
         </div>
       )}
 
-      <div className="home-hero-soft-reveal home-hero-actions mt-3 flex flex-wrap items-center justify-center gap-5 text-sm font-sans">
-        <Link href="/about" className="hero-action-link">了解我<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
-        <a href="https://blog.xran.uk" target="_blank" rel="noreferrer" className="hero-action-link">阅读博客<ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a>
-      </div>
-
       {siteConfig.announcement?.enabled && (
         <div className="home-hero-soft-reveal home-hero-announcement mt-3 sm:mt-4 lg:mt-3 max-w-lg mx-auto w-full px-2">
           <div className="flex items-center justify-between gap-3 px-3 py-1.5 rounded-lg bg-white/75 dark:bg-[var(--card-paper)] border border-slate-200/70 dark:border-[var(--border-paper)] text-xs font-sans text-slate-700 dark:text-slate-200 shadow-2xs">
@@ -173,7 +168,7 @@ export const HomeHero: React.FC = () => {
                   rel="noreferrer"
                   className="group shrink-0 min-h-8 inline-flex items-center gap-0.5 text-xs font-medium text-sakura-700 dark:text-sakura-300 hover:text-sakura-800 dark:hover:text-sakura-200 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400"
                 >
-                  <span>{siteConfig.announcement.linkText || '去博客'}</span>
+                  <span>{siteConfig.announcement.linkText || '查看详情'}</span>
                   <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
                 </a>
               ) : (
@@ -181,7 +176,7 @@ export const HomeHero: React.FC = () => {
                   href={siteConfig.announcement.linkUrl}
                   className="group shrink-0 min-h-8 inline-flex items-center gap-0.5 text-xs font-medium text-sakura-700 dark:text-sakura-300 hover:text-sakura-800 dark:hover:text-sakura-200 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura-400"
                 >
-                  <span>{siteConfig.announcement.linkText || '去博客'}</span>
+                  <span>{siteConfig.announcement.linkText || '查看详情'}</span>
                   <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
                 </Link>
               )

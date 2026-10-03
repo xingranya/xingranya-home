@@ -1,80 +1,76 @@
-import { useState, useEffect } from 'react';
+import { useSyncExternalStore } from 'react';
 import type { ThemeMode } from '../types';
 
+type ThemeSnapshot = { theme: ThemeMode; isDark: boolean };
+const storageKey = 'perimsx-theme';
+const serverSnapshot: ThemeSnapshot = { theme: 'system', isDark: false };
+let snapshot = serverSnapshot;
+let mediaQuery: MediaQueryList | null = null;
+const listeners = new Set<() => void>();
+
+function isTheme(value: string | null): value is ThemeMode {
+  return value === 'light' || value === 'dark' || value === 'system';
+}
+
+function applyTheme(theme: ThemeMode) {
+  const isDark = theme === 'dark' || (theme === 'system' && Boolean(mediaQuery?.matches));
+  document.documentElement.classList.toggle('dark', isDark);
+  if (snapshot.theme === theme && snapshot.isDark === isDark) return;
+  snapshot = { theme, isDark };
+  listeners.forEach((listener) => listener());
+}
+
+function handleSystemChange() {
+  if (snapshot.theme === 'system') applyTheme('system');
+}
+
+function handleStorage(event: StorageEvent) {
+  if (event.key !== storageKey && event.key !== null) return;
+  applyTheme(isTheme(event.newValue) ? event.newValue : 'system');
+}
+
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  if (listeners.size === 1) {
+    mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', handleSystemChange);
+    window.addEventListener('storage', handleStorage);
+    let preference = snapshot.theme;
+    try {
+      const stored = localStorage.getItem(storageKey);
+      if (isTheme(stored)) preference = stored;
+    } catch {
+      // 无法读取存储时，保留本次访问中的主题选择。
+    }
+    applyTheme(preference);
+  }
+  return () => {
+    listeners.delete(listener);
+    if (listeners.size) return;
+    mediaQuery?.removeEventListener('change', handleSystemChange);
+    window.removeEventListener('storage', handleStorage);
+    mediaQuery = null;
+  };
+}
+
+function setTheme(theme: ThemeMode) {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(storageKey, theme);
+  } catch {
+    // 无法持久化时，所有已挂载组件仍同步本次选择。
+  }
+  applyTheme(theme);
+}
+
+function toggleTheme() {
+  setTheme(snapshot.isDark ? 'light' : 'dark');
+}
+
+const getSnapshot = () => snapshot;
+const getServerSnapshot = () => serverSnapshot;
+
 export function useTheme() {
-  const [theme, setThemeState] = useState<ThemeMode>('system');
-  const [isDark, setIsDark] = useState(false);
-  const [preferenceLoaded, setPreferenceLoaded] = useState(false);
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem('perimsx-theme') as ThemeMode | null;
-      if (stored && ['light', 'dark', 'system'].includes(stored)) {
-        setThemeState(stored);
-      }
-    } catch {
-      // 隐私模式下仍可跟随系统主题。
-    }
-    setPreferenceLoaded(true);
-  }, []);
-
-  useEffect(() => {
-    if (!preferenceLoaded) return;
-    const root = document.documentElement;
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-    const applyTheme = () => {
-      let resolvedDark = false;
-      if (theme === 'dark') {
-        resolvedDark = true;
-      } else if (theme === 'light') {
-        resolvedDark = false;
-      } else {
-        resolvedDark = mediaQuery.matches;
-      }
-
-      if (resolvedDark) {
-        root.classList.add('dark');
-      } else {
-        root.classList.remove('dark');
-      }
-
-      setIsDark(resolvedDark);
-    };
-
-    applyTheme();
-    try {
-      localStorage.setItem('perimsx-theme', theme);
-    } catch {
-      // 无法持久化时，本次访问内的主题切换仍然有效。
-    }
-
-    const handleChange = () => {
-      if (theme === 'system') {
-        applyTheme();
-      }
-    };
-
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, [theme, preferenceLoaded]);
-
-  const setTheme = (newTheme: ThemeMode) => {
-    setThemeState(newTheme);
-  };
-
-  const toggleTheme = () => {
-    setThemeState((prev) => {
-      if (prev === 'light') return 'dark';
-      if (prev === 'dark') return 'light';
-      return isDark ? 'light' : 'dark';
-    });
-  };
-
-  return {
-    theme,
-    isDark,
-    setTheme,
-    toggleTheme,
-  };
+  const state = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  return { ...state, setTheme, toggleTheme };
 }

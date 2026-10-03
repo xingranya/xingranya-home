@@ -71,7 +71,7 @@
     ]
   },
   "announcement": {
-    "enabled": true,
+    "enabled": false,
     "badge": "站点",
     "content": "这里是个人主页，技术长文请看 blog.xran.uk。",
     "linkText": "去博客",
