@@ -83,6 +83,10 @@ pnpm generate:content-index
 
 更新片单后执行 `pnpm build`；使用 `node scripts/check-wallpapers.mjs` 核对本次快照的完整性、静态正文、站点地图及生产路由。图床上传凭据与账号密码不放入仓库。
 
+搜索优先匹配片名，支持别名、年份、标签与空格组合关键词；四位年份以首播字段为准，单字不会模糊匹配工作人员姓名标签。使用 `pnpm check:anime-search`（Node.js 22.18+）验证排序、组合条件与中文简介。
+
+日语简介的中文译文单独保存在 `src/content/pages/anime-descriptions.zh.json`，详情优先展示中文并提供日语原文折叠区。同步片单会保留这些译文；来源站后来补上的中文简介优先于本地译文。
+
 ### 一键同步次元城
 
 在仓库目录运行（Node.js 22+，先安装项目依赖）：

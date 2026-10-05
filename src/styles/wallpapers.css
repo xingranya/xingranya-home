@@ -135,6 +135,31 @@
   align-items: center;
   gap: 5px;
 }
+.wall-search-order {
+  display: block;
+  margin-top: 4px;
+}
+.wall-search-match {
+  margin-top: 6px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 11px;
+  color: var(--wall-muted);
+}
+.wall-original-description {
+  margin-top: 18px;
+  color: var(--wall-muted);
+  font-size: 12px;
+}
+.wall-original-description summary {
+  cursor: pointer;
+  padding-block: 8px;
+  min-height: 36px;
+}
+.wall-original-description .wall-description {
+  margin-top: 10px;
+}
 /* 保留按行的阅读和键盘顺序，用交错留白形成画廊的节奏。 */
 .wall-grid {
   display: grid;

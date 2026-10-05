@@ -12,6 +12,8 @@ import {
 import { Container } from '../components/layout/Container';
 import { PageShell } from '../components/layout/PageShell';
 import collection from '../content/pages/wallpapers.json';
+import chineseDescriptions from '../content/pages/anime-descriptions.zh.json';
+import { getAnimeSynopsis, searchAnime } from '../lib/anime';
 
 type Anime = (typeof collection.items)[number];
 const filters = ['全部', '正在追', '已追完', '剧场版'] as const;
@@ -20,10 +22,6 @@ const statusLabels: Record<string, string> = { watching: '正在追', watched: '
 const matchesFilter = (item: Anime, filter: Filter) =>
   filter === '全部' ||
   (filter === '剧场版' ? item.version === '剧场版' : statusLabels[item.status] === filter);
-// 新作在前，同年按首播日期排序；筛选和详情切换沿用同一顺序。
-const chronologicalItems = [...collection.items].sort(
-  (a, b) => b.year - a.year || (b.publishDate || '').localeCompare(a.publishDate || '')
-);
 
 function Poster({ item, preview = false }: { item: Anime; preview?: boolean }) {
   const imageRef = useRef<HTMLImageElement>(null);
@@ -94,31 +92,33 @@ function Poster({ item, preview = false }: { item: Anime; preview?: boolean }) {
 
 export const Wallpapers: React.FC = () => {
   const [query, setQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const composingRef = useRef(false);
+  const searchRef = useRef<HTMLInputElement>(null);
   const [filter, setFilter] = useState<Filter>('全部');
   const [activeId, setActiveId] = useState<string | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const returnFocusRef = useRef<HTMLButtonElement | null>(null);
-  const visibleItems = useMemo(() => {
-    const term = query.trim().toLocaleLowerCase();
-    return chronologicalItems.filter(
-      (item) =>
-        matchesFilter(item, filter) &&
-        (!term ||
-          [item.title, item.subtitle, item.englishTitle, item.year, ...item.tags]
-            .join(' ')
-            .toLocaleLowerCase()
-            .includes(term))
-    );
-  }, [query, filter]);
+  const results = useMemo(() => searchAnime(
+    collection.items.filter((item) => matchesFilter(item, filter)), searchQuery,
+  ), [searchQuery, filter]);
+  const visibleItems = useMemo(() => results.map((result) => result.item), [results]);
   const activeIndex = visibleItems.findIndex((item) => item.id === activeId);
   const active = visibleItems[activeIndex];
+  const synopsis = active ? getAnimeSynopsis(active, chineseDescriptions) : null;
+  const clearSearch = () => {
+    setQuery('');
+    setSearchQuery('');
+    searchRef.current?.focus();
+  };
 
   // 借鉴 React Bits Masonry 的错落排布与入场节奏，保留原生懒加载和静态正文。
   useEffect(() => {
     const grid = gridRef.current;
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (!grid || motion.matches) return;
+    // 搜索时直接呈现结果，避免每次输入都重播画廊入场动画。
+    if (!grid || motion.matches || searchQuery.trim()) return;
     const animations: Animation[] = [];
     const observer = new IntersectionObserver(
       (entries) => {
@@ -157,7 +157,7 @@ export const Wallpapers: React.FC = () => {
       animations.forEach((animation) => animation.cancel());
       motion.removeEventListener('change', stopMotion);
     };
-  }, [visibleItems]);
+  }, [visibleItems, searchQuery]);
 
   const move = (direction: number) => {
     const next =
@@ -208,25 +208,46 @@ export const Wallpapers: React.FC = () => {
           <div className="wall-search">
             <Search size={16} aria-hidden="true" />
             <input
+              ref={searchRef}
               aria-label="搜索番剧"
-              placeholder="搜索片名、年份或标签"
+              aria-describedby="wall-search-help"
+              placeholder="搜索片名、别名、年份或标签"
               value={query}
-              onChange={(event) => setQuery(event.target.value)}
+              onCompositionStart={() => { composingRef.current = true; }}
+              onCompositionEnd={(event) => {
+                composingRef.current = false;
+                setSearchQuery(event.currentTarget.value);
+              }}
+              onChange={(event) => {
+                setQuery(event.target.value);
+                if (!composingRef.current) setSearchQuery(event.target.value);
+              }}
+              onKeyDown={(event) => {
+                if (composingRef.current || event.nativeEvent.isComposing) return;
+                if (event.key === 'Escape') clearSearch();
+                if (event.key === 'Enter' && visibleItems[0]) {
+                  event.preventDefault();
+                  returnFocusRef.current = gridRef.current?.querySelector<HTMLButtonElement>('.wall-card-button') || null;
+                  setActiveId(visibleItems[0].id);
+                }
+              }}
               type="search"
             />
             {query && (
-              <button type="button" aria-label="清除搜索" onClick={() => setQuery('')}>
+              <button type="button" aria-label="清除搜索" onClick={clearSearch}>
                 <X size={15} />
               </button>
             )}
           </div>
+          <p id="wall-search-help" className="sr-only">支持空格组合关键词，例如“2025 恋爱”。回车查看第一部，Esc 清除搜索。</p>
         </div>
 
         <div className="wall-caption">
           <p role="status" aria-live="polite">
-            {query || filter !== '全部'
+            {searchQuery.trim() || filter !== '全部'
               ? `找到 ${visibleItems.length} 部番剧`
               : '按播出年份从新到旧'}
+            {searchQuery.trim() && <span className="wall-search-order">按相关度排序 · 片名优先</span>}
           </p>
           <span>
             点击封面查看详情 <ArrowDown size={12} aria-hidden="true" />
@@ -234,7 +255,7 @@ export const Wallpapers: React.FC = () => {
         </div>
 
         <div className="wall-grid" ref={gridRef}>
-          {visibleItems.map((item) => (
+          {results.map(({ item, matchLabel }) => (
             <article className="wall-card" key={item.id}>
               <button
                 type="button"
@@ -259,6 +280,7 @@ export const Wallpapers: React.FC = () => {
                     <span className="wall-score">BGM {item.score.toFixed(1)}</span>
                   </div>
                   <h2>{item.title}</h2>
+                  {matchLabel && <p className="wall-search-match" title={matchLabel}>{matchLabel}</p>}
                 </div>
               </button>
             </article>
@@ -268,12 +290,12 @@ export const Wallpapers: React.FC = () => {
         {visibleItems.length === 0 && (
           <div className="wall-empty">
             <Search size={28} aria-hidden="true" />
-            <h2>还没找到这个故事</h2>
-            <p>换个片名、年份，或看看全部收藏。</p>
+            <h2>没有找到匹配的番剧</h2>
+            <p>试试片名或别名，也可以用空格组合年份和标签。</p>
             <button
               type="button"
               onClick={() => {
-                setQuery('');
+                clearSearch();
                 setFilter('全部');
               }}
             >
@@ -343,8 +365,14 @@ export const Wallpapers: React.FC = () => {
                     {[active.subtitle, active.englishTitle].filter(Boolean).join(' / ')}
                   </p>
                   <Dialog.Description className="wall-description">
-                    {active.description || '暂无简介。'}
+                    {synopsis?.description || '暂无简介。'}
                   </Dialog.Description>
+                  {synopsis?.original && (
+                    <details className="wall-original-description">
+                      <summary>查看日语原文</summary>
+                      <p className="wall-description" lang="ja">{synopsis.original}</p>
+                    </details>
+                  )}
                   <dl className="wall-facts">
                     <div>
                       <dt>追番</dt>

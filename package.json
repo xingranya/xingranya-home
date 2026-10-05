@@ -23,6 +23,7 @@
     "detect:friends": "node scripts/detect-friends.mjs",
     "sync:anime": "node scripts/sync-anime.mjs",
     "check:anime-sync": "node scripts/check-anime-sync.mjs",
+    "check:anime-search": "node scripts/check-anime-search.mjs",
     "generate:covers": "node scripts/generate-article-covers.mjs",
     "generate:content-index": "node scripts/generate-content-index.mjs",
     "generate:sitemap": "node scripts/generate-sitemap.mjs",
