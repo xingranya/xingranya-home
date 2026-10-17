@@ -38,11 +38,16 @@ for (let index = 1; index < all.length; index++) {
 for (const [id, description] of Object.entries(translations)) {
   const item = items.find((item) => item.id === id);
   assert.ok(item, `译文 ${id} 应对应现有番剧`);
-  const result = getAnimeSynopsis(item, translations);
+  const japanese = { ...item, description: '日本語のあらすじ。' };
+  const result = getAnimeSynopsis(japanese, translations);
   assert.equal(result.description, description);
-  assert.equal(result.original, item.description.replace(/\r\n/g, '\n').trim());
+  assert.equal(result.original, japanese.description);
   assert.ok(!/[ぁ-ゖァ-ヺ]/u.test(description), '新增简介应为中文');
   assert.equal(getAnimeSynopsis({ ...item, description: '来源站更新后的中文简介。' }, translations).description, '来源站更新后的中文简介。');
+}
+for (const item of items) {
+  const { description } = getAnimeSynopsis(item, translations);
+  assert.ok(!/[ぁ-ゖァ-ヺ]/u.test(description.split(/\n\s*\n/u)[0]), `${item.title} 应展示中文简介`);
 }
 assert.ok(getAnimeSynopsis(items.find((item) => item.id === '3498'), translations).description.startsWith('唯有'));
 assert.ok(getAnimeSynopsis(items.find((item) => item.id === '3565'), translations).description.startsWith('思春期'));
