@@ -550,7 +550,7 @@ export const AdminSettings: React.FC = () => {
                         >
                           <option value="github">GitHub</option>
                           <option value="bilibili">Bilibili 哔哩哔哩</option>
-                          <option value="x">X (Twitter)</option>
+                          <option value="coolapk">酷安</option>
                           <option value="telegram">Telegram</option>
                           <option value="email">Email 邮箱</option>
                           <option value="weixin">微信</option>

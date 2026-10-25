@@ -3,7 +3,7 @@ import { Globe, LoaderCircle } from 'lucide-react';
 import type { SocialLink } from '../../types';
 import {
   GithubIcon,
-  XTwitterIcon,
+  CoolapkIcon,
   MailIcon,
   BilibiliIcon,
   TelegramIcon,
@@ -14,7 +14,7 @@ import {
 const SOCIAL_ICONS: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
   github: GithubIcon,
   bilibili: BilibiliIcon,
-  x: XTwitterIcon,
+  coolapk: CoolapkIcon,
   email: MailIcon,
   telegram: TelegramIcon,
   weixin: WeixinIcon,

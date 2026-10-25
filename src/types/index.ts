@@ -49,7 +49,7 @@ export interface FriendItem {
 
 export interface SocialLink {
   name: string;
-  icon: 'github' | 'bilibili' | 'x' | 'email' | 'weibo' | 'juejin' | 'zhihu' | 'telegram' | 'discord' | 'weixin' | 'qq' | 'custom' | string;
+  icon: 'github' | 'bilibili' | 'coolapk' | 'email' | 'weibo' | 'juejin' | 'zhihu' | 'telegram' | 'discord' | 'weixin' | 'qq' | 'custom' | string;
   url: string;
   qr?: string;
 }

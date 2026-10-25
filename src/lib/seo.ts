@@ -50,7 +50,7 @@ export function getPageMeta(pathname: string) {
   const personId = `${siteConfig.url}/#person`;
   const graph: Record<string, unknown>[] = [
     { '@type': 'WebSite', '@id': `${siteConfig.url}/#website`, url: `${siteConfig.url}/`, name: siteConfig.title, description: siteConfig.description, inLanguage: 'zh-CN', publisher: { '@id': personId } },
-    { '@type': 'Person', '@id': personId, name: siteConfig.author.name, alternateName: 'xingranya', url: `${siteConfig.url}/`, image: `${siteConfig.url}/avatar.webp`, sameAs: ['https://blog.xran.uk/', 'https://github.com/xingranya', 'https://x.com/xingranya', 'https://space.bilibili.com/357220647'] },
+    { '@type': 'Person', '@id': personId, name: siteConfig.author.name, alternateName: 'xingranya', url: `${siteConfig.url}/`, image: `${siteConfig.url}/avatar.webp`, sameAs: ['https://blog.xran.uk/', 'https://github.com/xingranya', 'https://www.coolapk.com/u/3626233', 'https://space.bilibili.com/357220647'] },
   ];
   if (diary && indexable) {
     graph.push({ '@type': 'BlogPosting', '@id': `${canonical}#article`, headline: diary.title, description, datePublished: diary.date, dateModified: diary.date, author: { '@id': personId }, mainEntityOfPage: canonical, url: canonical, inLanguage: 'zh-CN' });
