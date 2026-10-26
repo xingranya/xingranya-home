@@ -54,6 +54,9 @@ const response = await middleware({
   next: () => new globalThis.Response('路由通过'),
 });
 assert.equal(await response.text(), '路由通过');
+const iconResponse = await middleware({ request: new globalThis.Request('https://xran.uk/icons/coolapk.png'), next: () => new globalThis.Response('图标路由通过') });
+assert.equal(await iconResponse.text(), '图标路由通过');
+assert.ok(fs.existsSync('dist/icons/coolapk.png'), '构建产物必须包含酷安图标');
 assert.ok(fs.readFileSync('dist/sitemap.xml', 'utf8').includes('https://xran.uk/wallpapers'));
 console.log(
   `${items.length} 部片单、追番分类、年份排序、图床链接、静态正文、SEO 和生产路由检查通过。`

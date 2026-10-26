@@ -212,6 +212,7 @@ function main() {
     '/favicon-32x32.png',
     '/favicon.ico',
     '/favicon.svg',
+    '/icons/coolapk.png',
     '/feed.xml',
     '/indexnow-urls.json',
     '/llms.txt',
