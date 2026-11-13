@@ -344,6 +344,111 @@
   animation: homeHeroAvatarEnter 460ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+.hero-signature {
+  position: relative;
+  display: block;
+  width: min(70vw, 18rem);
+  margin: -0.5rem auto -0.75rem;
+  color: var(--sakura-ink, #c43d61);
+}
+
+.dark .hero-signature { color: var(--sakura-accent); }
+.signature-pink-deep { stop-color: #b83467; }
+.signature-pink-bright { stop-color: #e66d9e; }
+.signature-pink-soft { stop-color: #f4a6bf; }
+.dark .signature-pink-deep { stop-color: #f08fb5; }
+.dark .signature-pink-bright { stop-color: #ffc0d5; }
+.dark .signature-pink-soft { stop-color: #e99ac7; }
+.hero-signature-art { display: block; width: 100%; height: auto; overflow: hidden; }
+.signature-fragments, .signature-spark { display: none; }
+.signature-fragment { fill: currentColor; transform-box: fill-box; transform-origin: center; }
+.signature-color-0 { color: #c43d61; }
+.signature-color-1 { color: #e37994; }
+.signature-color-2 { color: #b56c8b; }
+.signature-color-3 { color: #f3a7ba; }
+
+.hero-signature-control {
+  position: absolute;
+  right: -1.5rem;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--text-secondary, #64748b);
+}
+.hero-signature-control:hover { background: var(--sakura-wash); }
+.hero-signature-control:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+
+.hero-signature[data-animated='true'] .signature-mask { stroke-dasharray: 1; animation-duration: 10s; animation-timing-function: linear; animation-iteration-count: infinite; }
+.hero-signature[data-animated='true'] .signature-writing { animation: signatureInk 10s linear infinite; }
+.hero-signature[data-animated='true'] .signature-fragments { display: block; }
+.hero-signature[data-animated='true'] .signature-fragment { animation: signatureScatter 10s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+.hero-signature[data-animated='true'] .signature-spark { display: block; animation: signatureSpark 10s linear infinite; }
+.hero-signature[data-animated='true'] .signature-ears { animation: signatureEars 10s ease-in-out infinite; transform-origin: 285px -150px; }
+.hero-signature[data-running='false'] * { animation-play-state: paused !important; }
+
+.signature-stroke-0 { animation-name: signatureWrite0; }
+.signature-stroke-1 { animation-name: signatureWrite1; }
+.signature-stroke-2 { animation-name: signatureWrite2; }
+.signature-stroke-3 { animation-name: signatureWrite3; }
+.signature-stroke-4 { animation-name: signatureWrite4; }
+
+@keyframes signatureWrite0 {
+  0%, 5% { stroke-dashoffset: 1; }
+  11%, 84% { stroke-dashoffset: 0; }
+  85%, 100% { stroke-dashoffset: 1; }
+}
+@keyframes signatureWrite1 {
+  0%, 11% { stroke-dashoffset: 1; }
+  17%, 84% { stroke-dashoffset: 0; }
+  85%, 100% { stroke-dashoffset: 1; }
+}
+@keyframes signatureWrite2 {
+  0%, 17% { stroke-dashoffset: 1; }
+  24%, 84% { stroke-dashoffset: 0; }
+  85%, 100% { stroke-dashoffset: 1; }
+}
+@keyframes signatureWrite3 {
+  0%, 24% { stroke-dashoffset: 1; }
+  32%, 84% { stroke-dashoffset: 0; }
+  85%, 100% { stroke-dashoffset: 1; }
+}
+@keyframes signatureWrite4 {
+  0%, 32% { stroke-dashoffset: 1; }
+  41%, 84% { stroke-dashoffset: 0; }
+  85%, 100% { stroke-dashoffset: 1; }
+}
+@keyframes signatureInk {
+  0%, 77% { opacity: 1; }
+  78%, 100% { opacity: 0; }
+}
+@keyframes signatureScatter {
+  0%, 77% { opacity: 0; transform: translate(0, 0) rotate(0); }
+  78% { opacity: 1; transform: translate(0, 0) rotate(0); }
+  84% { opacity: 1; transform: translate(var(--fragment-x), var(--fragment-y)) rotate(var(--fragment-rotation)); }
+  94%, 100% { opacity: 0; transform: translate(var(--fragment-x), var(--fragment-y)) rotate(var(--fragment-rotation)); }
+}
+@keyframes signatureSpark {
+  0% { opacity: 0; transform: translate(-35px, 15px) scale(0.2); }
+  2% { opacity: 0.75; }
+  5% { opacity: 0; transform: translate(0, 56px) scale(0.6); }
+  100% { opacity: 0; }
+}
+@keyframes signatureEars {
+  0%, 37% { opacity: 0; transform: scaleY(0.75); }
+  43%, 57%, 77% { opacity: 1; transform: scaleY(1); }
+  50%, 64% { opacity: 1; transform: scaleY(0.9); }
+  78%, 100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-signature * { animation: none !important; }
+  .hero-signature .signature-mask { stroke-dashoffset: 0; }
+  .hero-signature .signature-writing { opacity: 1; }
+  .hero-signature .signature-fragments, .hero-signature .signature-spark, .hero-signature-control { display: none !important; }
+}
+
 .home-hero-split {
   display: inline-block;
   overflow: hidden;

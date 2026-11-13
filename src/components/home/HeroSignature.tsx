@@ -1,0 +1,92 @@
+import { useEffect, useId, useRef, useState } from 'react';
+import { Pause, Play } from 'lucide-react';
+import { signatureStrokes } from './signature-strokes';
+
+const fragments = Array.from({ length: 14 }, (_, index) => ({
+  x: index * 46 - 20,
+  dx: Math.sin(index * 2.4) * 38,
+  dy: -18 - (index % 4) * 13,
+  rotation: (index % 2 ? 1 : -1) * (10 + index * 2),
+}));
+
+export function HeroSignature() {
+  const id = useId().replace(/:/g, '');
+  const ref = useRef<HTMLSpanElement>(null);
+  const [animated, setAnimated] = useState(false);
+  const [running, setRunning] = useState(false);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let visible = false;
+    const update = () => {
+      setAnimated(!preference.matches);
+      setRunning(visible && !document.hidden && !preference.matches);
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      update();
+    });
+    observer.observe(node);
+    preference.addEventListener('change', update);
+    document.addEventListener('visibilitychange', update);
+    update();
+    return () => {
+      observer.disconnect();
+      preference.removeEventListener('change', update);
+      document.removeEventListener('visibilitychange', update);
+    };
+  }, []);
+
+  return (
+    <span ref={ref} className="hero-signature" data-animated={animated} data-running={running && !paused}>
+      <svg className="hero-signature-art" viewBox="-48 -220 730 330" role="img" aria-label="xran 猫耳手写签名">
+        <title>xran</title>
+        <defs>
+          <linearGradient id={`${id}-pink`} x1="0" y1="0" x2="1" y2="0.6" gradientUnits="objectBoundingBox">
+            <stop className="signature-pink-deep" offset="0" />
+            <stop className="signature-pink-bright" offset="0.35" />
+            <stop className="signature-pink-soft" offset="0.65" />
+            <stop className="signature-pink-deep" offset="1" />
+          </linearGradient>
+          <g id={`${id}-ink`}>
+            {signatureStrokes.map((stroke, index) => <path key={index} d={stroke.ink} />)}
+            <path d="M30-135Q13-191 30-185Q60-173 83-147M35-148Q27-176 38-171L62-153M458-147Q483-197 496-183Q511-166 510-139M472-153L490-176Q498-167 500-155" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+          </g>
+          {signatureStrokes.map((stroke, index) => (
+            <mask key={index} id={`${id}-stroke-${index}`} maskUnits="userSpaceOnUse" x="-40" y="-180" width="730" height="300">
+              <path className={`signature-mask signature-stroke-${index}`} d={stroke.line} pathLength="1" fill="none" stroke="white" strokeWidth="28" strokeLinecap="round" strokeLinejoin="round" />
+            </mask>
+          ))}
+          {fragments.map((fragment, index) => (
+            <clipPath key={index} id={`${id}-slice-${index}`}><rect x={fragment.x} y="-210" width="46" height="330" /></clipPath>
+          ))}
+        </defs>
+        <g transform="rotate(-6 285 -40)">
+          <g className="signature-writing" fill={`url(#${id}-pink)`}>
+            {signatureStrokes.map((stroke, index) => <path key={index} d={stroke.ink} mask={`url(#${id}-stroke-${index})`} />)}
+            <g className="signature-ears" fill="none" stroke={`url(#${id}-pink)`} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M30-135Q13-191 30-185Q60-173 83-147M35-148Q27-176 38-171L62-153" />
+              <path d="M458-147Q483-197 496-183Q511-166 510-139M472-153L490-176Q498-167 500-155" />
+            </g>
+          </g>
+          <g className="signature-fragments" aria-hidden="true">
+            {fragments.map((fragment, index) => (
+              <g key={index} className={`signature-fragment signature-color-${index % 4}`} style={{ '--fragment-x': `${fragment.dx}px`, '--fragment-y': `${fragment.dy}px`, '--fragment-rotation': `${fragment.rotation}deg` } as React.CSSProperties}>
+                <g clipPath={`url(#${id}-slice-${index})`}><use href={`#${id}-ink`} /></g>
+              </g>
+            ))}
+          </g>
+          <path className="signature-spark" d="M-7 0 0-7 7 0 0 7Z" fill="currentColor" aria-hidden="true" />
+        </g>
+      </svg>
+      {animated && (
+        <button type="button" className="hero-signature-control" aria-label={paused ? '播放签名动画' : '暂停签名动画'} aria-pressed={paused} onClick={() => setPaused(!paused)}>
+          {paused ? <Play size={14} aria-hidden="true" /> : <Pause size={14} aria-hidden="true" />}
+        </button>
+      )}
+    </span>
+  );
+}

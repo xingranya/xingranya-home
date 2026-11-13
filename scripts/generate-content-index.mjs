@@ -215,6 +215,7 @@ function main() {
     '/icons/coolapk.png',
     '/feed.xml',
     '/indexnow-urls.json',
+    '/licenses/tyx-signature-MIT.txt',
     '/llms.txt',
     '/robots.txt',
     '/rss.xml',

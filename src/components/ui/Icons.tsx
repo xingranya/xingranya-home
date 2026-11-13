@@ -17,8 +17,8 @@ export const GithubIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 );
 
 export const CoolapkIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg viewBox="0 0 24 24" width="18" height="18" {...props}>
-    <image href="/icons/coolapk.png" width="24" height="24" />
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+    <path d="m21 16.5-6.5-8a4.8 4.8 0 1 0 0 7L21 7.5" />
   </svg>
 );
 

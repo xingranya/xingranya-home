@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'wouter';
 import { Megaphone, ChevronRight } from 'lucide-react';
 import { SocialLinks } from '../ui/SocialLinks';
+import { HeroSignature } from './HeroSignature';
 import { getAllDiaries, getSnapshotTime, siteConfig } from '../../content';
 
 const HeroText: React.FC<{
@@ -97,17 +98,19 @@ export const HomeHero: React.FC = () => {
         </div>
       </div>
 
-      <h1 className="font-sans text-xl sm:text-3xl lg:text-[2.2rem] font-normal leading-tight text-slate-900 dark:text-slate-100 tracking-tight">
+      <h1 className="w-full font-sans text-xl sm:text-2xl font-normal leading-tight text-slate-900 dark:text-slate-100 tracking-tight">
         <span className="flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
           <HeroText text={greeting} delay={40} className="font-light opacity-85" />
           <HeroText
-            text={siteConfig.author.name}
+            text="星苒"
             delay={160}
             className="font-bold text-sakura-700 dark:text-[var(--sakura-accent)] tracking-tight"
           />
         </span>
 
-        <span className="home-hero-role mt-1 flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap italic">
+        <HeroSignature />
+
+        <span className="home-hero-role mt-1 flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap text-lg sm:text-xl italic">
           <HeroText text="I build" delay={100} className="font-light opacity-80" />
           <HeroText
             text={highlightRole}
