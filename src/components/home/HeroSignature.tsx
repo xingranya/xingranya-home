@@ -12,15 +12,17 @@ const fragments = Array.from({ length: 14 }, (_, index) => ({
 export function HeroSignature() {
   const id = useId().replace(/:/g, '');
   const ref = useRef<HTMLSpanElement>(null);
-  const [animated, setAnimated] = useState(false);
-  const [running, setRunning] = useState(false);
+  // 首屏 HTML 直接启用 CSS 动画，避免等待 React 挂载后再起笔。
+  const [animated, setAnimated] = useState(true);
+  const [running, setRunning] = useState(true);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let visible = false;
+    const bounds = node.getBoundingClientRect();
+    let visible = bounds.bottom > 0 && bounds.top < window.innerHeight;
     const update = () => {
       setAnimated(!preference.matches);
       setRunning(visible && !document.hidden && !preference.matches);

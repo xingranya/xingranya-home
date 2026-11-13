@@ -381,12 +381,12 @@
 .hero-signature-control:hover { background: var(--sakura-wash); }
 .hero-signature-control:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 
-.hero-signature[data-animated='true'] .signature-mask { stroke-dasharray: 1; animation-duration: 10s; animation-timing-function: linear; animation-iteration-count: infinite; }
-.hero-signature[data-animated='true'] .signature-writing { animation: signatureInk 10s linear infinite; }
+.hero-signature[data-animated='true'] .signature-mask { stroke-dasharray: 1; animation-duration: 5s; animation-delay: 40ms; animation-fill-mode: both; animation-timing-function: linear; animation-iteration-count: infinite; }
+.hero-signature[data-animated='true'] .signature-writing { animation: signatureInk 5s linear 40ms infinite both; }
 .hero-signature[data-animated='true'] .signature-fragments { display: block; }
-.hero-signature[data-animated='true'] .signature-fragment { animation: signatureScatter 10s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
-.hero-signature[data-animated='true'] .signature-spark { display: block; animation: signatureSpark 10s linear infinite; }
-.hero-signature[data-animated='true'] .signature-ears { animation: signatureEars 10s ease-in-out infinite; transform-origin: 285px -150px; }
+.hero-signature[data-animated='true'] .signature-fragment { animation: signatureScatter 5s cubic-bezier(0.16, 1, 0.3, 1) 40ms infinite both; }
+.hero-signature[data-animated='true'] .signature-spark { display: block; animation: signatureSpark 5s linear 40ms infinite both; }
+.hero-signature[data-animated='true'] .signature-ears { animation: signatureEars 5s ease-in-out 40ms infinite both; transform-origin: 285px -150px; }
 .hero-signature[data-running='false'] * { animation-play-state: paused !important; }
 
 .signature-stroke-0 { animation-name: signatureWrite0; }
@@ -396,28 +396,28 @@
 .signature-stroke-4 { animation-name: signatureWrite4; }
 
 @keyframes signatureWrite0 {
-  0%, 5% { stroke-dashoffset: 1; }
-  11%, 84% { stroke-dashoffset: 0; }
+  0% { stroke-dashoffset: 1; }
+  6%, 84% { stroke-dashoffset: 0; }
   85%, 100% { stroke-dashoffset: 1; }
 }
 @keyframes signatureWrite1 {
-  0%, 11% { stroke-dashoffset: 1; }
-  17%, 84% { stroke-dashoffset: 0; }
+  0%, 6% { stroke-dashoffset: 1; }
+  12%, 84% { stroke-dashoffset: 0; }
   85%, 100% { stroke-dashoffset: 1; }
 }
 @keyframes signatureWrite2 {
-  0%, 17% { stroke-dashoffset: 1; }
-  24%, 84% { stroke-dashoffset: 0; }
+  0%, 12% { stroke-dashoffset: 1; }
+  18%, 84% { stroke-dashoffset: 0; }
   85%, 100% { stroke-dashoffset: 1; }
 }
 @keyframes signatureWrite3 {
-  0%, 24% { stroke-dashoffset: 1; }
-  32%, 84% { stroke-dashoffset: 0; }
+  0%, 18% { stroke-dashoffset: 1; }
+  25%, 84% { stroke-dashoffset: 0; }
   85%, 100% { stroke-dashoffset: 1; }
 }
 @keyframes signatureWrite4 {
-  0%, 32% { stroke-dashoffset: 1; }
-  41%, 84% { stroke-dashoffset: 0; }
+  0%, 25% { stroke-dashoffset: 1; }
+  33%, 84% { stroke-dashoffset: 0; }
   85%, 100% { stroke-dashoffset: 1; }
 }
 @keyframes signatureInk {
@@ -431,14 +431,13 @@
   94%, 100% { opacity: 0; transform: translate(var(--fragment-x), var(--fragment-y)) rotate(var(--fragment-rotation)); }
 }
 @keyframes signatureSpark {
-  0% { opacity: 0; transform: translate(-35px, 15px) scale(0.2); }
-  2% { opacity: 0.75; }
-  5% { opacity: 0; transform: translate(0, 56px) scale(0.6); }
+  0% { opacity: 0.75; transform: translate(-10px, 35px) scale(0.2); }
+  4% { opacity: 0; transform: translate(0, 56px) scale(0.6); }
   100% { opacity: 0; }
 }
 @keyframes signatureEars {
-  0%, 37% { opacity: 0; transform: scaleY(0.75); }
-  43%, 57%, 77% { opacity: 1; transform: scaleY(1); }
+  0%, 29% { opacity: 0; transform: scaleY(0.75); }
+  35%, 57%, 77% { opacity: 1; transform: scaleY(1); }
   50%, 64% { opacity: 1; transform: scaleY(0.9); }
   78%, 100% { opacity: 0; }
 }
