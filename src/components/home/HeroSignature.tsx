@@ -48,7 +48,7 @@ export function HeroSignature() {
           </linearGradient>
           {signatureStrokes.map((stroke, index) => (
             <mask key={index} id={`${id}-stroke-${index}`} maskUnits="userSpaceOnUse" x="-40" y="-180" width="730" height="300">
-              <path className={`signature-mask signature-stroke-${index}`} d={stroke.line} pathLength="1" fill="none" stroke="white" strokeWidth="28" strokeLinecap="round" strokeLinejoin="round" />
+              <path className={`signature-mask signature-stroke-${index}`} d={stroke.line} pathLength="1" fill="none" stroke="white" strokeWidth="28" strokeLinecap="butt" strokeLinejoin="round" />
             </mask>
           ))}
         </defs>

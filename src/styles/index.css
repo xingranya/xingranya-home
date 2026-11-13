@@ -389,29 +389,29 @@
 .signature-stroke-4 { animation-name: signatureWrite4; }
 
 @keyframes signatureWrite0 {
-  0% { stroke-dashoffset: 1; }
-  6%, 95% { stroke-dashoffset: 0; }
-  96%, 100% { stroke-dashoffset: 1; }
+  0% { stroke-dashoffset: 1; visibility: hidden; }
+  6%, 95% { stroke-dashoffset: 0; visibility: visible; }
+  96%, 100% { stroke-dashoffset: 1; visibility: hidden; }
 }
 @keyframes signatureWrite1 {
-  0%, 6% { stroke-dashoffset: 1; }
-  12%, 95% { stroke-dashoffset: 0; }
-  96%, 100% { stroke-dashoffset: 1; }
+  0%, 6% { stroke-dashoffset: 1; visibility: hidden; }
+  12%, 95% { stroke-dashoffset: 0; visibility: visible; }
+  96%, 100% { stroke-dashoffset: 1; visibility: hidden; }
 }
 @keyframes signatureWrite2 {
-  0%, 12% { stroke-dashoffset: 1; }
-  18%, 95% { stroke-dashoffset: 0; }
-  96%, 100% { stroke-dashoffset: 1; }
+  0%, 12% { stroke-dashoffset: 1; visibility: hidden; }
+  18%, 95% { stroke-dashoffset: 0; visibility: visible; }
+  96%, 100% { stroke-dashoffset: 1; visibility: hidden; }
 }
 @keyframes signatureWrite3 {
-  0%, 18% { stroke-dashoffset: 1; }
-  25%, 95% { stroke-dashoffset: 0; }
-  96%, 100% { stroke-dashoffset: 1; }
+  0%, 18% { stroke-dashoffset: 1; visibility: hidden; }
+  25%, 95% { stroke-dashoffset: 0; visibility: visible; }
+  96%, 100% { stroke-dashoffset: 1; visibility: hidden; }
 }
 @keyframes signatureWrite4 {
-  0%, 25% { stroke-dashoffset: 1; }
-  33%, 95% { stroke-dashoffset: 0; }
-  96%, 100% { stroke-dashoffset: 1; }
+  0%, 25% { stroke-dashoffset: 1; visibility: hidden; }
+  33%, 95% { stroke-dashoffset: 0; visibility: visible; }
+  96%, 100% { stroke-dashoffset: 1; visibility: hidden; }
 }
 @keyframes signatureInk {
   0%, 77% { opacity: 1; }
