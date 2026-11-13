@@ -2,13 +2,6 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { Pause, Play } from 'lucide-react';
 import { signatureStrokes } from './signature-strokes';
 
-const fragments = Array.from({ length: 14 }, (_, index) => ({
-  x: index * 46 - 20,
-  dx: Math.sin(index * 2.4) * 38,
-  dy: -18 - (index % 4) * 13,
-  rotation: (index % 2 ? 1 : -1) * (10 + index * 2),
-}));
-
 export function HeroSignature() {
   const id = useId().replace(/:/g, '');
   const ref = useRef<HTMLSpanElement>(null);
@@ -53,17 +46,10 @@ export function HeroSignature() {
             <stop className="signature-pink-soft" offset="0.65" />
             <stop className="signature-pink-deep" offset="1" />
           </linearGradient>
-          <g id={`${id}-ink`}>
-            {signatureStrokes.map((stroke, index) => <path key={index} d={stroke.ink} />)}
-            <path d="M30-135Q13-191 30-185Q60-173 83-147M35-148Q27-176 38-171L62-153M458-147Q483-197 496-183Q511-166 510-139M472-153L490-176Q498-167 500-155" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-          </g>
           {signatureStrokes.map((stroke, index) => (
             <mask key={index} id={`${id}-stroke-${index}`} maskUnits="userSpaceOnUse" x="-40" y="-180" width="730" height="300">
               <path className={`signature-mask signature-stroke-${index}`} d={stroke.line} pathLength="1" fill="none" stroke="white" strokeWidth="28" strokeLinecap="round" strokeLinejoin="round" />
             </mask>
-          ))}
-          {fragments.map((fragment, index) => (
-            <clipPath key={index} id={`${id}-slice-${index}`}><rect x={fragment.x} y="-210" width="46" height="330" /></clipPath>
           ))}
         </defs>
         <g transform="rotate(-6 285 -40)">
@@ -73,13 +59,6 @@ export function HeroSignature() {
               <path d="M30-135Q13-191 30-185Q60-173 83-147M35-148Q27-176 38-171L62-153" />
               <path d="M458-147Q483-197 496-183Q511-166 510-139M472-153L490-176Q498-167 500-155" />
             </g>
-          </g>
-          <g className="signature-fragments" aria-hidden="true">
-            {fragments.map((fragment, index) => (
-              <g key={index} className={`signature-fragment signature-color-${index % 4}`} style={{ '--fragment-x': `${fragment.dx}px`, '--fragment-y': `${fragment.dy}px`, '--fragment-rotation': `${fragment.rotation}deg` } as React.CSSProperties}>
-                <g clipPath={`url(#${id}-slice-${index})`}><use href={`#${id}-ink`} /></g>
-              </g>
-            ))}
           </g>
           <path className="signature-spark" d="M-7 0 0-7 7 0 0 7Z" fill="currentColor" aria-hidden="true" />
         </g>

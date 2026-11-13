@@ -360,12 +360,7 @@
 .dark .signature-pink-bright { stop-color: #ffc0d5; }
 .dark .signature-pink-soft { stop-color: #e99ac7; }
 .hero-signature-art { display: block; width: 100%; height: auto; overflow: hidden; }
-.signature-fragments, .signature-spark { display: none; }
-.signature-fragment { fill: currentColor; transform-box: fill-box; transform-origin: center; }
-.signature-color-0 { color: #c43d61; }
-.signature-color-1 { color: #e37994; }
-.signature-color-2 { color: #b56c8b; }
-.signature-color-3 { color: #f3a7ba; }
+.signature-spark { display: none; }
 
 .hero-signature-control {
   position: absolute;
@@ -383,8 +378,6 @@
 
 .hero-signature[data-animated='true'] .signature-mask { stroke-dasharray: 1; animation-duration: 5s; animation-delay: 40ms; animation-fill-mode: both; animation-timing-function: linear; animation-iteration-count: infinite; }
 .hero-signature[data-animated='true'] .signature-writing { animation: signatureInk 5s linear 40ms infinite both; }
-.hero-signature[data-animated='true'] .signature-fragments { display: block; }
-.hero-signature[data-animated='true'] .signature-fragment { animation: signatureScatter 5s cubic-bezier(0.16, 1, 0.3, 1) 40ms infinite both; }
 .hero-signature[data-animated='true'] .signature-spark { display: block; animation: signatureSpark 5s linear 40ms infinite both; }
 .hero-signature[data-animated='true'] .signature-ears { animation: signatureEars 5s ease-in-out 40ms infinite both; transform-origin: 285px -150px; }
 .hero-signature[data-running='false'] * { animation-play-state: paused !important; }
@@ -397,38 +390,32 @@
 
 @keyframes signatureWrite0 {
   0% { stroke-dashoffset: 1; }
-  6%, 84% { stroke-dashoffset: 0; }
-  85%, 100% { stroke-dashoffset: 1; }
+  6%, 95% { stroke-dashoffset: 0; }
+  96%, 100% { stroke-dashoffset: 1; }
 }
 @keyframes signatureWrite1 {
   0%, 6% { stroke-dashoffset: 1; }
-  12%, 84% { stroke-dashoffset: 0; }
-  85%, 100% { stroke-dashoffset: 1; }
+  12%, 95% { stroke-dashoffset: 0; }
+  96%, 100% { stroke-dashoffset: 1; }
 }
 @keyframes signatureWrite2 {
   0%, 12% { stroke-dashoffset: 1; }
-  18%, 84% { stroke-dashoffset: 0; }
-  85%, 100% { stroke-dashoffset: 1; }
+  18%, 95% { stroke-dashoffset: 0; }
+  96%, 100% { stroke-dashoffset: 1; }
 }
 @keyframes signatureWrite3 {
   0%, 18% { stroke-dashoffset: 1; }
-  25%, 84% { stroke-dashoffset: 0; }
-  85%, 100% { stroke-dashoffset: 1; }
+  25%, 95% { stroke-dashoffset: 0; }
+  96%, 100% { stroke-dashoffset: 1; }
 }
 @keyframes signatureWrite4 {
   0%, 25% { stroke-dashoffset: 1; }
-  33%, 84% { stroke-dashoffset: 0; }
-  85%, 100% { stroke-dashoffset: 1; }
+  33%, 95% { stroke-dashoffset: 0; }
+  96%, 100% { stroke-dashoffset: 1; }
 }
 @keyframes signatureInk {
   0%, 77% { opacity: 1; }
-  78%, 100% { opacity: 0; }
-}
-@keyframes signatureScatter {
-  0%, 77% { opacity: 0; transform: translate(0, 0) rotate(0); }
-  78% { opacity: 1; transform: translate(0, 0) rotate(0); }
-  84% { opacity: 1; transform: translate(var(--fragment-x), var(--fragment-y)) rotate(var(--fragment-rotation)); }
-  94%, 100% { opacity: 0; transform: translate(var(--fragment-x), var(--fragment-y)) rotate(var(--fragment-rotation)); }
+  94%, 100% { opacity: 0; }
 }
 @keyframes signatureSpark {
   0% { opacity: 0.75; transform: translate(-10px, 35px) scale(0.2); }
@@ -437,15 +424,15 @@
 }
 @keyframes signatureEars {
   0%, 29% { opacity: 0; transform: scaleY(0.75); }
-  35%, 57%, 77% { opacity: 1; transform: scaleY(1); }
+  35%, 57%, 76% { opacity: 1; transform: scaleY(1); }
   50%, 64% { opacity: 1; transform: scaleY(0.9); }
-  78%, 100% { opacity: 0; }
+  94%, 100% { opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-signature * { animation: none !important; }
   .hero-signature .signature-mask { stroke-dashoffset: 0; }
   .hero-signature .signature-writing { opacity: 1; }
-  .hero-signature .signature-fragments, .hero-signature .signature-spark, .hero-signature-control { display: none !important; }
+  .hero-signature .signature-spark, .hero-signature-control { display: none !important; }
 }
 
 .home-hero-split {
