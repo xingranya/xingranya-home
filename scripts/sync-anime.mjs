@@ -71,7 +71,7 @@ async function readJson(filename, fallback) {
 }
 
 // 本地凭据文件位于 .cache/anime-sync/（已被 .gitignore 忽略）。已有的环境变量优先，
-// 便于临时覆盖或 CI 注入；文件缺失时静默跳过，回落到交互询问。
+// 便于临时覆盖或 CI 环境；文件缺失时静默跳过，回落到交互询问。
 async function loadCredentials() {
   let content;
   try {
