@@ -10,6 +10,7 @@ import { imageSize } from 'image-size';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const dataPath = 'src/content/pages/wallpapers.json';
 const cachePath = path.join(root, '.cache/anime-sync/uploads.json');
+const credentialsPath = path.join(root, '.cache/anime-sync/credentials.env');
 const statuses = ['watching', 'watched'];
 const apiBase = 'https://www.cycani.org/api';
 const expectedRemote = 'xingranya/xingranya-home';
@@ -67,6 +68,28 @@ async function readJson(filename, fallback) {
     if (error.code === 'ENOENT' && fallback !== undefined) return fallback;
     throw error;
   }
+}
+
+// 本地凭据文件位于 .cache/anime-sync/（已被 .gitignore 忽略）。已有的环境变量优先，
+// 便于临时覆盖或 CI 注入；文件缺失时静默跳过，回落到交互询问。
+async function loadCredentials() {
+  let content;
+  try {
+    content = await fs.readFile(credentialsPath, 'utf8');
+  } catch (error) {
+    if (error.code === 'ENOENT') return [];
+    throw error;
+  }
+  const loaded = [];
+  for (const line of content.split('\n')) {
+    const match = line.match(/^\s*([A-Z_][A-Z0-9_]*)\s*=\s*(.*)$/);
+    if (!match) continue;
+    const value = match[2].trim().replace(/^(['"])(.*)\1$/, '$2');
+    if (!value || process.env[match[1]]) continue;
+    process.env[match[1]] = value;
+    loaded.push(match[1]);
+  }
+  return loaded;
 }
 
 async function requestApi(endpoint, token, body) {
@@ -281,13 +304,15 @@ export async function main() {
   });
   if (values.help) {
     console.log(
-      '用法：pnpm sync:anime [--check | --push] [--username 账号] [--folder 4249]\n--check 只核对，不上传图片、不修改文件\n--push 同步、构建验证、提交并推送 origin/main\n环境变量：CYC_USERNAME、CYC_PASSWORD、CYC_TOKEN（可代替密码）、TUCANG_TOKEN、TUCANG_FOLDER_ID\n未设置时交互询问；密码与 Token 隐藏输入，仅保存在本次进程内。'
+      '用法：pnpm sync:anime [--check | --push] [--username 账号] [--folder 4249]\n--check 只核对，不上传图片、不修改文件\n--push 同步、构建验证、提交并推送 origin/main\n环境变量：CYC_USERNAME、CYC_PASSWORD、CYC_TOKEN（可代替密码）、TUCANG_TOKEN、TUCANG_FOLDER_ID\n也可写入 .cache/anime-sync/credentials.env（已被 Git 忽略），启动时自动加载且不覆盖已有环境变量\n未设置时交互询问；密码与 Token 隐藏输入，仅保存在本次进程内。'
     );
     return;
   }
   if (values.check && values.push) throw new Error('--check 和 --push 不能同时使用。');
   process.chdir(root);
   if (values.push) checkPushTarget();
+  const loadedCredentials = await loadCredentials();
+  if (loadedCredentials.length) console.log(`已从本地凭据文件加载：${loadedCredentials.join('、')}`);
   const previous = await readJson(path.join(root, dataPath));
   let token = process.env.CYC_TOKEN;
   if (!token) {

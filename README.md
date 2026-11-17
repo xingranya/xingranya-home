@@ -77,7 +77,7 @@ pnpm generate:content-index
 
 ## 番剧墙
 
-导航中的「番剧墙」对应 `/wallpapers`。初始片单为 2026-09-22 从次元城「正在追 / 已追完」同步的 52 部番剧，包含封面、简介及来源信息。按播出年份从新到旧排列，同年按首播日期排列。封面存放于图仓文件夹 4249，前端仅包含公开图片地址；实际数量以最新同步结果为准。
+导航中的「番剧墙」对应 `/wallpapers`，片单来自次元城「正在追 / 已追完」，包含封面、简介及来源信息。按播出年份从新到旧排列，同年按首播日期排列。封面存放于图仓文件夹 4249，前端仅包含公开图片地址；数量和快照日期以 `src/content/pages/wallpapers.json` 及本次来源核对结果为准。
 
 交错封面排布与入场节奏参考 [React Bits Masonry](https://reactbits.dev/components/masonry)，在既有粉笺视觉上以 CSS、IntersectionObserver 和 Web Animations 实现，没有新增依赖。图片在接近视口时加载，默认展示全部，支持搜索、正在追 / 已追完 / 剧场版筛选、详情预览、键盘切换和减少动态效果设置。
 
@@ -89,19 +89,62 @@ pnpm generate:content-index
 
 ### 一键同步次元城
 
-在仓库目录运行（Node.js 22+，先安装项目依赖）：
+用户说“同步壁纸墙 / 番剧墙”时，目标是本仓库的 [番剧墙](https://xran.uk/wallpapers)，不是相邻 Hexo 博客的壁纸数据。复用 `scripts/sync-anime.mjs`，同步状态、资料和封面，不手工修改计数，也不需要启动浏览器或开发服务器来采集。
+
+1. **确认仓库与环境。** 本机目录为 `/Users/xingranya/Downloads/HTML5CSS/xingranya-home`，远端为 `xingranya/xingranya-home`。使用 Node.js 22.18+ 和 `package.json` 指定的 pnpm；依赖缺失时执行 `pnpm install --frozen-lockfile`。先检查工作区，保留他人的改动；准备发布时确认 `main` 与 `origin/main` 一致，有分叉或未提交改动先处理，不能强制重置。
 
 ```bash
-pnpm sync:anime --check # 只核对两种分类，不上传或修改文件
-pnpm sync:anime         # 同步资料、新增封面并构建验证
-pnpm sync:anime --push  # 同步、验证，然后自动提交并推送 GitHub
+cd /Users/xingranya/Downloads/HTML5CSS/xingranya-home
+git status --short
+node scripts/sync-anime.mjs --help
 ```
 
-未设置环境变量时，脚本会询问次元城账号、密码；有新增封面时才询问图仓 Token。密码与 Token 隐藏输入，仅保存在本次进程内。也可由本机环境提供 `CYC_USERNAME`、`CYC_PASSWORD`（或 `CYC_TOKEN`）与 `TUCANG_TOKEN`，不要把真实凭据写入项目文件或命令历史。默认图仓文件夹为 4249，可通过 `--folder` 或 `TUCANG_FOLDER_ID` 修改。
+2. **按授权范围执行。** 推荐先同步到本地，补齐中文简介后再发布。以下三种模式任选一种，不要依次全部运行。
 
-自动推送要求工作区干净，且 `main` 与 `xingranya/xingranya-home` 的 `origin/main` 一致。脚本会完整读取分页，更新两种追番状态与资料，复用原有图片，只上传新增或封面已更换的图片。读取或图片验证失败时不会覆盖片单；构建失败时不会提交。上传进度和上一份片单保存在已忽略的 `.cache/anime-sync/`，失败后可检查并重新运行。若推送因网络失败，提交仍在本地，恢复网络后执行 `git push origin main`。
+```bash
+# 只核对两种分类与新增、移除、状态变化；仍会登录来源站
+node scripts/sync-anime.mjs --check --username xingranya
+# 同步到本地，必要时上传封面，并自动构建及检查；不提交、不推送
+node scripts/sync-anime.mjs --username xingranya --folder 4249
+# 已获发布授权且允许片单先发布时：同步、检查、自动提交并推送
+node scripts/sync-anime.mjs --push --username xingranya --folder 4249
+```
 
-这不是定时任务，每次需要更新时运行一次。`pnpm check:anime-sync` 检查分页、分类合并和异常阻断逻辑。
+账号密码与图仓 Token 的取值顺序为：环境变量 → `.cache/anime-sync/credentials.env` → 隐藏提示。凭据文件由脚本启动时自动读取，`.cache/anime-sync/` 已在 `.gitignore` 中，不会进入 Git；文件权限建议 `chmod 600`，已有的同名环境变量不会被覆盖。代理终端需启用 PTY（例如 `exec_command` 的 `tty: true`）。只有需要新上传封面时才用图仓 Token。可用变量：`CYC_USERNAME`、`CYC_PASSWORD`，或用 `CYC_TOKEN` 跳过登录；图仓使用 `TUCANG_TOKEN`。默认文件夹为 4249，可由 `--folder` 或 `TUCANG_FOLDER_ID` 指定。真实值不写进文档、提交内容、日志或命令历史。
+
+脚本完整读取两种分类的分页，核对总数及重复条目；复用未变的封面，只上传新增或已更换的封面。成功后更新 `src/content/pages/wallpapers.json`，自动运行 `pnpm run build` 和 `node scripts/check-wallpapers.mjs`。资料完全未变时直接退出，不更新快照日期、不构建、不提交。`--push` 额外检查工作区、分支、远端和允许提交的文件，并回读远端提交；它**不会自动翻译或运行中文简介检查**。
+
+3. **补齐中文简介。** 同步后运行：
+
+```bash
+pnpm check:anime-search
+```
+
+若提示某部番剧仍展示日文，用该条目 `id` 作键，将忠实中文译文加入 `src/content/pages/anime-descriptions.zh.json`；保留 `wallpapers.json` 中的来源原文。来源站已有中文时由 `getAnimeSynopsis` 优先使用来源中文，不要为了旧测试覆盖它。片单移除条目导致译文键失效时，核对移除结果后清理对应键。
+
+补过译文或修过本次相关代码后，执行以下检查；没有新改动时不重复同步脚本已经通过的构建和片单检查：
+
+```bash
+pnpm check:anime-search
+pnpm run build
+node scripts/check-wallpapers.mjs
+```
+
+仅修改同步脚本时，另运行 `pnpm check:anime-sync`，验证分页、分类合并与异常阻断。
+
+4. **检查并发布。** 仅在本次请求或已有会话授权覆盖发布时执行。先看 `git diff --stat` 和 `git diff --check`，只暂存本次片单、译文、必要修复及实际变化的生成文件。同步脚本的生成文件白名单为 `public/sitemap.xml`、`public/indexnow-urls.json`、`src/content/generated/valid-routes.js`。按仓库约定提交后执行 `git push origin main`，核对 `git rev-parse HEAD` 与 `git ls-remote origin refs/heads/main` 的提交一致。
+
+先本地同步或补过译文后，不要再补跑 `--push`：工作区改动会触发它的前置阻断，此时审核本地改动后正常提交即可。若先用了 `--push`，新增译文仍需单独验证、提交和推送。
+
+5. **确认线上结果。** 打开或回读 `https://xran.uk/wallpapers`，将卡片总数、两种分类数量、快照日期和新增标题与本次 JSON 对照。若更新了译文，检查线上详情或实际加载的 JS 中已包含新译文；仅 HTTP 200 不足以证明更新，资源请求可能返回旧版或 HTML 回退页。部署未完成就明确报告“已推送，线上待确认”，不要把历史数量当作当前结果。交付只需说明新增 / 移除 / 状态变化、当前数量、实际检查与未验证项。
+
+### 同步失败时
+
+- 资料或图片验证失败时尚未覆盖片单；已成功上传的记录在 `.cache/anime-sync/uploads.json`，保留缓存后重新运行可复用图片。脚本每 10 部打印一次进度，间隔内无输出不代表卡死；首次构建可能出现 Corepack 下载 pnpm 的确认提示。
+- 写入片单后的构建或检查失败不会提交，但本地文件已改变，旧片单在 `.cache/anime-sync/previous.json`。先修复并完成检查，再审核提交；不要直接重跑 `--push`，也不要自动回滚覆盖其他改动。所有恢复操作先检查当前 Git 差异。
+- 推送失败时检查提交是否已留在本地，排除远端分叉后重试 `git push origin main`，无需重新采集或上传。登录、权限或限流错误先解决原因，不连续盲目重试。
+
+这是按需手动同步，不会创建定时任务；`.cache/anime-sync/` 已忽略，不提交缓存、凭据或原始响应。
 
 ## 中文字体
 
